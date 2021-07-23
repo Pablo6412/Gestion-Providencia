@@ -47,11 +47,16 @@ Public Class FrmBecas
         If TxtTipoBeca.Text = "" Then
             MsgBox("Debe asignar un tipo de Beca")
         Else
-            porcentaje = Val(TxtPorcentaje.Text)
+            porcentaje = TxtPorcentaje.Text
 
             indice = (100 - porcentaje) / 100
-            TxtIndice.Text = indice
-            MsgBox("El índice es '" & Val(TxtIndice.Text) & "'")
+
+            'indice = Format(indice, "##,##0.00")
+            'indice = String.Format("{0:N2}", indice)
+            'TxtIndice.Text = indice
+            'TxtIndice.Text = Format(TxtIndice.Text, "##,##00.00")
+            'Dim RepresentacionNumerica = indice.ToString("N2", New Globalization.CultureInfo("es-ES"))
+            MsgBox("El índice es '" & indice & "'")
             Dim NuevaBeca As String = "UPDATE descuento_beca SET tipo_beca = '" & TxtTipoBeca.Text & "', descuento_beca = '" & indice & "' WHERE codigo_beca = '" & codigo & "'"
             Dim comando As New SqlCommand(NuevaBeca, conexion)
             comando.ExecuteNonQuery()
