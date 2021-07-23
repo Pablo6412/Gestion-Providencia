@@ -8,11 +8,11 @@ Public Class FrmBecas
     Dim codigo As Integer
     Dim contador As Integer
     Dim codigo2 As Integer
+
     Private Sub FrmBecas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         conectar()
         abrir()
         BuscaBeca()
-        ListBox()
         cerrar()
         abrir()
         BuscaSinAsignar()
@@ -20,7 +20,6 @@ Public Class FrmBecas
 
     Private Sub BuscaBeca()
         Dim beca As String = "SELECT codigo_beca, tipo_beca FROM descuento_beca"
-        'Dim nivel As String = "SELECT codigo_taller, taller_nombre FROM taller"
         adaptador = New SqlDataAdapter(beca, conexion)
 
         datos = New DataSet
@@ -30,44 +29,7 @@ Public Class FrmBecas
         LbxBeca.DisplayMember = "tipo_beca"
     End Sub
 
-    Private Sub ListBox()
-        Dim cmd As New SqlCommand
-        Dim da As SqlDataAdapter
 
-        With LsvBeca
-
-            .Columns.Clear()
-            .Items.Clear()
-            .View = View.Details
-            .GridLines = False
-            .FullRowSelect = True
-            .Scrollable = True
-            .HideSelection = False
-            ''agregando nombres y ancho correcto a las columnas
-            .Columns.Add("Tipo de beca", 150, HorizontalAlignment.Left)
-            .Columns.Add("Monto", 80, HorizontalAlignment.Left)
-
-        End With
-
-
-        Dim adaptador As New SqlDataAdapter
-        Dim lista As String = "SELECT codigo_beca, tipo_beca, descuento_beca FROM descuento_beca"
-        adaptador = New SqlDataAdapter(lista, conexion)
-
-        cmd = New SqlCommand(lista, conexion)
-        Dim lector As SqlDataReader = cmd.ExecuteReader
-        da = New SqlDataAdapter(cmd)
-
-        While lector.Read
-
-            With LsvBeca.Items.Add(lector.Item("tipo_beca").ToString)
-
-                .SubItems.Add(lector.Item("descuento_beca").ToString)
-
-            End With
-
-        End While
-    End Sub
 
     Private Sub BuscaSinAsignar()
         Dim consulta As String = "SELECT TOP 1 codigo_beca FROM descuento_beca WHERE tipo_beca = 'Sin asignar' ORDER BY codigo_beca"
@@ -106,21 +68,21 @@ Public Class FrmBecas
         BuscaBeca()
     End Sub
 
-    Public Sub TxttIndice_LostFocus()
+    'Public Sub TxttIndice_LostFocus()
 
-        Dim val As Decimal = 0
+    '    Dim val As Decimal = 0
 
-        If Decimal.TryParse(TxtIndice.Text, val) Then
+    '    If Decimal.TryParse(TxtIndice.Text, val) Then
 
-            TxtIndice.Text = val.ToString("N2")
+    '        TxtIndice.Text = val.ToString("N2")
 
-        Else
+    '    Else
 
-            TxtIndice.Text = ""
+    '        TxtIndice.Text = ""
 
-        End If
+    '    End If
 
-    End Sub
+    'End Sub
 
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click

@@ -31,7 +31,6 @@ Partial Class FrmBecas
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TxtTipoBeca = New System.Windows.Forms.TextBox()
-        Me.LsvBeca = New System.Windows.Forms.ListView()
         Me.TxtIndice = New System.Windows.Forms.TextBox()
         Me.MySqlCommand1 = New MySql.Data.MySqlClient.MySqlCommand()
         Me.GroupBox1.SuspendLayout()
@@ -65,7 +64,7 @@ Partial Class FrmBecas
         '
         Me.LbxBeca.FormattingEnabled = True
         Me.LbxBeca.ItemHeight = 21
-        Me.LbxBeca.Location = New System.Drawing.Point(114, 62)
+        Me.LbxBeca.Location = New System.Drawing.Point(395, 79)
         Me.LbxBeca.Name = "LbxBeca"
         Me.LbxBeca.Size = New System.Drawing.Size(157, 130)
         Me.LbxBeca.TabIndex = 2
@@ -118,15 +117,6 @@ Partial Class FrmBecas
         Me.TxtTipoBeca.Size = New System.Drawing.Size(154, 29)
         Me.TxtTipoBeca.TabIndex = 2
         '
-        'LsvBeca
-        '
-        Me.LsvBeca.HideSelection = False
-        Me.LsvBeca.Location = New System.Drawing.Point(324, 62)
-        Me.LsvBeca.Name = "LsvBeca"
-        Me.LsvBeca.Size = New System.Drawing.Size(277, 234)
-        Me.LsvBeca.TabIndex = 4
-        Me.LsvBeca.UseCompatibleStateImageBehavior = False
-        '
         'TxtIndice
         '
         Me.TxtIndice.Location = New System.Drawing.Point(558, 496)
@@ -149,7 +139,6 @@ Partial Class FrmBecas
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(990, 650)
         Me.Controls.Add(Me.TxtIndice)
-        Me.Controls.Add(Me.LsvBeca)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.LbxBeca)
         Me.Controls.Add(Me.BtnSalir)
@@ -173,7 +162,6 @@ Partial Class FrmBecas
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label1 As Label
     Friend WithEvents TxtTipoBeca As TextBox
-    Friend WithEvents LsvBeca As ListView
     Friend WithEvents TxtPorcentaje As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents TxtIndice As TextBox

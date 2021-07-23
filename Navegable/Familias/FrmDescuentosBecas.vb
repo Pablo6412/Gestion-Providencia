@@ -3,8 +3,7 @@ Public Class FrmDescuentosBecas
     Dim datos As DataSet
     Dim adaptador As SqlDataAdapter
     Dim beca As Integer
-    'Dim dataReader As SqlDataReader
-    'Dim comando As SqlCommand
+
     Private Sub FrmDescuentosBecas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         conectar()
         NombreBoton()
@@ -25,8 +24,6 @@ Public Class FrmDescuentosBecas
         RdbSinAsignar1.Text = datos.Tables("descuento_beca").Rows(3).Item("tipo_beca")
         RdbSinAsignar2.Text = datos.Tables("descuento_beca").Rows(4).Item("tipo_beca")
         RdbSinAsignar3.Text = datos.Tables("descuento_beca").Rows(5).Item("tipo_beca")
-
-
 
         If RdbSinAsignar1.Text = "Sin asignar" Then
             RdbSinAsignar1.Hide()
