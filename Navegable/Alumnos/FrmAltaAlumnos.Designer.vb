@@ -92,6 +92,7 @@ Partial Class FrmAltaAlumnos
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         CType(Me.DgvHijos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -770,6 +771,7 @@ Partial Class FrmAltaAlumnos
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.FlowLayoutPanel1)
         Me.Panel1.Controls.Add(Me.PictureBox3)
         Me.Panel1.Controls.Add(Me.PictureBox2)
         Me.Panel1.Controls.Add(Me.PictureBox1)
@@ -816,6 +818,13 @@ Partial Class FrmAltaAlumnos
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1108, 5)
         Me.Panel2.TabIndex = 37
+        '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(84, 51)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(200, 100)
+        Me.FlowLayoutPanel1.TabIndex = 41
         '
         'FrmAltaAlumnos
         '
@@ -922,4 +931,5 @@ Partial Class FrmAltaAlumnos
     Friend WithEvents valor_cuota As DataGridViewTextBoxColumn
     Friend WithEvents hermano_numero As DataGridViewTextBoxColumn
     Friend WithEvents fecha_ingreso As DataGridViewTextBoxColumn
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
 End Class
