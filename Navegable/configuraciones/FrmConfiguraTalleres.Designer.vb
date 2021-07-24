@@ -111,7 +111,6 @@ Partial Class FrmConfiguraTalleres
         Me.TxtImporte.Name = "TxtImporte"
         Me.TxtImporte.Size = New System.Drawing.Size(100, 27)
         Me.TxtImporte.TabIndex = 3
-        Me.TxtImporte.Text = "0"
         '
         'Label3
         '

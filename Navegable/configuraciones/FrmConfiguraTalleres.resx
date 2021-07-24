@@ -59,8 +59,7 @@
   </resheader>
   <data name="Label4.Text" xml:space="preserve">
     <value>INSTRUCCIONES
-1- Elija de la lista de talleres una casilla con la leyenda "Sin asignar"
-2- "En Nombre del taller" escriba el nombre que desea asignarle al nuevo taller e indique su valor (Si aún no sabe el valor puede dejar la casilla en blanco pero el taller quedara con un valor de cero pesos que luego podrá modificar en la pestaña de actualizaciones)
+1- "En Nombre del taller" escriba el nombre que desea asignarle al nuevo taller e indique su valor (Si aún no sabe el valor puede dejar la casilla en blanco pero el taller quedara con un valor de cero pesos que luego podrá modificar en la pestaña de actualizaciones)
 
      </value>
   </data>
