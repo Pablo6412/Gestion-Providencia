@@ -57,10 +57,10 @@ Public Class FrmConfiguraTalleres
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
         'Dim value As Integer = LbxTalleres.Items.
-        If LbxTalleres.Text <> "Sin asignar" Then
-            MsgBox("Debe elejir un item con el texto '" & "Sin asignar" & "' ")
-        Else
-            If TxtTaller.Text = "" Then
+        'If LbxTalleres.Text <> "Sin asignar" Then
+        '    MsgBox("Debe elejir un item con el texto '" & "Sin asignar" & "' ")
+        'Else
+        If TxtTaller.Text = "" Then
                 MsgBox("Debe asignarle un nombre al taller")
             Else
                 Dim NuevoTaller As String = "UPDATE taller SET taller_nombre = '" & TxtTaller.Text & "', taller_importe = '" & TxtImporte.Text & "' WHERE codigo_taller = '" & codigo & "'"
@@ -75,7 +75,7 @@ Public Class FrmConfiguraTalleres
                 End If
                 'AgregaTaller(TxtTaller)
             End If
-        End If
+        'End If
         buscaTaller()
     End Sub
 
