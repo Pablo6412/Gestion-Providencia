@@ -17,6 +17,10 @@ Public Class Pagos
     Dim opcion
 
     Private Sub Pagos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim sinAsignar1 As String
+        Dim sinAsignar2 As String
+        Dim sinAsignar3 As String
+
         conectar()                           'Conección a base de datos
         abrir()
         Dim adaptador1 As SqlDataAdapter
@@ -36,25 +40,34 @@ Public Class Pagos
         'LblComedor.Text = datos1.Tables("concepto_de_pago").Rows(5).Item("concepto_nombre")
 
         'LblTalleres.Text = datos1.Tables("concepto_de_pago").Rows(6).Item("concepto_nombre")
-        LblSinAsignar1.Text = datos1.Tables("concepto_de_pago").Rows(7).Item("concepto_nombre")
-        LblSinAsignar3.Text = datos1.Tables("concepto_de_pago").Rows(8).Item("concepto_nombre")
-        LblSinAsignar2.Text = datos1.Tables("concepto_de_pago").Rows(9).Item("concepto_nombre")
-        'lista = datos.Tables("taller").Rows.Count
 
-        If LblSinAsignar1.Text = "Sin asignar" Then
+        'LblSinAsignar1.Text = datos1.Tables("concepto_de_pago").Rows(7).Item("concepto_nombre")
+        'LblSinAsignar3.Text = datos1.Tables("concepto_de_pago").Rows(8).Item("concepto_nombre")
+        'LblSinAsignar2.Text = datos1.Tables("concepto_de_pago").Rows(9).Item("concepto_nombre")
+
+        sinAsignar1 = datos1.Tables("concepto_de_pago").Rows(7).Item("concepto_nombre")
+        sinAsignar2 = datos1.Tables("concepto_de_pago").Rows(8).Item("concepto_nombre")
+        sinAsignar3 = datos1.Tables("concepto_de_pago").Rows(9).Item("concepto_nombre")
+        LblSinAsignar1.Text = "" & sinAsignar1 & ":"
+        LblSinAsignar2.Text = "" & sinAsignar2 & ":"
+        LblSinAsignar3.Text = "" & sinAsignar3 & ":"
+
+        If LblSinAsignar1.Text = "Sin asignar:" Then
             TxtSinAsignar1.Hide()
             LblSinAsignar1.Hide()
         End If
 
-        If LblSinAsignar3.Text = "Sin asignar" Then
+        If LblSinAsignar3.Text = "Sin asignar:" Then
             TxtSinAsignar3.Hide()
             LblSinAsignar3.Hide()
         End If
 
-        If LblSinAsignar2.Text = "Sin asignar" Then
+        If LblSinAsignar2.Text = "Sin asignar:" Then
             TxtSinasignar2.Hide()
             LblSinAsignar2.Hide()
         End If
+
+
 
         RadioButton1.Checked = True
         'Abre la conección
@@ -233,6 +246,9 @@ Public Class Pagos
         TxtCampamento.Text = TxtCampamento.PlaceholderText
         TxtAdicionalJardin.Text = TxtAdicionalJardin.PlaceholderText
         TxtComedor.Text = TxtComedor.PlaceholderText
+        TxtSinAsignar1.Text = TxtSinAsignar1.PlaceholderText
+        TxtSinasignar2.Text = TxtSinasignar2.PlaceholderText
+        TxtSinAsignar3.Text = TxtSinAsignar3.PlaceholderText
         TxtMatricula.Enabled = False
         TxtArancel.Enabled = False
         TxtMateriales.Enabled = False
@@ -241,6 +257,9 @@ Public Class Pagos
         TxtAdicionalJardin.Enabled = False
         TxtComedor.Enabled = False
         TxtTotal.Enabled = False
+        TxtSinAsignar1.Enabled = False
+        TxtSinasignar2.Enabled = False
+        TxtSinAsignar3.Enabled = False
     End Sub
 
     Private Sub PagoParcial()

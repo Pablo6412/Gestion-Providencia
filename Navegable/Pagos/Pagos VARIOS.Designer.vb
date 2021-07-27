@@ -753,6 +753,8 @@ Partial Class Pagos
         'Label16
         '
         Me.Label16.AutoSize = True
+        Me.Label16.BackColor = System.Drawing.Color.Transparent
+        Me.Label16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Label16.ForeColor = System.Drawing.Color.Black
         Me.Label16.Location = New System.Drawing.Point(425, 46)
         Me.Label16.Name = "Label16"
@@ -841,7 +843,7 @@ Partial Class Pagos
         Me.LblFamilia.AutoSize = True
         Me.LblFamilia.BackColor = System.Drawing.Color.Transparent
         Me.LblFamilia.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.LblFamilia.Location = New System.Drawing.Point(418, 45)
+        Me.LblFamilia.Location = New System.Drawing.Point(418, 58)
         Me.LblFamilia.Name = "LblFamilia"
         Me.LblFamilia.Size = New System.Drawing.Size(56, 21)
         Me.LblFamilia.TabIndex = 29
@@ -912,6 +914,7 @@ Partial Class Pagos
         '
         'TxtTotal2
         '
+        Me.TxtTotal2.BackColor = System.Drawing.Color.White
         Me.TxtTotal2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtTotal2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.TxtTotal2.Location = New System.Drawing.Point(134, 322)
@@ -1118,6 +1121,8 @@ Partial Class Pagos
         '
         'TxtSinAsignar3
         '
+        Me.TxtSinAsignar3.BackColor = System.Drawing.Color.White
+        Me.TxtSinAsignar3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtSinAsignar3.Location = New System.Drawing.Point(352, 166)
         Me.TxtSinAsignar3.Name = "TxtSinAsignar3"
         Me.TxtSinAsignar3.Size = New System.Drawing.Size(100, 29)
@@ -1125,6 +1130,8 @@ Partial Class Pagos
         '
         'TxtSinasignar2
         '
+        Me.TxtSinasignar2.BackColor = System.Drawing.Color.White
+        Me.TxtSinasignar2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtSinasignar2.Location = New System.Drawing.Point(352, 130)
         Me.TxtSinasignar2.Name = "TxtSinasignar2"
         Me.TxtSinasignar2.Size = New System.Drawing.Size(100, 29)
@@ -1132,6 +1139,8 @@ Partial Class Pagos
         '
         'TxtSinAsignar1
         '
+        Me.TxtSinAsignar1.BackColor = System.Drawing.Color.White
+        Me.TxtSinAsignar1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtSinAsignar1.Location = New System.Drawing.Point(352, 95)
         Me.TxtSinAsignar1.Name = "TxtSinAsignar1"
         Me.TxtSinAsignar1.Size = New System.Drawing.Size(100, 29)
@@ -1204,6 +1213,7 @@ Partial Class Pagos
         '
         'TxtCampamento
         '
+        Me.TxtCampamento.BackColor = System.Drawing.Color.White
         Me.TxtCampamento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCampamento.Location = New System.Drawing.Point(352, 26)
         Me.TxtCampamento.MaxLength = 15
@@ -1259,6 +1269,7 @@ Partial Class Pagos
         '
         'TxtComedor
         '
+        Me.TxtComedor.BackColor = System.Drawing.Color.White
         Me.TxtComedor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtComedor.Location = New System.Drawing.Point(109, 96)
         Me.TxtComedor.MaxLength = 15
@@ -1268,6 +1279,7 @@ Partial Class Pagos
         '
         'TxtAdicionalJardin
         '
+        Me.TxtAdicionalJardin.BackColor = System.Drawing.Color.White
         Me.TxtAdicionalJardin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtAdicionalJardin.Location = New System.Drawing.Point(352, 61)
         Me.TxtAdicionalJardin.MaxLength = 15
@@ -1277,6 +1289,7 @@ Partial Class Pagos
         '
         'TxtTalleres
         '
+        Me.TxtTalleres.BackColor = System.Drawing.Color.White
         Me.TxtTalleres.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtTalleres.Location = New System.Drawing.Point(109, 166)
         Me.TxtTalleres.MaxLength = 15
@@ -1286,6 +1299,7 @@ Partial Class Pagos
         '
         'TxtMateriales
         '
+        Me.TxtMateriales.BackColor = System.Drawing.Color.White
         Me.TxtMateriales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtMateriales.Location = New System.Drawing.Point(109, 131)
         Me.TxtMateriales.MaxLength = 15
@@ -1295,6 +1309,7 @@ Partial Class Pagos
         '
         'TxtArancel
         '
+        Me.TxtArancel.BackColor = System.Drawing.Color.White
         Me.TxtArancel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtArancel.Location = New System.Drawing.Point(109, 61)
         Me.TxtArancel.MaxLength = 15
@@ -1304,6 +1319,7 @@ Partial Class Pagos
         '
         'TxtMatricula
         '
+        Me.TxtMatricula.BackColor = System.Drawing.Color.White
         Me.TxtMatricula.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtMatricula.Location = New System.Drawing.Point(109, 26)
         Me.TxtMatricula.MaxLength = 15
