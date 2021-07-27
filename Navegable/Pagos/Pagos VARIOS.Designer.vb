@@ -109,22 +109,22 @@ Partial Class Pagos
         Me.adicional_importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.comedor_importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.TxtSinAsignar2 = New System.Windows.Forms.TextBox()
-        Me.TxtSinasignar3 = New System.Windows.Forms.TextBox()
+        Me.TxtSinAsignar3 = New System.Windows.Forms.TextBox()
+        Me.TxtSinasignar2 = New System.Windows.Forms.TextBox()
         Me.TxtSinAsignar1 = New System.Windows.Forms.TextBox()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.Label28 = New System.Windows.Forms.Label()
+        Me.LblSinAsignar3 = New System.Windows.Forms.Label()
+        Me.LblSinAsignar2 = New System.Windows.Forms.Label()
+        Me.LblSinAsignar1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TxtSuma = New System.Windows.Forms.TextBox()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.LblComedor = New System.Windows.Forms.Label()
+        Me.LblCampamento = New System.Windows.Forms.Label()
         Me.TxtCampamento = New System.Windows.Forms.TextBox()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
+        Me.LblAdicional = New System.Windows.Forms.Label()
+        Me.LblTalleres = New System.Windows.Forms.Label()
+        Me.LblMateriales = New System.Windows.Forms.Label()
+        Me.LblCuota = New System.Windows.Forms.Label()
+        Me.LblMatricula = New System.Windows.Forms.Label()
         Me.TxtComedor = New System.Windows.Forms.TextBox()
         Me.TxtAdicionalJardin = New System.Windows.Forms.TextBox()
         Me.TxtTalleres = New System.Windows.Forms.TextBox()
@@ -1086,22 +1086,22 @@ Partial Class Pagos
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox3.Controls.Add(Me.TxtSinAsignar2)
-        Me.GroupBox3.Controls.Add(Me.TxtSinasignar3)
+        Me.GroupBox3.Controls.Add(Me.TxtSinAsignar3)
+        Me.GroupBox3.Controls.Add(Me.TxtSinasignar2)
         Me.GroupBox3.Controls.Add(Me.TxtSinAsignar1)
-        Me.GroupBox3.Controls.Add(Me.Label30)
-        Me.GroupBox3.Controls.Add(Me.Label29)
-        Me.GroupBox3.Controls.Add(Me.Label28)
+        Me.GroupBox3.Controls.Add(Me.LblSinAsignar3)
+        Me.GroupBox3.Controls.Add(Me.LblSinAsignar2)
+        Me.GroupBox3.Controls.Add(Me.LblSinAsignar1)
         Me.GroupBox3.Controls.Add(Me.Label3)
         Me.GroupBox3.Controls.Add(Me.TxtSuma)
-        Me.GroupBox3.Controls.Add(Me.Label17)
-        Me.GroupBox3.Controls.Add(Me.Label2)
+        Me.GroupBox3.Controls.Add(Me.LblComedor)
+        Me.GroupBox3.Controls.Add(Me.LblCampamento)
         Me.GroupBox3.Controls.Add(Me.TxtCampamento)
-        Me.GroupBox3.Controls.Add(Me.Label18)
-        Me.GroupBox3.Controls.Add(Me.Label19)
-        Me.GroupBox3.Controls.Add(Me.Label20)
-        Me.GroupBox3.Controls.Add(Me.Label21)
-        Me.GroupBox3.Controls.Add(Me.Label22)
+        Me.GroupBox3.Controls.Add(Me.LblAdicional)
+        Me.GroupBox3.Controls.Add(Me.LblTalleres)
+        Me.GroupBox3.Controls.Add(Me.LblMateriales)
+        Me.GroupBox3.Controls.Add(Me.LblCuota)
+        Me.GroupBox3.Controls.Add(Me.LblMatricula)
         Me.GroupBox3.Controls.Add(Me.TxtComedor)
         Me.GroupBox3.Controls.Add(Me.TxtAdicionalJardin)
         Me.GroupBox3.Controls.Add(Me.TxtTalleres)
@@ -1114,55 +1114,55 @@ Partial Class Pagos
         Me.GroupBox3.Size = New System.Drawing.Size(481, 274)
         Me.GroupBox3.TabIndex = 7
         Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Sin asignar:"
+        Me.GroupBox3.Text = "Conceptos"
         '
-        'TxtSinAsignar2
+        'TxtSinAsignar3
         '
-        Me.TxtSinAsignar2.Location = New System.Drawing.Point(352, 168)
-        Me.TxtSinAsignar2.Name = "TxtSinAsignar2"
-        Me.TxtSinAsignar2.Size = New System.Drawing.Size(100, 29)
-        Me.TxtSinAsignar2.TabIndex = 21
+        Me.TxtSinAsignar3.Location = New System.Drawing.Point(352, 166)
+        Me.TxtSinAsignar3.Name = "TxtSinAsignar3"
+        Me.TxtSinAsignar3.Size = New System.Drawing.Size(100, 29)
+        Me.TxtSinAsignar3.TabIndex = 21
         '
-        'TxtSinasignar3
+        'TxtSinasignar2
         '
-        Me.TxtSinasignar3.Location = New System.Drawing.Point(109, 168)
-        Me.TxtSinasignar3.Name = "TxtSinasignar3"
-        Me.TxtSinasignar3.Size = New System.Drawing.Size(100, 29)
-        Me.TxtSinasignar3.TabIndex = 20
+        Me.TxtSinasignar2.Location = New System.Drawing.Point(352, 130)
+        Me.TxtSinasignar2.Name = "TxtSinasignar2"
+        Me.TxtSinasignar2.Size = New System.Drawing.Size(100, 29)
+        Me.TxtSinasignar2.TabIndex = 20
         '
         'TxtSinAsignar1
         '
-        Me.TxtSinAsignar1.Location = New System.Drawing.Point(352, 132)
+        Me.TxtSinAsignar1.Location = New System.Drawing.Point(352, 95)
         Me.TxtSinAsignar1.Name = "TxtSinAsignar1"
         Me.TxtSinAsignar1.Size = New System.Drawing.Size(100, 29)
         Me.TxtSinAsignar1.TabIndex = 19
         '
-        'Label30
+        'LblSinAsignar3
         '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(255, 171)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(90, 21)
-        Me.Label30.TabIndex = 18
-        Me.Label30.Text = "Sin asignar:"
+        Me.LblSinAsignar3.Location = New System.Drawing.Point(215, 172)
+        Me.LblSinAsignar3.Name = "LblSinAsignar3"
+        Me.LblSinAsignar3.Size = New System.Drawing.Size(131, 21)
+        Me.LblSinAsignar3.TabIndex = 18
+        Me.LblSinAsignar3.Text = "Sin asignar:"
+        Me.LblSinAsignar3.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'Label29
+        'LblSinAsignar2
         '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(15, 174)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(90, 21)
-        Me.Label29.TabIndex = 17
-        Me.Label29.Text = "Sin asignar:"
+        Me.LblSinAsignar2.Location = New System.Drawing.Point(214, 137)
+        Me.LblSinAsignar2.Name = "LblSinAsignar2"
+        Me.LblSinAsignar2.Size = New System.Drawing.Size(134, 21)
+        Me.LblSinAsignar2.TabIndex = 17
+        Me.LblSinAsignar2.Text = "Sin asignar:"
+        Me.LblSinAsignar2.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'Label28
+        'LblSinAsignar1
         '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(256, 138)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(90, 21)
-        Me.Label28.TabIndex = 16
-        Me.Label28.Text = "Sin asignar:"
+        Me.LblSinAsignar1.Location = New System.Drawing.Point(216, 102)
+        Me.LblSinAsignar1.Name = "LblSinAsignar1"
+        Me.LblSinAsignar1.Size = New System.Drawing.Size(131, 21)
+        Me.LblSinAsignar1.TabIndex = 16
+        Me.LblSinAsignar1.Text = "Sin asignar:"
+        Me.LblSinAsignar1.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label3
         '
@@ -1182,23 +1182,25 @@ Partial Class Pagos
         Me.TxtSuma.Size = New System.Drawing.Size(109, 29)
         Me.TxtSuma.TabIndex = 14
         '
-        'Label17
+        'LblComedor
         '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(269, 105)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(78, 21)
-        Me.Label17.TabIndex = 11
-        Me.Label17.Text = "Comedor:"
+        Me.LblComedor.AutoSize = True
+        Me.LblComedor.Location = New System.Drawing.Point(26, 104)
+        Me.LblComedor.Name = "LblComedor"
+        Me.LblComedor.Size = New System.Drawing.Size(78, 21)
+        Me.LblComedor.TabIndex = 11
+        Me.LblComedor.Text = "Comedor:"
+        Me.LblComedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'Label2
+        'LblCampamento
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(241, 34)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(107, 21)
-        Me.Label2.TabIndex = 13
-        Me.Label2.Text = "Campamento:"
+        Me.LblCampamento.AutoSize = True
+        Me.LblCampamento.Location = New System.Drawing.Point(241, 34)
+        Me.LblCampamento.Name = "LblCampamento"
+        Me.LblCampamento.Size = New System.Drawing.Size(107, 21)
+        Me.LblCampamento.TabIndex = 13
+        Me.LblCampamento.Text = "Campamento:"
+        Me.LblCampamento.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TxtCampamento
         '
@@ -1209,55 +1211,56 @@ Partial Class Pagos
         Me.TxtCampamento.Size = New System.Drawing.Size(100, 29)
         Me.TxtCampamento.TabIndex = 12
         '
-        'Label18
+        'LblAdicional
         '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(223, 69)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(125, 21)
-        Me.Label18.TabIndex = 10
-        Me.Label18.Text = "Adicional jardín :"
+        Me.LblAdicional.AutoSize = True
+        Me.LblAdicional.Location = New System.Drawing.Point(223, 69)
+        Me.LblAdicional.Name = "LblAdicional"
+        Me.LblAdicional.Size = New System.Drawing.Size(125, 21)
+        Me.LblAdicional.TabIndex = 10
+        Me.LblAdicional.Text = "Adicional jardín :"
+        Me.LblAdicional.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'Label19
+        'LblTalleres
         '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(42, 138)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(64, 21)
-        Me.Label19.TabIndex = 9
-        Me.Label19.Text = "Talleres:"
+        Me.LblTalleres.AutoSize = True
+        Me.LblTalleres.Location = New System.Drawing.Point(42, 173)
+        Me.LblTalleres.Name = "LblTalleres"
+        Me.LblTalleres.Size = New System.Drawing.Size(64, 21)
+        Me.LblTalleres.TabIndex = 9
+        Me.LblTalleres.Text = "Talleres:"
         '
-        'Label20
+        'LblMateriales
         '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(21, 103)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(85, 21)
-        Me.Label20.TabIndex = 8
-        Me.Label20.Text = "Materiales:"
+        Me.LblMateriales.AutoSize = True
+        Me.LblMateriales.Location = New System.Drawing.Point(21, 138)
+        Me.LblMateriales.Name = "LblMateriales"
+        Me.LblMateriales.Size = New System.Drawing.Size(85, 21)
+        Me.LblMateriales.TabIndex = 8
+        Me.LblMateriales.Text = "Materiales:"
         '
-        'Label21
+        'LblCuota
         '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(52, 69)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(54, 21)
-        Me.Label21.TabIndex = 7
-        Me.Label21.Text = "Cuota:"
+        Me.LblCuota.AutoSize = True
+        Me.LblCuota.Location = New System.Drawing.Point(52, 69)
+        Me.LblCuota.Name = "LblCuota"
+        Me.LblCuota.Size = New System.Drawing.Size(54, 21)
+        Me.LblCuota.TabIndex = 7
+        Me.LblCuota.Text = "Cuota:"
         '
-        'Label22
+        'LblMatricula
         '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(29, 34)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(78, 21)
-        Me.Label22.TabIndex = 6
-        Me.Label22.Text = "Matrícula:"
+        Me.LblMatricula.AutoSize = True
+        Me.LblMatricula.Location = New System.Drawing.Point(29, 34)
+        Me.LblMatricula.Name = "LblMatricula"
+        Me.LblMatricula.Size = New System.Drawing.Size(78, 21)
+        Me.LblMatricula.TabIndex = 6
+        Me.LblMatricula.Text = "Matrícula:"
         '
         'TxtComedor
         '
         Me.TxtComedor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtComedor.Location = New System.Drawing.Point(352, 97)
+        Me.TxtComedor.Location = New System.Drawing.Point(109, 96)
         Me.TxtComedor.MaxLength = 15
         Me.TxtComedor.Name = "TxtComedor"
         Me.TxtComedor.Size = New System.Drawing.Size(100, 29)
@@ -1275,7 +1278,7 @@ Partial Class Pagos
         'TxtTalleres
         '
         Me.TxtTalleres.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTalleres.Location = New System.Drawing.Point(109, 131)
+        Me.TxtTalleres.Location = New System.Drawing.Point(109, 166)
         Me.TxtTalleres.MaxLength = 15
         Me.TxtTalleres.Name = "TxtTalleres"
         Me.TxtTalleres.Size = New System.Drawing.Size(100, 29)
@@ -1284,7 +1287,7 @@ Partial Class Pagos
         'TxtMateriales
         '
         Me.TxtMateriales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtMateriales.Location = New System.Drawing.Point(109, 96)
+        Me.TxtMateriales.Location = New System.Drawing.Point(109, 131)
         Me.TxtMateriales.MaxLength = 15
         Me.TxtMateriales.Name = "TxtMateriales"
         Me.TxtMateriales.Size = New System.Drawing.Size(100, 29)
@@ -1532,14 +1535,14 @@ Partial Class Pagos
     Friend WithEvents Label7 As Label
     Friend WithEvents Label16 As Label
     Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents Label2 As Label
+    Friend WithEvents LblCampamento As Label
     Friend WithEvents TxtCampamento As TextBox
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label18 As Label
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Label20 As Label
-    Friend WithEvents Label21 As Label
-    Friend WithEvents Label22 As Label
+    Friend WithEvents LblComedor As Label
+    Friend WithEvents LblAdicional As Label
+    Friend WithEvents LblTalleres As Label
+    Friend WithEvents LblMateriales As Label
+    Friend WithEvents LblCuota As Label
+    Friend WithEvents LblMatricula As Label
     Friend WithEvents TxtComedor As TextBox
     Friend WithEvents TxtAdicionalJardin As TextBox
     Friend WithEvents TxtTalleres As TextBox
@@ -1578,10 +1581,10 @@ Partial Class Pagos
     Friend WithEvents Label3 As Label
     Friend WithEvents Label26 As Label
     Friend WithEvents TxtMontoAPagar As TextBox
-    Friend WithEvents TxtSinAsignar2 As TextBox
-    Friend WithEvents TxtSinasignar3 As TextBox
+    Friend WithEvents TxtSinAsignar3 As TextBox
+    Friend WithEvents TxtSinasignar2 As TextBox
     Friend WithEvents TxtSinAsignar1 As TextBox
-    Friend WithEvents Label30 As Label
-    Friend WithEvents Label29 As Label
-    Friend WithEvents Label28 As Label
+    Friend WithEvents LblSinAsignar3 As Label
+    Friend WithEvents LblSinAsignar2 As Label
+    Friend WithEvents LblSinAsignar1 As Label
 End Class
