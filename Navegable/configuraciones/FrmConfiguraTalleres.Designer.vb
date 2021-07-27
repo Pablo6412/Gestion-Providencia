@@ -45,15 +45,21 @@ Partial Class FrmConfiguraTalleres
         Me.TxtTallerActualiza = New System.Windows.Forms.TextBox()
         Me.LbxActualiza = New System.Windows.Forms.ListBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.BtnSalirBaja = New System.Windows.Forms.Button()
+        Me.BtnEliminar = New System.Windows.Forms.Button()
+        Me.LbxBajaTaller = New System.Windows.Forms.ListBox()
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.CbxTallerBaja = New System.Windows.Forms.ComboBox()
+        Me.CbxCodigoBaja = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -215,11 +221,13 @@ Partial Class FrmConfiguraTalleres
         '
         'GroupBox2
         '
+        Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox2.Controls.Add(Me.BtnActualizar)
         Me.GroupBox2.Controls.Add(Me.Label6)
         Me.GroupBox2.Controls.Add(Me.Label5)
         Me.GroupBox2.Controls.Add(Me.TxtImporteActualiza)
         Me.GroupBox2.Controls.Add(Me.TxtTallerActualiza)
+        Me.GroupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.GroupBox2.Location = New System.Drawing.Point(100, 346)
         Me.GroupBox2.Name = "GroupBox2"
@@ -284,6 +292,13 @@ Partial Class FrmConfiguraTalleres
         '
         'TabPage3
         '
+        Me.TabPage3.BackgroundImage = CType(resources.GetObject("TabPage3.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage3.Controls.Add(Me.CbxCodigoBaja)
+        Me.TabPage3.Controls.Add(Me.CbxTallerBaja)
+        Me.TabPage3.Controls.Add(Me.BtnEliminar)
+        Me.TabPage3.Controls.Add(Me.BtnSalirBaja)
+        Me.TabPage3.Controls.Add(Me.LbxBajaTaller)
         Me.TabPage3.Location = New System.Drawing.Point(4, 24)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
@@ -291,6 +306,39 @@ Partial Class FrmConfiguraTalleres
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "TabPage3"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'BtnSalirBaja
+        '
+        Me.BtnSalirBaja.BackColor = System.Drawing.Color.White
+        Me.BtnSalirBaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Tomato
+        Me.BtnSalirBaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnSalirBaja.Location = New System.Drawing.Point(852, 491)
+        Me.BtnSalirBaja.Name = "BtnSalirBaja"
+        Me.BtnSalirBaja.Size = New System.Drawing.Size(79, 33)
+        Me.BtnSalirBaja.TabIndex = 4
+        Me.BtnSalirBaja.Text = "Salir"
+        Me.BtnSalirBaja.UseVisualStyleBackColor = False
+        '
+        'BtnEliminar
+        '
+        Me.BtnEliminar.BackColor = System.Drawing.Color.White
+        Me.BtnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Tomato
+        Me.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnEliminar.Location = New System.Drawing.Point(448, 153)
+        Me.BtnEliminar.Name = "BtnEliminar"
+        Me.BtnEliminar.Size = New System.Drawing.Size(75, 30)
+        Me.BtnEliminar.TabIndex = 4
+        Me.BtnEliminar.Text = "Eliminar"
+        Me.BtnEliminar.UseVisualStyleBackColor = False
+        '
+        'LbxBajaTaller
+        '
+        Me.LbxBajaTaller.FormattingEnabled = True
+        Me.LbxBajaTaller.ItemHeight = 15
+        Me.LbxBajaTaller.Location = New System.Drawing.Point(119, 92)
+        Me.LbxBajaTaller.Name = "LbxBajaTaller"
+        Me.LbxBajaTaller.Size = New System.Drawing.Size(222, 199)
+        Me.LbxBajaTaller.TabIndex = 0
         '
         'RadioButton3
         '
@@ -344,6 +392,22 @@ Partial Class FrmConfiguraTalleres
         Me.Panel1.Size = New System.Drawing.Size(974, 64)
         Me.Panel1.TabIndex = 9
         '
+        'CbxTallerBaja
+        '
+        Me.CbxTallerBaja.FormattingEnabled = True
+        Me.CbxTallerBaja.Location = New System.Drawing.Point(119, 367)
+        Me.CbxTallerBaja.Name = "CbxTallerBaja"
+        Me.CbxTallerBaja.Size = New System.Drawing.Size(121, 23)
+        Me.CbxTallerBaja.TabIndex = 5
+        '
+        'CbxCodigoBaja
+        '
+        Me.CbxCodigoBaja.FormattingEnabled = True
+        Me.CbxCodigoBaja.Location = New System.Drawing.Point(119, 415)
+        Me.CbxCodigoBaja.Name = "CbxCodigoBaja"
+        Me.CbxCodigoBaja.Size = New System.Drawing.Size(121, 23)
+        Me.CbxCodigoBaja.TabIndex = 6
+        '
         'FrmConfiguraTalleres
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -366,6 +430,7 @@ Partial Class FrmConfiguraTalleres
         Me.TabPage2.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.TabPage3.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -397,4 +462,9 @@ Partial Class FrmConfiguraTalleres
     Friend WithEvents Label5 As Label
     Friend WithEvents TxtImporteActualiza As TextBox
     Friend WithEvents TxtTallerActualiza As TextBox
+    Friend WithEvents BtnSalirBaja As Button
+    Friend WithEvents BtnEliminar As Button
+    Friend WithEvents LbxBajaTaller As ListBox
+    Friend WithEvents CbxCodigoBaja As ComboBox
+    Friend WithEvents CbxTallerBaja As ComboBox
 End Class

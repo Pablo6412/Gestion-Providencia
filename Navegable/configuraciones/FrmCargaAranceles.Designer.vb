@@ -22,6 +22,7 @@ Partial Class FrmCargaAranceles
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCargaAranceles))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -34,6 +35,7 @@ Partial Class FrmCargaAranceles
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.DgvArancel = New System.Windows.Forms.DataGridView()
         Me.Nivel = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -77,6 +79,7 @@ Partial Class FrmCargaAranceles
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.BtnSalirBajas = New System.Windows.Forms.Button()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Txtbaja = New System.Windows.Forms.TextBox()
         Me.BtnBajaArancel = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -92,6 +95,7 @@ Partial Class FrmCargaAranceles
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -120,6 +124,8 @@ Partial Class FrmCargaAranceles
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.TabPage1.BackgroundImage = CType(resources.GetObject("TabPage1.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.TabPage1.Controls.Add(Me.GroupBox2)
         Me.TabPage1.Controls.Add(Me.GroupBox1)
         Me.TabPage1.Controls.Add(Me.BtnSalir)
@@ -132,6 +138,8 @@ Partial Class FrmCargaAranceles
         '
         'GroupBox2
         '
+        Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.Panel3)
         Me.GroupBox2.Controls.Add(Me.Label17)
         Me.GroupBox2.Controls.Add(Me.DgvArancel)
         Me.GroupBox2.Controls.Add(Me.TextBox1)
@@ -139,6 +147,7 @@ Partial Class FrmCargaAranceles
         Me.GroupBox2.Controls.Add(Me.CbxCodigoNivel)
         Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.CbxNivel)
+        Me.GroupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.GroupBox2.Location = New System.Drawing.Point(88, 58)
         Me.GroupBox2.Name = "GroupBox2"
@@ -146,6 +155,13 @@ Partial Class FrmCargaAranceles
         Me.GroupBox2.TabIndex = 9
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Aranceles existentes"
+        '
+        'Panel3
+        '
+        Me.Panel3.Location = New System.Drawing.Point(314, 219)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(127, 44)
+        Me.Panel3.TabIndex = 18
         '
         'Label17
         '
@@ -277,7 +293,7 @@ Partial Class FrmCargaAranceles
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Enabled = False
         Me.TextBox1.ForeColor = System.Drawing.SystemColors.HotTrack
-        Me.TextBox1.Location = New System.Drawing.Point(81, 95)
+        Me.TextBox1.Location = New System.Drawing.Point(325, 235)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(100, 20)
         Me.TextBox1.TabIndex = 7
@@ -322,6 +338,7 @@ Partial Class FrmCargaAranceles
         '
         'GroupBox1
         '
+        Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox1.Controls.Add(Me.BtnGuardar)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.DtpFechaVigencia)
@@ -329,6 +346,7 @@ Partial Class FrmCargaAranceles
         Me.GroupBox1.Controls.Add(Me.TxtArancel)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.GroupBox1.Location = New System.Drawing.Point(88, 356)
         Me.GroupBox1.Name = "GroupBox1"
@@ -418,6 +436,8 @@ Partial Class FrmCargaAranceles
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.SkyBlue
+        Me.TabPage2.BackgroundImage = CType(resources.GetObject("TabPage2.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.TabPage2.Controls.Add(Me.GroupBox3)
         Me.TabPage2.Controls.Add(Me.GroupBox4)
         Me.TabPage2.Controls.Add(Me.BtnSalirActualizaciones)
@@ -430,6 +450,8 @@ Partial Class FrmCargaAranceles
         '
         'GroupBox3
         '
+        Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.Panel4)
         Me.GroupBox3.Controls.Add(Me.TxtCodigoActualizacion)
         Me.GroupBox3.Controls.Add(Me.Label8)
         Me.GroupBox3.Controls.Add(Me.Label9)
@@ -439,6 +461,7 @@ Partial Class FrmCargaAranceles
         Me.GroupBox3.Controls.Add(Me.CbxCodigoNivelActualizacion)
         Me.GroupBox3.Controls.Add(Me.Label11)
         Me.GroupBox3.Controls.Add(Me.CbxNivelActualizacion)
+        Me.GroupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox3.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.GroupBox3.Location = New System.Drawing.Point(91, 58)
         Me.GroupBox3.Name = "GroupBox3"
@@ -449,7 +472,7 @@ Partial Class FrmCargaAranceles
         '
         'TxtCodigoActualizacion
         '
-        Me.TxtCodigoActualizacion.Location = New System.Drawing.Point(6, 24)
+        Me.TxtCodigoActualizacion.Location = New System.Drawing.Point(533, 151)
         Me.TxtCodigoActualizacion.Name = "TxtCodigoActualizacion"
         Me.TxtCodigoActualizacion.Size = New System.Drawing.Size(76, 27)
         Me.TxtCodigoActualizacion.TabIndex = 11
@@ -532,6 +555,7 @@ Partial Class FrmCargaAranceles
         '
         'GroupBox4
         '
+        Me.GroupBox4.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox4.Controls.Add(Me.BtnActualizar)
         Me.GroupBox4.Controls.Add(Me.Label12)
         Me.GroupBox4.Controls.Add(Me.DtpFechaModificacion)
@@ -539,6 +563,7 @@ Partial Class FrmCargaAranceles
         Me.GroupBox4.Controls.Add(Me.TxtArancelModificado)
         Me.GroupBox4.Controls.Add(Me.Label13)
         Me.GroupBox4.Controls.Add(Me.Label14)
+        Me.GroupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox4.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.GroupBox4.Location = New System.Drawing.Point(91, 315)
         Me.GroupBox4.Name = "GroupBox4"
@@ -628,6 +653,8 @@ Partial Class FrmCargaAranceles
         'TabPage3
         '
         Me.TabPage3.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.TabPage3.BackgroundImage = CType(resources.GetObject("TabPage3.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.TabPage3.Controls.Add(Me.BtnSalirBajas)
         Me.TabPage3.Controls.Add(Me.GroupBox5)
         Me.TabPage3.ForeColor = System.Drawing.Color.White
@@ -653,6 +680,8 @@ Partial Class FrmCargaAranceles
         '
         'GroupBox5
         '
+        Me.GroupBox5.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox5.Controls.Add(Me.Panel2)
         Me.GroupBox5.Controls.Add(Me.Txtbaja)
         Me.GroupBox5.Controls.Add(Me.BtnBajaArancel)
         Me.GroupBox5.Controls.Add(Me.Label6)
@@ -663,12 +692,20 @@ Partial Class FrmCargaAranceles
         Me.GroupBox5.Controls.Add(Me.CbxCodigoBaja)
         Me.GroupBox5.Controls.Add(Me.Label16)
         Me.GroupBox5.Controls.Add(Me.CbxNivelBaja)
+        Me.GroupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox5.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.GroupBox5.Location = New System.Drawing.Point(123, 132)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(695, 197)
         Me.GroupBox5.TabIndex = 12
         Me.GroupBox5.TabStop = False
+        '
+        'Panel2
+        '
+        Me.Panel2.Location = New System.Drawing.Point(581, 26)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(108, 46)
+        Me.Panel2.TabIndex = 13
         '
         'Txtbaja
         '
@@ -831,6 +868,13 @@ Partial Class FrmCargaAranceles
         Me.RadioButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
+        'Panel4
+        '
+        Me.Panel4.Location = New System.Drawing.Point(519, 133)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(109, 53)
+        Me.Panel4.TabIndex = 12
+        '
         'FrmCargaAranceles
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -924,4 +968,7 @@ Partial Class FrmCargaAranceles
     Friend WithEvents none As DataGridViewTextBoxColumn
     Friend WithEvents arancel_matricula As DataGridViewTextBoxColumn
     Friend WithEvents fecha_de_vigencia As DataGridViewTextBoxColumn
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Panel4 As Panel
 End Class

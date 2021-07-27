@@ -5,82 +5,115 @@ Public Class FrmConceptosDePago
     Dim dataRider As SqlDataReader
     Dim comando As New SqlCommand
     Dim adaptador As New SqlDataAdapter
+    Dim codigo As Integer
     Private Sub FrmConceptosDePago_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         RadioButton1.Checked = True
         conectar()
         ListBox()
+        BuscaSinAsignar()
     End Sub
 
+    Private Sub ListBox()
+        Dim adaptador As New SqlDataAdapter
+        Dim lista As String = "SELECT codigo_concepto, concepto_nombre FROM concepto_de_pago"
+        adaptador = New SqlDataAdapter(lista, conexion)
+
+        datos = New DataSet
+        datos.Tables.Add("concepto_de_pago")
+        adaptador.Fill(datos.Tables("concepto_de_pago"))
+        LbxConcepto.DataSource = datos.Tables("concepto_de_pago")
+        LbxConcepto.DisplayMember = "concepto_nombre"
+        LbxActualizaConcepto.DataSource = datos.Tables("concepto_de_pago")
+        LbxActualizaConcepto.DisplayMember = "concepto_nombre"
+        LbxBajaConcepto.DataSource = datos.Tables("concepto_de_pago")
+        LbxBajaConcepto.DisplayMember = "concepto_nombre"
+        CbxConcepto.DataSource = datos.Tables("concepto_de_pago")
+        CbxConcepto.DisplayMember = "concepto_nombre"
+        CbxCodigoConcepto.DataSource = datos.Tables("concepto_de_pago")
+        CbxCodigoConcepto.DisplayMember = "codigo_concepto"
+
+    End Sub
+
+    Private Sub BuscaSinAsignar()
+        Dim consulta As String = "SELECT TOP 1 codigo_concepto FROM concepto_de_pago WHERE concepto_nombre = 'Sin asignar' ORDER BY codigo_concepto"
+        Dim comando As New SqlCommand(consulta, conexion)
+        codigo = comando.ExecuteScalar
+    End Sub
+
+
     'Private Sub ListBox()
+    '    Dim cmd As New SqlCommand
+    '    Dim da As SqlDataAdapter
+
+    '    With LsvConcepto
+
+    '        .Columns.Clear()
+    '        .Items.Clear()
+    '        .View = View.Details
+    '        .GridLines = False
+    '        .FullRowSelect = True
+    '        .Scrollable = True
+    '        .HideSelection = False
+    '        ''agregando nombres y ancho correcto a las columnas
+    '        .Columns.Add("Concepto", 200, HorizontalAlignment.Left)
+    '        .Columns.Add("Monto", 80, HorizontalAlignment.Left)
+
+    '    End With
+
+
     '    Dim adaptador As New SqlDataAdapter
-    '    Dim lista As String = "SELECT codigo_concepto, concepto FROM conceptos_de_pago"
+    '    Dim lista As String = "SELECT codigo_concepto, concepto_nombre FROM concepto_de_pago"
     '    adaptador = New SqlDataAdapter(lista, conexion)
 
-    '    datos = New DataSet
-    '    datos.Tables.Add("conceptos_de_pago")
-    '    adaptador.Fill(datos.Tables("conceptos_de_pago"))
-    '    LbxConcepto.DataSource = datos.Tables("conceptos_de_pago")
-    '    LbxConcepto.DisplayMember = "concepto"
-    '    LbxActualizaConcepto.DataSource = datos.Tables("conceptos_de_pago")
-    '    LbxActualizaConcepto.DisplayMember = "concepto"
-    '    LbxBajaConcepto.DataSource = datos.Tables("conceptos_de_pago")
-    '    LbxBajaConcepto.DisplayMember = "concepto"
-    '    CbxConcepto.DataSource = datos.Tables("conceptos_de_pago")
-    '    CbxConcepto.DisplayMember = "concepto"
-    '    CbxCodigoConcepto.DataSource = datos.Tables("conceptos_de_pago")
-    '    CbxCodigoConcepto.DisplayMember = "codigo_concepto"
+    '    cmd = New SqlCommand(lista, conexion)
+    '    Dim lector As SqlDataReader = cmd.ExecuteReader
+    '    da = New SqlDataAdapter(cmd)
+
+    '    While lector.Read
+
+    '        With LsvConcepto.Items.Add(lector.Item("concepto_nombre").ToString)
+
+    '            '.SubItems.Add(lector.Item("monto").ToString)
+
+    '        End With
+
+    '    End While
+
 
     'End Sub
 
+    'If TxtTaller.Text = "" Or TxtImporte.Text = "" Then
+    '        MsgBox("Debe asignarle un nombre y un importe al taller")
+    '    Else
+    'Dim NuevoTaller As String = "UPDATE taller SET taller_nombre = '" & TxtTaller.Text & "', taller_importe = '" & TxtImporte.Text & "' WHERE codigo_taller = '" & codigo & "'"
+    'Dim comando As New SqlCommand(NuevoTaller, conexion)
+    '        comando.ExecuteNonQuery()
 
-    Private Sub ListBox()
-        Dim cmd As New SqlCommand
-        Dim da As SqlDataAdapter
+    '        If comando.ExecuteNonQuery() = 1 Then
+    '            MessageBox.Show("El taller " & TxtTaller.Text & " se incorporó correctamente")
 
-        With LsvConcepto
-
-            .Columns.Clear()
-            .Items.Clear()
-            .View = View.Details
-            .GridLines = False
-            .FullRowSelect = True
-            .Scrollable = True
-            .HideSelection = False
-            ''agregando nombres y ancho correcto a las columnas
-            .Columns.Add("Concepto", 200, HorizontalAlignment.Left)
-            .Columns.Add("Monto", 80, HorizontalAlignment.Left)
-
-        End With
+    '        Else
+    '            MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+    '        End If
+    ''AgregaTaller(TxtTaller)
+    'End If
+    '    'End If
+    '    BuscaTaller()
 
 
-        Dim adaptador As New SqlDataAdapter
-        Dim lista As String = "SELECT codigo_concepto, concepto, monto FROM conceptos_de_pago"
-        adaptador = New SqlDataAdapter(lista, conexion)
-
-        cmd = New SqlCommand(lista, conexion)
-        Dim lector As SqlDataReader = cmd.ExecuteReader
-        da = New SqlDataAdapter(cmd)
-
-        While lector.Read
-
-            With LsvConcepto.Items.Add(lector.Item("concepto").ToString)
-
-                .SubItems.Add(lector.Item("monto").ToString)
-
-            End With
-
-        End While
 
 
-    End Sub
+
     Private Sub BtnGuardarConcepto_Click(sender As Object, e As EventArgs) Handles BtnGuardarConcepto.Click
         If ConceptoExiste(LCase(TxtNuevoConcepto.Text)) = False Then
             If TxtNuevoConcepto.Text = "" Then
                 MsgBox("debe ingresar un concepto")
             Else
-                Dim InsertaConcepto As String = "INSERT INTO conceptos_de_pago(concepto) values(@concepto)"
+                Dim InsertaConcepto As String = "UPDATE concepto_de_pago SET concepto_nombre = '" & TxtNuevoConcepto.Text & "' where codigo_concepto = '" & codigo & "'"
                 comando = New SqlCommand(InsertaConcepto, conexion)
-                comando.Parameters.AddWithValue("@concepto", TxtNuevoConcepto.Text)
+                'comando.Parameters.AddWithValue("@concepto_nombre", TxtNuevoConcepto.Text)
+                comando.ExecuteNonQuery()
+
                 If comando.ExecuteNonQuery() = 1 Then
                     MessageBox.Show("El nuevo concepto fue añadido")
                 Else
@@ -99,7 +132,7 @@ Public Class FrmConceptosDePago
     Private Function ConceptoExiste(ByVal concepto As String) As Boolean
         Dim resultado As Boolean
         Try
-            comando = New SqlCommand("select concepto from conceptos_de_pago where concepto ='" & TxtNuevoConcepto.Text & "'", conexion)
+            comando = New SqlCommand("select concepto_nombre from concepto_de_pago where concepto_nombre ='" & TxtNuevoConcepto.Text & "'", conexion)
             dataRider = comando.ExecuteReader
             If dataRider.Read Then
                 resultado = True
@@ -113,16 +146,16 @@ Public Class FrmConceptosDePago
 
     Private Sub CbxCodigoConcepto_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbxCodigoConcepto.SelectedIndexChanged
         Dim CodigoConcepto As String = CbxCodigoConcepto.Text
-        Dim consulta As String = "SELECT concepto from conceptos_de_pago where codigo_concepto = " & Val(CodigoConcepto) & ""
+        Dim consulta As String = "SELECT concepto_nombre from concepto_de_pago where codigo_concepto = " & Val(CodigoConcepto) & ""
         adaptador = New SqlDataAdapter(consulta, conexion)
         datos = New DataSet
-        adaptador.Fill(datos, "conceptos_de_pago")
+        adaptador.Fill(datos, "concepto_de_pago")
         TxtActualizaConcepto.DataBindings.Clear()
-        TxtActualizaConcepto.DataBindings.Add(New Binding("text", datos, "conceptos_de_pago.concepto"))
+        TxtActualizaConcepto.DataBindings.Add(New Binding("text", datos, "concepto_de_pago.concepto_nombre"))
     End Sub
 
     Private Sub BtnActualizaConcepto_Click(sender As Object, e As EventArgs) Handles BtnActualizaConcepto.Click
-        Dim actualiza As String = "UPDATE conceptos_de_pago SET concepto = '" & Me.TxtActualizaConcepto.Text & "' where codigo_concepto = " & Me.CbxCodigoConcepto.Text & ""
+        Dim actualiza As String = "UPDATE concepto_de_pago SET concepto_nombre = '" & Me.TxtActualizaConcepto.Text & "' where codigo_concepto = " & Me.CbxCodigoConcepto.Text & ""
 
         Dim comando As New SqlCommand(actualiza, conexion)
         comando.ExecuteNonQuery()
@@ -140,7 +173,7 @@ Public Class FrmConceptosDePago
 
         If (opcion = Windows.Forms.DialogResult.Yes) Then
             Try
-                Dim baja As String = "Delete  from conceptos_de_pago where codigo_concepto ='" & CbxCodigoConcepto.Text & "' "
+                Dim baja As String = "Delete  from concepto_de_pago where codigo_concepto ='" & CbxCodigoConcepto.Text & "' "
                 Dim comando As New SqlCommand(baja, conexion)
                 If comando.ExecuteNonQuery() = 1 Then
                     MessageBox.Show("Concepto dado de baja exitosamente")

@@ -50,6 +50,7 @@ Partial Class FrmCargaNiveles
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -60,7 +61,8 @@ Partial Class FrmCargaNiveles
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(103, 291)
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Location = New System.Drawing.Point(115, 291)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(37, 15)
         Me.Label1.TabIndex = 0
@@ -173,6 +175,7 @@ Partial Class FrmCargaNiveles
         'BtnGuardar2
         '
         Me.BtnGuardar2.BackColor = System.Drawing.Color.White
+        Me.BtnGuardar2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
         Me.BtnGuardar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnGuardar2.ForeColor = System.Drawing.Color.Black
         Me.BtnGuardar2.Location = New System.Drawing.Point(249, 366)
@@ -185,6 +188,7 @@ Partial Class FrmCargaNiveles
         'BtnActualizar
         '
         Me.BtnActualizar.BackColor = System.Drawing.Color.White
+        Me.BtnActualizar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
         Me.BtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnActualizar.ForeColor = System.Drawing.Color.Black
         Me.BtnActualizar.Location = New System.Drawing.Point(249, 116)
@@ -231,6 +235,7 @@ Partial Class FrmCargaNiveles
         'TabPage3
         '
         Me.TabPage3.BackgroundImage = CType(resources.GetObject("TabPage3.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage3.Controls.Add(Me.Panel2)
         Me.TabPage3.Controls.Add(Me.LbxNiveles2)
         Me.TabPage3.Controls.Add(Me.BtnSalirBaja)
         Me.TabPage3.Controls.Add(Me.BtnBaja)
@@ -258,6 +263,7 @@ Partial Class FrmCargaNiveles
         'BtnSalirBaja
         '
         Me.BtnSalirBaja.BackColor = System.Drawing.Color.White
+        Me.BtnSalirBaja.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
         Me.BtnSalirBaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnSalirBaja.ForeColor = System.Drawing.Color.Black
         Me.BtnSalirBaja.Location = New System.Drawing.Point(355, 370)
@@ -270,6 +276,7 @@ Partial Class FrmCargaNiveles
         'BtnBaja
         '
         Me.BtnBaja.BackColor = System.Drawing.Color.White
+        Me.BtnBaja.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
         Me.BtnBaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnBaja.ForeColor = System.Drawing.Color.Black
         Me.BtnBaja.Location = New System.Drawing.Point(362, 165)
@@ -369,6 +376,13 @@ Partial Class FrmCargaNiveles
         Me.RadioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
+        'Panel2
+        '
+        Me.Panel2.Location = New System.Drawing.Point(8, 345)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(160, 69)
+        Me.Panel2.TabIndex = 13
+        '
         'FrmCargaNiveles
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -419,4 +433,5 @@ Partial Class FrmCargaNiveles
     Friend WithEvents LbxNiveles2 As ListBox
     Friend WithEvents LbxNivelActualiza As ListBox
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
 End Class

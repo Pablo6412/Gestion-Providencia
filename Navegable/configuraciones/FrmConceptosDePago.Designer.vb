@@ -25,7 +25,6 @@ Partial Class FrmConceptosDePago
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmConceptosDePago))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.LsvConcepto = New System.Windows.Forms.ListView()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.BtnGuardarConcepto = New System.Windows.Forms.Button()
@@ -79,7 +78,6 @@ Partial Class FrmConceptosDePago
         Me.TabPage1.BackColor = System.Drawing.Color.SteelBlue
         Me.TabPage1.BackgroundImage = CType(resources.GetObject("TabPage1.BackgroundImage"), System.Drawing.Image)
         Me.TabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.TabPage1.Controls.Add(Me.LsvConcepto)
         Me.TabPage1.Controls.Add(Me.Label4)
         Me.TabPage1.Controls.Add(Me.GroupBox1)
         Me.TabPage1.Controls.Add(Me.BtnSalirNuevoConcepto)
@@ -90,15 +88,6 @@ Partial Class FrmConceptosDePago
         Me.TabPage1.Size = New System.Drawing.Size(966, 580)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
-        '
-        'LsvConcepto
-        '
-        Me.LsvConcepto.HideSelection = False
-        Me.LsvConcepto.Location = New System.Drawing.Point(621, 73)
-        Me.LsvConcepto.Name = "LsvConcepto"
-        Me.LsvConcepto.Size = New System.Drawing.Size(278, 169)
-        Me.LsvConcepto.TabIndex = 6
-        Me.LsvConcepto.UseCompatibleStateImageBehavior = False
         '
         'Label4
         '
@@ -178,6 +167,7 @@ Partial Class FrmConceptosDePago
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.RoyalBlue
+        Me.TabPage2.BackgroundImage = CType(resources.GetObject("TabPage2.BackgroundImage"), System.Drawing.Image)
         Me.TabPage2.Controls.Add(Me.Panel2)
         Me.TabPage2.Controls.Add(Me.CbxConcepto)
         Me.TabPage2.Controls.Add(Me.CbxCodigoConcepto)
@@ -195,7 +185,8 @@ Partial Class FrmConceptosDePago
         '
         'Panel2
         '
-        Me.Panel2.Location = New System.Drawing.Point(673, 240)
+        Me.Panel2.BackColor = System.Drawing.Color.RoyalBlue
+        Me.Panel2.Location = New System.Drawing.Point(633, 290)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(200, 100)
         Me.Panel2.TabIndex = 7
@@ -270,6 +261,8 @@ Partial Class FrmConceptosDePago
         'TabPage3
         '
         Me.TabPage3.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.TabPage3.BackgroundImage = CType(resources.GetObject("TabPage3.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.TabPage3.Controls.Add(Me.LbxBajaConcepto)
         Me.TabPage3.Controls.Add(Me.BtnSalirBaja)
         Me.TabPage3.Controls.Add(Me.BtnConceptoBaja)
@@ -410,6 +403,7 @@ Partial Class FrmConceptosDePago
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(974, 611)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.TabControl1)
@@ -459,5 +453,4 @@ Partial Class FrmConceptosDePago
     Friend WithEvents CbxNivelBaja As ComboBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents LsvConcepto As ListView
 End Class

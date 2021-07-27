@@ -93,6 +93,8 @@ Public Class FrmCargaAranceles
             Else
                 MsgBox("Ya existe arancel para " & CbxNivel.Text & ". Para actualizar su valor vaya a la pestaña ""Actualización de aranceles""")
             End If
+            TxtArancel.Clear()
+            TxtMatricula.Clear()
         End If
         Dgv()
     End Sub

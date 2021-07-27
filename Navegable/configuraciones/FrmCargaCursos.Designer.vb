@@ -187,6 +187,7 @@ Partial Class FrmCargaCursos
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Location = New System.Drawing.Point(399, 71)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(98, 15)
@@ -205,6 +206,8 @@ Partial Class FrmCargaCursos
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.SteelBlue
+        Me.TabPage2.BackgroundImage = CType(resources.GetObject("TabPage2.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.TabPage2.Controls.Add(Me.Panel2)
         Me.TabPage2.Controls.Add(Me.CbxCodigoCurso)
         Me.TabPage2.Controls.Add(Me.CbxCurso)
@@ -222,6 +225,7 @@ Partial Class FrmCargaCursos
         '
         'Panel2
         '
+        Me.Panel2.BackColor = System.Drawing.Color.Transparent
         Me.Panel2.Location = New System.Drawing.Point(537, 38)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(162, 91)
@@ -248,7 +252,7 @@ Partial Class FrmCargaCursos
         Me.BtnSalirModifica.BackColor = System.Drawing.Color.White
         Me.BtnSalirModifica.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
         Me.BtnSalirModifica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnSalirModifica.Location = New System.Drawing.Point(624, 370)
+        Me.BtnSalirModifica.Location = New System.Drawing.Point(743, 452)
         Me.BtnSalirModifica.Name = "BtnSalirModifica"
         Me.BtnSalirModifica.Size = New System.Drawing.Size(75, 23)
         Me.BtnSalirModifica.TabIndex = 18
@@ -286,6 +290,7 @@ Partial Class FrmCargaCursos
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Location = New System.Drawing.Point(33, 62)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(34, 15)
@@ -295,6 +300,8 @@ Partial Class FrmCargaCursos
         'TabPage3
         '
         Me.TabPage3.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.TabPage3.BackgroundImage = CType(resources.GetObject("TabPage3.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.TabPage3.Controls.Add(Me.Panel3)
         Me.TabPage3.Controls.Add(Me.LbxCursosBaja)
         Me.TabPage3.Controls.Add(Me.BtnSalirBaja)
@@ -311,6 +318,7 @@ Partial Class FrmCargaCursos
         '
         'Panel3
         '
+        Me.Panel3.BackColor = System.Drawing.Color.Transparent
         Me.Panel3.Location = New System.Drawing.Point(150, 335)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(155, 59)
@@ -330,7 +338,7 @@ Partial Class FrmCargaCursos
         Me.BtnSalirBaja.BackColor = System.Drawing.Color.White
         Me.BtnSalirBaja.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
         Me.BtnSalirBaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnSalirBaja.Location = New System.Drawing.Point(593, 437)
+        Me.BtnSalirBaja.Location = New System.Drawing.Point(775, 437)
         Me.BtnSalirBaja.Name = "BtnSalirBaja"
         Me.BtnSalirBaja.Size = New System.Drawing.Size(91, 39)
         Me.BtnSalirBaja.TabIndex = 17
@@ -368,6 +376,7 @@ Partial Class FrmCargaCursos
         'Label6
         '
         Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Location = New System.Drawing.Point(330, 124)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(38, 15)
