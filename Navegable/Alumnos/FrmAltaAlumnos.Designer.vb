@@ -88,11 +88,11 @@ Partial Class FrmAltaAlumnos
         Me.CbxCodigoNivel = New System.Windows.Forms.ComboBox()
         Me.CbxCodigoBeca = New System.Windows.Forms.ComboBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         CType(Me.DgvHijos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -116,7 +116,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label2.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Location = New System.Drawing.Point(8, 35)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
@@ -128,7 +128,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label3.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.Label3.ForeColor = System.Drawing.Color.White
         Me.Label3.Location = New System.Drawing.Point(262, 35)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
@@ -163,6 +163,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label4.ForeColor = System.Drawing.Color.White
         Me.Label4.Location = New System.Drawing.Point(63, 70)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
@@ -196,6 +197,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label5.ForeColor = System.Drawing.Color.White
         Me.Label5.Location = New System.Drawing.Point(512, 70)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
@@ -207,6 +209,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label6.ForeColor = System.Drawing.Color.White
         Me.Label6.Location = New System.Drawing.Point(512, 104)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
@@ -240,6 +243,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label7.ForeColor = System.Drawing.Color.White
         Me.Label7.Location = New System.Drawing.Point(45, 104)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
@@ -392,7 +396,9 @@ Partial Class FrmAltaAlumnos
         'Label8
         '
         Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
         Me.Label8.Font = New System.Drawing.Font("Segoe UI Black", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label8.ForeColor = System.Drawing.Color.White
         Me.Label8.Location = New System.Drawing.Point(89, 257)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(223, 15)
@@ -566,6 +572,7 @@ Partial Class FrmAltaAlumnos
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.AutoSize = True
+        Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox1.Controls.Add(Me.CbxCurso)
         Me.GroupBox1.Controls.Add(Me.Label16)
         Me.GroupBox1.Controls.Add(Me.TxtDni)
@@ -619,7 +626,7 @@ Partial Class FrmAltaAlumnos
         '
         'GroupBox2
         '
-        Me.GroupBox2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox2.Controls.Add(Me.TxtCuota)
         Me.GroupBox2.Controls.Add(Me.Label18)
         Me.GroupBox2.Controls.Add(Me.TxtArancel)
@@ -700,6 +707,8 @@ Partial Class FrmAltaAlumnos
         Me.GroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox3.AutoSize = True
+        Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.GroupBox3.Controls.Add(Me.Panel3)
         Me.GroupBox3.Controls.Add(Me.Label20)
         Me.GroupBox3.Controls.Add(Me.Label19)
@@ -718,6 +727,7 @@ Partial Class FrmAltaAlumnos
         Me.GroupBox3.Controls.Add(Me.Label5)
         Me.GroupBox3.Controls.Add(Me.Label7)
         Me.GroupBox3.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.GroupBox3.ForeColor = System.Drawing.Color.White
         Me.GroupBox3.Location = New System.Drawing.Point(26, 82)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox3.Name = "GroupBox3"
@@ -781,6 +791,13 @@ Partial Class FrmAltaAlumnos
         Me.Panel1.Size = New System.Drawing.Size(1108, 70)
         Me.Panel1.TabIndex = 36
         '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(84, 51)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(200, 100)
+        Me.FlowLayoutPanel1.TabIndex = 41
+        '
         'PictureBox3
         '
         Me.PictureBox3.BackgroundImage = CType(resources.GetObject("PictureBox3.BackgroundImage"), System.Drawing.Image)
@@ -819,13 +836,6 @@ Partial Class FrmAltaAlumnos
         Me.Panel2.Size = New System.Drawing.Size(1108, 5)
         Me.Panel2.TabIndex = 37
         '
-        'FlowLayoutPanel1
-        '
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(84, 51)
-        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(200, 100)
-        Me.FlowLayoutPanel1.TabIndex = 41
-        '
         'FrmAltaAlumnos
         '
         Me.AllowDrop = True
@@ -834,7 +844,8 @@ Partial Class FrmAltaAlumnos
         Me.AutoScroll = True
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1108, 749)
         Me.Controls.Add(Me.TxtPrueba)
         Me.Controls.Add(Me.DtpFechaActual)

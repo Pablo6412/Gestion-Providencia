@@ -98,8 +98,7 @@ Public Class Pagos
         End Try
     End Sub
 
-
-    Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
+    Private Sub BtnContinuar_Click(sender As Object, e As EventArgs) Handles BtnContinuar.Click
         abrir()
         TxtTotal2.Text = TxtTotal.Text
         RdbDetallesPago.Checked = True
@@ -124,6 +123,7 @@ Public Class Pagos
         CalculoTotal()
         RdbDetallesPago.Enabled = True
     End Sub
+
 
     Private Sub BtnGuardar2_Click(sender As Object, e As EventArgs) Handles BtnGuardar2.Click
         FormaPago()
@@ -594,5 +594,6 @@ Public Class Pagos
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()
     End Sub
+
 
 End Class

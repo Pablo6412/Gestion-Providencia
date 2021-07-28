@@ -82,23 +82,23 @@ Public Class FrmDescuentosBecas
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
         If RdbBecaEntera.Checked = True Then
-            beca = 6
+            beca = 3
             Aplicar()
         ElseIf RdbMediaBeca.Checked = True Then
-            beca = 5
+            beca = 2
             Aplicar()
 
         ElseIf RdbNinguna.Checked = True Then
-            beca = 3
+            beca = 1
             Aplicar()
         ElseIf RdbSinAsignar1.Checked = True Then
-            beca = 7
+            beca = 4
             Aplicar()
         ElseIf RdbSinAsignar2.Checked = True Then
-            beca = 12
+            beca = 5
             Aplicar()
         ElseIf RdbSinAsignar3.Checked = True Then
-            beca = 13
+            beca = 6
             Aplicar()
         Else
             MessageBox.Show("Debe elegir una opción")

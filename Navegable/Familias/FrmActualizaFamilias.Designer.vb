@@ -36,6 +36,7 @@ Partial Class FrmActualizaFamilias
         Me.LblFamilia = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.TxtEmail = New System.Windows.Forms.TextBox()
+        Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.TxtTelFijo = New System.Windows.Forms.TextBox()
         Me.TxtTelCelular = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -47,7 +48,6 @@ Partial Class FrmActualizaFamilias
         Me.LblObservaciones = New System.Windows.Forms.Label()
         Me.LblNumeroHijos = New System.Windows.Forms.Label()
         Me.LblDomicilio = New System.Windows.Forms.Label()
-        Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.BtnSalir = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -188,6 +188,7 @@ Partial Class FrmActualizaFamilias
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox2.Controls.Add(Me.TxtEmail)
+        Me.GroupBox2.Controls.Add(Me.BtnGuardar)
         Me.GroupBox2.Controls.Add(Me.TxtTelFijo)
         Me.GroupBox2.Controls.Add(Me.TxtTelCelular)
         Me.GroupBox2.Controls.Add(Me.Label3)
@@ -215,6 +216,19 @@ Partial Class FrmActualizaFamilias
         Me.TxtEmail.Name = "TxtEmail"
         Me.TxtEmail.Size = New System.Drawing.Size(289, 29)
         Me.TxtEmail.TabIndex = 8
+        '
+        'BtnGuardar
+        '
+        Me.BtnGuardar.BackColor = System.Drawing.Color.White
+        Me.BtnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.BtnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
+        Me.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnGuardar.Location = New System.Drawing.Point(784, 264)
+        Me.BtnGuardar.Name = "BtnGuardar"
+        Me.BtnGuardar.Size = New System.Drawing.Size(98, 32)
+        Me.BtnGuardar.TabIndex = 10
+        Me.BtnGuardar.Text = "Actualizar"
+        Me.BtnGuardar.UseVisualStyleBackColor = False
         '
         'TxtTelFijo
         '
@@ -322,19 +336,6 @@ Partial Class FrmActualizaFamilias
         Me.LblDomicilio.TabIndex = 0
         Me.LblDomicilio.Text = "Domicilio:"
         '
-        'BtnGuardar
-        '
-        Me.BtnGuardar.BackColor = System.Drawing.Color.White
-        Me.BtnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.BtnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
-        Me.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnGuardar.Location = New System.Drawing.Point(173, 551)
-        Me.BtnGuardar.Name = "BtnGuardar"
-        Me.BtnGuardar.Size = New System.Drawing.Size(83, 32)
-        Me.BtnGuardar.TabIndex = 10
-        Me.BtnGuardar.Text = "Guardar"
-        Me.BtnGuardar.UseVisualStyleBackColor = False
-        '
         'BtnSalir
         '
         Me.BtnSalir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -342,9 +343,9 @@ Partial Class FrmActualizaFamilias
         Me.BtnSalir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
         Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnSalir.Location = New System.Drawing.Point(682, 551)
+        Me.BtnSalir.Location = New System.Drawing.Point(812, 563)
         Me.BtnSalir.Name = "BtnSalir"
-        Me.BtnSalir.Size = New System.Drawing.Size(83, 32)
+        Me.BtnSalir.Size = New System.Drawing.Size(98, 32)
         Me.BtnSalir.TabIndex = 11
         Me.BtnSalir.Text = "Salir"
         Me.BtnSalir.UseVisualStyleBackColor = False
@@ -359,7 +360,6 @@ Partial Class FrmActualizaFamilias
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(974, 611)
         Me.Controls.Add(Me.BtnSalir)
-        Me.Controls.Add(Me.BtnGuardar)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Panel2)

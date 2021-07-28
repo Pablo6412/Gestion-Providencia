@@ -66,6 +66,8 @@ Public Class FrmConfiguraTalleres
             'AgregaTaller(TxtTaller)
         End If
         'End If
+        TxtTaller.Clear()
+        TxtImporte.Clear()
         BuscaTaller()
     End Sub
 
@@ -141,7 +143,7 @@ Public Class FrmConfiguraTalleres
                 Dim comandos10 As New SqlCommand(limpiaTaller1, conexion)
 
                 'comando.ExecuteNonQuery()
-                If comandos10.ExecuteNonQuery() = 1 Then
+                If comandos10.ExecuteNonQuery() > 0 Then
                     MessageBox.Show("Tabla alumnos actualizada")
                 Else
                     MessageBox.Show("¡Error1! Baja fallida. Reinicie el programa e intente nuevamente. De persistir el inconveniente contacte a los programadores", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -157,7 +159,7 @@ Public Class FrmConfiguraTalleres
                 Dim comandos11 As New SqlCommand(limpiaTaller2, conexion)
 
                 'comando1.ExecuteNonQuery()
-                If comandos11.ExecuteNonQuery() = 1 Then
+                If comandos11.ExecuteNonQuery() > 0 Then
                     MessageBox.Show("Tabla alumnos actualizada")
                 Else
                     MessageBox.Show("¡Error2! Baja fallida. Reinicie el programa e intente nuevamente. De persistir el inconveniente contacte a los programadores", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -171,7 +173,7 @@ Public Class FrmConfiguraTalleres
                 Dim comandos12 As New SqlCommand(limpiaTaller3, conexion)
 
                 'comando2.ExecuteNonQuery()
-                If comandos12.ExecuteNonQuery() = 1 Then
+                If comandos12.ExecuteNonQuery() > 0 Then
                     MessageBox.Show("Tabla alumnos actualizada")
                 Else
                     MessageBox.Show("¡Error3! Baja fallida. Reinicie el programa e intente nuevamente. De persistir el inconveniente contacte a los programadores", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)

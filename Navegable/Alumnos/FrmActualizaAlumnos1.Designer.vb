@@ -164,7 +164,6 @@ Partial Class FrmActualizaAlumnos
         Me.TabPage1.Controls.Add(Me.TxtFecha)
         Me.TabPage1.Controls.Add(Me.GroupBox2)
         Me.TabPage1.Controls.Add(Me.DtpFechaActual)
-        Me.TabPage1.Controls.Add(Me.BtnActualiza)
         Me.TabPage1.Controls.Add(Me.GroupBox3)
         Me.TabPage1.Controls.Add(Me.BtnSalir)
         Me.TabPage1.Location = New System.Drawing.Point(4, 29)
@@ -244,6 +243,7 @@ Partial Class FrmActualizaAlumnos
         Me.GroupBox2.Controls.Add(Me.TxtCodigoAlumno)
         Me.GroupBox2.Controls.Add(Me.TxtCodigoCurso)
         Me.GroupBox2.Controls.Add(Me.TxtCurso)
+        Me.GroupBox2.Controls.Add(Me.BtnActualiza)
         Me.GroupBox2.Controls.Add(Me.CbxCodigoAlumno)
         Me.GroupBox2.Controls.Add(Me.CbxCodigoCurso)
         Me.GroupBox2.Controls.Add(Me.CbxCurso)
@@ -266,59 +266,59 @@ Partial Class FrmActualizaAlumnos
         '
         'Panel3
         '
-        Me.Panel3.Location = New System.Drawing.Point(621, 30)
+        Me.Panel3.Location = New System.Drawing.Point(567, 33)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(61, 192)
+        Me.Panel3.Size = New System.Drawing.Size(34, 192)
         Me.Panel3.TabIndex = 23
         '
         'TxtCodigoAlumno
         '
-        Me.TxtCodigoAlumno.Location = New System.Drawing.Point(621, 179)
+        Me.TxtCodigoAlumno.Location = New System.Drawing.Point(568, 179)
         Me.TxtCodigoAlumno.Name = "TxtCodigoAlumno"
-        Me.TxtCodigoAlumno.Size = New System.Drawing.Size(34, 27)
+        Me.TxtCodigoAlumno.Size = New System.Drawing.Size(20, 27)
         Me.TxtCodigoAlumno.TabIndex = 7
         '
         'TxtCodigoCurso
         '
-        Me.TxtCodigoCurso.Location = New System.Drawing.Point(621, 106)
+        Me.TxtCodigoCurso.Location = New System.Drawing.Point(568, 106)
         Me.TxtCodigoCurso.Name = "TxtCodigoCurso"
-        Me.TxtCodigoCurso.Size = New System.Drawing.Size(34, 27)
+        Me.TxtCodigoCurso.Size = New System.Drawing.Size(20, 27)
         Me.TxtCodigoCurso.TabIndex = 22
         '
         'TxtCurso
         '
-        Me.TxtCurso.Location = New System.Drawing.Point(621, 72)
+        Me.TxtCurso.Location = New System.Drawing.Point(568, 72)
         Me.TxtCurso.Name = "TxtCurso"
-        Me.TxtCurso.Size = New System.Drawing.Size(34, 27)
+        Me.TxtCurso.Size = New System.Drawing.Size(20, 27)
         Me.TxtCurso.TabIndex = 21
         '
         'CbxCodigoAlumno
         '
         Me.CbxCodigoAlumno.FormattingEnabled = True
-        Me.CbxCodigoAlumno.Location = New System.Drawing.Point(621, 147)
+        Me.CbxCodigoAlumno.Location = New System.Drawing.Point(568, 147)
         Me.CbxCodigoAlumno.Name = "CbxCodigoAlumno"
-        Me.CbxCodigoAlumno.Size = New System.Drawing.Size(34, 28)
+        Me.CbxCodigoAlumno.Size = New System.Drawing.Size(20, 28)
         Me.CbxCodigoAlumno.TabIndex = 5
         '
         'CbxCodigoCurso
         '
         Me.CbxCodigoCurso.FormattingEnabled = True
-        Me.CbxCodigoCurso.Location = New System.Drawing.Point(621, 38)
+        Me.CbxCodigoCurso.Location = New System.Drawing.Point(568, 38)
         Me.CbxCodigoCurso.Name = "CbxCodigoCurso"
-        Me.CbxCodigoCurso.Size = New System.Drawing.Size(34, 28)
+        Me.CbxCodigoCurso.Size = New System.Drawing.Size(20, 28)
         Me.CbxCodigoCurso.TabIndex = 20
         '
         'CbxCurso
         '
         Me.CbxCurso.FormattingEnabled = True
-        Me.CbxCurso.Location = New System.Drawing.Point(411, 72)
+        Me.CbxCurso.Location = New System.Drawing.Point(358, 72)
         Me.CbxCurso.Name = "CbxCurso"
         Me.CbxCurso.Size = New System.Drawing.Size(205, 28)
         Me.CbxCurso.TabIndex = 19
         '
         'TxtObservaciones
         '
-        Me.TxtObservaciones.Location = New System.Drawing.Point(219, 157)
+        Me.TxtObservaciones.Location = New System.Drawing.Point(166, 157)
         Me.TxtObservaciones.Multiline = True
         Me.TxtObservaciones.Name = "TxtObservaciones"
         Me.TxtObservaciones.Size = New System.Drawing.Size(397, 65)
@@ -327,7 +327,7 @@ Partial Class FrmActualizaAlumnos
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(105, 160)
+        Me.Label4.Location = New System.Drawing.Point(52, 160)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(108, 20)
         Me.Label4.TabIndex = 18
@@ -337,7 +337,7 @@ Partial Class FrmActualizaAlumnos
         '
         Me.TxtNombreApellido.BackColor = System.Drawing.Color.White
         Me.TxtNombreApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNombreApellido.Location = New System.Drawing.Point(219, 28)
+        Me.TxtNombreApellido.Location = New System.Drawing.Point(166, 28)
         Me.TxtNombreApellido.Name = "TxtNombreApellido"
         Me.TxtNombreApellido.PlaceholderText = "Primero nombre, luego apellido"
         Me.TxtNombreApellido.Size = New System.Drawing.Size(397, 27)
@@ -346,7 +346,7 @@ Partial Class FrmActualizaAlumnos
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(76, 35)
+        Me.Label12.Location = New System.Drawing.Point(23, 35)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(137, 20)
         Me.Label12.TabIndex = 16
@@ -355,7 +355,7 @@ Partial Class FrmActualizaAlumnos
         'TxtDni
         '
         Me.TxtDni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDni.Location = New System.Drawing.Point(219, 73)
+        Me.TxtDni.Location = New System.Drawing.Point(166, 73)
         Me.TxtDni.Name = "TxtDni"
         Me.TxtDni.Size = New System.Drawing.Size(110, 27)
         Me.TxtDni.TabIndex = 3
@@ -364,7 +364,7 @@ Partial Class FrmActualizaAlumnos
         '
         Me.DtpFechaIngreso.CustomFormat = "yyyy-mm-dd"
         Me.DtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaIngreso.Location = New System.Drawing.Point(495, 116)
+        Me.DtpFechaIngreso.Location = New System.Drawing.Point(442, 116)
         Me.DtpFechaIngreso.Name = "DtpFechaIngreso"
         Me.DtpFechaIngreso.Size = New System.Drawing.Size(121, 27)
         Me.DtpFechaIngreso.TabIndex = 6
@@ -373,7 +373,7 @@ Partial Class FrmActualizaAlumnos
         '
         Me.DtpFechaNacimiento.CustomFormat = "yyyy-mm-dd"
         Me.DtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaNacimiento.Location = New System.Drawing.Point(219, 116)
+        Me.DtpFechaNacimiento.Location = New System.Drawing.Point(166, 116)
         Me.DtpFechaNacimiento.Name = "DtpFechaNacimiento"
         Me.DtpFechaNacimiento.Size = New System.Drawing.Size(121, 27)
         Me.DtpFechaNacimiento.TabIndex = 5
@@ -381,7 +381,7 @@ Partial Class FrmActualizaAlumnos
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(365, 123)
+        Me.Label8.Location = New System.Drawing.Point(312, 123)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(124, 20)
         Me.Label8.TabIndex = 4
@@ -390,7 +390,7 @@ Partial Class FrmActualizaAlumnos
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(356, 80)
+        Me.Label7.Location = New System.Drawing.Point(303, 80)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(49, 20)
         Me.Label7.TabIndex = 3
@@ -399,7 +399,7 @@ Partial Class FrmActualizaAlumnos
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(178, 80)
+        Me.Label6.Location = New System.Drawing.Point(125, 80)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(35, 20)
         Me.Label6.TabIndex = 2
@@ -408,7 +408,7 @@ Partial Class FrmActualizaAlumnos
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(61, 121)
+        Me.Label5.Location = New System.Drawing.Point(8, 121)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(152, 20)
         Me.Label5.TabIndex = 1
@@ -419,7 +419,7 @@ Partial Class FrmActualizaAlumnos
         Me.DtpFechaActual.CustomFormat = ""
         Me.DtpFechaActual.Enabled = False
         Me.DtpFechaActual.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaActual.Location = New System.Drawing.Point(825, 448)
+        Me.DtpFechaActual.Location = New System.Drawing.Point(687, 455)
         Me.DtpFechaActual.Name = "DtpFechaActual"
         Me.DtpFechaActual.Size = New System.Drawing.Size(100, 27)
         Me.DtpFechaActual.TabIndex = 18
@@ -431,7 +431,7 @@ Partial Class FrmActualizaAlumnos
         Me.BtnActualiza.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
         Me.BtnActualiza.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
         Me.BtnActualiza.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnActualiza.Location = New System.Drawing.Point(174, 443)
+        Me.BtnActualiza.Location = New System.Drawing.Point(605, 111)
         Me.BtnActualiza.Name = "BtnActualiza"
         Me.BtnActualiza.Size = New System.Drawing.Size(85, 32)
         Me.BtnActualiza.TabIndex = 8
@@ -533,7 +533,7 @@ Partial Class FrmActualizaAlumnos
         Me.BtnSalir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
         Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
         Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnSalir.Location = New System.Drawing.Point(570, 443)
+        Me.BtnSalir.Location = New System.Drawing.Point(840, 450)
         Me.BtnSalir.Name = "BtnSalir"
         Me.BtnSalir.Size = New System.Drawing.Size(85, 32)
         Me.BtnSalir.TabIndex = 9

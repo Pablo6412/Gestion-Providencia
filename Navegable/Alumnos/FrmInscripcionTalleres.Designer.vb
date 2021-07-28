@@ -43,7 +43,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar1 = New System.Windows.Forms.RadioButton()
         Me.RdbRugby1 = New System.Windows.Forms.RadioButton()
         Me.RdbMusica1 = New System.Windows.Forms.RadioButton()
-        Me.RdbHokey1 = New System.Windows.Forms.RadioButton()
+        Me.RdbHockey1 = New System.Windows.Forms.RadioButton()
         Me.RdbFutbol1 = New System.Windows.Forms.RadioButton()
         Me.RdbNinguno1 = New System.Windows.Forms.RadioButton()
         Me.BtnGuardar = New System.Windows.Forms.Button()
@@ -54,7 +54,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar11 = New System.Windows.Forms.RadioButton()
         Me.RdbRugby2 = New System.Windows.Forms.RadioButton()
         Me.RdbMusica2 = New System.Windows.Forms.RadioButton()
-        Me.RdbHokey2 = New System.Windows.Forms.RadioButton()
+        Me.RdbHockey2 = New System.Windows.Forms.RadioButton()
         Me.RdbFutbol2 = New System.Windows.Forms.RadioButton()
         Me.RdbNinguno2 = New System.Windows.Forms.RadioButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -217,7 +217,7 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox1.Controls.Add(Me.RdbSinAsignar1)
         Me.GroupBox1.Controls.Add(Me.RdbRugby1)
         Me.GroupBox1.Controls.Add(Me.RdbMusica1)
-        Me.GroupBox1.Controls.Add(Me.RdbHokey1)
+        Me.GroupBox1.Controls.Add(Me.RdbHockey1)
         Me.GroupBox1.Controls.Add(Me.RdbFutbol1)
         Me.GroupBox1.Controls.Add(Me.RdbNinguno1)
         Me.GroupBox1.Location = New System.Drawing.Point(37, 265)
@@ -305,18 +305,18 @@ Partial Class FrmInscripcionTalleres
         Me.RdbMusica1.Text = "Música"
         Me.RdbMusica1.UseVisualStyleBackColor = True
         '
-        'RdbHokey1
+        'RdbHockey1
         '
-        Me.RdbHokey1.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.RdbHokey1.AutoSize = True
-        Me.RdbHokey1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbHokey1.Location = New System.Drawing.Point(137, 110)
-        Me.RdbHokey1.Name = "RdbHokey1"
-        Me.RdbHokey1.Size = New System.Drawing.Size(59, 19)
-        Me.RdbHokey1.TabIndex = 2
-        Me.RdbHokey1.TabStop = True
-        Me.RdbHokey1.Text = "Hokey"
-        Me.RdbHokey1.UseVisualStyleBackColor = True
+        Me.RdbHockey1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.RdbHockey1.AutoSize = True
+        Me.RdbHockey1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RdbHockey1.Location = New System.Drawing.Point(131, 110)
+        Me.RdbHockey1.Name = "RdbHockey1"
+        Me.RdbHockey1.Size = New System.Drawing.Size(65, 19)
+        Me.RdbHockey1.TabIndex = 2
+        Me.RdbHockey1.TabStop = True
+        Me.RdbHockey1.Text = "Hockey"
+        Me.RdbHockey1.UseVisualStyleBackColor = True
         '
         'RdbFutbol1
         '
@@ -365,7 +365,7 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox3.Controls.Add(Me.RdbSinAsignar11)
         Me.GroupBox3.Controls.Add(Me.RdbRugby2)
         Me.GroupBox3.Controls.Add(Me.RdbMusica2)
-        Me.GroupBox3.Controls.Add(Me.RdbHokey2)
+        Me.GroupBox3.Controls.Add(Me.RdbHockey2)
         Me.GroupBox3.Controls.Add(Me.RdbFutbol2)
         Me.GroupBox3.Controls.Add(Me.RdbNinguno2)
         Me.GroupBox3.Location = New System.Drawing.Point(321, 265)
@@ -373,7 +373,7 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox3.Size = New System.Drawing.Size(235, 334)
         Me.GroupBox3.TabIndex = 29
         Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Taller1"
+        Me.GroupBox3.Text = "Taller2"
         '
         'RdbSinAsignar44
         '
@@ -453,18 +453,18 @@ Partial Class FrmInscripcionTalleres
         Me.RdbMusica2.Text = "Música"
         Me.RdbMusica2.UseVisualStyleBackColor = True
         '
-        'RdbHokey2
+        'RdbHockey2
         '
-        Me.RdbHokey2.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.RdbHokey2.AutoSize = True
-        Me.RdbHokey2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbHokey2.Location = New System.Drawing.Point(134, 110)
-        Me.RdbHokey2.Name = "RdbHokey2"
-        Me.RdbHokey2.Size = New System.Drawing.Size(59, 19)
-        Me.RdbHokey2.TabIndex = 2
-        Me.RdbHokey2.TabStop = True
-        Me.RdbHokey2.Text = "Hokey"
-        Me.RdbHokey2.UseVisualStyleBackColor = True
+        Me.RdbHockey2.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.RdbHockey2.AutoSize = True
+        Me.RdbHockey2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RdbHockey2.Location = New System.Drawing.Point(128, 110)
+        Me.RdbHockey2.Name = "RdbHockey2"
+        Me.RdbHockey2.Size = New System.Drawing.Size(65, 19)
+        Me.RdbHockey2.TabIndex = 2
+        Me.RdbHockey2.TabStop = True
+        Me.RdbHockey2.Text = "Hockey"
+        Me.RdbHockey2.UseVisualStyleBackColor = True
         '
         'RdbFutbol2
         '
@@ -509,7 +509,7 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox2.Size = New System.Drawing.Size(235, 334)
         Me.GroupBox2.TabIndex = 29
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Taller1"
+        Me.GroupBox2.Text = "Taller3"
         '
         'RdbSinAsignar444
         '
@@ -594,12 +594,12 @@ Partial Class FrmInscripcionTalleres
         Me.RdbHokey3.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbHokey3.AutoSize = True
         Me.RdbHokey3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbHokey3.Location = New System.Drawing.Point(134, 110)
+        Me.RdbHokey3.Location = New System.Drawing.Point(128, 110)
         Me.RdbHokey3.Name = "RdbHokey3"
-        Me.RdbHokey3.Size = New System.Drawing.Size(59, 19)
+        Me.RdbHokey3.Size = New System.Drawing.Size(65, 19)
         Me.RdbHokey3.TabIndex = 2
         Me.RdbHokey3.TabStop = True
-        Me.RdbHokey3.Text = "Hokey"
+        Me.RdbHokey3.Text = "Hockey"
         Me.RdbHokey3.UseVisualStyleBackColor = True
         '
         'RdbFutbol3
@@ -682,7 +682,7 @@ Partial Class FrmInscripcionTalleres
     Friend WithEvents RdbSinAsignar1 As RadioButton
     Friend WithEvents RdbRugby1 As RadioButton
     Friend WithEvents RdbMusica1 As RadioButton
-    Friend WithEvents RdbHokey1 As RadioButton
+    Friend WithEvents RdbHockey1 As RadioButton
     Friend WithEvents RdbFutbol1 As RadioButton
     Friend WithEvents RdbNinguno1 As RadioButton
     Friend WithEvents GroupBox3 As GroupBox
@@ -692,7 +692,7 @@ Partial Class FrmInscripcionTalleres
     Friend WithEvents RdbSinAsignar11 As RadioButton
     Friend WithEvents RdbRugby2 As RadioButton
     Friend WithEvents RdbMusica2 As RadioButton
-    Friend WithEvents RdbHokey2 As RadioButton
+    Friend WithEvents RdbHockey2 As RadioButton
     Friend WithEvents RdbFutbol2 As RadioButton
     Friend WithEvents RdbNinguno2 As RadioButton
     Friend WithEvents GroupBox2 As GroupBox

@@ -47,6 +47,7 @@ Partial Class Pagos
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.BtnContinuar = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.TxtMontoAPagar = New System.Windows.Forms.TextBox()
@@ -82,7 +83,6 @@ Partial Class Pagos
         Me.TxtCheque = New System.Windows.Forms.TextBox()
         Me.DtpFechaPago = New System.Windows.Forms.DateTimePicker()
         Me.BtnSalir = New System.Windows.Forms.Button()
-        Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CbxFamilia = New System.Windows.Forms.ComboBox()
@@ -147,6 +147,7 @@ Partial Class Pagos
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NÚMERO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MERCADOPAGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -324,10 +325,10 @@ Partial Class Pagos
         Me.TabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.TabPage1.BackgroundImage = CType(resources.GetObject("TabPage1.BackgroundImage"), System.Drawing.Image)
         Me.TabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage1.Controls.Add(Me.BtnContinuar)
         Me.TabPage1.Controls.Add(Me.GroupBox4)
         Me.TabPage1.Controls.Add(Me.DtpFechaPago)
         Me.TabPage1.Controls.Add(Me.BtnSalir)
-        Me.TabPage1.Controls.Add(Me.BtnGuardar)
         Me.TabPage1.Controls.Add(Me.Label16)
         Me.TabPage1.Controls.Add(Me.GroupBox1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 24)
@@ -335,6 +336,18 @@ Partial Class Pagos
         Me.TabPage1.Size = New System.Drawing.Size(966, 601)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
+        '
+        'BtnContinuar
+        '
+        Me.BtnContinuar.BackColor = System.Drawing.Color.White
+        Me.BtnContinuar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.BtnContinuar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnContinuar.Location = New System.Drawing.Point(73, 413)
+        Me.BtnContinuar.Name = "BtnContinuar"
+        Me.BtnContinuar.Size = New System.Drawing.Size(100, 40)
+        Me.BtnContinuar.TabIndex = 27
+        Me.BtnContinuar.Text = "Continuar"
+        Me.BtnContinuar.UseVisualStyleBackColor = False
         '
         'GroupBox4
         '
@@ -737,18 +750,6 @@ Partial Class Pagos
         Me.BtnSalir.TabIndex = 24
         Me.BtnSalir.Text = "Salir"
         Me.BtnSalir.UseVisualStyleBackColor = False
-        '
-        'BtnGuardar
-        '
-        Me.BtnGuardar.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.BtnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnGuardar.Location = New System.Drawing.Point(72, 413)
-        Me.BtnGuardar.Name = "BtnGuardar"
-        Me.BtnGuardar.Size = New System.Drawing.Size(101, 40)
-        Me.BtnGuardar.TabIndex = 23
-        Me.BtnGuardar.Text = "Continuar"
-        Me.BtnGuardar.UseVisualStyleBackColor = False
         '
         'Label16
         '
@@ -1448,11 +1449,21 @@ Partial Class Pagos
         Me.MERCADOPAGO.HeaderText = "MERCADOPAGO"
         Me.MERCADOPAGO.Name = "MERCADOPAGO"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(0, 0)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 7
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Pagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(974, 711)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Panel2)
@@ -1568,7 +1579,6 @@ Partial Class Pagos
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents DgvHijos As DataGridView
     Friend WithEvents BtnSalir As Button
-    Friend WithEvents BtnGuardar As Button
     Friend WithEvents DtpFechaPago As DateTimePicker
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents Label23 As Label
@@ -1603,4 +1613,6 @@ Partial Class Pagos
     Friend WithEvents LblSinAsignar3 As Label
     Friend WithEvents LblSinAsignar2 As Label
     Friend WithEvents LblSinAsignar1 As Label
+    Friend WithEvents BtnContinuar As Button
+    Friend WithEvents Button1 As Button
 End Class

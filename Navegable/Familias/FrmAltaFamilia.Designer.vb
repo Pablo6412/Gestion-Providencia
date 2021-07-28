@@ -123,8 +123,9 @@ Partial Class FrmAltaFamilia
         'LblFechaIngreso
         '
         Me.LblFechaIngreso.AutoSize = True
+        Me.LblFechaIngreso.BackColor = System.Drawing.Color.Transparent
         Me.LblFechaIngreso.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.LblFechaIngreso.Location = New System.Drawing.Point(123, 102)
+        Me.LblFechaIngreso.Location = New System.Drawing.Point(123, 101)
         Me.LblFechaIngreso.Name = "LblFechaIngreso"
         Me.LblFechaIngreso.Size = New System.Drawing.Size(142, 21)
         Me.LblFechaIngreso.TabIndex = 2

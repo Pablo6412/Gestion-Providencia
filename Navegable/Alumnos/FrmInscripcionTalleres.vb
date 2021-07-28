@@ -20,8 +20,8 @@ Public Class FrmInscripcionTalleres
         RdbFutbol2.Text = datos.Tables("taller").Rows(1).Item("taller_nombre")
         RdbFutbol3.Text = datos.Tables("taller").Rows(1).Item("taller_nombre")
 
-        RdbHokey1.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
-        RdbHokey2.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
+        RdbHockey1.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
+        RdbHockey2.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
         RdbHokey3.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
 
         RdbMusica1.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
@@ -122,20 +122,20 @@ Public Class FrmInscripcionTalleres
             taller = 1
         ElseIf RdbFutbol1.Checked Then
             taller = 2
-        ElseIf RdbHokey1.Checked Then
+        ElseIf RdbHockey1.Checked Then
             taller = 3
-        ElseIf RdbMusica1.checked Then
+        ElseIf RdbMusica1.Checked Then
             taller = 4
         ElseIf RdbRugby1.Checked Then
             taller = 5
         ElseIf RdbSinAsignar1.Checked Then
-            taller = 7
+            taller = 6
         ElseIf RdbSinAsignar2.Checked Then
-            taller = 8
+            taller = 7
         ElseIf RdbSinAsignar3.Checked Then
-            taller = 9
+            taller = 8
         ElseIf RdbSinAsignar4.Checked Then
-            taller = 10
+            taller = 9
         End If
 
         If taller = 0 Then
@@ -153,20 +153,20 @@ Public Class FrmInscripcionTalleres
                 taller = 1
             ElseIf RdbFutbol2.Checked Then
                 taller = 2
-            ElseIf RdbHokey2.Checked Then
+            ElseIf RdbHockey2.Checked Then
                 taller = 3
             ElseIf RdbMusica2.Checked Then
                 taller = 4
             ElseIf RdbRugby2.Checked Then
                 taller = 5
             ElseIf RdbSinAsignar11.Checked Then
-                taller = 7
+                taller = 6
             ElseIf RdbSinAsignar22.Checked Then
-                taller = 8
+                taller = 7
             ElseIf RdbSinAsignar33.Checked Then
-                taller = 9
+                taller = 8
             ElseIf RdbSinAsignar44.Checked Then
-                taller = 10
+                taller = 9
             End If
 
             If taller = 0 Then
@@ -193,13 +193,13 @@ Public Class FrmInscripcionTalleres
                 ElseIf RdbRugby3.Checked Then
                     taller = 5
                 ElseIf RdbSinAsignar111.Checked Then
-                    taller = 7
+                    taller = 6
                 ElseIf RdbSinAsignar222.Checked Then
-                    taller = 8
+                    taller = 7
                 ElseIf RdbSinAsignar333.Checked Then
-                    taller = 9
+                    taller = 8
                 ElseIf RdbSinAsignar444.Checked Then
-                    taller = 10
+                    taller = 9
                 End If
 
                 If taller = 0 Then
@@ -222,7 +222,7 @@ Public Class FrmInscripcionTalleres
     Private Sub CbxCodigoAlumno_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoAlumno.SelectedValueChanged
         RdbNinguno1.Checked = False
         RdbFutbol1.Checked = False
-        RdbHokey1.Checked = False
+        RdbHockey1.Checked = False
         RdbMusica1.Checked = False
         RdbRugby1.Checked = False
         RdbSinAsignar1.Checked = False
@@ -231,7 +231,7 @@ Public Class FrmInscripcionTalleres
         RdbSinAsignar4.Checked = False
         RdbNinguno2.Checked = False
         RdbFutbol2.Checked = False
-        RdbHokey2.Checked = False
+        RdbHockey2.Checked = False
         RdbMusica2.Checked = False
         RdbRugby2.Checked = False
         RdbSinAsignar11.Checked = False

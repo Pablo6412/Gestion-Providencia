@@ -254,6 +254,7 @@ Partial Class FrmPrincipal
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PanelMenu.AutoSize = True
         Me.PanelMenu.BackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.PanelMenu.BackgroundImage = CType(resources.GetObject("PanelMenu.BackgroundImage"), System.Drawing.Image)
         Me.PanelMenu.Controls.Add(Me.BtnCerrar)
         Me.PanelMenu.Controls.Add(Me.BtnACercaDe)
         Me.PanelMenu.Controls.Add(Me.BtnAyuda)
@@ -266,78 +267,89 @@ Partial Class FrmPrincipal
         '
         'BtnCerrar
         '
+        Me.BtnCerrar.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.BtnCerrar.BackColor = System.Drawing.Color.Transparent
         Me.BtnCerrar.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight
+        Me.BtnCerrar.FlatAppearance.BorderSize = 0
         Me.BtnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.MenuHighlight
         Me.BtnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.HotTrack
         Me.BtnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnCerrar.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.BtnCerrar.ForeColor = System.Drawing.Color.White
-        Me.BtnCerrar.Location = New System.Drawing.Point(0, 482)
+        Me.BtnCerrar.Location = New System.Drawing.Point(0, 461)
         Me.BtnCerrar.Name = "BtnCerrar"
         Me.BtnCerrar.Size = New System.Drawing.Size(134, 77)
         Me.BtnCerrar.TabIndex = 9
         Me.BtnCerrar.Text = "Cerrar"
-        Me.BtnCerrar.UseVisualStyleBackColor = True
+        Me.BtnCerrar.UseVisualStyleBackColor = False
         '
         'BtnACercaDe
         '
+        Me.BtnACercaDe.BackColor = System.Drawing.Color.Transparent
         Me.BtnACercaDe.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight
+        Me.BtnACercaDe.FlatAppearance.BorderSize = 0
         Me.BtnACercaDe.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.MenuHighlight
         Me.BtnACercaDe.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.HotTrack
         Me.BtnACercaDe.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnACercaDe.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.BtnACercaDe.ForeColor = System.Drawing.Color.White
-        Me.BtnACercaDe.Location = New System.Drawing.Point(0, 374)
+        Me.BtnACercaDe.Location = New System.Drawing.Point(0, 357)
         Me.BtnACercaDe.Name = "BtnACercaDe"
         Me.BtnACercaDe.Size = New System.Drawing.Size(134, 77)
         Me.BtnACercaDe.TabIndex = 8
         Me.BtnACercaDe.Text = "A cerca de"
-        Me.BtnACercaDe.UseVisualStyleBackColor = True
+        Me.BtnACercaDe.UseVisualStyleBackColor = False
         '
         'BtnAyuda
         '
+        Me.BtnAyuda.BackColor = System.Drawing.Color.Transparent
         Me.BtnAyuda.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight
+        Me.BtnAyuda.FlatAppearance.BorderSize = 0
         Me.BtnAyuda.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.MenuHighlight
         Me.BtnAyuda.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.HotTrack
         Me.BtnAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnAyuda.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.BtnAyuda.ForeColor = System.Drawing.Color.White
-        Me.BtnAyuda.Location = New System.Drawing.Point(0, 271)
+        Me.BtnAyuda.Location = New System.Drawing.Point(0, 244)
         Me.BtnAyuda.Name = "BtnAyuda"
         Me.BtnAyuda.Size = New System.Drawing.Size(134, 77)
         Me.BtnAyuda.TabIndex = 7
         Me.BtnAyuda.Text = "Ayuda"
-        Me.BtnAyuda.UseVisualStyleBackColor = True
+        Me.BtnAyuda.UseVisualStyleBackColor = False
         '
         'BtnConfiguracion
         '
+        Me.BtnConfiguracion.BackColor = System.Drawing.Color.Transparent
         Me.BtnConfiguracion.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight
+        Me.BtnConfiguracion.FlatAppearance.BorderSize = 0
         Me.BtnConfiguracion.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.MenuHighlight
         Me.BtnConfiguracion.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.HotTrack
         Me.BtnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnConfiguracion.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.BtnConfiguracion.ForeColor = System.Drawing.Color.White
-        Me.BtnConfiguracion.Location = New System.Drawing.Point(0, 179)
+        Me.BtnConfiguracion.Location = New System.Drawing.Point(0, 137)
         Me.BtnConfiguracion.Name = "BtnConfiguracion"
         Me.BtnConfiguracion.Size = New System.Drawing.Size(134, 77)
         Me.BtnConfiguracion.TabIndex = 6
         Me.BtnConfiguracion.Text = "Configuración"
-        Me.BtnConfiguracion.UseVisualStyleBackColor = True
+        Me.BtnConfiguracion.UseVisualStyleBackColor = False
         '
         'BtnConsultas
         '
+        Me.BtnConsultas.BackColor = System.Drawing.Color.Transparent
         Me.BtnConsultas.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight
+        Me.BtnConsultas.FlatAppearance.BorderSize = 0
         Me.BtnConsultas.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.MenuHighlight
         Me.BtnConsultas.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.HotTrack
         Me.BtnConsultas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnConsultas.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.BtnConsultas.ForeColor = System.Drawing.Color.White
-        Me.BtnConsultas.Location = New System.Drawing.Point(0, 51)
+        Me.BtnConsultas.Location = New System.Drawing.Point(0, 32)
         Me.BtnConsultas.Name = "BtnConsultas"
         Me.BtnConsultas.Size = New System.Drawing.Size(134, 77)
         Me.BtnConsultas.TabIndex = 5
         Me.BtnConsultas.Text = "Consultas"
-        Me.BtnConsultas.UseVisualStyleBackColor = True
+        Me.BtnConsultas.UseVisualStyleBackColor = False
         '
         'PanelEscudos
         '
@@ -389,7 +401,7 @@ Partial Class FrmPrincipal
         'PanelAzul
         '
         Me.PanelAzul.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.PanelAzul.Location = New System.Drawing.Point(0, 106)
+        Me.PanelAzul.Location = New System.Drawing.Point(0, 105)
         Me.PanelAzul.Name = "PanelAzul"
         Me.PanelAzul.Size = New System.Drawing.Size(137, 105)
         Me.PanelAzul.TabIndex = 3

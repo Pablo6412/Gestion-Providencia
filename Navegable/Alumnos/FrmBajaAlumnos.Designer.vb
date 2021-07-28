@@ -36,10 +36,10 @@ Partial Class FrmBajaAlumnos
         Me.ColDNI = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ColEdad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ColCurso = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CbxCodigoAlumno = New System.Windows.Forms.ComboBox()
         Me.BtnBajaAlumno = New System.Windows.Forms.Button()
         Me.CbxAlumno = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.CbxCodigoAlumno = New System.Windows.Forms.ComboBox()
         Me.BtnSalir = New System.Windows.Forms.Button()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.CbxNumeroOrden = New System.Windows.Forms.ComboBox()
@@ -122,6 +122,7 @@ Partial Class FrmBajaAlumnos
         '
         'GroupBox1
         '
+        Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox1.Controls.Add(Me.DgvAlumnos)
         Me.GroupBox1.Controls.Add(Me.BtnBajaAlumno)
         Me.GroupBox1.Controls.Add(Me.CbxAlumno)
@@ -181,14 +182,6 @@ Partial Class FrmBajaAlumnos
         Me.ColCurso.ReadOnly = True
         Me.ColCurso.Width = 140
         '
-        'CbxCodigoAlumno
-        '
-        Me.CbxCodigoAlumno.FormattingEnabled = True
-        Me.CbxCodigoAlumno.Location = New System.Drawing.Point(165, 488)
-        Me.CbxCodigoAlumno.Name = "CbxCodigoAlumno"
-        Me.CbxCodigoAlumno.Size = New System.Drawing.Size(117, 23)
-        Me.CbxCodigoAlumno.TabIndex = 3
-        '
         'BtnBajaAlumno
         '
         Me.BtnBajaAlumno.BackColor = System.Drawing.Color.White
@@ -217,12 +210,20 @@ Partial Class FrmBajaAlumnos
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label1.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.Label1.ForeColor = System.Drawing.Color.White
         Me.Label1.Location = New System.Drawing.Point(157, 44)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(68, 21)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Alumno:"
+        '
+        'CbxCodigoAlumno
+        '
+        Me.CbxCodigoAlumno.FormattingEnabled = True
+        Me.CbxCodigoAlumno.Location = New System.Drawing.Point(165, 488)
+        Me.CbxCodigoAlumno.Name = "CbxCodigoAlumno"
+        Me.CbxCodigoAlumno.Size = New System.Drawing.Size(117, 23)
+        Me.CbxCodigoAlumno.TabIndex = 3
         '
         'BtnSalir
         '
@@ -240,6 +241,7 @@ Partial Class FrmBajaAlumnos
         '
         'PictureBox4
         '
+        Me.PictureBox4.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox4.Image = CType(resources.GetObject("PictureBox4.Image"), System.Drawing.Image)
         Me.PictureBox4.Location = New System.Drawing.Point(355, 318)
         Me.PictureBox4.Name = "PictureBox4"
@@ -307,6 +309,7 @@ Partial Class FrmBajaAlumnos
         '
         'Panel4
         '
+        Me.Panel4.BackColor = System.Drawing.Color.Transparent
         Me.Panel4.Location = New System.Drawing.Point(72, 340)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(230, 178)
@@ -317,6 +320,8 @@ Partial Class FrmBajaAlumnos
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(974, 611)
         Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.TxtMayor)
