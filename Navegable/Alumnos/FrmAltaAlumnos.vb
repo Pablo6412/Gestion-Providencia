@@ -296,11 +296,12 @@ Public Class FrmAltaAlumnos
     End Sub
 
     Private Sub GuardaCuota()
-        Dim cadena As String = "INSERT INTO cuotas(codigo_alumno, valor_cuota) 
-                                       VALUES(@codigo_alumno, @valor_cuota)"
+        Dim cadena As String = "INSERT INTO cuotas(codigo_alumno, codigo_familia, valor_cuota) 
+                                       VALUES(@codigo_alumno, @codigo_familia, @valor_cuota)"
         comando = New SqlCommand(cadena, conexion)
 
         comando.Parameters.AddWithValue("@codigo_alumno", codAlumno)
+        comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigoFamilia.Text))
         comando.Parameters.AddWithValue("@valor_cuota", cuota)
         If comando.ExecuteNonQuery() = 1 Then
             MessageBox.Show("Datos guardados")

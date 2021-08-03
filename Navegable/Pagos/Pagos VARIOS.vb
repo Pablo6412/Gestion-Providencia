@@ -71,11 +71,11 @@ Public Class Pagos
 
         RadioButton1.Checked = True
         'Abre la conección
-        RdbDetallesPago.Enabled = False
+        RdbDetallesPago.Enabled = True
         TxtMontoAPagar.Enabled = False
         TxtTotal.Enabled = False
         TxtSuma.Enabled = False
-        TxtTotal2.Enabled = False
+        TxtDisponible.Enabled = False
 
         'Carga combobox con familias activas
         Try
@@ -100,7 +100,7 @@ Public Class Pagos
 
     Private Sub BtnContinuar_Click(sender As Object, e As EventArgs) Handles BtnContinuar.Click
         abrir()
-        TxtTotal2.Text = TxtTotal.Text
+        TxtDisponible.Text = TxtTotal.Text
         RdbDetallesPago.Checked = True
 
         If Val(TxtMontoAPagar.Text) <= Val(TxtTotal.Text) Then
@@ -153,7 +153,7 @@ Public Class Pagos
         SaldosDeudores()
 
         If comando.ExecuteNonQuery() = 1 Then
-            MessageBox.Show("Datos guardados")
+            'MessageBox.Show("Datos guardados")
             TxtMatricula.Clear()
             TxtArancel.Clear()
             TxtMateriales.Clear()
@@ -180,29 +180,88 @@ Public Class Pagos
             MsgBox("Error de grabación. Reinicie el programa e intente nuevamente, de persistir el error contacte al soporte informático")
         End If
 
-        If Val(TxtTotal2.Text) <> 0 Then
-            MessageBox.Show("Se reintegran $" & TxtTotal2.Text & "")
+        If Val(TxtDisponible.Text) > 0 Then
+            'MessageBox.Show("Se reintegran $" & TxtDisponible.Text & "")
+            Dim disponible As Decimal
 
-            Dim reintegro As String = " SELECT efectivo FROM pagos_escolares where codigo_pago = '" & Val(TxtCodigoPago.Text) & "'  "
-            Dim comando2 As New SqlCommand(reintegro, conexion)
-            Dim pagoEfectivo As Decimal = Val(TxtReintegro.Text) = comando2.ExecuteScalar
-            Dim reintegroEfectivo As Decimal = pagoEfectivo - diferencia
-
-            If reintegroEfectivo < 0 Then
-                'MessageBox.Show("¡Estás pelado! decí alpiste... ¡tu guita perdiste!")
-            Else
-                Dim devolucion As String = "UPDATE pagos_escolares SET efectivo = '" & reintegroEfectivo & "'WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
-                Dim comando4 As New SqlCommand(devolucion, conexion)
-                comando4.ExecuteNonQuery()
-
-                If comando4.ExecuteNonQuery() = 1 Then
-                    MessageBox.Show("Se reintegró tu guita")
+            Dim efectivo As String = " SELECT efectivo FROM pagos_escolares where codigo_pago = '" & Val(TxtCodigoPago.Text) & "'  "
+            Dim comando2 As New SqlCommand(efectivo, conexion)
+            Dim pagoEfectivo As Decimal = comando2.ExecuteScalar
+            disponible = Val(TxtDisponible.Text)
+            'MsgBox("El monto disponible es  $ " & disponible & "")
+            'MsgBox("El pago efectivo fue de  $ " & pagoEfectivo & "")
+            If pagoEfectivo < TxtDisponible.Text Then
+                MsgBox("Solo se pueden reintegrar $" & pagoEfectivo & " que pagó en efectivo. El resto de $" & disponible - pagoEfectivo & "queda como saldo a favor de próximos vencimientos")
+                Dim modificaPago As String = "UPDATE pagos_escolares SET efectivo = 0 WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
+                Dim comando5 As New SqlCommand(modificaPago, conexion)
+                comando5.ExecuteNonQuery()
+                If comando5.ExecuteNonQuery() = 1 Then
+                    MessageBox.Show("Se reintegran $" & pagoEfectivo & "que pagó en efectivo")
                 Else
                     MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
                 End If
-                MessageBox.Show("¡Estás pelado como una mandarina! decí alpiste... tu guita perdiste")
+
+            ElseIf pagoEfectivo = TxtDisponible.Text Then
+                'MsgBox("Se reintegran $" & pagoEfectivo & "")
+                Dim modificaPago As String = "UPDATE pagos_escolares SET efectivo = 0 WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
+                Dim comando5 As New SqlCommand(modificaPago, conexion)
+                comando5.ExecuteNonQuery()
+                If comando5.ExecuteNonQuery() = 1 Then
+                    MessageBox.Show("Se reintegran $" & pagoEfectivo & "que pagó en efectivo")
+                Else
+                    MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+                End If
+            Else
+
+                Dim diferencia As Decimal = total - disponible
+
+
+
+                'MsgBox("La diferencia es  $ " & diferencia & "")
+                'MsgBox("El pago efectivo fue de  $ " & pagoEfectivo & "")
+                'MsgBox("El disponible es  $ " & disponible & "")
+                'MsgBox("El pago total es de " & total & "")
+                'pagoEfectivo > TxtDisponible.text then
+                Dim modificaPago As String = "UPDATE pagos_escolares SET efectivo = '" & diferencia & "' WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
+                Dim comando5 As New SqlCommand(modificaPago, conexion)
+                comando5.ExecuteNonQuery()
+                If comando5.ExecuteNonQuery() = 1 Then
+                    MessageBox.Show("Se reintegran $" & Val(TxtDisponible.Text) & "")
+                Else
+                    MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+                End If
+
+
+
+                'MessageBox.Show("¡Estás pelado como una mandarina! decí alpiste... tu guita perdiste")
             End If
+        Else
+            MsgBox("Pago realizado correctamente")
+
+
         End If
+
+        'Dim reintegroEfectivo As Decimal = pagoEfectivo - diferencia
+        'If reintegroEfectivo < 0 Then
+        '    reintegroEfectivo = 0
+        'End If
+        'If reintegroEfectivo = 0 Then
+        '    MessageBox.Show("¡Solo se pueden reintegrar  $" & reintegroEfectivo & " en efectivo!")
+        'Else
+        '        Dim devolucion As String = "UPDATE pagos_escolares SET efectivo = '" & reintegroEfectivo & "'WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
+        '        Dim comando4 As New SqlCommand(devolucion, conexion)
+        '        comando4.ExecuteNonQuery()
+
+        '        If comando4.ExecuteNonQuery() = 1 Then
+        '            MessageBox.Show("Se reintegró tu guita")
+        '        Else
+        '            MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+        '        End If
+        '        MessageBox.Show("¡Estás pelado como una mandarina! decí alpiste... tu guita perdiste")
+        '    End If
+        'End If
+
+        BtnGuardar2.Enabled = False
     End Sub
 
     Private Sub FormaPago()
@@ -292,7 +351,7 @@ Public Class Pagos
         diferencia = total - total2
         'TxtTotal2.Text = total - total2
         CompruebaDisponible()
-        TxtTotal2.Text = diferencia
+        TxtDisponible.Text = diferencia
 
     End Sub
 
@@ -464,6 +523,8 @@ Public Class Pagos
         contador += 1
         TxtMatricula.Enabled = False
     End Sub
+
+
     Private Sub TxtDebito_KeyPress(sender As Object, e As KeyPressEventArgs)
         SoloNumeros(e)
     End Sub
@@ -550,7 +611,7 @@ Public Class Pagos
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
         TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
         RdbDetallesPago.Enabled = False
-
+        BtnGuardar2.Enabled = True
     End Sub
 
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RdbDetallesPago.CheckedChanged
