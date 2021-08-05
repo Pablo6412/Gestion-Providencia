@@ -41,6 +41,7 @@ Partial Class FrmPrincipal
         Me.TlsIngresoDePagos = New System.Windows.Forms.ToolStripMenuItem()
         Me.OtrosPagosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MstEmisionDeVencimientos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EmisiónDeVencimientosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TlsEnviaCorreo = New System.Windows.Forms.ToolStripMenuItem()
         Me.MstContabilidadInstitucional = New System.Windows.Forms.ToolStripMenuItem()
         Me.TlsEgresos = New System.Windows.Forms.ToolStripMenuItem()
@@ -187,15 +188,21 @@ Partial Class FrmPrincipal
         '
         'MstEmisionDeVencimientos
         '
-        Me.MstEmisionDeVencimientos.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TlsEnviaCorreo})
+        Me.MstEmisionDeVencimientos.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmisiónDeVencimientosToolStripMenuItem, Me.TlsEnviaCorreo})
         Me.MstEmisionDeVencimientos.Name = "MstEmisionDeVencimientos"
-        Me.MstEmisionDeVencimientos.Size = New System.Drawing.Size(171, 23)
-        Me.MstEmisionDeVencimientos.Text = "Emisión de vencimientos"
+        Me.MstEmisionDeVencimientos.Size = New System.Drawing.Size(102, 23)
+        Me.MstEmisionDeVencimientos.Text = "Vencimientos"
+        '
+        'EmisiónDeVencimientosToolStripMenuItem
+        '
+        Me.EmisiónDeVencimientosToolStripMenuItem.Name = "EmisiónDeVencimientosToolStripMenuItem"
+        Me.EmisiónDeVencimientosToolStripMenuItem.Size = New System.Drawing.Size(228, 24)
+        Me.EmisiónDeVencimientosToolStripMenuItem.Text = "Emisión de vencimientos"
         '
         'TlsEnviaCorreo
         '
         Me.TlsEnviaCorreo.Name = "TlsEnviaCorreo"
-        Me.TlsEnviaCorreo.Size = New System.Drawing.Size(158, 24)
+        Me.TlsEnviaCorreo.Size = New System.Drawing.Size(228, 24)
         Me.TlsEnviaCorreo.Text = "Enviar correo"
         '
         'MstContabilidadInstitucional
@@ -503,4 +510,5 @@ Partial Class FrmPrincipal
     Friend WithEvents InscripciónATalleresToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents DescuentosYBecasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EmisiónDeVencimientosToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -793,9 +793,9 @@ Partial Class FrmAltaAlumnos
         '
         'FlowLayoutPanel1
         '
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(84, 51)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(261, 51)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(200, 100)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(23, 91)
         Me.FlowLayoutPanel1.TabIndex = 41
         '
         'PictureBox3

@@ -21,14 +21,14 @@ Public Class FrmAltaAlumnos
         conectar()
         BuscaFamilia()
         DataGrid()
-        BuscaCurso()
-        NumeroHermanos()
-        CalculaCuota()
+        BuscaCurso()             'Pone lista de cursos en  combobox para elegir el que corresponda
+        NumeroHermanos()         'Calcula el número de hermano que se va a dar de alta
+        CalculaCuota()           'Toma el arancel correspondiente al nivel y lo afecta por nº hermano, beca, etc. 
         TxtNombreAlumno.Focus()
 
     End Sub
 
-    Private Sub BuscaFamilia()
+    Private Sub BuscaFamilia()    'Carga combobox con familia (concatena apellidos paternos) y código_familia
         Try
             concatena = "select codigo_familia, codigo_beca, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia from gestion_providencia.familias where estado = 'activo'"
             adaptador = New SqlDataAdapter(concatena, conexion)
@@ -52,7 +52,7 @@ Public Class FrmAltaAlumnos
     Public Sub CbxCodigoFamilia_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoFamilia.SelectedValueChanged
         Dim Codigo As String = CbxCodigoFamilia.Text
 
-        'Carga texbox con datos de los padres
+        'Carga texbox con nombre y apellido de los padres
         Try
             consulta = "select codigo_familia, codigo_beca, apellido_padre, nombre_padre, apellido_madre, nombre_madre from gestion_providencia.familias where codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' "
             adaptador = New SqlDataAdapter(consulta, conexion)
@@ -71,11 +71,11 @@ Public Class FrmAltaAlumnos
             TxtPrueba.DataBindings.Add(New Binding("text", datos, "familias.codigo_beca"))
 
         Catch ex As Exception
-            MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
+            MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles 
         End Try
 
         DataGrid()           'Llena el dataGridView
-        NumeroHermanos()     'Calcula el número de hermano y lo presente en texbox
+        NumeroHermanos()     'Calcula el número de hermano y lo presenta en texbox
         CalculaCuota()       'Calcula el valor de la cuota y lo presenta en texbox
     End Sub
 
@@ -98,7 +98,9 @@ Public Class FrmAltaAlumnos
         cerrar()
     End Sub
 
-    Private Sub BuscaCurso()
+
+
+    Private Sub BuscaCurso()   'Pone lista de cursos en  combobox para elegir el que corresponda
         Try
             Dim curso As String = "select codigo_curso, codigo_nivel, curso from cursos"
             adaptador = New SqlDataAdapter(curso, conexion)
@@ -120,7 +122,8 @@ Public Class FrmAltaAlumnos
         End Try
     End Sub
 
-    Public Sub NumeroHermanos()
+
+    Public Sub NumeroHermanos()        'Calcula en número de hermano, en el colegio, del que se está por dar de alta
         Dim concatena As String
         Dim lista
 
@@ -137,11 +140,12 @@ Public Class FrmAltaAlumnos
             Dim numeHermano As Integer = cantHermanos + 1
             TxtHermanoNumero.Text = numeHermano
         Catch ex As Exception
-            MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
+            MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles 
         End Try
     End Sub
 
     Private Sub CbxCurso_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCurso.SelectedValueChanged
+        'Busca el arancel que le corresponde a un nivel y luego llama al procedimiento que calcula la cuota 
 
         Dim Cocurso As String = "SELECT codigo_curso, codigo_nivel, curso FROM cursos WHERE curso = '" & CbxCurso.Text & "'"
         adaptador = New SqlDataAdapter(Cocurso, conexion)
@@ -238,13 +242,13 @@ Public Class FrmAltaAlumnos
         End If
     End Sub
 
-    Private Sub CalculaCuota()
+    Private Sub CalculaCuota()   'A partir del arancel se aplican los descuentos por hermano, beca, ayuda, etc y se calcula la cuota
         Dim descuentoHermano As Double
         Dim descuentoBeca As Decimal
         Dim descuentoEspecial As Decimal
         If TxtHermanoNumero.Text <> "" Then
-            Dim cuotaHermano As String = "SELECT descuento_hermano FROM descuento_hermano where hermano_numero = '" & Val(TxtHermanoNumero.Text) & "' "
-            adaptador = New SqlDataAdapter(cuotaHermano, conexion)
+            Dim descuentoPorHermano As String = "SELECT descuento_hermano FROM descuento_hermano where hermano_numero = '" & Val(TxtHermanoNumero.Text) & "' "
+            adaptador = New SqlDataAdapter(descuentoPorHermano, conexion)
             datos = New DataSet
             datos.Tables.Add("descuento_hermano")
             adaptador.Fill(datos.Tables("descuento_hermano"))
@@ -295,7 +299,8 @@ Public Class FrmAltaAlumnos
         TxtCuota.Text = cuota
     End Sub
 
-    Private Sub GuardaCuota()
+    Private Sub GuardaCuota()        'Después de calculada la cuota guarda el valor en tabla cuotas y creo que al pedo
+        'Hay que corregirlo. 
         Dim cadena As String = "INSERT INTO cuotas(codigo_alumno, codigo_familia, valor_cuota) 
                                        VALUES(@codigo_alumno, @codigo_familia, @valor_cuota)"
         comando = New SqlCommand(cadena, conexion)

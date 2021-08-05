@@ -109,6 +109,7 @@ Public Class FrmEnviaMail
 
         End Try
 
+        MsgBox("ATENCION: Antes del envío de Vencimientos se actualizarán los valores de las cuotas. NO interrumpa este proceso. ", MsgBoxStyle.Information, "Mensaje")
 
     End Sub
 
