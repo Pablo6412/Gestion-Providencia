@@ -408,9 +408,9 @@ Partial Class FrmPrincipal
         'PanelAzul
         '
         Me.PanelAzul.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.PanelAzul.Location = New System.Drawing.Point(0, 105)
+        Me.PanelAzul.Location = New System.Drawing.Point(0, 106)
         Me.PanelAzul.Name = "PanelAzul"
-        Me.PanelAzul.Size = New System.Drawing.Size(137, 105)
+        Me.PanelAzul.Size = New System.Drawing.Size(137, 104)
         Me.PanelAzul.TabIndex = 3
         '
         'Panel1

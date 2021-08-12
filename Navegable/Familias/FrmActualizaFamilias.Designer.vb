@@ -282,10 +282,10 @@ Partial Class FrmActualizaFamilias
         '
         Me.TxtObservaciones.BackColor = System.Drawing.Color.White
         Me.TxtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtObservaciones.Location = New System.Drawing.Point(229, 232)
+        Me.TxtObservaciones.Location = New System.Drawing.Point(234, 232)
         Me.TxtObservaciones.Multiline = True
         Me.TxtObservaciones.Name = "TxtObservaciones"
-        Me.TxtObservaciones.Size = New System.Drawing.Size(508, 64)
+        Me.TxtObservaciones.Size = New System.Drawing.Size(503, 64)
         Me.TxtObservaciones.TabIndex = 9
         '
         'TxtNumeroHijos

@@ -14,17 +14,17 @@ Public Class FrmIngresoDePagos
         abrir()
 
         Try
-            Dim concatena As String = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia, estado from gestion_providencia.familias"
+            Dim concatena As String = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia, estado from familias"
 
 
             adaptador = New SqlDataAdapter(concatena, conexion)
             datos = New DataSet
-            datos.Tables.Add("gestion_providencia.familias")
-            adaptador.Fill(datos.Tables("gestion_providencia.familias"))
+            datos.Tables.Add("familias")
+            adaptador.Fill(datos.Tables("familias"))
 
-            CbxFamilia.DataSource = datos.Tables("gestion_providencia.familias")
+            CbxFamilia.DataSource = datos.Tables("familias")
             CbxFamilia.DisplayMember = "familia"
-            CbxCodigo.DataSource = datos.Tables("gestion_providencia.familias")
+            CbxCodigo.DataSource = datos.Tables("familias")
             CbxCodigo.DisplayMember = "codigo_familia"
 
 

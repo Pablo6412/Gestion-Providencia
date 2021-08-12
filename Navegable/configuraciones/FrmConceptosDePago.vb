@@ -38,6 +38,7 @@ Public Class FrmConceptosDePago
         Dim consulta As String = "SELECT TOP 1 codigo_concepto FROM concepto_de_pago WHERE concepto_nombre = 'Sin asignar' ORDER BY codigo_concepto"
         Dim comando As New SqlCommand(consulta, conexion)
         codigo = comando.ExecuteScalar
+
     End Sub
 
 

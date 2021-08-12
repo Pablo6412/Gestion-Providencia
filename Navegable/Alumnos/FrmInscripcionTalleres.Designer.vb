@@ -64,7 +64,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar111 = New System.Windows.Forms.RadioButton()
         Me.RdbRugby3 = New System.Windows.Forms.RadioButton()
         Me.RdbMusica3 = New System.Windows.Forms.RadioButton()
-        Me.RdbHokey3 = New System.Windows.Forms.RadioButton()
+        Me.RdbHockey3 = New System.Windows.Forms.RadioButton()
         Me.RdbFutbol3 = New System.Windows.Forms.RadioButton()
         Me.RdbNinguno3 = New System.Windows.Forms.RadioButton()
         Me.Panel1.SuspendLayout()
@@ -501,7 +501,7 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox2.Controls.Add(Me.RdbSinAsignar111)
         Me.GroupBox2.Controls.Add(Me.RdbRugby3)
         Me.GroupBox2.Controls.Add(Me.RdbMusica3)
-        Me.GroupBox2.Controls.Add(Me.RdbHokey3)
+        Me.GroupBox2.Controls.Add(Me.RdbHockey3)
         Me.GroupBox2.Controls.Add(Me.RdbFutbol3)
         Me.GroupBox2.Controls.Add(Me.RdbNinguno3)
         Me.GroupBox2.Location = New System.Drawing.Point(599, 265)
@@ -589,18 +589,18 @@ Partial Class FrmInscripcionTalleres
         Me.RdbMusica3.Text = "Música"
         Me.RdbMusica3.UseVisualStyleBackColor = True
         '
-        'RdbHokey3
+        'RdbHockey3
         '
-        Me.RdbHokey3.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.RdbHokey3.AutoSize = True
-        Me.RdbHokey3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbHokey3.Location = New System.Drawing.Point(128, 110)
-        Me.RdbHokey3.Name = "RdbHokey3"
-        Me.RdbHokey3.Size = New System.Drawing.Size(65, 19)
-        Me.RdbHokey3.TabIndex = 2
-        Me.RdbHokey3.TabStop = True
-        Me.RdbHokey3.Text = "Hockey"
-        Me.RdbHokey3.UseVisualStyleBackColor = True
+        Me.RdbHockey3.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.RdbHockey3.AutoSize = True
+        Me.RdbHockey3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.RdbHockey3.Location = New System.Drawing.Point(128, 110)
+        Me.RdbHockey3.Name = "RdbHockey3"
+        Me.RdbHockey3.Size = New System.Drawing.Size(65, 19)
+        Me.RdbHockey3.TabIndex = 2
+        Me.RdbHockey3.TabStop = True
+        Me.RdbHockey3.Text = "Hockey"
+        Me.RdbHockey3.UseVisualStyleBackColor = True
         '
         'RdbFutbol3
         '
@@ -702,7 +702,7 @@ Partial Class FrmInscripcionTalleres
     Friend WithEvents RdbSinAsignar111 As RadioButton
     Friend WithEvents RdbRugby3 As RadioButton
     Friend WithEvents RdbMusica3 As RadioButton
-    Friend WithEvents RdbHokey3 As RadioButton
+    Friend WithEvents RdbHockey3 As RadioButton
     Friend WithEvents RdbFutbol3 As RadioButton
     Friend WithEvents RdbNinguno3 As RadioButton
     Friend WithEvents CbxCodigoAlumno As ComboBox
