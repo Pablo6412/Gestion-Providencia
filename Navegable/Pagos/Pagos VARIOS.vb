@@ -79,17 +79,17 @@ Public Class Pagos
 
         'Carga combobox con familias activas
         Try
-            Dim concatena As String = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia, estado from gestion_providencia.familias where estado = 'activo'"
+            Dim concatena As String = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia, estado from familias where estado = 'activo'"
 
             adaptador = New SqlDataAdapter(concatena, conexion)
             datos = New DataSet
-            datos.Tables.Add("gestion_providencia.familias")
-            adaptador.Fill(datos.Tables("gestion_providencia.familias"))
+            datos.Tables.Add("familias")
+            adaptador.Fill(datos.Tables("familias"))
 
-            CbxFamilia.DataSource = datos.Tables("gestion_providencia.familias")
+            CbxFamilia.DataSource = datos.Tables("familias")
             CbxFamilia.DisplayMember = "familia"
 
-            CbxCodigo.DataSource = datos.Tables("gestion_providencia.familias")
+            CbxCodigo.DataSource = datos.Tables("familias")
             CbxCodigo.DisplayMember = "codigo_familia"
 
 
@@ -432,9 +432,9 @@ Public Class Pagos
             totalConceptos = 0
 
             Try
-                Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, taller_importe, materiales_importe, adicional_importe,comedor_importe from gestion_providencia.alumnos JOIN cursos on cursos.codigo_curso = gestion_providencia.alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = gestion_providencia.alumnos.codigo_alumno JOIN taller ON taller.codigo_taller = gestion_providencia.alumnos.codigo_taller1  WHERE gestion_providencia.alumnos.codigo_familia = '" & CbxCodigo.Text & "' "
-                'Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, taller_importe, material_importe from gestion_providencia.alumnos JOIN cursos on cursos.codigo_curso = gestion_providencia.alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = gestion_providencia.alumnos.codigo_alumno JOIN taller ON taller.codigo_taller = gestion_providencia.alumnos.codigo_taller1 JOIN material ON material.codigo_material = gestion_providencia.alumnos.codigo_material WHERE gestion_providencia.alumnos.codigo_familia = '" & Val(CbxCodigo.Text) & "' "
-                'Dim consulta As String = "Select nombre_apellido_alumno, dni, curso, arancel_importe, valor_cuota, hermano_numero, fecha_ingreso from gestion_providencia.alumnos JOIN cursos On cursos.codigo_curso = gestion_providencia.alumnos.codigo_curso JOIN cuotas On cuotas.codigo_alumno = gestion_providencia.alumnos.codigo_alumno join Aranceles On aranceles.codigo_arancel = gestion_providencia.alumnos.codigo_arancel where gestion_providencia.alumnos.codigo_familia= '" & Val(CbxCodigo.Text) & "' "
+                Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, taller_importe, materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller ON taller.codigo_taller = alumnos.codigo_taller1  WHERE alumnos.codigo_familia = '" & CbxCodigo.Text & "' "
+                'Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, taller_importe, material_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller ON taller.codigo_taller = alumnos.codigo_taller1 JOIN material ON material.codigo_material = alumnos.codigo_material WHERE alumnos.codigo_familia = '" & Val(CbxCodigo.Text) & "' "
+                'Dim consulta As String = "Select nombre_apellido_alumno, dni, curso, arancel_importe, valor_cuota, hermano_numero, fecha_ingreso from alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas On cuotas.codigo_alumno = alumnos.codigo_alumno join Aranceles On aranceles.codigo_arancel = alumnos.codigo_arancel where alumnos.codigo_familia= '" & Val(CbxCodigo.Text) & "' "
 
 
                 comando = New SqlCommand()

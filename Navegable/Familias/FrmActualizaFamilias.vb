@@ -8,13 +8,13 @@ Public Class FrmActualizaFamilias
         Call conectar()
 
         Try
-            Dim concatena As String = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia from gestion_providencia.familias where estado = 'activo'"
+            Dim concatena As String = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia from familias where estado = 'activo'"
             adaptador = New SqlDataAdapter(concatena, conexion)
 
             datos = New DataSet
             adaptador.Fill(datos)
-            datos.Tables.Add("gestion_providencia.familias")
-            adaptador.Fill(datos.Tables("gestion_providencia.familias"))
+            datos.Tables.Add("familias")
+            adaptador.Fill(datos.Tables("familias"))
 
             Me.CbxFamilia.DataSource = datos.Tables(0)
             Me.CbxFamilia.DisplayMember = "familia"
@@ -32,18 +32,18 @@ Public Class FrmActualizaFamilias
         Dim lista As Byte
         If Val(Codigo) <> 0 Then
             Try
-                Dim consulta As String = "select codigo_familia, domicilio, cantidad_de_hijos, telefono_celular, telefono_fijo, email, observaciones from gestion_providencia.familias where codigo_familia='" & Codigo & "' "
+                Dim consulta As String = "select codigo_familia, domicilio, cantidad_de_hijos, telefono_celular, telefono_fijo, email, observaciones from familias where codigo_familia='" & Codigo & "' "
                 adaptador = New SqlDataAdapter(consulta, conexion)
                 datos = New DataSet
-                adaptador.Fill(datos, "gestion_providencia.familias")
-                lista = datos.Tables("gestion_providencia.familias").Rows.Count
+                adaptador.Fill(datos, "familias")
+                lista = datos.Tables("familias").Rows.Count
 
-                TxtDomicilio.Text = datos.Tables("gestion_providencia.familias").Rows(0).Item("domicilio")
-                TxtNumeroHijos.Text = datos.Tables("gestion_providencia.familias").Rows(0).Item("cantidad_de_hijos")
-                TxtTelCelular.Text = datos.Tables("gestion_providencia.familias").Rows(0).Item("telefono_celular")
-                TxtTelFijo.Text = datos.Tables("gestion_providencia.familias").Rows(0).Item("telefono_fijo")
-                TxtEmail.Text = datos.Tables("gestion_providencia.familias").Rows(0).Item("email")
-                TxtObservaciones.Text = datos.Tables("gestion_providencia.familias").Rows(0).Item("observaciones")
+                TxtDomicilio.Text = datos.Tables("familias").Rows(0).Item("domicilio")
+                TxtNumeroHijos.Text = datos.Tables("familias").Rows(0).Item("cantidad_de_hijos")
+                TxtTelCelular.Text = datos.Tables("familias").Rows(0).Item("telefono_celular")
+                TxtTelFijo.Text = datos.Tables("familias").Rows(0).Item("telefono_fijo")
+                TxtEmail.Text = datos.Tables("familias").Rows(0).Item("email")
+                TxtObservaciones.Text = datos.Tables("familias").Rows(0).Item("observaciones")
             Catch ex As Exception
                 MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
             End Try
@@ -57,7 +57,7 @@ Public Class FrmActualizaFamilias
             TxtEmail.Focus()                 'Si hay error el foco queda en casilla de mail
             TxtEmail.SelectAll()             'Y Queda todo seleccionado lo que esté en la casilla
         Else
-            Dim actualiza As String = "update gestion_providencia.familias set  domicilio ='" & Me.TxtDomicilio.Text & "'," &
+            Dim actualiza As String = "update familias set  domicilio ='" & Me.TxtDomicilio.Text & "'," &
                                          "cantidad_de_hijos =" & Me.TxtNumeroHijos.Text & "," &
                                          "telefono_celular='" & Me.TxtTelCelular.Text & "'," &
                                          "telefono_fijo= '" & Me.TxtTelFijo.Text & "'," &

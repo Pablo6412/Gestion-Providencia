@@ -18,7 +18,7 @@ Public Class FrmConexionManual
     Sub mostrarFamilias()
         Dim conexionPrueva As New SqlConnection(TxtCnString.Text)
         Dim codigo_familia As Integer
-        Dim com As New SqlCommand("select codigo_familia from gestion_providencia.familias", conexionPrueva)
+        Dim com As New SqlCommand("select codigo_familia from familias", conexionPrueva)
         Try
             conexionPrueva.Open()
             codigo_familia = (com.ExecuteScalar())

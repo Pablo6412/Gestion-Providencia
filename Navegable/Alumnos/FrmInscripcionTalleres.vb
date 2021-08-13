@@ -22,7 +22,7 @@ Public Class FrmInscripcionTalleres
 
         RdbHockey1.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
         RdbHockey2.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
-        RdbHokey3.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
+        RdbHockey3.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
 
         RdbMusica1.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
         RdbMusica2.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
@@ -89,18 +89,18 @@ Public Class FrmInscripcionTalleres
     Private Sub CargaAlumnos()
         'Si no hay alumnos registrados sale por el else
         Dim cuenta As Integer
-        Dim consulta As String = "Select COUNT(codigo_alumno) FROM gestion_providencia.alumnos"
+        Dim consulta As String = "Select COUNT(codigo_alumno) FROM alumnos"
         Dim comando As New SqlCommand(consulta, conexion)
         cuenta = comando.ExecuteScalar
 
         If cuenta <> 0 Then
             Try
-                Dim alumno As String = "select codigo_alumno, nombre_apellido_alumno from gestion_providencia.alumnos"
+                Dim alumno As String = "select codigo_alumno, nombre_apellido_alumno from alumnos"
                 adaptador = New SqlDataAdapter(alumno, conexion)
                 datos = New DataSet
                 adaptador.Fill(datos)
-                datos.Tables.Add("gestion_providencia.alumnos")
-                adaptador.Fill(datos.Tables("gestion_providencia.alumnos"))
+                datos.Tables.Add("alumnos")
+                adaptador.Fill(datos.Tables("alumnos"))
 
                 Me.CbxAlumno.DataSource = datos.Tables(0)
                 Me.CbxAlumno.DisplayMember = "nombre_apellido_alumno"
@@ -116,8 +116,8 @@ Public Class FrmInscripcionTalleres
     End Sub
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-        Dim taller As Integer
-        taller = 0
+        Dim taller As Integer = 0
+        'taller = 0
         If RdbNinguno1.Checked Then
             taller = 1
         ElseIf RdbFutbol1.Checked Then
@@ -141,7 +141,7 @@ Public Class FrmInscripcionTalleres
         If taller = 0 Then
             MsgBox("Debe seleccionar una opción para taller1")
         Else
-            Dim taller1 As String = "UPDATE gestion_providencia.alumnos SET codigo_taller1 = '" & taller & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "'"
+            Dim taller1 As String = "UPDATE alumnos SET codigo_taller1 = '" & taller & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "'"
             Dim comando As New SqlCommand(taller1, conexion)
             comando.ExecuteNonQuery()
             If comando.ExecuteNonQuery() = 0 Then
@@ -172,7 +172,7 @@ Public Class FrmInscripcionTalleres
             If taller = 0 Then
                 MsgBox("Debe seleccionar una opción para taller2")
             Else
-                Dim taller2 As String = "UPDATE gestion_providencia.alumnos SET codigo_taller2 = '" & taller & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "'"
+                Dim taller2 As String = "UPDATE alumnos SET codigo_taller2 = '" & taller & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "'"
                 Dim comando1 As New SqlCommand(taller2, conexion)
                 comando1.ExecuteNonQuery()
 
@@ -180,13 +180,12 @@ Public Class FrmInscripcionTalleres
                     MsgBox("¡Error! Datos no actualizados para taller2. Reinicie el programa e intente nuevamente")
                 End If
 
-
                 taller = 0
                 If RdbNinguno3.Checked Then
                     taller = 1
                 ElseIf RdbFutbol3.Checked Then
                     taller = 2
-                ElseIf RdbHokey3.Checked Then
+                ElseIf RdbHockey3.Checked Then
                     taller = 3
                 ElseIf RdbMusica3.Checked Then
                     taller = 4
@@ -205,7 +204,7 @@ Public Class FrmInscripcionTalleres
                 If taller = 0 Then
                     MsgBox("Debe elejir una opción para taller3")
                 Else
-                    Dim taller3 As String = "UPDATE gestion_providencia.alumnos SET codigo_taller3 = '" & taller & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "'"
+                    Dim taller3 As String = "UPDATE alumnos SET codigo_taller3 = '" & taller & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "'"
                     Dim comando3 As New SqlCommand(taller3, conexion)
                     comando3.ExecuteNonQuery()
 
@@ -240,7 +239,7 @@ Public Class FrmInscripcionTalleres
         RdbSinAsignar44.Checked = False
         RdbNinguno3.Checked = False
         RdbFutbol3.Checked = False
-        RdbHokey3.Checked = False
+        RdbHockey3.Checked = False
         RdbMusica3.Checked = False
         RdbRugby3.Checked = False
         RdbSinAsignar111.Checked = False

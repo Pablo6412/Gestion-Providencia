@@ -44,7 +44,6 @@ Partial Class FrmConfiguracion
         'BtnCargaParametros
         '
         Me.BtnCargaParametros.BackColor = System.Drawing.Color.Transparent
-        Me.BtnCargaParametros.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnCargaParametros.FlatAppearance.BorderSize = 0
         Me.BtnCargaParametros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.BtnCargaParametros.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -84,6 +83,7 @@ Partial Class FrmConfiguracion
         '
         'BtnSalir
         '
+        Me.BtnSalir.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnSalir.BackColor = System.Drawing.Color.White
         Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -96,6 +96,8 @@ Partial Class FrmConfiguracion
         '
         'Label1
         '
+        Me.Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
@@ -158,7 +160,6 @@ Partial Class FrmConfiguracion
         'BtnCursos
         '
         Me.BtnCursos.BackColor = System.Drawing.Color.Transparent
-        Me.BtnCursos.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnCursos.FlatAppearance.BorderSize = 0
         Me.BtnCursos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.BtnCursos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
