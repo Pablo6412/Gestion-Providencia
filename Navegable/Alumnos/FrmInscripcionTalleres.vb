@@ -116,7 +116,16 @@ Public Class FrmInscripcionTalleres
     End Sub
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
+        Dim codigoGrupoTaller As Integer
         Dim taller As Integer = 0
+        Dim importeTaller1, importeTaller2, importeTaller3 As Decimal
+
+        Dim alumno As String = "SELECT MIN(codigo_grupo_taller) FROM taller_alumno WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "' "
+        Dim comandoAlumno As New SqlCommand(alumno, conexion)
+        codigoGrupoTaller = comandoAlumno.ExecuteScalar
+
+
+
         'taller = 0
         If RdbNinguno1.Checked Then
             taller = 1
@@ -141,10 +150,22 @@ Public Class FrmInscripcionTalleres
         If taller = 0 Then
             MsgBox("Debe seleccionar una opción para taller1")
         Else
+
+            Dim importe1 As String = "SELECT taller_importe FROM taller WHERE codigo_taller = '" & taller & "' "
+            Dim comandoImporte1 As New SqlCommand(importe1, conexion)
+            importeTaller1= comandoImporte1.ExecuteScalar
+
             Dim taller1 As String = "UPDATE alumnos SET codigo_taller1 = '" & taller & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "'"
             Dim comando As New SqlCommand(taller1, conexion)
             comando.ExecuteNonQuery()
             If comando.ExecuteNonQuery() = 0 Then
+                MsgBox("¡Error! Datos no actualizados para taller1. Reinicie el programa e intente nuevamente")
+            End If
+
+            taller1 = "UPDATE taller_alumno SET codigo_taller = '" & taller & "', importe_taller = '" & importeTaller1 & "' WHERE codigo_grupo_taller = '" & codigoGrupoTaller & "' "
+            Dim comandoTaller1 As New SqlCommand(taller1, conexion)
+            comandoTaller1.ExecuteNonQuery()
+            If comandoTaller1.ExecuteNonQuery() = 0 Then
                 MsgBox("¡Error! Datos no actualizados para taller1. Reinicie el programa e intente nuevamente")
             End If
 
@@ -172,12 +193,24 @@ Public Class FrmInscripcionTalleres
             If taller = 0 Then
                 MsgBox("Debe seleccionar una opción para taller2")
             Else
+
+                Dim importe2 As String = "SELECT taller_importe FROM taller WHERE codigo_taller = '" & taller & "' "
+                Dim comandoImporte2 As New SqlCommand(importe2, conexion)
+                importeTaller2 = comandoImporte2.ExecuteScalar
+
                 Dim taller2 As String = "UPDATE alumnos SET codigo_taller2 = '" & taller & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "'"
                 Dim comando1 As New SqlCommand(taller2, conexion)
                 comando1.ExecuteNonQuery()
 
                 If comando1.ExecuteNonQuery() = 0 Then
                     MsgBox("¡Error! Datos no actualizados para taller2. Reinicie el programa e intente nuevamente")
+                End If
+
+                taller2 = "UPDATE taller_alumno SET codigo_taller = '" & taller & "', importe_taller = '" & importeTaller2 & "' WHERE codigo_grupo_taller = '" & (codigoGrupoTaller + 1) & "' "
+                Dim comandoTaller2 As New SqlCommand(taller2, conexion)
+                comandoTaller2.ExecuteNonQuery()
+                If comandoTaller2.ExecuteNonQuery() = 0 Then
+                    MsgBox("¡Error! Datos no actualizados para taller1. Reinicie el programa e intente nuevamente")
                 End If
 
                 taller = 0
@@ -204,11 +237,24 @@ Public Class FrmInscripcionTalleres
                 If taller = 0 Then
                     MsgBox("Debe elejir una opción para taller3")
                 Else
+
+                    Dim importe3 As String = "SELECT taller_importe FROM taller WHERE codigo_taller = '" & taller & "' "
+                    Dim comandoImporte3 As New SqlCommand(importe3, conexion)
+                    importeTaller3 = comandoImporte3.ExecuteScalar
+
                     Dim taller3 As String = "UPDATE alumnos SET codigo_taller3 = '" & taller & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "'"
                     Dim comando3 As New SqlCommand(taller3, conexion)
                     comando3.ExecuteNonQuery()
 
                     If comando3.ExecuteNonQuery() = 1 Then
+
+                        taller3 = "UPDATE taller_alumno SET codigo_taller = '" & taller & "', importe_taller = '" & importeTaller3 & "' WHERE codigo_grupo_taller = '" & (codigoGrupoTaller + 2) & "' "
+                        Dim comandoTaller3 As New SqlCommand(taller3, conexion)
+                        comandoTaller3.ExecuteNonQuery()
+                        If comandoTaller3.ExecuteNonQuery() = 0 Then
+                            MsgBox("¡Error! Datos no actualizados para taller1. Reinicie el programa e intente nuevamente")
+                        End If
+
                         MessageBox.Show("Datos actualizados")
                     Else
                         MsgBox("¡Error! Datos no actualizados para taller3. Reinicie el programa e intente nuevamente")

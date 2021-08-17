@@ -209,5 +209,7 @@ Public Class FrmEmisiónDeVencimientos
         Me.Close()
     End Sub
 
+    Private Sub FrmEmisiónDeVencimientos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    End Sub
 End Class

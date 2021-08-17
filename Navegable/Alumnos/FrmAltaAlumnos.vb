@@ -178,6 +178,8 @@ Public Class FrmAltaAlumnos
     End Sub
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
+        Dim tallerNumero As Integer = 1
+        Dim codigoAl As Integer
         Dim alumnoEspecial As Integer
         If RdbNo.Checked = True Then
             alumnoEspecial = "0"
@@ -220,6 +222,21 @@ Public Class FrmAltaAlumnos
 
                     If comando.ExecuteNonQuery() = 1 Then
 
+                        Dim maxCod As String = "SELECT MAX(codigo_alumno) FROM alumnos"
+                        Dim comandoMaxCod As New SqlCommand(maxCod, conexion)
+                        codigoAl = comandoMaxCod.ExecuteScalar()
+
+                        While tallerNumero <= 3
+                            Dim taller As String = "INSERT INTO taller_alumno(codigo_alumno,  codigo_taller, importe_taller) VALUES(@codigo_alumno, @codigo_taller, @importe_taller)"
+                            Dim comandoTaller As New SqlCommand(taller, conexion)
+                            comandoTaller.Parameters.AddWithValue("@codigo_alumno", codigoAl)
+                            comandoTaller.Parameters.AddWithValue("@codigo_taller", 1)
+                            comandoTaller.Parameters.AddWithValue("@importe_taller", 0)
+
+                            comandoTaller.ExecuteNonQuery()
+                            tallerNumero += 1
+                        End While
+
                     Else
                         MsgBox("Error al intentar guardar los datos")
                     End If
@@ -242,6 +259,7 @@ Public Class FrmAltaAlumnos
                     TxtNombreAlumno.Focus()
                     TxtCuota.Clear()
                     CbxCodigoFamilia.Select()
+                    RdbNo.Checked = True
                     GuardaCuota()
 
                 End If
@@ -260,6 +278,8 @@ Public Class FrmAltaAlumnos
         Dim descuento As Decimal
         Dim descuentoMonto As Decimal
         Dim cuotaSinDescuento As Decimal
+
+        'Descuento por hermano
         If TxtHermanoNumero.Text <> "" Then
             Dim descuentoPorHermano As String = "SELECT descuento_hermano FROM descuento_hermano where hermano_numero = '" & Val(TxtHermanoNumero.Text) & "' "
             adaptador = New SqlDataAdapter(descuentoPorHermano, conexion)
@@ -268,12 +288,13 @@ Public Class FrmAltaAlumnos
             adaptador.Fill(datos.Tables("descuento_hermano"))
             If Val(TxtHermanoNumero.Text) > 6 Then
                 descuentoHermano = 0.5
-
             Else
                 descuentoHermano = datos.Tables("descuento_hermano").Rows(0).Item("descuento_hermano")
             End If
         Else
         End If
+
+        'Descuento beca
         If CbxCodigoBeca.Text <> "" Then
             Dim tipoBeca As String = "SELECT descuento_beca FROM descuento_beca where codigo_beca = '" & CbxCodigoBeca.Text & "' "
             adaptador = New SqlDataAdapter(tipoBeca, conexion)
@@ -285,41 +306,38 @@ Public Class FrmAltaAlumnos
         Else
         End If
 
-        'Calcula descuento especial
-        'Dim filasTabla As Integer
+        'Descuento especial
         abrir()
 
-
-
-
-        Dim descEspecial As String = "SELECT tipo_descuent,descuento, monto FROM descuento_especial WHERE codigo_familia = '" & CbxCodigoFamilia.Text & "' "
+        MsgBox("" & Val(CbxCodigoFamilia.Text) & "")
+        Dim descEspecial As String = "SELECT tipo_descuento, descuento, monto FROM descuento_especial WHERE codigo_familia = '" & Val(CbxCodigoFamilia.Text) & "' "
         adaptador = New SqlDataAdapter(descEspecial, conexion)
-            datos = New DataSet
-            datos.Tables.Add("descuento_especial")
-            adaptador.Fill(datos.Tables("descuento_especial"))
 
-        tipoDescuento = datos.Tables("descuento_especial").Rows(0).Item("tipo_descuento")
-        descuento = datos.Tables("descuento_especial").Rows(0).Item("descuento")
-        descuentoMonto = datos.Tables("descuento_especial").Rows(0).Item("monto")
-        TxtPrueba.Text = descuento
+        Dim dtDatos As DataTable = New DataTable
+        adaptador.Fill(dtDatos)
 
-        'descuentoEspecial = 1
-        '    TxtPrueba.Text = descuentoEspecial
-        If tipoDescuento = 1 Then
+        If dtDatos.Rows.Count > 0 Then
+
+            tipoDescuento = dtDatos.Rows(0)("tipo_descuento")
+            descuento = dtDatos.Rows(0)("descuento")
+            descuentoMonto = dtDatos.Rows(0)("monto")
+            TxtPrueba.Text = descuento
+
+
+            If tipoDescuento = 1 Then
+                cuota = arancel * descuentoHermano * descuento * descuentoBeca
+                cuotaSinDescuento = arancel * descuentoHermano * descuentoBeca
+                TxtCuota.Text = cuota
+            Else
+                cuota = descuentoMonto
+                cuotaSinDescuento = arancel * descuentoHermano * descuentoBeca
+            End If
+
             cuota = arancel * descuentoHermano * descuento * descuentoBeca
-            cuotaSinDescuento = arancel * descuentoHermano * descuentoBeca
             TxtCuota.Text = cuota
-        Else
-            cuota = descuentoMonto
-            cuotaSinDescuento = arancel * descuentoHermano * descuentoBeca
+
+            'MsgBox("descuento hermano: " & descuentoHermano & " descuento especial: " & descuentoEspecial & " descuento beca: " & descuentoBeca & "")
         End If
-
-        cuota = arancel * descuentoHermano * descuento * descuentoBeca
-        TxtCuota.Text = cuota
-
-        'MsgBox("descuento hermano: " & descuentoHermano & " descuento especial: " & descuentoEspecial & " descuento beca: " & descuentoBeca & "")
-
-
     End Sub
 
     Private Sub GuardaCuota()        'Después de calculada la cuota guarda el valor en tabla cuotas y creo que al pedo
@@ -385,6 +403,5 @@ Public Class FrmAltaAlumnos
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()
     End Sub
-
 
 End Class

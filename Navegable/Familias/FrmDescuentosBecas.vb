@@ -5,6 +5,7 @@ Public Class FrmDescuentosBecas
     Dim beca As Integer
 
     Private Sub FrmDescuentosBecas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        RadioButton1.Checked = True
         conectar()
         NombreBoton()
         Familias()
@@ -146,6 +147,7 @@ Public Class FrmDescuentosBecas
     End Sub
 
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+
         TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
     End Sub
 

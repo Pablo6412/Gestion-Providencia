@@ -557,10 +557,12 @@ Partial Class FrmDescuentosBecas
         'RadioButton2
         '
         Me.RadioButton2.Appearance = System.Windows.Forms.Appearance.Button
-        Me.RadioButton2.BackColor = System.Drawing.Color.Transparent
+        Me.RadioButton2.BackColor = System.Drawing.SystemColors.Highlight
         Me.RadioButton2.FlatAppearance.BorderSize = 0
+        Me.RadioButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSkyBlue
+        Me.RadioButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue
         Me.RadioButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadioButton2.ForeColor = System.Drawing.Color.White
+        Me.RadioButton2.ForeColor = System.Drawing.Color.Transparent
         Me.RadioButton2.Location = New System.Drawing.Point(103, 0)
         Me.RadioButton2.Name = "RadioButton2"
         Me.RadioButton2.Size = New System.Drawing.Size(97, 67)
@@ -573,10 +575,12 @@ Partial Class FrmDescuentosBecas
         'RadioButton1
         '
         Me.RadioButton1.Appearance = System.Windows.Forms.Appearance.Button
-        Me.RadioButton1.BackColor = System.Drawing.Color.Transparent
+        Me.RadioButton1.BackColor = System.Drawing.SystemColors.Highlight
         Me.RadioButton1.FlatAppearance.BorderSize = 0
+        Me.RadioButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSkyBlue
+        Me.RadioButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue
         Me.RadioButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadioButton1.ForeColor = System.Drawing.Color.White
+        Me.RadioButton1.ForeColor = System.Drawing.Color.Transparent
         Me.RadioButton1.Location = New System.Drawing.Point(2, 1)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.Size = New System.Drawing.Size(104, 66)
@@ -599,7 +603,7 @@ Partial Class FrmDescuentosBecas
         Me.Controls.Add(Me.Panel1)
         Me.Name = "FrmDescuentosBecas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FrmDescuentosBecas"
+        Me.Text = "Becas y descuentos"
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()

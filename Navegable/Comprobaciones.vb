@@ -2,14 +2,26 @@
 Module Comprobaciones
     'Función que permite solo el ingreso de números
     Public Function SoloNumeros(e)
-        If Char.IsDigit(e.KeyChar) Then
-            e.Handled = False
-        ElseIf Char.IsControl(e.KeyChar) Then
-            e.Handled = False
-        Else
-            e.Handled = True
+
+        If Asc(e.KeyChar) <> 8 Then
+            If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
+                e.Handled = True
+            End If
+            If Asc(e.keychar) = 46 Then
+                e.Handled = False   ' <<< Para que admita el punto.
+            End If
         End If
-        Return e.Handled
+
+
+        'If Char.IsDigit(e.KeyChar) Then
+        '    e.Handled = False
+        'ElseIf Char.IsControl(e.KeyChar) Then
+        '    e.Handled = False
+
+        'Else
+        '    e.Handled = True
+        'End If
+        'Return e.Handled
 
     End Function
 

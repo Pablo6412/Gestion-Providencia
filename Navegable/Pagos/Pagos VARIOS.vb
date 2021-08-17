@@ -16,34 +16,34 @@ Public Class Pagos
     Dim totalConceptos As Decimal
     Dim opcion
 
+
     Private Sub Pagos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim sinAsignar1 As String
         Dim sinAsignar2 As String
         Dim sinAsignar3 As String
 
-        conectar()                           'Conección a base de datos
+        TxtMatricula.Enabled = False
+        TxtArancel.Enabled = False
+        TxtMateriales.Enabled = False
+        TxtTalleres.Enabled = False
+        TxtCampamento.Enabled = False
+        TxtAdicionalJardin.Enabled = False
+        TxtComedor.Enabled = False
+        BtnGuardar2.Enabled = False
+
+        conectar()
         abrir()
+
+
+
+
+        'Establece nombre para los conceptos de pago y deja invisibles a los "Sin asignar"
         Dim adaptador1 As SqlDataAdapter
         Dim datos1 As DataSet
         Dim conceptos As String = "SELECT * FROM concepto_de_pago"
         adaptador1 = New SqlDataAdapter(conceptos, conexion)
-        'Dim comando As New SqlCommand
         datos1 = New DataSet
         adaptador1.Fill(datos1, "concepto_de_pago")
-
-        'LblMatricula.Text = datos1.Tables("concepto_de_pago").Rows(0).Item("concepto_nombre")
-        'LblCampamento.Text = datos1.Tables("concepto_de_pago").Rows(1).Item("concepto_nombre")
-        'LblCuota.Text = datos1.Tables("concepto_de_pago").Rows(2).Item("concepto_nombre")
-
-        'LblAdicional.Text = datos1.Tables("concepto_de_pago").Rows(3).Item("concepto_nombre")
-        'LblMateriales.Text = datos1.Tables("concepto_de_pago").Rows(4).Item("concepto_nombre")
-        'LblComedor.Text = datos1.Tables("concepto_de_pago").Rows(5).Item("concepto_nombre")
-
-        'LblTalleres.Text = datos1.Tables("concepto_de_pago").Rows(6).Item("concepto_nombre")
-
-        'LblSinAsignar1.Text = datos1.Tables("concepto_de_pago").Rows(7).Item("concepto_nombre")
-        'LblSinAsignar3.Text = datos1.Tables("concepto_de_pago").Rows(8).Item("concepto_nombre")
-        'LblSinAsignar2.Text = datos1.Tables("concepto_de_pago").Rows(9).Item("concepto_nombre")
 
         sinAsignar1 = datos1.Tables("concepto_de_pago").Rows(7).Item("concepto_nombre")
         sinAsignar2 = datos1.Tables("concepto_de_pago").Rows(8).Item("concepto_nombre")
@@ -70,12 +70,13 @@ Public Class Pagos
 
 
         RadioButton1.Checked = True
-        'Abre la conección
-        RdbDetallesPago.Enabled = True
         TxtMontoAPagar.Enabled = False
         TxtTotal.Enabled = False
         TxtSuma.Enabled = False
         TxtDisponible.Enabled = False
+
+
+
 
         'Carga combobox con familias activas
         Try
@@ -92,183 +93,229 @@ Public Class Pagos
             CbxCodigo.DataSource = datos.Tables("familias")
             CbxCodigo.DisplayMember = "codigo_familia"
 
-
         Catch ex As Exception
             MsgBox("Error comprobando BD" & ex.ToString)
         End Try
     End Sub
 
     Private Sub BtnContinuar_Click(sender As Object, e As EventArgs) Handles BtnContinuar.Click
-        abrir()
-        TxtDisponible.Text = TxtTotal.Text
-        RdbDetallesPago.Checked = True
+        If TxtEfectivo.Text <> "" Or TxtDebito.Text <> "" Or TxtCheque.Text <> "" Or TxtTransferencia.Text <> "" Or TxtMercadopago.Text <> "" Or TxtOtros.Text <> "" Then
 
-        If Val(TxtMontoAPagar.Text) <= Val(TxtTotal.Text) Then
-            opcion = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes. Puede Guardar sin nesecidad de cargar los montos de cada concepto", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            PagoTotal()
-            TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
-        Else
-            opcion = MessageBox.Show("El monto es insuficiente para afrontar el total de los conceptos del mes." + vbCr + "SI para realizar el pago parcial" + vbCr + "NO para rectificar el monto a pagar", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-            If (opcion = Windows.Forms.DialogResult.No) Then
+            abrir()
+            TxtDisponible.Text = TxtTotal.Text
+            RdbDetallesPago.Checked = True
 
-                TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
-                RdbDetallesPago.Enabled = False
-            Else
-                PagoParcial()
+            If Val(TxtMontoAPagar.Text) <= Val(TxtTotal.Text) Then
+                opcion = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes. Puede Guardar sin nesecidad de cargar los montos de cada concepto", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                BtnGuardar2.Enabled = True
+                PagoTotal()
                 TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
-            End If
-        End If
+            Else
 
+                opcion = MessageBox.Show("El monto es insuficiente para afrontar el total de los conceptos del mes." + vbCr + "SI para realizar el pago parcial" + vbCr + "NO para rectificar el monto a pagar", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                If (opcion = Windows.Forms.DialogResult.No) Then
+
+                    TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
+                    'RdbDetallesPago.Enabled = False
+                Else
+                    TxtMatricula.Enabled = True
+                    TxtArancel.Enabled = True
+                    TxtMateriales.Enabled = True
+                    TxtTalleres.Enabled = True
+                    TxtCampamento.Enabled = True
+                    TxtAdicionalJardin.Enabled = True
+                    TxtComedor.Enabled = True
+                    BtnGuardar2.Enabled = True
+                    PagoParcial()
+                    TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
+                End If
+            End If
+        Else
+            MsgBox("Debe ingresar un monto de pago")
+        End If
         DataGrid()
         CalculoTotal()
-        RdbDetallesPago.Enabled = True
     End Sub
 
 
     Private Sub BtnGuardar2_Click(sender As Object, e As EventArgs) Handles BtnGuardar2.Click
-        FormaPago()
 
-        Dim maximo As String = "select max(codigo_pago) as codigo_pago FROM pagos_escolares WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "'"
-        Dim comando3 As New SqlCommand(maximo, conexion)
-        TxtCodigoPago.Text = comando3.ExecuteScalar
+        If TxtMatricula.Text <> "" Or TxtArancel.Text <> "" Or TxtComedor.Text <> "" Or TxtMateriales.Text <> "" Or TxtTalleres.Text <> "" Or TxtCampamento.Text <> "" Or TxtAdicionalJardin.Text <> "" Or TxtSinAsignar1.Text <> "" Or TxtSinasignar2.Text <> "" Or TxtSinAsignar3.Text <> "" Then
+            FormaPago()
 
-        'Dim cadena1 As String = "SELECT codigo_pago FROM dbo.pagos_escolares WHERE codigo_familia = " & Val(CbxCodigo.Text) & ""
+            Dim maximo As String = "select max(codigo_pago) as codigo_pago FROM pagos_escolares WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "'"
+            Dim comando3 As New SqlCommand(maximo, conexion)
+            TxtCodigoPago.Text = comando3.ExecuteScalar
 
-        Dim cadena As String = "INSERT INTO dbo.detalle_pago_escolar(codigo_familia, matricula, aranceles, materiales, talleres, campamento, adicional_jardin, comedor, fecha_de_pago) 
+
+            Dim cadena As String = "INSERT INTO dbo.detalle_pago_escolar(codigo_familia, matricula, aranceles, materiales, talleres, campamento, adicional_jardin, comedor, fecha_de_pago) 
                                        VALUES(@codigo_familia, @matricula, @aranceles, @materiales, @talleres, @campamento, @adicional_jardin, @comedor, @fecha_de_pago)"
-        comando = New SqlCommand(cadena, conexion)
-
-        'comando.Parameters.AddWithValue("@codigo_detalle_pago", Val(TxtCodigoPago.Text))
-        comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
-        comando.Parameters.AddWithValue("@matricula", Val(TxtMatricula.Text))
-        comando.Parameters.AddWithValue("@aranceles", Val(TxtArancel.Text))
-        comando.Parameters.AddWithValue("@materiales", Val(TxtMateriales.Text))
-        comando.Parameters.AddWithValue("@talleres", Val(TxtTalleres.Text))
-        comando.Parameters.AddWithValue("@campamento", Val(TxtCampamento.Text))
-        comando.Parameters.AddWithValue("@adicional_jardin", Val(TxtAdicionalJardin.Text))
-        comando.Parameters.AddWithValue("@comedor", Val(TxtComedor.Text))
-        comando.Parameters.AddWithValue("@fecha_de_pago", DtpFechaDePago.Value)
-
-        'txtPrecio.Text = Format(CDec(txtPrecio.Text), "C")
-        SaldosDeudores()
-
-        If comando.ExecuteNonQuery() = 1 Then
-            'MessageBox.Show("Datos guardados")
-            TxtMatricula.Clear()
-            TxtArancel.Clear()
-            TxtMateriales.Clear()
-            TxtTalleres.Clear()
-            TxtCampamento.Clear()
-            TxtAdicionalJardin.Clear()
-            TxtComedor.Clear()
+            comando = New SqlCommand(cadena, conexion)
 
 
-            TxtEfectivo.Clear()
-            TxtCheque.Clear()
-            TxtChequeNumero.Clear()
-            TxtTransferencia.Clear()
-            TxtTransferenciaNumero.Clear()
-            TxtDebito.Clear()
-            TxtDebitoNumero.Clear()
-            TxtMercadopago.Clear()
-            TxtOtros.Clear()
-            TxtOtrosComprobante.Clear()
-            'TxtEfectivo.Focus()
-            'CbxCodigoFamilia.Select()
-            'CbxCodigoFamilia.Select()
-        Else
-            MsgBox("Error de grabación. Reinicie el programa e intente nuevamente, de persistir el error contacte al soporte informático")
-        End If
+            comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
+            comando.Parameters.AddWithValue("@matricula", Val(TxtMatricula.Text))
+            comando.Parameters.AddWithValue("@aranceles", Val(TxtArancel.Text))
+            comando.Parameters.AddWithValue("@materiales", Val(TxtMateriales.Text))
+            comando.Parameters.AddWithValue("@talleres", Val(TxtTalleres.Text))
+            comando.Parameters.AddWithValue("@campamento", Val(TxtCampamento.Text))
+            comando.Parameters.AddWithValue("@adicional_jardin", Val(TxtAdicionalJardin.Text))
+            comando.Parameters.AddWithValue("@comedor", Val(TxtComedor.Text))
+            comando.Parameters.AddWithValue("@fecha_de_pago", DtpFechaDePago.Value)
 
-        If Val(TxtDisponible.Text) > 0 Then
-            'MessageBox.Show("Se reintegran $" & TxtDisponible.Text & "")
-            Dim disponible As Decimal
+            'txtPrecio.Text = Format(CDec(txtPrecio.Text), "C")
+            'SaldosDeudores()
 
-            Dim efectivo As String = " SELECT efectivo FROM pagos_escolares where codigo_pago = '" & Val(TxtCodigoPago.Text) & "'  "
-            Dim comando2 As New SqlCommand(efectivo, conexion)
-            Dim pagoEfectivo As Decimal = comando2.ExecuteScalar
-            disponible = Val(TxtDisponible.Text)
-            'MsgBox("El monto disponible es  $ " & disponible & "")
-            'MsgBox("El pago efectivo fue de  $ " & pagoEfectivo & "")
-            If pagoEfectivo < TxtDisponible.Text Then
-                MsgBox("Solo se pueden reintegrar $" & pagoEfectivo & " que pagó en efectivo. El resto de $" & disponible - pagoEfectivo & "queda como saldo a favor de próximos vencimientos")
-                Dim modificaPago As String = "UPDATE pagos_escolares SET efectivo = 0 WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
-                Dim comando5 As New SqlCommand(modificaPago, conexion)
-                comando5.ExecuteNonQuery()
-                If comando5.ExecuteNonQuery() = 1 Then
-                    MessageBox.Show("Se reintegran $" & pagoEfectivo & "que pagó en efectivo")
+            If comando.ExecuteNonQuery() = 1 Then
+                MessageBox.Show("Pago guardado")
+                TxtMatricula.Clear()
+                TxtArancel.Clear()
+                TxtMateriales.Clear()
+                TxtTalleres.Clear()
+                TxtCampamento.Clear()
+                TxtAdicionalJardin.Clear()
+                TxtComedor.Clear()
+
+
+                TxtEfectivo.Clear()
+                TxtCheque.Clear()
+                TxtChequeNumero.Clear()
+                TxtTransferencia.Clear()
+                TxtTransferenciaNumero.Clear()
+                TxtDebito.Clear()
+                TxtDebitoNumero.Clear()
+                TxtMercadopago.Clear()
+                TxtOtros.Clear()
+                TxtOtrosComprobante.Clear()
+
+            Else
+                MsgBox("Error de grabación. Reinicie el programa e intente nuevamente, de persistir el error contacte al soporte informático")
+            End If
+
+            If Val(TxtDisponible.Text) > 0 Then
+
+                Dim disponible As Decimal
+
+                Dim efectivo As String = " SELECT efectivo FROM pagos_escolares where codigo_pago = '" & Val(TxtCodigoPago.Text) & "'  "
+                Dim comando2 As New SqlCommand(efectivo, conexion)
+                Dim pagoEfectivo As Decimal = comando2.ExecuteScalar
+                disponible = Val(TxtDisponible.Text)
+
+                If pagoEfectivo < TxtDisponible.Text Then
+                    MsgBox("Solo se pueden reintegrar $" & pagoEfectivo & " que pagó en efectivo. El resto de $" & disponible - pagoEfectivo & "queda como saldo a favor de próximos vencimientos")
+                    Dim modificaPago As String = "UPDATE pagos_escolares SET efectivo = 0 WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
+                    Dim comando5 As New SqlCommand(modificaPago, conexion)
+                    comando5.ExecuteNonQuery()
+                    If comando5.ExecuteNonQuery() = 1 Then
+                        MessageBox.Show("Se reintegran $" & pagoEfectivo & "que pagó en efectivo")
+                    Else
+                        MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+                    End If
+
+                ElseIf pagoEfectivo = TxtDisponible.Text Then
+
+                    Dim modificaPago As String = "UPDATE pagos_escolares SET efectivo = 0 WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
+                    Dim comando5 As New SqlCommand(modificaPago, conexion)
+                    comando5.ExecuteNonQuery()
+                    If comando5.ExecuteNonQuery() = 1 Then
+                        MessageBox.Show("Se reintegran $" & pagoEfectivo & "que pagó en efectivo")
+                    Else
+                        MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+                    End If
                 Else
-                    MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
-                End If
 
-            ElseIf pagoEfectivo = TxtDisponible.Text Then
-                'MsgBox("Se reintegran $" & pagoEfectivo & "")
-                Dim modificaPago As String = "UPDATE pagos_escolares SET efectivo = 0 WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
-                Dim comando5 As New SqlCommand(modificaPago, conexion)
-                comando5.ExecuteNonQuery()
-                If comando5.ExecuteNonQuery() = 1 Then
-                    MessageBox.Show("Se reintegran $" & pagoEfectivo & "que pagó en efectivo")
-                Else
-                    MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+                    Dim diferencia As Decimal = total - disponible
+
+
+
+                    Dim modificaPago As String = "UPDATE pagos_escolares SET efectivo = '" & diferencia & "' WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
+                    Dim comando5 As New SqlCommand(modificaPago, conexion)
+                    comando5.ExecuteNonQuery()
+                    If comando5.ExecuteNonQuery() = 1 Then
+                        MessageBox.Show("Se reintegran $" & Val(TxtDisponible.Text) & "")
+                    Else
+                        MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+                    End If
                 End If
             Else
+                MsgBox("Pago realizado correctamente")
+            End If
 
-                Dim diferencia As Decimal = total - disponible
+            GrabaPagoFamilia()
+            BtnGuardar2.Enabled = False
+        Else
+            MsgBox("Debe cargar monto en algún concepto")
+        End If
+    End Sub
+
+    Sub GrabaPagoFamilia()
+        Dim codigo As Integer
+
+        Dim minCod As String = "SELECT MIN(codigo_alumno) FROM alumnos WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' "
+        Dim comandomin As New SqlCommand(minCod, conexion)
+        Dim minimoCodigo As Decimal = comandomin.ExecuteScalar
+        codigo = minimoCodigo
+        Dim maxCod As String = "SELECT MAX(codigo_alumno) FROM alumnos WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' "
+        Dim comandomax As New SqlCommand(maxCod, conexion)
+        Dim maximoCodigo As Decimal = comandomax.ExecuteScalar
 
 
 
-                'MsgBox("La diferencia es  $ " & diferencia & "")
-                'MsgBox("El pago efectivo fue de  $ " & pagoEfectivo & "")
-                'MsgBox("El disponible es  $ " & disponible & "")
-                'MsgBox("El pago total es de " & total & "")
-                'pagoEfectivo > TxtDisponible.text then
-                Dim modificaPago As String = "UPDATE pagos_escolares SET efectivo = '" & diferencia & "' WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
-                Dim comando5 As New SqlCommand(modificaPago, conexion)
-                comando5.ExecuteNonQuery()
-                If comando5.ExecuteNonQuery() = 1 Then
-                    MessageBox.Show("Se reintegran $" & Val(TxtDisponible.Text) & "")
-                Else
-                    MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+        While codigo <= maximoCodigo
+            Dim hijos As String = "SELECT codigo_alumno, nombre_apellido_alumno, arancel_matricula FROM alumnos JOIN aranceles ON alumnos.codigo_arancel = aranceles.codigo_arancel WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' AND codigo_alumno = '" & codigo & "' "
+            adaptador = New SqlDataAdapter(hijos, conexion)
+                Dim dtDatos As DataTable = New DataTable
+                adaptador.Fill(dtDatos)
+
+                If dtDatos.Rows.Count > 0 Then
+                Dim codigoAlumno As Integer = dtDatos.Rows(0)("codigo_alumno")
+                Dim alumno As String = dtDatos.Rows(0)("nombre_apellido_alumno")
+                    Dim matricula As Integer = dtDatos.Rows(0)("arancel_matricula")
+
+                    MsgBox("" & codigoAlumno & ", " & alumno & ", " & matricula & "")
+
+                    Try
+                        Dim pagoFamilia As String = "INSERT INTO pago_familia (codigo_familia, familia, codigo_alumno, alumno, arancel, matricula, materiales, taller, campamento, adicional_jardin, comedor, fecha ) 
+                                                               VALUES(@codigo_familia, @familia, @codigo_alumno, @alumno, @arancel, @matricula, @materiales, @taller, @campamento, @adicional_jardin, @comedor, @fecha)"
+                        Dim comando As New SqlCommand(pagoFamilia, conexion)
+
+                        comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
+                        comando.Parameters.AddWithValue("@familia", CbxFamilia.Text)
+                        comando.Parameters.AddWithValue("@codigo_alumno", codigoAlumno)
+                        comando.Parameters.AddWithValue("alumno", alumno)
+                        comando.Parameters.AddWithValue("@arancel", Val(TxtArancel.Text))
+                        comando.Parameters.AddWithValue("@matricula", matricula)
+                        comando.Parameters.AddWithValue("@materiales", Val(TxtMateriales.Text))
+                        comando.Parameters.AddWithValue("@taller", Val(TxtTalleres.Text))
+                        comando.Parameters.AddWithValue("@campamento", Val(TxtCampamento.Text))
+                        comando.Parameters.AddWithValue("@adicional_jardin", Val(TxtAdicionalJardin.Text))
+                        comando.Parameters.AddWithValue("@comedor", Val(TxtComedor.Text))
+                        comando.Parameters.AddWithValue("@fecha", DtpFechaDePago.Value)
+
+                        comando.ExecuteNonQuery()
+
+                    MsgBox("Holis")
+                    Catch ex As Exception
+                        MsgBox("Error comprobando BD" & ex.ToString)
+                    End Try
                 End If
 
+            codigo += 1
 
+        End While
 
-                'MessageBox.Show("¡Estás pelado como una mandarina! decí alpiste... tu guita perdiste")
-            End If
-        Else
-            MsgBox("Pago realizado correctamente")
+    End Sub
 
+    Sub Siexiste()
+        Dim Siesta As String = "SELECT codigo_alumno FROM alumnos WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "'"
 
-        End If
-
-        'Dim reintegroEfectivo As Decimal = pagoEfectivo - diferencia
-        'If reintegroEfectivo < 0 Then
-        '    reintegroEfectivo = 0
-        'End If
-        'If reintegroEfectivo = 0 Then
-        '    MessageBox.Show("¡Solo se pueden reintegrar  $" & reintegroEfectivo & " en efectivo!")
-        'Else
-        '        Dim devolucion As String = "UPDATE pagos_escolares SET efectivo = '" & reintegroEfectivo & "'WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
-        '        Dim comando4 As New SqlCommand(devolucion, conexion)
-        '        comando4.ExecuteNonQuery()
-
-        '        If comando4.ExecuteNonQuery() = 1 Then
-        '            MessageBox.Show("Se reintegró tu guita")
-        '        Else
-        '            MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
-        '        End If
-        '        MessageBox.Show("¡Estás pelado como una mandarina! decí alpiste... tu guita perdiste")
-        '    End If
-        'End If
-
-        BtnGuardar2.Enabled = False
     End Sub
 
     Private Sub FormaPago()
         abrir()
 
         Dim cadenas As String = "INSERT INTO dbo.pagos_escolares(codigo_familia,fecha_pago, efectivo, cheque, cheque_numero, transferencia, transferencia_numero, debito, debito_numero, mercadopago, otros, otros_comprobante, observaciones ) 
-                                       VALUES(@codigo_familia, @fecha_pago, @efectivo, @cheque, @cheque_numero, @transferencia, @transferencia_numero, @debito, @debito_numero, @mercadopago, @otros, @otros_comprobante, @observaciones)"
+                                                                VALUES(@codigo_familia, @fecha_pago, @efectivo, @cheque, @cheque_numero, @transferencia, @transferencia_numero, @debito, @debito_numero, @mercadopago, @otros, @otros_comprobante, @observaciones)"
         comando = New SqlCommand(cadenas, conexion)
 
         comando.Parameters.AddWithValue("@codigo_familia", CbxCodigo.Text)
@@ -332,9 +379,7 @@ Public Class Pagos
         'TxtComedor.Text = TxtComedor.PlaceholderText
     End Sub
 
-    Private Sub SaldosDeudores()
 
-    End Sub
 
     Sub Suma()
         Dim total As Decimal
@@ -419,7 +464,11 @@ Public Class Pagos
 
     Sub DataGrid()
 
+        Dim tallerTemp As String = "select codigo_alumno, sum(importe_taller) as importe_taller INTO taller_tempo FROM taller_alumno  GROUP BY codigo_alumno"
+        Dim comandoTaller As New SqlCommand(tallerTemp, conexion)
+        comandoTaller.ExecuteNonQuery()
 
+        MsgBox("Tabla creada")
         'Dim total As Decimal
         If contador <> 0 Then
 
@@ -431,8 +480,14 @@ Public Class Pagos
             TotalComedor = 0
             totalConceptos = 0
 
+
+
+
+
             Try
-                Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, taller_importe, materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller ON taller.codigo_taller = alumnos.codigo_taller1  WHERE alumnos.codigo_familia = '" & CbxCodigo.Text & "' "
+                'Dim consulta As String = "Select DISTINCT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, (Select SUM (importe_taller) As taller_importe FROM taller_alumno where codigo_alumno = 19) , materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas On cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller_alumno On taller_alumno.codigo_alumno = alumnos.codigo_alumno WHERE alumnos.codigo_familia = '" & Val(CbxCodigo.Text) & "'"
+
+                Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, importe_taller, materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller_tempo ON taller_tempo.codigo_alumno = alumnos.codigo_alumno  WHERE alumnos.codigo_familia = '" & CbxCodigo.Text & "' "
                 'Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, taller_importe, material_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller ON taller.codigo_taller = alumnos.codigo_taller1 JOIN material ON material.codigo_material = alumnos.codigo_material WHERE alumnos.codigo_familia = '" & Val(CbxCodigo.Text) & "' "
                 'Dim consulta As String = "Select nombre_apellido_alumno, dni, curso, arancel_importe, valor_cuota, hermano_numero, fecha_ingreso from alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas On cuotas.codigo_alumno = alumnos.codigo_alumno join Aranceles On aranceles.codigo_arancel = alumnos.codigo_arancel where alumnos.codigo_familia= '" & Val(CbxCodigo.Text) & "' "
 
@@ -522,6 +577,14 @@ Public Class Pagos
         End If
         contador += 1
         TxtMatricula.Enabled = False
+
+        Dim destruyeTabla As String = "DROP TABLE taller_tempo"
+        Dim comandoDestruye As New SqlCommand(destruyeTabla, conexion)
+        MsgBox("Por destruir tabla")
+        If comandoDestruye.ExecuteNonQuery() = 0 Then
+            MsgBox("No pasa nada")
+        End If
+
     End Sub
 
 
@@ -610,8 +673,8 @@ Public Class Pagos
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
         TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
-        RdbDetallesPago.Enabled = False
-        BtnGuardar2.Enabled = True
+        'RdbDetallesPago.Enabled = False
+        'BtnGuardar2.Enabled = True
     End Sub
 
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RdbDetallesPago.CheckedChanged
@@ -636,7 +699,7 @@ Public Class Pagos
 
     Private Sub CbxCodigo_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigo.SelectedValueChanged
         LblFamilia.Text = CbxFamilia.Text
-        'AdicionalYcomedor()
+
         DataGrid()
         totalConceptos = 0
         CalculoTotal()
