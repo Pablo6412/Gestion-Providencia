@@ -2,15 +2,33 @@
 Public Class FrmInscripcionTalleres
 
     Dim datos As DataSet
+    Dim datosValor As DataSet
     Dim adaptador As SqlDataAdapter
+    Dim adaptadorValor As SqlDataAdapter
 
     Private Sub FrmInscripcionTalleres_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         conectar()
         CargaAlumnos()
+
+        Dim listaV As Byte
+        Dim ValorTaller As String = "SELECT taller_importe FROM taller"
+        adaptadorValor = New SqlDataAdapter(ValorTaller, conexion)
+        datosValor = New DataSet
+        adaptadorValor.Fill(datosValor, "taller")
+        listaV = datosValor.Tables("taller").Rows.Count
+        LblFutbol.Text = "$ " & datosValor.Tables("taller").Rows(1).Item("taller_importe")
+        LblHockey.Text = "$ " & datosValor.Tables("taller").Rows(2).Item("taller_importe")
+        LblMusica.Text = "$ " & datosValor.Tables("taller").Rows(3).Item("taller_importe")
+        LblRugby.Text = "$ " & datosValor.Tables("taller").Rows(4).Item("taller_importe")
+        LblSinAsignarIVT.Text = "$ " & datosValor.Tables("taller").Rows(5).Item("taller_importe")
+        LblSinAsignarIIVT.Text = "$ " & datosValor.Tables("taller").Rows(6).Item("taller_importe")
+        LblSinAsignarIIIVT.Text = "$ " & datosValor.Tables("taller").Rows(7).Item("taller_importe")
+        LblSinAsignarIVVT.Text = "$ " & datosValor.Tables("taller").Rows(8).Item("taller_importe")
+
         Dim lista As Byte
         Dim listaTalleres As String = "SELECT taller_nombre FROM taller"
         adaptador = New SqlDataAdapter(listaTalleres, conexion)
-        Dim comando As New SqlCommand
+
         datos = New DataSet
 
         adaptador.Fill(datos, "taller")
@@ -19,34 +37,42 @@ Public Class FrmInscripcionTalleres
         RdbFutbol1.Text = datos.Tables("taller").Rows(1).Item("taller_nombre")
         RdbFutbol2.Text = datos.Tables("taller").Rows(1).Item("taller_nombre")
         RdbFutbol3.Text = datos.Tables("taller").Rows(1).Item("taller_nombre")
+        Label1.Text = datos.Tables("taller").Rows(1).Item("taller_nombre")
 
         RdbHockey1.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
         RdbHockey2.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
         RdbHockey3.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
+        Label2.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
 
         RdbMusica1.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
         RdbMusica2.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
         RdbMusica3.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
+        Label3.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
 
         RdbRugby1.Text = datos.Tables("taller").Rows(4).Item("taller_nombre")
         RdbRugby2.Text = datos.Tables("taller").Rows(4).Item("taller_nombre")
         RdbRugby3.Text = datos.Tables("taller").Rows(4).Item("taller_nombre")
+        Label4.Text = datos.Tables("taller").Rows(4).Item("taller_nombre")
 
         RdbSinAsignar1.Text = datos.Tables("taller").Rows(5).Item("taller_nombre")
         RdbSinAsignar11.Text = datos.Tables("taller").Rows(5).Item("taller_nombre")
         RdbSinAsignar111.Text = datos.Tables("taller").Rows(5).Item("taller_nombre")
+        Label5.Text = datos.Tables("taller").Rows(5).Item("taller_nombre")
 
         RdbSinAsignar2.Text = datos.Tables("taller").Rows(6).Item("taller_nombre")
         RdbSinAsignar22.Text = datos.Tables("taller").Rows(6).Item("taller_nombre")
         RdbSinAsignar222.Text = datos.Tables("taller").Rows(6).Item("taller_nombre")
+        Label6.Text = datos.Tables("taller").Rows(6).Item("taller_nombre")
 
         RdbSinAsignar3.Text = datos.Tables("taller").Rows(7).Item("taller_nombre")
         RdbSinAsignar33.Text = datos.Tables("taller").Rows(7).Item("taller_nombre")
         RdbSinAsignar333.Text = datos.Tables("taller").Rows(7).Item("taller_nombre")
+        Label7.Text = datos.Tables("taller").Rows(7).Item("taller_nombre")
 
         RdbSinAsignar4.Text = datos.Tables("taller").Rows(8).Item("taller_nombre")
         RdbSinAsignar44.Text = datos.Tables("taller").Rows(8).Item("taller_nombre")
         RdbSinAsignar444.Text = datos.Tables("taller").Rows(8).Item("taller_nombre")
+        Label8.Text = datos.Tables("taller").Rows(8).Item("taller_nombre")
 
         If RdbSinAsignar1.Text = "Sin asignar" Then
             RdbSinAsignar1.Hide()
@@ -83,6 +109,23 @@ Public Class FrmInscripcionTalleres
         End If
         If RdbSinAsignar444.Text = "Sin asignar" Then
             RdbSinAsignar444.Hide()
+        End If
+
+        If Label5.Text = "Sin asignar" Then
+            Label5.Hide()
+            LblSinAsignarIVT.Hide()
+        End If
+        If Label6.Text = "Sin asignar" Then
+            Label6.Hide()
+            LblSinAsignarIIVT.Hide()
+        End If
+        If Label7.Text = "Sin asignar" Then
+            Label7.Hide()
+            LblSinAsignarIIIVT.Hide()
+        End If
+        If Label8.Text = "Sin asignar" Then
+            Label8.Hide()
+            LblSinAsignarIVVT.Hide()
         End If
     End Sub
 
@@ -297,5 +340,6 @@ Public Class FrmInscripcionTalleres
     Private Sub BtnSalirExtras_Click(sender As Object, e As EventArgs) Handles BtnSalirExtras.Click
         Me.Close()
     End Sub
+
 
 End Class
