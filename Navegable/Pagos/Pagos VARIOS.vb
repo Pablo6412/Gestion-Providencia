@@ -738,11 +738,11 @@ Public Class Pagos
 
 
     Private Sub CbxCodigo_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigo.SelectedValueChanged
-        LblFamilia.Text = CbxFamilia.Text
-        UltimoPago()
-        DataGrid()
-        totalConceptos = 0
-        CalculoTotal()
+        'LblFamilia.Text = CbxFamilia.Text
+        'UltimoPago()
+        'DataGrid()
+        'totalConceptos = 0
+        'CalculoTotal()
     End Sub
 
 
@@ -759,5 +759,11 @@ Public Class Pagos
         Me.Close()
     End Sub
 
-
+    Private Sub CbxCodigo_TextChanged(sender As Object, e As EventArgs) Handles CbxCodigo.TextChanged
+        LblFamilia.Text = CbxFamilia.Text
+        UltimoPago()
+        DataGrid()
+        totalConceptos = 0
+        CalculoTotal()
+    End Sub
 End Class
