@@ -24,14 +24,13 @@ Partial Class FrmCampamentos
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCampamentos))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TxtCodigoNivel = New System.Windows.Forms.TextBox()
         Me.CbxCurso = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CbxNivel = New System.Windows.Forms.ComboBox()
+        Me.TxtCodigoNivel = New System.Windows.Forms.TextBox()
         Me.BtnSalir = New System.Windows.Forms.Button()
         Me.CbxCodigonivel = New System.Windows.Forms.ComboBox()
-        Me.CbxCodigoCurso = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.DtpFecha = New System.Windows.Forms.DateTimePicker()
@@ -41,32 +40,36 @@ Partial Class FrmCampamentos
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TxtCodigoAño = New System.Windows.Forms.TextBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox1.Controls.Add(Me.TxtCodigoNivel)
         Me.GroupBox1.Controls.Add(Me.CbxCurso)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.CbxNivel)
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.GroupBox1.Location = New System.Drawing.Point(200, 79)
+        Me.GroupBox1.Location = New System.Drawing.Point(228, 98)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(539, 217)
+        Me.GroupBox1.Size = New System.Drawing.Size(539, 199)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
-        '
-        'TxtCodigoNivel
-        '
-        Me.TxtCodigoNivel.Location = New System.Drawing.Point(408, 165)
-        Me.TxtCodigoNivel.Name = "TxtCodigoNivel"
-        Me.TxtCodigoNivel.Size = New System.Drawing.Size(100, 27)
-        Me.TxtCodigoNivel.TabIndex = 4
         '
         'CbxCurso
         '
@@ -104,12 +107,19 @@ Partial Class FrmCampamentos
         Me.CbxNivel.Size = New System.Drawing.Size(168, 28)
         Me.CbxNivel.TabIndex = 0
         '
+        'TxtCodigoNivel
+        '
+        Me.TxtCodigoNivel.Location = New System.Drawing.Point(35, 146)
+        Me.TxtCodigoNivel.Name = "TxtCodigoNivel"
+        Me.TxtCodigoNivel.Size = New System.Drawing.Size(100, 23)
+        Me.TxtCodigoNivel.TabIndex = 4
+        '
         'BtnSalir
         '
         Me.BtnSalir.BackColor = System.Drawing.Color.White
         Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue
         Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnSalir.Location = New System.Drawing.Point(838, 536)
+        Me.BtnSalir.Location = New System.Drawing.Point(857, 520)
         Me.BtnSalir.Name = "BtnSalir"
         Me.BtnSalir.Size = New System.Drawing.Size(83, 30)
         Me.BtnSalir.TabIndex = 1
@@ -119,18 +129,10 @@ Partial Class FrmCampamentos
         'CbxCodigonivel
         '
         Me.CbxCodigonivel.FormattingEnabled = True
-        Me.CbxCodigonivel.Location = New System.Drawing.Point(13, 89)
+        Me.CbxCodigonivel.Location = New System.Drawing.Point(42, 13)
         Me.CbxCodigonivel.Name = "CbxCodigonivel"
         Me.CbxCodigonivel.Size = New System.Drawing.Size(121, 23)
         Me.CbxCodigonivel.TabIndex = 2
-        '
-        'CbxCodigoCurso
-        '
-        Me.CbxCodigoCurso.FormattingEnabled = True
-        Me.CbxCodigoCurso.Location = New System.Drawing.Point(12, 133)
-        Me.CbxCodigoCurso.Name = "CbxCodigoCurso"
-        Me.CbxCodigoCurso.Size = New System.Drawing.Size(121, 23)
-        Me.CbxCodigoCurso.TabIndex = 3
         '
         'GroupBox2
         '
@@ -143,7 +145,7 @@ Partial Class FrmCampamentos
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.GroupBox2.Location = New System.Drawing.Point(86, 353)
+        Me.GroupBox2.Location = New System.Drawing.Point(84, 329)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(776, 161)
         Me.GroupBox2.TabIndex = 4
@@ -213,10 +215,130 @@ Partial Class FrmCampamentos
         '
         'TxtCodigoAño
         '
-        Me.TxtCodigoAño.Location = New System.Drawing.Point(13, 202)
+        Me.TxtCodigoAño.Location = New System.Drawing.Point(41, 52)
         Me.TxtCodigoAño.Name = "TxtCodigoAño"
         Me.TxtCodigoAño.Size = New System.Drawing.Size(100, 23)
         Me.TxtCodigoAño.TabIndex = 5
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.Transparent
+        Me.Panel1.Location = New System.Drawing.Point(35, 45)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(174, 73)
+        Me.Panel1.TabIndex = 6
+        '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(974, 611)
+        Me.TabControl1.TabIndex = 7
+        '
+        'TabPage1
+        '
+        Me.TabPage1.BackgroundImage = CType(resources.GetObject("TabPage1.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage1.Controls.Add(Me.Panel1)
+        Me.TabPage1.Controls.Add(Me.GroupBox2)
+        Me.TabPage1.Controls.Add(Me.BtnSalir)
+        Me.TabPage1.Controls.Add(Me.GroupBox1)
+        Me.TabPage1.Controls.Add(Me.TxtCodigoNivel)
+        Me.TabPage1.Controls.Add(Me.CbxCodigonivel)
+        Me.TabPage1.Controls.Add(Me.TxtCodigoAño)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(966, 583)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "TabPage1"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(966, 583)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "TabPage2"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'TabPage3
+        '
+        Me.TabPage3.BackgroundImage = CType(resources.GetObject("TabPage3.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(966, 583)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "TabPage3"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.SystemColors.Highlight
+        Me.Panel2.Controls.Add(Me.RadioButton3)
+        Me.Panel2.Controls.Add(Me.RadioButton2)
+        Me.Panel2.Controls.Add(Me.RadioButton1)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(974, 63)
+        Me.Panel2.TabIndex = 9
+        '
+        'RadioButton3
+        '
+        Me.RadioButton3.Appearance = System.Windows.Forms.Appearance.Button
+        Me.RadioButton3.FlatAppearance.BorderSize = 0
+        Me.RadioButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue
+        Me.RadioButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RadioButton3.ForeColor = System.Drawing.Color.White
+        Me.RadioButton3.Location = New System.Drawing.Point(207, 0)
+        Me.RadioButton3.Name = "RadioButton3"
+        Me.RadioButton3.Size = New System.Drawing.Size(97, 60)
+        Me.RadioButton3.TabIndex = 2
+        Me.RadioButton3.TabStop = True
+        Me.RadioButton3.Text = "Baja de campamentos"
+        Me.RadioButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.RadioButton3.UseVisualStyleBackColor = True
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.Appearance = System.Windows.Forms.Appearance.Button
+        Me.RadioButton2.FlatAppearance.BorderSize = 0
+        Me.RadioButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue
+        Me.RadioButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RadioButton2.ForeColor = System.Drawing.Color.White
+        Me.RadioButton2.Location = New System.Drawing.Point(110, 0)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(97, 60)
+        Me.RadioButton2.TabIndex = 1
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "Modificación de campamentos"
+        Me.RadioButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.Appearance = System.Windows.Forms.Appearance.Button
+        Me.RadioButton1.FlatAppearance.BorderSize = 0
+        Me.RadioButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue
+        Me.RadioButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RadioButton1.ForeColor = System.Drawing.Color.White
+        Me.RadioButton1.Location = New System.Drawing.Point(4, 0)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(104, 65)
+        Me.RadioButton1.TabIndex = 0
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "Ata de campamentos"
+        Me.RadioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.RadioButton1.UseVisualStyleBackColor = True
         '
         'FrmCampamentos
         '
@@ -225,12 +347,8 @@ Partial Class FrmCampamentos
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(974, 611)
-        Me.Controls.Add(Me.TxtCodigoAño)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.CbxCodigoCurso)
-        Me.Controls.Add(Me.CbxCodigonivel)
-        Me.Controls.Add(Me.BtnSalir)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.TabControl1)
         Me.MaximizeBox = False
         Me.Name = "FrmCampamentos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -239,8 +357,11 @@ Partial Class FrmCampamentos
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -252,7 +373,6 @@ Partial Class FrmCampamentos
     Friend WithEvents TxtCodigoNivel As TextBox
     Friend WithEvents BtnSalir As Button
     Friend WithEvents CbxCodigonivel As ComboBox
-    Friend WithEvents CbxCodigoCurso As ComboBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents DtpFecha As DateTimePicker
     Friend WithEvents TxtValor As TextBox
@@ -262,4 +382,13 @@ Partial Class FrmCampamentos
     Friend WithEvents Label3 As Label
     Friend WithEvents BtnGuardar As Button
     Friend WithEvents TxtCodigoAño As TextBox
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents RadioButton3 As RadioButton
+    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents RadioButton1 As RadioButton
 End Class
