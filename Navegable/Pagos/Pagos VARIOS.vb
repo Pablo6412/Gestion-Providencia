@@ -96,6 +96,19 @@ Public Class Pagos
         Catch ex As Exception
             MsgBox("Error comprobando BD" & ex.ToString)
         End Try
+
+        ''Fecha de último pago
+        'Dim ultimoPago As String = "SELECT fecha_de_pago FROM detalle_pago_escolar WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' "
+        'Dim comandoUltimoPago As New SqlCommand(ultimoPago, conexion)
+        'DtpUltimoPago.Text = comandoUltimoPago.ExecuteScalar
+    End Sub
+
+    Private Sub UltimoPago()
+
+        'Fecha de último pago
+        Dim ultimoPago As String = "SELECT fecha_de_pago FROM detalle_pago_escolar WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' "
+        Dim comandoUltimoPago As New SqlCommand(ultimoPago, conexion)
+        DtpUltimoPago.Text = comandoUltimoPago.ExecuteScalar
     End Sub
 
     Private Sub BtnContinuar_Click(sender As Object, e As EventArgs) Handles BtnContinuar.Click
@@ -725,11 +738,11 @@ Public Class Pagos
 
 
     Private Sub CbxCodigo_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigo.SelectedValueChanged
-        LblFamilia.Text = CbxFamilia.Text
-
-        DataGrid()
-        totalConceptos = 0
-        CalculoTotal()
+        'LblFamilia.Text = CbxFamilia.Text
+        'UltimoPago()
+        'DataGrid()
+        'totalConceptos = 0
+        'CalculoTotal()
     End Sub
 
 
@@ -746,5 +759,11 @@ Public Class Pagos
         Me.Close()
     End Sub
 
-
+    Private Sub CbxCodigo_TextChanged(sender As Object, e As EventArgs) Handles CbxCodigo.TextChanged
+        LblFamilia.Text = CbxFamilia.Text
+        UltimoPago()
+        DataGrid()
+        totalConceptos = 0
+        CalculoTotal()
+    End Sub
 End Class
