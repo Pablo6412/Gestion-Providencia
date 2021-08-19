@@ -464,11 +464,26 @@ Public Class Pagos
 
     Sub DataGrid()
 
-        Dim tallerTemp As String = "select codigo_alumno, sum(importe_taller) as importe_taller INTO taller_tempo FROM taller_alumno  GROUP BY codigo_alumno"
-        Dim comandoTaller As New SqlCommand(tallerTemp, conexion)
-        comandoTaller.ExecuteNonQuery()
+        Dim restrictionValues() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
 
-        MsgBox("Tabla creada")
+        Dim dt As DataTable = conexion.GetSchema("TABLES", restrictionValues)
+
+        Dim rows() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
+
+        If rows.Length > 0 Then
+            'MessageBox.Show("Existe la tabla.")
+        Else
+
+            Dim tallerTemp As String = "select codigo_alumno, sum(importe_taller) as importe_taller INTO taller_temporal FROM taller_alumno  GROUP BY codigo_alumno"
+            Dim comandoTaller As New SqlCommand(tallerTemp, conexion)
+            comandoTaller.ExecuteNonQuery()
+
+            MsgBox("Tabla creada")
+            'MessageBox.Show("No existe la tabla.")
+        End If
+
+
+
         'Dim total As Decimal
         If contador <> 0 Then
 
@@ -487,7 +502,7 @@ Public Class Pagos
             Try
                 'Dim consulta As String = "Select DISTINCT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, (Select SUM (importe_taller) As taller_importe FROM taller_alumno where codigo_alumno = 19) , materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas On cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller_alumno On taller_alumno.codigo_alumno = alumnos.codigo_alumno WHERE alumnos.codigo_familia = '" & Val(CbxCodigo.Text) & "'"
 
-                Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, importe_taller, materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller_tempo ON taller_tempo.codigo_alumno = alumnos.codigo_alumno  WHERE alumnos.codigo_familia = '" & CbxCodigo.Text & "' "
+                Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, importe_taller, materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller_temporal ON taller_temporal.codigo_alumno = alumnos.codigo_alumno  WHERE alumnos.codigo_familia = '" & CbxCodigo.Text & "' "
                 'Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, taller_importe, material_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller ON taller.codigo_taller = alumnos.codigo_taller1 JOIN material ON material.codigo_material = alumnos.codigo_material WHERE alumnos.codigo_familia = '" & Val(CbxCodigo.Text) & "' "
                 'Dim consulta As String = "Select nombre_apellido_alumno, dni, curso, arancel_importe, valor_cuota, hermano_numero, fecha_ingreso from alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas On cuotas.codigo_alumno = alumnos.codigo_alumno join Aranceles On aranceles.codigo_arancel = alumnos.codigo_arancel where alumnos.codigo_familia= '" & Val(CbxCodigo.Text) & "' "
 
@@ -578,13 +593,25 @@ Public Class Pagos
         contador += 1
         TxtMatricula.Enabled = False
 
-        Dim destruyeTabla As String = "DROP TABLE taller_tempo"
-        Dim comandoDestruye As New SqlCommand(destruyeTabla, conexion)
-        MsgBox("Por destruir tabla")
-        If comandoDestruye.ExecuteNonQuery() = 0 Then
-            MsgBox("No pasa nada")
-        End If
 
+        Dim tablaExiste() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
+
+        Dim datat As DataTable = conexion.GetSchema("TABLES", restrictionValues)
+
+        Dim rowss() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
+
+        If rowss.Length > 0 Then
+            'MessageBox.Show("Existe la tabla.")
+
+            Dim destruyeTabla As String = "DROP TABLE taller_temporal"
+            Dim comandoDestruye As New SqlCommand(destruyeTabla, conexion)
+            MsgBox("Tabla destruida")
+
+            If comandoDestruye.ExecuteNonQuery() = 0 Then
+                MsgBox("No pasa nada")
+            End If
+
+        End If
     End Sub
 
 
