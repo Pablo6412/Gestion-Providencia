@@ -161,7 +161,7 @@ Public Class FrmDescuentosBecas
         Dim descuentoPorcentaje As Decimal
         descuentoPorcentaje = (100 - porcentaje) / 100
 
-        Dim descuento As String = "UPDATE descuento_especial  SET tipo_descuento = '" & 1 & "', codigo_familia = '" & CbxCodFamDescuento.Text & "', descuento = '" & descuentoPorcentaje & "', monto = '" & 0 & "' WHERE codigo_familia = '" & CbxCodFamDescuento.Text & "'"
+        Dim descuento As String = "UPDATE descuento_especial  SET tipo_descuento = " & 1 & ", codigo_familia = " & Val(CbxCodFamDescuento.Text) & ", descuento = " & descuentoPorcentaje & ", monto = " & 0 & " WHERE codigo_familia = " & Val(CbxCodFamDescuento.Text) & ""
         Dim comando As New SqlCommand(descuento, conexion)
 
         If comando.ExecuteNonQuery Then

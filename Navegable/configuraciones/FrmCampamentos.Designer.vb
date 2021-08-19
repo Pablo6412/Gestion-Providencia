@@ -29,7 +29,7 @@ Partial Class FrmCampamentos
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CbxNivel = New System.Windows.Forms.ComboBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.BtnSalir = New System.Windows.Forms.Button()
         Me.CbxCodigonivel = New System.Windows.Forms.ComboBox()
         Me.CbxCodigoCurso = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -40,6 +40,7 @@ Partial Class FrmCampamentos
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.TxtCodigoAño = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -103,17 +104,17 @@ Partial Class FrmCampamentos
         Me.CbxNivel.Size = New System.Drawing.Size(168, 28)
         Me.CbxNivel.TabIndex = 0
         '
-        'Button1
+        'BtnSalir
         '
-        Me.Button1.BackColor = System.Drawing.Color.White
-        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(838, 536)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(83, 30)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Salir"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.BtnSalir.BackColor = System.Drawing.Color.White
+        Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue
+        Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnSalir.Location = New System.Drawing.Point(838, 536)
+        Me.BtnSalir.Name = "BtnSalir"
+        Me.BtnSalir.Size = New System.Drawing.Size(83, 30)
+        Me.BtnSalir.TabIndex = 1
+        Me.BtnSalir.Text = "Salir"
+        Me.BtnSalir.UseVisualStyleBackColor = False
         '
         'CbxCodigonivel
         '
@@ -210,6 +211,13 @@ Partial Class FrmCampamentos
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Lugar:"
         '
+        'TxtCodigoAño
+        '
+        Me.TxtCodigoAño.Location = New System.Drawing.Point(13, 202)
+        Me.TxtCodigoAño.Name = "TxtCodigoAño"
+        Me.TxtCodigoAño.Size = New System.Drawing.Size(100, 23)
+        Me.TxtCodigoAño.TabIndex = 5
+        '
         'FrmCampamentos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -217,10 +225,11 @@ Partial Class FrmCampamentos
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(974, 611)
+        Me.Controls.Add(Me.TxtCodigoAño)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.CbxCodigoCurso)
         Me.Controls.Add(Me.CbxCodigonivel)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.BtnSalir)
         Me.Controls.Add(Me.GroupBox1)
         Me.MaximizeBox = False
         Me.Name = "FrmCampamentos"
@@ -231,6 +240,7 @@ Partial Class FrmCampamentos
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -240,7 +250,7 @@ Partial Class FrmCampamentos
     Friend WithEvents Label1 As Label
     Friend WithEvents CbxNivel As ComboBox
     Friend WithEvents TxtCodigoNivel As TextBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents BtnSalir As Button
     Friend WithEvents CbxCodigonivel As ComboBox
     Friend WithEvents CbxCodigoCurso As ComboBox
     Friend WithEvents GroupBox2 As GroupBox
@@ -251,4 +261,5 @@ Partial Class FrmCampamentos
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents BtnGuardar As Button
+    Friend WithEvents TxtCodigoAño As TextBox
 End Class

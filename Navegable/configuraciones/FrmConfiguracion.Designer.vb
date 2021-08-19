@@ -24,19 +24,20 @@ Partial Class FrmConfiguracion
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmConfiguracion))
         Me.BtnCargaParametros = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.BtnBecas = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.BtnSalir = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.BtnTalleres = New System.Windows.Forms.Button()
         Me.BtnConcepto = New System.Windows.Forms.Button()
         Me.BtnCursos = New System.Windows.Forms.Button()
         Me.BtnAranceles = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.BtnCampamentos = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -55,19 +56,19 @@ Partial Class FrmConfiguracion
         Me.BtnCargaParametros.Text = "Niveles"
         Me.BtnCargaParametros.UseVisualStyleBackColor = False
         '
-        'Button2
+        'BtnBecas
         '
-        Me.Button2.BackColor = System.Drawing.Color.Transparent
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(687, 0)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(115, 73)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Becas"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.BtnBecas.BackColor = System.Drawing.Color.Transparent
+        Me.BtnBecas.FlatAppearance.BorderSize = 0
+        Me.BtnBecas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnBecas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnBecas.ForeColor = System.Drawing.Color.White
+        Me.BtnBecas.Location = New System.Drawing.Point(687, 0)
+        Me.BtnBecas.Name = "BtnBecas"
+        Me.BtnBecas.Size = New System.Drawing.Size(115, 73)
+        Me.BtnBecas.TabIndex = 1
+        Me.BtnBecas.Text = "Becas"
+        Me.BtnBecas.UseVisualStyleBackColor = False
         '
         'Button3
         '
@@ -111,7 +112,7 @@ Partial Class FrmConfiguracion
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(200, 277)
+        Me.Label2.Location = New System.Drawing.Point(200, 278)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(41, 15)
         Me.Label2.TabIndex = 9
@@ -120,29 +121,30 @@ Partial Class FrmConfiguracion
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
-        Me.Panel1.Controls.Add(Me.Button4)
-        Me.Panel1.Controls.Add(Me.Button2)
+        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Controls.Add(Me.BtnTalleres)
+        Me.Panel1.Controls.Add(Me.BtnBecas)
         Me.Panel1.Controls.Add(Me.BtnConcepto)
         Me.Panel1.Controls.Add(Me.BtnCursos)
         Me.Panel1.Controls.Add(Me.BtnAranceles)
         Me.Panel1.Controls.Add(Me.BtnCargaParametros)
         Me.Panel1.Location = New System.Drawing.Point(262, 106)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(825, 73)
+        Me.Panel1.Size = New System.Drawing.Size(1043, 73)
         Me.Panel1.TabIndex = 10
         '
-        'Button4
+        'BtnTalleres
         '
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(572, 0)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(115, 73)
-        Me.Button4.TabIndex = 4
-        Me.Button4.Text = "Talleres"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.BtnTalleres.FlatAppearance.BorderSize = 0
+        Me.BtnTalleres.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnTalleres.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnTalleres.ForeColor = System.Drawing.Color.White
+        Me.BtnTalleres.Location = New System.Drawing.Point(572, 0)
+        Me.BtnTalleres.Name = "BtnTalleres"
+        Me.BtnTalleres.Size = New System.Drawing.Size(115, 73)
+        Me.BtnTalleres.TabIndex = 4
+        Me.BtnTalleres.Text = "Talleres"
+        Me.BtnTalleres.UseVisualStyleBackColor = True
         '
         'BtnConcepto
         '
@@ -185,27 +187,27 @@ Partial Class FrmConfiguracion
         Me.BtnAranceles.Text = "Aranceles"
         Me.BtnAranceles.UseVisualStyleBackColor = False
         '
-        'Button1
+        'BtnCampamentos
         '
-        Me.Button1.BackColor = System.Drawing.Color.Transparent
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(718, 106)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(115, 73)
-        Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Campamentos"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.BtnCampamentos.BackColor = System.Drawing.Color.Transparent
+        Me.BtnCampamentos.FlatAppearance.BorderSize = 0
+        Me.BtnCampamentos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnCampamentos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnCampamentos.ForeColor = System.Drawing.Color.White
+        Me.BtnCampamentos.Location = New System.Drawing.Point(718, 106)
+        Me.BtnCampamentos.Name = "BtnCampamentos"
+        Me.BtnCampamentos.Size = New System.Drawing.Size(115, 73)
+        Me.BtnCampamentos.TabIndex = 4
+        Me.BtnCampamentos.Text = "Campamentos"
+        Me.BtnCampamentos.UseVisualStyleBackColor = False
         '
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.SystemColors.Highlight
         Me.Panel2.Controls.Add(Me.Button3)
-        Me.Panel2.Location = New System.Drawing.Point(259, 248)
+        Me.Panel2.Location = New System.Drawing.Point(259, 249)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(690, 73)
+        Me.Panel2.Size = New System.Drawing.Size(828, 73)
         Me.Panel2.TabIndex = 11
         '
         'Label3
@@ -219,6 +221,19 @@ Partial Class FrmConfiguracion
         Me.Label3.TabIndex = 12
         Me.Label3.Text = resources.GetString("Label3.Text")
         '
+        'Button1
+        '
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.ForeColor = System.Drawing.Color.White
+        Me.Button1.Location = New System.Drawing.Point(802, 0)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(115, 73)
+        Me.Button1.TabIndex = 5
+        Me.Button1.Text = "Materiales"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'FrmConfiguracion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -229,7 +244,7 @@ Partial Class FrmConfiguracion
         Me.ClientSize = New System.Drawing.Size(1364, 744)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Panel2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.BtnCampamentos)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -245,7 +260,7 @@ Partial Class FrmConfiguracion
     End Sub
 
     Friend WithEvents BtnCargaParametros As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents BtnBecas As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents BtnSalir As Button
     Friend WithEvents Label1 As Label
@@ -255,7 +270,8 @@ Partial Class FrmConfiguracion
     Friend WithEvents BtnCursos As Button
     Friend WithEvents BtnConcepto As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents Button4 As Button
+    Friend WithEvents BtnTalleres As Button
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label3 As Label
+    Friend WithEvents BtnCampamentos As Button
 End Class
