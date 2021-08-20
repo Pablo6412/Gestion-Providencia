@@ -30,6 +30,7 @@ Partial Class FrmConfiguracion
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.BtnMateriales = New System.Windows.Forms.Button()
         Me.BtnTalleres = New System.Windows.Forms.Button()
         Me.BtnConcepto = New System.Windows.Forms.Button()
         Me.BtnCursos = New System.Windows.Forms.Button()
@@ -37,7 +38,6 @@ Partial Class FrmConfiguracion
         Me.BtnCampamentos = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -121,7 +121,7 @@ Partial Class FrmConfiguracion
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
-        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Controls.Add(Me.BtnMateriales)
         Me.Panel1.Controls.Add(Me.BtnTalleres)
         Me.Panel1.Controls.Add(Me.BtnBecas)
         Me.Panel1.Controls.Add(Me.BtnConcepto)
@@ -132,6 +132,19 @@ Partial Class FrmConfiguracion
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1043, 73)
         Me.Panel1.TabIndex = 10
+        '
+        'BtnMateriales
+        '
+        Me.BtnMateriales.FlatAppearance.BorderSize = 0
+        Me.BtnMateriales.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnMateriales.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnMateriales.ForeColor = System.Drawing.Color.White
+        Me.BtnMateriales.Location = New System.Drawing.Point(802, 0)
+        Me.BtnMateriales.Name = "BtnMateriales"
+        Me.BtnMateriales.Size = New System.Drawing.Size(115, 73)
+        Me.BtnMateriales.TabIndex = 5
+        Me.BtnMateriales.Text = "Materiales"
+        Me.BtnMateriales.UseVisualStyleBackColor = True
         '
         'BtnTalleres
         '
@@ -217,22 +230,9 @@ Partial Class FrmConfiguracion
         Me.Label3.ForeColor = System.Drawing.Color.White
         Me.Label3.Location = New System.Drawing.Point(317, 18)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(471, 60)
+        Me.Label3.Size = New System.Drawing.Size(472, 60)
         Me.Label3.TabIndex = 12
         Me.Label3.Text = resources.GetString("Label3.Text")
-        '
-        'Button1
-        '
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(802, 0)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(115, 73)
-        Me.Button1.TabIndex = 5
-        Me.Button1.Text = "Materiales"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'FrmConfiguracion
         '
@@ -269,7 +269,7 @@ Partial Class FrmConfiguracion
     Friend WithEvents BtnAranceles As Button
     Friend WithEvents BtnCursos As Button
     Friend WithEvents BtnConcepto As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents BtnMateriales As Button
     Friend WithEvents BtnTalleres As Button
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label3 As Label

@@ -23,10 +23,13 @@
         FrmConceptosDePago.Show()
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click, BtnCampamentos.Click
-        FrmMateriales.Show()
+    Private Sub BtnCampamentos_Click(sender As Object, e As EventArgs) Handles BtnCampamentos.Click
+        FrmCampamentos.Show()
     End Sub
 
+    Private Sub BtnMateriales_Click(sender As Object, e As EventArgs) Handles BtnMateriales.Click
+        FrmMateriales.Show()
+    End Sub
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles BtnTalleres.Click
         FrmConfiguraTalleres.Show()
     End Sub
