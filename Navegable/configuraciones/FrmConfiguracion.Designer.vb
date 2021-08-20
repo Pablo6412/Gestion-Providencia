@@ -230,7 +230,7 @@ Partial Class FrmConfiguracion
         Me.Label3.ForeColor = System.Drawing.Color.White
         Me.Label3.Location = New System.Drawing.Point(317, 18)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(471, 60)
+        Me.Label3.Size = New System.Drawing.Size(472, 60)
         Me.Label3.TabIndex = 12
         Me.Label3.Text = resources.GetString("Label3.Text")
         '

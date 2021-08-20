@@ -277,41 +277,41 @@ Public Class Pagos
         While codigo <= maximoCodigo
             Dim hijos As String = "SELECT codigo_alumno, nombre_apellido_alumno, arancel_matricula FROM alumnos JOIN aranceles ON alumnos.codigo_arancel = aranceles.codigo_arancel WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' AND codigo_alumno = '" & codigo & "' "
             adaptador = New SqlDataAdapter(hijos, conexion)
-                Dim dtDatos As DataTable = New DataTable
-                adaptador.Fill(dtDatos)
+            Dim dtDatos As DataTable = New DataTable
+            adaptador.Fill(dtDatos)
 
-                If dtDatos.Rows.Count > 0 Then
+            If dtDatos.Rows.Count > 0 Then
                 Dim codigoAlumno As Integer = dtDatos.Rows(0)("codigo_alumno")
                 Dim alumno As String = dtDatos.Rows(0)("nombre_apellido_alumno")
-                    Dim matricula As Integer = dtDatos.Rows(0)("arancel_matricula")
+                Dim matricula As Integer = dtDatos.Rows(0)("arancel_matricula")
 
-                    MsgBox("" & codigoAlumno & ", " & alumno & ", " & matricula & "")
+                MsgBox("" & codigoAlumno & ", " & alumno & ", " & matricula & "")
 
-                    Try
-                        Dim pagoFamilia As String = "INSERT INTO pago_familia (codigo_familia, familia, codigo_alumno, alumno, arancel, matricula, materiales, taller, campamento, adicional_jardin, comedor, fecha ) 
+                Try
+                    Dim pagoFamilia As String = "INSERT INTO pago_familia (codigo_familia, familia, codigo_alumno, alumno, arancel, matricula, materiales, taller, campamento, adicional_jardin, comedor, fecha ) 
                                                                VALUES(@codigo_familia, @familia, @codigo_alumno, @alumno, @arancel, @matricula, @materiales, @taller, @campamento, @adicional_jardin, @comedor, @fecha)"
-                        Dim comando As New SqlCommand(pagoFamilia, conexion)
+                    Dim comando As New SqlCommand(pagoFamilia, conexion)
 
-                        comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
-                        comando.Parameters.AddWithValue("@familia", CbxFamilia.Text)
-                        comando.Parameters.AddWithValue("@codigo_alumno", codigoAlumno)
-                        comando.Parameters.AddWithValue("alumno", alumno)
-                        comando.Parameters.AddWithValue("@arancel", Val(TxtArancel.Text))
-                        comando.Parameters.AddWithValue("@matricula", matricula)
-                        comando.Parameters.AddWithValue("@materiales", Val(TxtMateriales.Text))
-                        comando.Parameters.AddWithValue("@taller", Val(TxtTalleres.Text))
-                        comando.Parameters.AddWithValue("@campamento", Val(TxtCampamento.Text))
-                        comando.Parameters.AddWithValue("@adicional_jardin", Val(TxtAdicionalJardin.Text))
-                        comando.Parameters.AddWithValue("@comedor", Val(TxtComedor.Text))
-                        comando.Parameters.AddWithValue("@fecha", DtpFechaDePago.Value)
+                    comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
+                    comando.Parameters.AddWithValue("@familia", CbxFamilia.Text)
+                    comando.Parameters.AddWithValue("@codigo_alumno", codigoAlumno)
+                    comando.Parameters.AddWithValue("alumno", alumno)
+                    comando.Parameters.AddWithValue("@arancel", Val(TxtArancel.Text))
+                    comando.Parameters.AddWithValue("@matricula", matricula)
+                    comando.Parameters.AddWithValue("@materiales", Val(TxtMateriales.Text))
+                    comando.Parameters.AddWithValue("@taller", Val(TxtTalleres.Text))
+                    comando.Parameters.AddWithValue("@campamento", Val(TxtCampamento.Text))
+                    comando.Parameters.AddWithValue("@adicional_jardin", Val(TxtAdicionalJardin.Text))
+                    comando.Parameters.AddWithValue("@comedor", Val(TxtComedor.Text))
+                    comando.Parameters.AddWithValue("@fecha", DtpFechaDePago.Value)
 
-                        comando.ExecuteNonQuery()
+                    comando.ExecuteNonQuery()
 
                     MsgBox("Holis")
-                    Catch ex As Exception
-                        MsgBox("Error comprobando BD" & ex.ToString)
-                    End Try
-                End If
+                Catch ex As Exception
+                    MsgBox("Error comprobando BD" & ex.ToString)
+                End Try
+            End If
 
             codigo += 1
 

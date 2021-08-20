@@ -59,37 +59,29 @@ Public Class FrmActualizaAlumnos
 
         Dim datosAlumno As String
         Dim lista As Byte
+        Dim consulta2 As String
         Dim Codigo As String = CbxCodigoAlumno.Text
         If Val(Codigo) <> 0 Then
             Try
-                datosAlumno = "select nombre_apellido_alumno, edad, fecha_nacimiento, dni, curso, fecha_ingreso, hermano_numero, arancel_importe, cuota, alumno_especial, observaciones from alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel where alumnos.codigo_alumno= '" & Codigo & "' "
-                adaptador = New SqlDataAdapter(datosAlumno, conexion)
-                'Dim comando As New SqlCommand
+                consulta2 = "select nombre_apellido_alumno, edad, fecha_nacimiento, dni, curso, fecha_ingreso, hermano_numero, arancel_importe, cuota, observaciones from gestion_providencia.alumnos JOIN cursos ON cursos.codigo_curso = gestion_providencia.alumnos.codigo_curso JOIN aranceles ON aranceles.codigo_arancel = gestion_providencia.alumnos.codigo_arancel where gestion_providencia.alumnos.codigo_alumno= '" & Codigo & "' "
+                adaptador = New SqlDataAdapter(consulta2, conexion)
+                Dim comando As New SqlCommand
                 datos2 = New DataSet
 
-                adaptador.Fill(datos2, "alumnos")
-                lista = datos2.Tables("alumnos").Rows.Count
+                adaptador.Fill(datos2, "gestion_providencia.alumnos")
+                lista = datos2.Tables("gestion_providencia.alumnos").Rows.Count
 
-                TxtNombreApellido.Text = datos2.Tables("alumnos").Rows(0).Item("nombre_apellido_alumno")
-                TxtEdad.Text = datos2.Tables("alumnos").Rows(0).Item("edad")
-                DtpFechaNacimiento.Text = datos2.Tables("alumnos").Rows(0).Item("fecha_nacimiento")
-                TxtDni.Text = datos2.Tables("alumnos").Rows(0).Item("dni")
-                CbxCurso.Text = datos2.Tables("alumnos").Rows(0).Item("curso")
+                TxtNombreApellido.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("nombre_apellido_alumno")
+                TxtEdad.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("edad")
+                DtpFechaNacimiento.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("fecha_nacimiento")
+                TxtDni.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("dni")
+                CbxCurso.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("curso")
 
-                DtpFechaIngreso.Text = datos2.Tables("alumnos").Rows(0).Item("fecha_ingreso")
-                TxtHermanoNumero.Text = datos2.Tables("alumnos").Rows(0).Item("hermano_numero")
-                TxtArancel.Text = datos2.Tables("alumnos").Rows(0).Item("arancel_importe")
-                TxtCuota.Text = Replace(datos2.Tables("alumnos").Rows(0).Item("cuota"), ".", ",")
-                alumnoEspecial = datos2.Tables("alumnos").Rows(0).Item("alumno_especial")
-                TxtObservaciones.Text = datos2.Tables("alumnos").Rows(0).Item("observaciones")
-
-                'MsgBox("alumno especial: " & alumnoEspecial & "")
-
-                If alumnoEspecial = 1 Then
-                    RdbSi.Checked = True
-                Else
-                    RdbNo.Checked = True
-                End If
+                DtpFechaIngreso.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("fecha_ingreso")
+                TxtHermanoNumero.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("hermano_numero")
+                TxtArancel.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("arancel_importe")
+                TxtCuota.Text = Replace(datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("cuota"), ".", ",")
+                TxtObservaciones.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("observaciones")
             Catch ex As Exception
                 MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
             End Try
@@ -122,7 +114,7 @@ Public Class FrmActualizaAlumnos
             alumnoEspecial = 0
         End If
 
-        Dim actualizaAlumno As String = "UPDATE alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "', fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "', edad =" & Me.TxtEdad.Text & ", dni ='" & Me.TxtDni.Text & "', codigo_curso = '" & Me.TxtCodigoCurso.Text & "', fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "', hermano_numero = " & Me.TxtHermanoNumero.Text & ", alumno_especial = " & alumnoEspecial & ", observaciones = '" & Me.TxtObservaciones.Text & "'  where codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
+        Dim actualizaAlumno As String = "UPDATE gestion_providencia.alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "', fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "', edad =" & Me.TxtEdad.Text & ", dni ='" & Me.TxtDni.Text & "', codigo_curso = '" & Me.TxtCodigoCurso.Text & "', fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "', hermano_numero = " & Me.TxtHermanoNumero.Text & ", observaciones = '" & Me.TxtObservaciones.Text & "'  where codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
 
         Dim comando As New SqlCommand(actualizaAlumno, conexion)
         comando.ExecuteNonQuery()
@@ -135,6 +127,42 @@ Public Class FrmActualizaAlumnos
         Else
             MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
         End If
+
+
+        'Dim actualiza As String = "UPDATE gestion_providencia.alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "'," &
+        '"fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "'," &
+        '"edad =" & Me.TxtEdad.Text & "," &
+        '"dni ='" & Me.TxtDni.Text & "'," &
+        ' "curso = '" & Me.TxtCurso.Text & "'," &
+        ' "fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "'," &
+        ' "hermano_numero = " & Me.TxtHermanoNumero.Text & "," &
+        ' "arancel= " & Val(Me.TxtArancel.Text) & "," &
+        ' "cuota = " & Val(Me.TxtCuota.Text) & "," &
+        ' "observaciones = '" & Me.TxtObservaciones.Text & "' " &
+        ' "where codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
+
+        'Dim comando As New SqlCommand(actualiza, conexion)
+        'comando.ExecuteNonQuery()
+
+        'If comando.ExecuteNonQuery() = 1 Then
+        '    MessageBox.Show("Datos actualizados")
+        '    CbxCodigoAlumno.SelectedText = TxtNombreApellido.Text
+
+        '    TxtNombreApellido.Clear()
+        '    TxtDni.Clear()
+        '    'TxtCurso.Clear()
+        '    TxtHermanoNumero.Clear()
+        '    TxtArancel.Clear()
+        '    TxtCuota.Clear()
+        '    TxtEdad.Clear()
+        '    TxtObservaciones.Clear()
+        '    CbxAlumno.Focus()
+
+        'Else
+        '    MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+        'End If
+
+
         Cargar()
     End Sub
 
