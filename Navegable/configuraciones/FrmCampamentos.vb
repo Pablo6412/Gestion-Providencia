@@ -2,7 +2,7 @@
 
 
 Public Class FrmCampamentos
-
+    Dim codigoCampamento As Integer
     Dim codigoAño As Integer
     Private Sub FrmCampamentos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -20,6 +20,22 @@ Public Class FrmCampamentos
         CbxCodigonivel.DataSource = datosNivel.Tables("niveles")
         CbxCodigonivel.DisplayMember = "codigo_nivel"
 
+
+        Dim año As String = "SELECT codigo_año, año  FROM cursos group by año, codigo_año order by codigo_año"
+        Dim adaptadorAño As New SqlDataAdapter(año, conexion)
+        Dim datosAño As New DataSet
+        datosAño.Tables.Add("cursos")
+        adaptadorAño.Fill(datosAño.Tables("cursos"))
+
+
+        CbxAño.DataSource = datosAño.Tables("cursos")
+        CbxAño.DisplayMember = "año"
+        CbxCodigoAño.DataSource = datosAño.Tables("cursos")
+        CbxCodigoAño.DisplayMember = "codigo_año"
+
+
+
+
     End Sub
 
 
@@ -32,13 +48,17 @@ Public Class FrmCampamentos
 
         If tabla.Rows.Count > 0 Then
             TxtCodigoAño.Text = tabla.Rows(0)("codigo_año")
+
+
+            Dim datosCurso As New DataSet
+            datosCurso.Tables.Add("cursos")
+            adaptadorAño.Fill(datosCurso.Tables("cursos"))
+            CbxCurso.DataSource = datosCurso.Tables("cursos")
+            CbxCurso.DisplayMember = "año"
+
         End If
 
-        Dim datosCurso As New DataSet
-        datosCurso.Tables.Add("cursos")
-        adaptadorAño.Fill(datosCurso.Tables("cursos"))
-        CbxCurso.DataSource = datosCurso.Tables("cursos")
-        CbxCurso.DisplayMember = "año"
+
 
     End Sub
 
@@ -83,5 +103,97 @@ Public Class FrmCampamentos
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()
+    End Sub
+
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+        TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
+    End Sub
+
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+        TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
+        TxtLugarActual.Enabled = False
+        TxtValorActual.Enabled = False
+        TxtDuracionActual.Enabled = False
+        TxtFechaActual.Enabled = False
+    End Sub
+
+    Private Sub RadioButton3_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton3.CheckedChanged
+        TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
+    End Sub
+
+    Private Sub BtnSalirActualiza_Click(sender As Object, e As EventArgs) Handles BtnSalirActualiza.Click
+        Me.Close()
+    End Sub
+
+
+
+    Private Sub BtnActualizar_Click(sender As Object, e As EventArgs) Handles BtnActualizar.Click
+
+        Dim actualiza As String = "UPDATE campamento SET lugar = '" & TxtLugarNuevo.Text & "', valor = '" & Val(TxtValorNuevo.Text) & "', duracion = '" & TxtDuracionNueva.Text & "', fecha = '" & DtpFechaNueva.Value & "' where codigo_campamento = '" & codigoCampamento & "' "
+        Dim comando As New SqlCommand(actualiza, conexion)
+
+        If comando.ExecuteNonQuery Then
+            MsgBox("DatosActualizados")
+            TxtLugarNuevo.Text = ""
+            TxtValorNuevo.Text = ""
+            TxtDuracionNueva.Text = ""
+        Else
+            MsgBox("Error en la actualización")
+        End If
+
+
+    End Sub
+
+    Private Sub CbxCodigoAño_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoAño.SelectedValueChanged
+
+        Dim campamento As String = "SELECT codigo_campamento, lugar, valor, duracion, fecha FROM campamento WHERE codigo_año = " & Val(CbxCodigoAño.Text) & " "
+            Dim adaptadorCampamento As New SqlDataAdapter(campamento, conexion)
+            Dim tabla As New DataTable
+            adaptadorCampamento.Fill(tabla)
+
+            If tabla.Rows.Count > 0 Then
+                codigoCampamento = tabla.Rows(0)("codigo_campamento")
+                TxtLugarActual.Text = tabla.Rows(0)("lugar")
+                TxtValorActual.Text = tabla.Rows(0)("valor")
+                TxtDuracionActual.Text = tabla.Rows(0)("duracion")
+            TxtFechaActual.Text = tabla.Rows(0)("fecha")
+
+            TxtLugarNuevo.Text = TxtLugarActual.Text
+            TxtValorNuevo.Text = TxtValorActual.Text
+            TxtDuracionNueva.Text = TxtDuracionActual.Text
+            DtpFechaNueva.Text = (TxtFechaActual.Text)
+
+
+        End If
+
+
+
+
+
+
+
+
+
+
+            'Dim adaptadorCampamento As New SqlDataAdapter(campamento, conexion)
+        'Dim datosCampamento As New DataSet
+        'adaptadorCampamento.Fill(datosCampamento, "campamento")
+
+        'If datosCampamento.rows.count > 0 Then
+        '    codigoCampamento = datosCampamento.Tables("campamento").Rows(0).Item("codigo_campamento")
+        '    TxtLugarActual.Text = datosCampamento.Tables("campamento").Rows(0).Item("lugar")
+        '    TxtValorActual.Text = datosCampamento.Tables("campamento").Rows(0).Item("valor")
+        '    TxtDuracionActual.Text = datosCampamento.Tables("campamento").Rows(0).Item("duracion")
+        '    TxtFechaActual.Text = datosCampamento.Tables("campamento").Rows(0).Item("fecha")
+
+        '    End If
+        'Catch ex As Exception
+        '    MsgBox("Error comprobando BD" & ex.ToString)
+        'End Try
+
+    End Sub
+
+    Private Sub TxtValorNuevo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtValorNuevo.KeyPress
+        SoloNumeros(e)
     End Sub
 End Class
