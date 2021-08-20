@@ -63,7 +63,7 @@ Public Class FrmEmisiónDeVencimientos
 
                 codigoAlumno = Val(fila(0))
                 arancel = Val(fila(3))
-                TotalArancel += Val(fila(3))
+                totalArancel += Val(fila(3))
                 hermanoNumero = fila(4)
                 totalCampamento += Val(fila(5))
                 totalTaller += Val(fila(6))

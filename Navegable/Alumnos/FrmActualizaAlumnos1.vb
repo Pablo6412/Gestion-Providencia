@@ -59,6 +59,7 @@ Public Class FrmActualizaAlumnos
 
         Dim datosAlumno As String
         Dim lista As Byte
+        Dim consulta2 As String
         Dim Codigo As String = CbxCodigoAlumno.Text
         If Val(Codigo) <> 0 Then
             Try
