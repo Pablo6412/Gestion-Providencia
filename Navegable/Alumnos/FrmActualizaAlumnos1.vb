@@ -64,7 +64,7 @@ Public Class FrmActualizaAlumnos
             Try
                 datosAlumno = "select nombre_apellido_alumno, edad, fecha_nacimiento, dni, curso, fecha_ingreso, hermano_numero, arancel_importe, cuota, alumno_especial, observaciones from alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel where alumnos.codigo_alumno= '" & Codigo & "' "
                 adaptador = New SqlDataAdapter(datosAlumno, conexion)
-                Dim comando As New SqlCommand
+                'Dim comando As New SqlCommand
                 datos2 = New DataSet
 
                 adaptador.Fill(datos2, "alumnos")

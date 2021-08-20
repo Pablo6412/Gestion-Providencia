@@ -44,15 +44,45 @@ Partial Class FrmCampamentos
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.DtpFechaNueva = New System.Windows.Forms.DateTimePicker()
+        Me.BtnActualizar = New System.Windows.Forms.Button()
+        Me.TxtDuracionNueva = New System.Windows.Forms.TextBox()
+        Me.TxtValorNuevo = New System.Windows.Forms.TextBox()
+        Me.TxtLugarNuevo = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.BtnSalirActualiza = New System.Windows.Forms.Button()
+        Me.CbxCodigoAño = New System.Windows.Forms.ComboBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.TxtFechaActual = New System.Windows.Forms.TextBox()
+        Me.TxtDuracionActual = New System.Windows.Forms.TextBox()
+        Me.TxtValorActual = New System.Windows.Forms.TextBox()
+        Me.TxtLugarActual = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.CbxAño = New System.Windows.Forms.ComboBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.MySqlCommand1 = New MySql.Data.MySqlClient.MySqlCommand()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -157,7 +187,7 @@ Partial Class FrmCampamentos
         Me.BtnGuardar.BackColor = System.Drawing.Color.White
         Me.BtnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnGuardar.Location = New System.Drawing.Point(651, 102)
+        Me.BtnGuardar.Location = New System.Drawing.Point(359, 107)
         Me.BtnGuardar.Name = "BtnGuardar"
         Me.BtnGuardar.Size = New System.Drawing.Size(85, 34)
         Me.BtnGuardar.TabIndex = 5
@@ -261,13 +291,254 @@ Partial Class FrmCampamentos
         '
         'TabPage2
         '
+        Me.TabPage2.BackColor = System.Drawing.Color.Transparent
+        Me.TabPage2.BackgroundImage = CType(resources.GetObject("TabPage2.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage2.Controls.Add(Me.Panel3)
+        Me.TabPage2.Controls.Add(Me.GroupBox4)
+        Me.TabPage2.Controls.Add(Me.BtnSalirActualiza)
+        Me.TabPage2.Controls.Add(Me.CbxCodigoAño)
+        Me.TabPage2.Controls.Add(Me.GroupBox3)
         Me.TabPage2.Location = New System.Drawing.Point(4, 24)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(966, 583)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
-        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Panel3
+        '
+        Me.Panel3.Location = New System.Drawing.Point(768, 50)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(190, 36)
+        Me.Panel3.TabIndex = 4
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.DtpFechaNueva)
+        Me.GroupBox4.Controls.Add(Me.BtnActualizar)
+        Me.GroupBox4.Controls.Add(Me.TxtDuracionNueva)
+        Me.GroupBox4.Controls.Add(Me.TxtValorNuevo)
+        Me.GroupBox4.Controls.Add(Me.TxtLugarNuevo)
+        Me.GroupBox4.Controls.Add(Me.Label7)
+        Me.GroupBox4.Controls.Add(Me.Label12)
+        Me.GroupBox4.Controls.Add(Me.Label13)
+        Me.GroupBox4.Controls.Add(Me.Label14)
+        Me.GroupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.GroupBox4.Location = New System.Drawing.Point(77, 373)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(800, 132)
+        Me.GroupBox4.TabIndex = 3
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Valores a actualizar"
+        '
+        'DtpFechaNueva
+        '
+        Me.DtpFechaNueva.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DtpFechaNueva.Location = New System.Drawing.Point(682, 43)
+        Me.DtpFechaNueva.Name = "DtpFechaNueva"
+        Me.DtpFechaNueva.Size = New System.Drawing.Size(94, 23)
+        Me.DtpFechaNueva.TabIndex = 17
+        '
+        'BtnActualizar
+        '
+        Me.BtnActualizar.BackColor = System.Drawing.Color.White
+        Me.BtnActualizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue
+        Me.BtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnActualizar.Location = New System.Drawing.Point(354, 86)
+        Me.BtnActualizar.Name = "BtnActualizar"
+        Me.BtnActualizar.Size = New System.Drawing.Size(94, 31)
+        Me.BtnActualizar.TabIndex = 16
+        Me.BtnActualizar.Text = "Actualizar"
+        Me.BtnActualizar.UseVisualStyleBackColor = False
+        '
+        'TxtDuracionNueva
+        '
+        Me.TxtDuracionNueva.Location = New System.Drawing.Point(511, 43)
+        Me.TxtDuracionNueva.Name = "TxtDuracionNueva"
+        Me.TxtDuracionNueva.Size = New System.Drawing.Size(116, 23)
+        Me.TxtDuracionNueva.TabIndex = 14
+        '
+        'TxtValorNuevo
+        '
+        Me.TxtValorNuevo.Location = New System.Drawing.Point(360, 43)
+        Me.TxtValorNuevo.Name = "TxtValorNuevo"
+        Me.TxtValorNuevo.Size = New System.Drawing.Size(80, 23)
+        Me.TxtValorNuevo.TabIndex = 13
+        '
+        'TxtLugarNuevo
+        '
+        Me.TxtLugarNuevo.Location = New System.Drawing.Point(77, 43)
+        Me.TxtLugarNuevo.Name = "TxtLugarNuevo"
+        Me.TxtLugarNuevo.Size = New System.Drawing.Size(215, 23)
+        Me.TxtLugarNuevo.TabIndex = 12
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(640, 49)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(41, 15)
+        Me.Label7.TabIndex = 11
+        Me.Label7.Text = "Fecha:"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(456, 48)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(58, 15)
+        Me.Label12.TabIndex = 10
+        Me.Label12.Text = "Duración:"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(309, 48)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(48, 15)
+        Me.Label13.TabIndex = 9
+        Me.Label13.Text = "Valor:  $"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(30, 49)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(40, 15)
+        Me.Label14.TabIndex = 8
+        Me.Label14.Text = "Lugar:"
+        '
+        'BtnSalirActualiza
+        '
+        Me.BtnSalirActualiza.BackColor = System.Drawing.Color.White
+        Me.BtnSalirActualiza.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue
+        Me.BtnSalirActualiza.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnSalirActualiza.Location = New System.Drawing.Point(859, 520)
+        Me.BtnSalirActualiza.Name = "BtnSalirActualiza"
+        Me.BtnSalirActualiza.Size = New System.Drawing.Size(82, 32)
+        Me.BtnSalirActualiza.TabIndex = 2
+        Me.BtnSalirActualiza.Text = "Salir"
+        Me.BtnSalirActualiza.UseVisualStyleBackColor = False
+        '
+        'CbxCodigoAño
+        '
+        Me.CbxCodigoAño.FormattingEnabled = True
+        Me.CbxCodigoAño.Location = New System.Drawing.Point(820, 52)
+        Me.CbxCodigoAño.Name = "CbxCodigoAño"
+        Me.CbxCodigoAño.Size = New System.Drawing.Size(121, 23)
+        Me.CbxCodigoAño.TabIndex = 1
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.GroupBox5)
+        Me.GroupBox3.Controls.Add(Me.CbxAño)
+        Me.GroupBox3.Controls.Add(Me.Label6)
+        Me.GroupBox3.Location = New System.Drawing.Point(77, 94)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(800, 257)
+        Me.GroupBox3.TabIndex = 0
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Seleccione año"
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.TxtFechaActual)
+        Me.GroupBox5.Controls.Add(Me.TxtDuracionActual)
+        Me.GroupBox5.Controls.Add(Me.TxtValorActual)
+        Me.GroupBox5.Controls.Add(Me.TxtLugarActual)
+        Me.GroupBox5.Controls.Add(Me.Label11)
+        Me.GroupBox5.Controls.Add(Me.Label10)
+        Me.GroupBox5.Controls.Add(Me.Label9)
+        Me.GroupBox5.Controls.Add(Me.Label8)
+        Me.GroupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.GroupBox5.Location = New System.Drawing.Point(39, 133)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(709, 100)
+        Me.GroupBox5.TabIndex = 2
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Valores actuales"
+        '
+        'TxtFechaActual
+        '
+        Me.TxtFechaActual.Location = New System.Drawing.Point(608, 41)
+        Me.TxtFechaActual.Name = "TxtFechaActual"
+        Me.TxtFechaActual.Size = New System.Drawing.Size(86, 23)
+        Me.TxtFechaActual.TabIndex = 7
+        '
+        'TxtDuracionActual
+        '
+        Me.TxtDuracionActual.Location = New System.Drawing.Point(446, 41)
+        Me.TxtDuracionActual.Name = "TxtDuracionActual"
+        Me.TxtDuracionActual.Size = New System.Drawing.Size(114, 23)
+        Me.TxtDuracionActual.TabIndex = 6
+        '
+        'TxtValorActual
+        '
+        Me.TxtValorActual.Location = New System.Drawing.Point(303, 41)
+        Me.TxtValorActual.Name = "TxtValorActual"
+        Me.TxtValorActual.Size = New System.Drawing.Size(80, 23)
+        Me.TxtValorActual.TabIndex = 5
+        '
+        'TxtLugarActual
+        '
+        Me.TxtLugarActual.Location = New System.Drawing.Point(72, 41)
+        Me.TxtLugarActual.Name = "TxtLugarActual"
+        Me.TxtLugarActual.Size = New System.Drawing.Size(171, 23)
+        Me.TxtLugarActual.TabIndex = 4
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(566, 47)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(41, 15)
+        Me.Label11.TabIndex = 3
+        Me.Label11.Text = "Fecha:"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(389, 46)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(58, 15)
+        Me.Label10.TabIndex = 2
+        Me.Label10.Text = "Duración:"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(252, 46)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(48, 15)
+        Me.Label9.TabIndex = 1
+        Me.Label9.Text = "Valor:  $"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(25, 47)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(40, 15)
+        Me.Label8.TabIndex = 0
+        Me.Label8.Text = "Lugar:"
+        '
+        'CbxAño
+        '
+        Me.CbxAño.FormattingEnabled = True
+        Me.CbxAño.Location = New System.Drawing.Point(244, 72)
+        Me.CbxAño.Name = "CbxAño"
+        Me.CbxAño.Size = New System.Drawing.Size(186, 23)
+        Me.CbxAño.TabIndex = 1
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(206, 79)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(32, 15)
+        Me.Label6.TabIndex = 0
+        Me.Label6.Text = "Año:"
         '
         'TabPage3
         '
@@ -340,10 +611,18 @@ Partial Class FrmCampamentos
         Me.RadioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
+        'MySqlCommand1
+        '
+        Me.MySqlCommand1.CacheAge = 0
+        Me.MySqlCommand1.Connection = Nothing
+        Me.MySqlCommand1.EnableCaching = False
+        Me.MySqlCommand1.Transaction = Nothing
+        '
         'FrmCampamentos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ControlLight
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(974, 611)
@@ -352,7 +631,7 @@ Partial Class FrmCampamentos
         Me.MaximizeBox = False
         Me.Name = "FrmCampamentos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FrmCampamentos"
+        Me.Text = "Campamentos"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -360,6 +639,13 @@ Partial Class FrmCampamentos
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        Me.TabPage2.ResumeLayout(False)
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -391,4 +677,30 @@ Partial Class FrmCampamentos
     Friend WithEvents RadioButton3 As RadioButton
     Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents CbxAño As ComboBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents CbxCodigoAño As ComboBox
+    Friend WithEvents BtnSalirActualiza As Button
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents BtnActualizar As Button
+    Friend WithEvents TxtDuracionNueva As TextBox
+    Friend WithEvents TxtValorNuevo As TextBox
+    Friend WithEvents TxtLugarNuevo As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents TxtFechaActual As TextBox
+    Friend WithEvents TxtDuracionActual As TextBox
+    Friend WithEvents TxtValorActual As TextBox
+    Friend WithEvents TxtLugarActual As TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents MySqlCommand1 As MySql.Data.MySqlClient.MySqlCommand
+    Friend WithEvents DtpFechaNueva As DateTimePicker
+    Friend WithEvents Panel3 As Panel
 End Class
