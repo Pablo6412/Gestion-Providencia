@@ -5,7 +5,7 @@ Public Class FrmEmisiónDeVencimientos
     Dim comando2 As SqlCommand
     Dim adaptador As New SqlDataAdapter
     Dim fechaActual As Date = Date.Today
-    Dim codFam As Integer
+    Dim codFam As Integer = 1
     Dim datos As DataSet
     Dim codigoAlumno As Integer
     Dim arancel As Decimal
@@ -30,7 +30,7 @@ Public Class FrmEmisiónDeVencimientos
 
     End Sub
     Private Sub grabaVencimientos()
-        Dim codFam As Integer
+        'Dim codFam As Integer
         Dim maxcod As Integer = 1
 
         'Dim CantFam As String = "SELECT COUNT (*) FROM familias"
@@ -40,8 +40,8 @@ Public Class FrmEmisiónDeVencimientos
         Dim maximocod As String = "SELECT MAX(codigo_familia) FROM familias"
         Dim comando1 As New SqlCommand(maximocod, conexion)
         maxcod = comando1.ExecuteScalar
-        MsgBox("Codigo familia maximo: " & maxcod & "")
-        MsgBox("Codigo Familia: " & codFam & "")
+        MsgBox("Maximo código" & maxcod & "")
+        MsgBox("Codigo de familia" & codFam & "")
 
         'Try
         While codFam <= maxcod
@@ -63,7 +63,7 @@ Public Class FrmEmisiónDeVencimientos
 
                 codigoAlumno = Val(fila(0))
                 arancel = Val(fila(3))
-                totalArancel += Val(fila(3))
+                TotalArancel += Val(fila(3))
                 hermanoNumero = fila(4)
                 totalCampamento += Val(fila(5))
                 totalTaller += Val(fila(6))

@@ -9,7 +9,7 @@ Public Class FrmActualizaAlumnos
     Dim FechaNacimiento As Date
     Dim FechaActual As Date
     Dim codigo As Integer
-    Dim alumnoEspecial As String
+    Dim alumnoEspecial As Integer
 
     Private Sub FrmActualizaAlumnos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -57,39 +57,30 @@ Public Class FrmActualizaAlumnos
 
     Private Sub CbxCodigoAlumno_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoAlumno.SelectedValueChanged
 
-        Dim consulta2 As String
+        Dim datosAlumno As String
         Dim lista As Byte
         Dim Codigo As String = CbxCodigoAlumno.Text
         If Val(Codigo) <> 0 Then
             Try
-                consulta2 = "select nombre_apellido_alumno, edad, fecha_nacimiento, dni, curso, fecha_ingreso, hermano_numero, arancel_importe, cuota, alumno_especial, observaciones from alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel where alumnos.codigo_alumno= '" & Codigo & "' "
+                consulta2 = "select nombre_apellido_alumno, edad, fecha_nacimiento, dni, curso, fecha_ingreso, hermano_numero, arancel_importe, cuota, observaciones from gestion_providencia.alumnos JOIN cursos ON cursos.codigo_curso = gestion_providencia.alumnos.codigo_curso JOIN aranceles ON aranceles.codigo_arancel = gestion_providencia.alumnos.codigo_arancel where gestion_providencia.alumnos.codigo_alumno= '" & Codigo & "' "
                 adaptador = New SqlDataAdapter(consulta2, conexion)
                 Dim comando As New SqlCommand
                 datos2 = New DataSet
 
-                adaptador.Fill(datos2, "alumnos")
-                lista = datos2.Tables("alumnos").Rows.Count
+                adaptador.Fill(datos2, "gestion_providencia.alumnos")
+                lista = datos2.Tables("gestion_providencia.alumnos").Rows.Count
 
-                TxtNombreApellido.Text = datos2.Tables("alumnos").Rows(0).Item("nombre_apellido_alumno")
-                TxtEdad.Text = datos2.Tables("alumnos").Rows(0).Item("edad")
-                DtpFechaNacimiento.Text = datos2.Tables("alumnos").Rows(0).Item("fecha_nacimiento")
-                TxtDni.Text = datos2.Tables("alumnos").Rows(0).Item("dni")
-                CbxCurso.Text = datos2.Tables("alumnos").Rows(0).Item("curso")
+                TxtNombreApellido.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("nombre_apellido_alumno")
+                TxtEdad.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("edad")
+                DtpFechaNacimiento.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("fecha_nacimiento")
+                TxtDni.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("dni")
+                CbxCurso.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("curso")
 
-                DtpFechaIngreso.Text = datos2.Tables("alumnos").Rows(0).Item("fecha_ingreso")
-                TxtHermanoNumero.Text = datos2.Tables("alumnos").Rows(0).Item("hermano_numero")
-                TxtArancel.Text = datos2.Tables("alumnos").Rows(0).Item("arancel_importe")
-                TxtCuota.Text = Replace(datos2.Tables("alumnos").Rows(0).Item("cuota"), ".", ",")
-                alumnoEspecial = datos2.Tables("alumnos").Rows(0).Item("alumno_especial")
-                TxtObservaciones.Text = datos2.Tables("alumnos").Rows(0).Item("observaciones")
-                MsgBox("alumno especial: " & alumnoEspecial & "")
-
-                If alumnoEspecial = "Si" Then
-                    RdbSi.Checked = True
-                    MsgBox("Entró")
-                Else
-                    RdbNo.Checked = True
-                End If
+                DtpFechaIngreso.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("fecha_ingreso")
+                TxtHermanoNumero.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("hermano_numero")
+                TxtArancel.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("arancel_importe")
+                TxtCuota.Text = Replace(datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("cuota"), ".", ",")
+                TxtObservaciones.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("observaciones")
             Catch ex As Exception
                 MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
             End Try
@@ -116,8 +107,13 @@ Public Class FrmActualizaAlumnos
     Private Sub BtnActualiza_Click(sender As Object, e As EventArgs) Handles BtnActualiza.Click
 
         abrir()
+        If RdbSi.Checked = True Then
+            alumnoEspecial = 1
+        Else
+            alumnoEspecial = 0
+        End If
 
-        Dim actualizaAlumno As String = "UPDATE alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "', fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "', edad =" & Me.TxtEdad.Text & ", dni ='" & Me.TxtDni.Text & "', codigo_curso = '" & Me.TxtCodigoCurso.Text & "', fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "', hermano_numero = " & Me.TxtHermanoNumero.Text & ", observaciones = '" & Me.TxtObservaciones.Text & "'  where codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
+        Dim actualizaAlumno As String = "UPDATE gestion_providencia.alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "', fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "', edad =" & Me.TxtEdad.Text & ", dni ='" & Me.TxtDni.Text & "', codigo_curso = '" & Me.TxtCodigoCurso.Text & "', fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "', hermano_numero = " & Me.TxtHermanoNumero.Text & ", observaciones = '" & Me.TxtObservaciones.Text & "'  where codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
 
         Dim comando As New SqlCommand(actualizaAlumno, conexion)
         comando.ExecuteNonQuery()
@@ -132,7 +128,7 @@ Public Class FrmActualizaAlumnos
         End If
 
 
-        'Dim actualiza As String = "UPDATE alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "'," &
+        'Dim actualiza As String = "UPDATE gestion_providencia.alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "'," &
         '"fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "'," &
         '"edad =" & Me.TxtEdad.Text & "," &
         '"dni ='" & Me.TxtDni.Text & "'," &
@@ -272,13 +268,9 @@ Public Class FrmActualizaAlumnos
         Me.Close()
     End Sub
 
-    Private Sub TabPage2_Click(sender As Object, e As EventArgs) Handles TabPage2.Click
 
-    End Sub
 
-    Private Sub TabPage1_Click(sender As Object, e As EventArgs) Handles TabPage1.Click
 
-    End Sub
 End Class
 
 

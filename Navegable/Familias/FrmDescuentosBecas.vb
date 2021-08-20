@@ -5,6 +5,7 @@ Public Class FrmDescuentosBecas
     Dim beca As Integer
 
     Private Sub FrmDescuentosBecas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        RadioButton1.Checked = True
         conectar()
         NombreBoton()
         Familias()
@@ -57,6 +58,8 @@ Public Class FrmDescuentosBecas
         RdbSinAsignar2.Text = beca4
         Dim beca5 As String = dtDatos.Rows(5)("tipo_beca")
         RdbSinAsignar3.Text = beca5
+
+        'MsgBox("beca: " & beca & " beca1: " & beca1 & " beca2: " & beca2 & " beca3: " & beca3 & " beca4: " & beca4 & " beca5: " & beca5 & "")
     End Sub
 
     Private Sub Familias()
@@ -72,6 +75,10 @@ Public Class FrmDescuentosBecas
 
             Me.CbxFamilia.DataSource = datos.Tables(0)
             Me.CbxFamilia.DisplayMember = "familia"
+            Me.CbxFamiliaDescuento.DataSource = datos.Tables(0)
+            Me.CbxFamiliaDescuento.DisplayMember = "familia"
+            Me.CbxCodFamDescuento.DataSource = datos.Tables(0)
+            Me.CbxCodFamDescuento.DisplayMember = "codigo_familia"
             Me.CbxCodigo.DataSource = datos.Tables(0)
             Me.CbxCodigo.DisplayMember = "codigo_familia"
 
@@ -133,5 +140,60 @@ Public Class FrmDescuentosBecas
     End Sub
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()
+    End Sub
+
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+        TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
+    End Sub
+
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+
+        TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
+    End Sub
+
+    Private Sub BtnSalirDescuentos_Click(sender As Object, e As EventArgs) Handles BtnSalirDescuentos.Click
+        Me.Close()
+    End Sub
+
+    Private Sub BtnGuardarPorcentaje_Click(sender As Object, e As EventArgs) Handles BtnGuardarPorcentaje.Click
+        Dim porcentaje As Integer
+        porcentaje = Val(TxtDescuentoPorcentaje.Text)
+        Dim descuentoPorcentaje As Decimal
+        descuentoPorcentaje = (100 - porcentaje) / 100
+
+        Dim descuento As String = "UPDATE descuento_especial  SET tipo_descuento = '" & 1 & "', codigo_familia = '" & CbxCodFamDescuento.Text & "', descuento = '" & descuentoPorcentaje & "', monto = '" & 0 & "' WHERE codigo_familia = '" & CbxCodFamDescuento.Text & "'"
+        Dim comando As New SqlCommand(descuento, conexion)
+
+        If comando.ExecuteNonQuery Then
+            MsgBox("Descuento aplicado")
+        Else
+            MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+        End If
+        TxtDescuentoPorcentaje.Clear()
+        TxtDescuentoMonto.Clear()
+    End Sub
+
+    Private Sub BtnGuardarMonto_Click(sender As Object, e As EventArgs) Handles BtnGuardarMonto.Click
+        Dim descuento As String = "UPDATE descuento_especial  SET tipo_descuento = '" & 2 & "', codigo_familia = '" & CbxCodFamDescuento.Text & "', descuento = '" & 1 & "', monto = '" & TxtDescuentoMonto.Text & "' WHERE codigo_familia = '" & CbxCodFamDescuento.Text & "'"
+        Dim comando As New SqlCommand(descuento, conexion)
+
+        If comando.ExecuteNonQuery Then
+            MsgBox("Descuento aplicado")
+        Else
+            MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+        End If
+        TxtDescuentoPorcentaje.Clear()
+        TxtDescuentoMonto.Clear()
+    End Sub
+
+
+
+
+    Private Sub TxtDescuentoPorcentaje_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtDescuentoPorcentaje.KeyPress
+        SoloNumeros(e)
+    End Sub
+
+    Private Sub TxtDescuentoMonto_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtDescuentoMonto.KeyPress
+        SoloNumeros(e)
     End Sub
 End Class

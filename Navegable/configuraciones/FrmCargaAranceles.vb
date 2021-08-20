@@ -12,6 +12,8 @@ Public Class FrmCargaAranceles
         RadioButton1.Checked = True
         conectar()
         Cargar()
+        TxtCodigoActualizacion.Text = CbxCodigoNivelActualizacion.Text
+        Llenar()
         Dgv()
         TxtArancel.Focus()
     End Sub
@@ -24,10 +26,16 @@ Public Class FrmCargaAranceles
             datos = New DataSet
             datos.Tables.Add("niveles")
             adaptador.Fill(datos.Tables("niveles"))
+
+            CbxNivelActualizacion.DataSource = datos.Tables("niveles")
+            CbxNivelActualizacion.DisplayMember = "nivel"
+            CbxCodigoNivelActualizacion.DataSource = datos.Tables("niveles")
+            CbxCodigoNivelActualizacion.DisplayMember = "codigo_nivel"
             CbxNivel.DataSource = datos.Tables("niveles")
             CbxNivel.DisplayMember = "nivel"
             CbxCodigoNivel.DataSource = datos.Tables("niveles")
             CbxCodigoNivel.DisplayMember = "codigo_nivel"
+
             TextBox1.Text = CbxCodigoNivel.Text
 
         Catch ex As Exception
@@ -106,26 +114,26 @@ Public Class FrmCargaAranceles
             datos = New DataSet
             datos.Tables.Add("niveles")
             adaptador.Fill(datos.Tables("niveles"))
-            CbxNivelActualizacion.DataSource = datos.Tables("niveles")
-            CbxNivelActualizacion.DisplayMember = "nivel"
-            CbxCodigoNivelActualizacion.DataSource = datos.Tables("niveles")
-            CbxCodigoNivelActualizacion.DisplayMember = "codigo_nivel"
+            'CbxNivelActualizacion.DataSource = datos.Tables("niveles")
+            'CbxNivelActualizacion.DisplayMember = "nivel"
+            'CbxCodigoNivelActualizacion.DataSource = datos.Tables("niveles")
+            'CbxCodigoNivelActualizacion.DisplayMember = "codigo_nivel"
 
         Catch ex As Exception
             MsgBox("Error comprobando BD" & ex.ToString)
         End Try
     End Sub
 
-    Private Sub CbxCodigoNivelActualizacion_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoNivelActualizacion.SelectedValueChanged
-        TxtCodigoActualizacion.Text = CbxCodigoNivelActualizacion.Text
-        Llenar()
-    End Sub
+    'Private Sub CbxCodigoNivelActualizacion_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoNivelActualizacion.SelectedValueChanged
+    '    TxtCodigoActualizacion.Text = CbxCodigoNivelActualizacion.Text
+    '    Llenar()
+    'End Sub
 
     Private Sub Llenar()
         TxtArancelActual.Clear()
         TxtMatriculaActual.Clear()
         Try
-            Dim arancel As String = "select codigo_nivel, arancel_importe, arancel_matricula from aranceles where codigo_nivel = '" & Val(TxtCodigoActualizacion.Text) & "' "
+            Dim arancel As String = "select codigo_nivel, arancel_importe, arancel_matricula from aranceles where codigo_nivel = '" & Val(CbxCodigoNivelActualizacion.Text) & "' "
             adaptador = New SqlDataAdapter(arancel, conexion)
             datos = New DataSet
             adaptador.Fill(datos, "aranceles")

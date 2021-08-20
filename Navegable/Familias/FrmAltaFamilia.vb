@@ -32,6 +32,7 @@ Public Class FrmAltaFamilia
 
     'validaciones de formato correo, campos vacios y familia existente con posterior grabación en tabla familias
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
+        Dim codigoFamilia As Integer
 
         If Validar_Mail(LCase(TxtEmail.Text)) = False Then
             MessageBox.Show("Dirección de correo electrónico no valida, por favor seleccione un correo valido", "Validación de correo electrónico", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -65,13 +66,33 @@ Public Class FrmAltaFamilia
                     comandos.Parameters.AddWithValue("@fecha_ingreso", DtpFechaIngreso.Value)
                     comandos.Parameters.AddWithValue("@observaciones", TxtObservaciones.Text)
 
+
                     If comandos.ExecuteNonQuery() = 1 Then
 
-                        MessageBox.Show("¡Bien vendia familia " & TxtApellidoPadre.Text & "-" & TxtApellidoMadre.Text & "!")
 
-                        Blanqueo()
+
+                        'busca el codigo_familia de la familia recien incorporada
+                        Dim codFam As String = "SELECT MAX(codigo_familia) FROM familias"
+                        Dim comando As New SqlCommand(codFam, conexion)
+                        codigoFamilia = comando.ExecuteScalar
+
+                        Dim descuentoEspecial As String = "INSERT INTO descuento_especial(codigo_familia, tipo_descuento, descuento) VALUES(@codigo_familia, @tipo_descuento, @descuento)"
+                        Dim comandoDescuento As New SqlCommand(descuentoEspecial, conexion)
+                        comandoDescuento.Parameters.AddWithValue("@codigo_familia", codigoFamilia)
+                        comandoDescuento.Parameters.AddWithValue("@tipo_descuento", 1)
+                        comandoDescuento.Parameters.AddWithValue("@descuento", 1)
+
+                        If comandoDescuento.ExecuteNonQuery() = 1 Then
+
+                            MessageBox.Show("¡Bien vendia familia " & TxtApellidoPadre.Text & "-" & TxtApellidoMadre.Text & "!")
+
+                            Blanqueo()
+                        Else
+                            MsgBox("Error en la grabación")
+                        End If
                     Else
                         MsgBox("Error en la grabación")
+
                     End If
                 Else
                     MsgBox("La familia " & TxtApellidoPadre.Text & "-" & TxtApellidoMadre.Text & " ya está registrada")

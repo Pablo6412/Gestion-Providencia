@@ -67,6 +67,23 @@ Partial Class FrmInscripcionTalleres
         Me.RdbHockey3 = New System.Windows.Forms.RadioButton()
         Me.RdbFutbol3 = New System.Windows.Forms.RadioButton()
         Me.RdbNinguno3 = New System.Windows.Forms.RadioButton()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.LblFutbol = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.LblHockey = New System.Windows.Forms.Label()
+        Me.LblRugby = New System.Windows.Forms.Label()
+        Me.LblMusica = New System.Windows.Forms.Label()
+        Me.LblSinAsignarIVT = New System.Windows.Forms.Label()
+        Me.LblSinAsignarIIVT = New System.Windows.Forms.Label()
+        Me.LblSinAsignarIIIVT = New System.Windows.Forms.Label()
+        Me.LblSinAsignarIVVT = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,6 +92,7 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -220,9 +238,9 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox1.Controls.Add(Me.RdbHockey1)
         Me.GroupBox1.Controls.Add(Me.RdbFutbol1)
         Me.GroupBox1.Controls.Add(Me.RdbNinguno1)
-        Me.GroupBox1.Location = New System.Drawing.Point(37, 265)
+        Me.GroupBox1.Location = New System.Drawing.Point(236, 265)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(235, 334)
+        Me.GroupBox1.Size = New System.Drawing.Size(167, 334)
         Me.GroupBox1.TabIndex = 28
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Taller1"
@@ -232,7 +250,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar4.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbSinAsignar4.AutoSize = True
         Me.RdbSinAsignar4.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbSinAsignar4.Location = New System.Drawing.Point(114, 298)
+        Me.RdbSinAsignar4.Location = New System.Drawing.Point(37, 298)
         Me.RdbSinAsignar4.Name = "RdbSinAsignar4"
         Me.RdbSinAsignar4.Size = New System.Drawing.Size(82, 19)
         Me.RdbSinAsignar4.TabIndex = 8
@@ -245,7 +263,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar3.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbSinAsignar3.AutoSize = True
         Me.RdbSinAsignar3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbSinAsignar3.Location = New System.Drawing.Point(114, 264)
+        Me.RdbSinAsignar3.Location = New System.Drawing.Point(37, 264)
         Me.RdbSinAsignar3.Name = "RdbSinAsignar3"
         Me.RdbSinAsignar3.Size = New System.Drawing.Size(82, 19)
         Me.RdbSinAsignar3.TabIndex = 7
@@ -258,7 +276,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbSinAsignar2.AutoSize = True
         Me.RdbSinAsignar2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbSinAsignar2.Location = New System.Drawing.Point(114, 234)
+        Me.RdbSinAsignar2.Location = New System.Drawing.Point(37, 234)
         Me.RdbSinAsignar2.Name = "RdbSinAsignar2"
         Me.RdbSinAsignar2.Size = New System.Drawing.Size(82, 19)
         Me.RdbSinAsignar2.TabIndex = 6
@@ -271,7 +289,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbSinAsignar1.AutoSize = True
         Me.RdbSinAsignar1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbSinAsignar1.Location = New System.Drawing.Point(114, 204)
+        Me.RdbSinAsignar1.Location = New System.Drawing.Point(37, 204)
         Me.RdbSinAsignar1.Name = "RdbSinAsignar1"
         Me.RdbSinAsignar1.Size = New System.Drawing.Size(82, 19)
         Me.RdbSinAsignar1.TabIndex = 5
@@ -284,7 +302,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbRugby1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbRugby1.AutoSize = True
         Me.RdbRugby1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbRugby1.Location = New System.Drawing.Point(137, 174)
+        Me.RdbRugby1.Location = New System.Drawing.Point(60, 174)
         Me.RdbRugby1.Name = "RdbRugby1"
         Me.RdbRugby1.Size = New System.Drawing.Size(59, 19)
         Me.RdbRugby1.TabIndex = 4
@@ -297,7 +315,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbMusica1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbMusica1.AutoSize = True
         Me.RdbMusica1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbMusica1.Location = New System.Drawing.Point(133, 142)
+        Me.RdbMusica1.Location = New System.Drawing.Point(56, 142)
         Me.RdbMusica1.Name = "RdbMusica1"
         Me.RdbMusica1.Size = New System.Drawing.Size(63, 19)
         Me.RdbMusica1.TabIndex = 3
@@ -310,7 +328,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbHockey1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbHockey1.AutoSize = True
         Me.RdbHockey1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbHockey1.Location = New System.Drawing.Point(131, 110)
+        Me.RdbHockey1.Location = New System.Drawing.Point(54, 110)
         Me.RdbHockey1.Name = "RdbHockey1"
         Me.RdbHockey1.Size = New System.Drawing.Size(65, 19)
         Me.RdbHockey1.TabIndex = 2
@@ -323,7 +341,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbFutbol1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbFutbol1.AutoSize = True
         Me.RdbFutbol1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbFutbol1.Location = New System.Drawing.Point(137, 82)
+        Me.RdbFutbol1.Location = New System.Drawing.Point(60, 82)
         Me.RdbFutbol1.Name = "RdbFutbol1"
         Me.RdbFutbol1.Size = New System.Drawing.Size(59, 19)
         Me.RdbFutbol1.TabIndex = 1
@@ -336,7 +354,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbNinguno1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbNinguno1.AutoSize = True
         Me.RdbNinguno1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbNinguno1.Location = New System.Drawing.Point(124, 52)
+        Me.RdbNinguno1.Location = New System.Drawing.Point(47, 52)
         Me.RdbNinguno1.Name = "RdbNinguno1"
         Me.RdbNinguno1.Size = New System.Drawing.Size(72, 19)
         Me.RdbNinguno1.TabIndex = 0
@@ -368,9 +386,9 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox3.Controls.Add(Me.RdbHockey2)
         Me.GroupBox3.Controls.Add(Me.RdbFutbol2)
         Me.GroupBox3.Controls.Add(Me.RdbNinguno2)
-        Me.GroupBox3.Location = New System.Drawing.Point(321, 265)
+        Me.GroupBox3.Location = New System.Drawing.Point(455, 265)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(235, 334)
+        Me.GroupBox3.Size = New System.Drawing.Size(167, 334)
         Me.GroupBox3.TabIndex = 29
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Taller2"
@@ -380,7 +398,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar44.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbSinAsignar44.AutoSize = True
         Me.RdbSinAsignar44.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbSinAsignar44.Location = New System.Drawing.Point(111, 298)
+        Me.RdbSinAsignar44.Location = New System.Drawing.Point(43, 298)
         Me.RdbSinAsignar44.Name = "RdbSinAsignar44"
         Me.RdbSinAsignar44.Size = New System.Drawing.Size(82, 19)
         Me.RdbSinAsignar44.TabIndex = 8
@@ -393,7 +411,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar33.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbSinAsignar33.AutoSize = True
         Me.RdbSinAsignar33.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbSinAsignar33.Location = New System.Drawing.Point(111, 264)
+        Me.RdbSinAsignar33.Location = New System.Drawing.Point(43, 264)
         Me.RdbSinAsignar33.Name = "RdbSinAsignar33"
         Me.RdbSinAsignar33.Size = New System.Drawing.Size(82, 19)
         Me.RdbSinAsignar33.TabIndex = 7
@@ -406,7 +424,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar22.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbSinAsignar22.AutoSize = True
         Me.RdbSinAsignar22.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbSinAsignar22.Location = New System.Drawing.Point(111, 234)
+        Me.RdbSinAsignar22.Location = New System.Drawing.Point(43, 234)
         Me.RdbSinAsignar22.Name = "RdbSinAsignar22"
         Me.RdbSinAsignar22.Size = New System.Drawing.Size(82, 19)
         Me.RdbSinAsignar22.TabIndex = 6
@@ -419,7 +437,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar11.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbSinAsignar11.AutoSize = True
         Me.RdbSinAsignar11.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbSinAsignar11.Location = New System.Drawing.Point(111, 204)
+        Me.RdbSinAsignar11.Location = New System.Drawing.Point(43, 204)
         Me.RdbSinAsignar11.Name = "RdbSinAsignar11"
         Me.RdbSinAsignar11.Size = New System.Drawing.Size(82, 19)
         Me.RdbSinAsignar11.TabIndex = 5
@@ -432,7 +450,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbRugby2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbRugby2.AutoSize = True
         Me.RdbRugby2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbRugby2.Location = New System.Drawing.Point(134, 174)
+        Me.RdbRugby2.Location = New System.Drawing.Point(66, 174)
         Me.RdbRugby2.Name = "RdbRugby2"
         Me.RdbRugby2.Size = New System.Drawing.Size(59, 19)
         Me.RdbRugby2.TabIndex = 4
@@ -445,7 +463,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbMusica2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbMusica2.AutoSize = True
         Me.RdbMusica2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbMusica2.Location = New System.Drawing.Point(130, 142)
+        Me.RdbMusica2.Location = New System.Drawing.Point(62, 142)
         Me.RdbMusica2.Name = "RdbMusica2"
         Me.RdbMusica2.Size = New System.Drawing.Size(63, 19)
         Me.RdbMusica2.TabIndex = 3
@@ -458,7 +476,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbHockey2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbHockey2.AutoSize = True
         Me.RdbHockey2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbHockey2.Location = New System.Drawing.Point(128, 110)
+        Me.RdbHockey2.Location = New System.Drawing.Point(60, 110)
         Me.RdbHockey2.Name = "RdbHockey2"
         Me.RdbHockey2.Size = New System.Drawing.Size(65, 19)
         Me.RdbHockey2.TabIndex = 2
@@ -471,7 +489,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbFutbol2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbFutbol2.AutoSize = True
         Me.RdbFutbol2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbFutbol2.Location = New System.Drawing.Point(134, 82)
+        Me.RdbFutbol2.Location = New System.Drawing.Point(66, 82)
         Me.RdbFutbol2.Name = "RdbFutbol2"
         Me.RdbFutbol2.Size = New System.Drawing.Size(59, 19)
         Me.RdbFutbol2.TabIndex = 1
@@ -484,7 +502,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbNinguno2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbNinguno2.AutoSize = True
         Me.RdbNinguno2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbNinguno2.Location = New System.Drawing.Point(121, 52)
+        Me.RdbNinguno2.Location = New System.Drawing.Point(53, 52)
         Me.RdbNinguno2.Name = "RdbNinguno2"
         Me.RdbNinguno2.Size = New System.Drawing.Size(72, 19)
         Me.RdbNinguno2.TabIndex = 0
@@ -504,9 +522,9 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox2.Controls.Add(Me.RdbHockey3)
         Me.GroupBox2.Controls.Add(Me.RdbFutbol3)
         Me.GroupBox2.Controls.Add(Me.RdbNinguno3)
-        Me.GroupBox2.Location = New System.Drawing.Point(599, 265)
+        Me.GroupBox2.Location = New System.Drawing.Point(667, 265)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(235, 334)
+        Me.GroupBox2.Size = New System.Drawing.Size(167, 334)
         Me.GroupBox2.TabIndex = 29
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Taller3"
@@ -516,7 +534,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar444.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbSinAsignar444.AutoSize = True
         Me.RdbSinAsignar444.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbSinAsignar444.Location = New System.Drawing.Point(111, 298)
+        Me.RdbSinAsignar444.Location = New System.Drawing.Point(43, 298)
         Me.RdbSinAsignar444.Name = "RdbSinAsignar444"
         Me.RdbSinAsignar444.Size = New System.Drawing.Size(82, 19)
         Me.RdbSinAsignar444.TabIndex = 8
@@ -529,7 +547,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar333.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbSinAsignar333.AutoSize = True
         Me.RdbSinAsignar333.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbSinAsignar333.Location = New System.Drawing.Point(111, 264)
+        Me.RdbSinAsignar333.Location = New System.Drawing.Point(43, 264)
         Me.RdbSinAsignar333.Name = "RdbSinAsignar333"
         Me.RdbSinAsignar333.Size = New System.Drawing.Size(82, 19)
         Me.RdbSinAsignar333.TabIndex = 7
@@ -542,7 +560,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar222.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbSinAsignar222.AutoSize = True
         Me.RdbSinAsignar222.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbSinAsignar222.Location = New System.Drawing.Point(111, 234)
+        Me.RdbSinAsignar222.Location = New System.Drawing.Point(43, 234)
         Me.RdbSinAsignar222.Name = "RdbSinAsignar222"
         Me.RdbSinAsignar222.Size = New System.Drawing.Size(82, 19)
         Me.RdbSinAsignar222.TabIndex = 6
@@ -555,7 +573,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbSinAsignar111.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbSinAsignar111.AutoSize = True
         Me.RdbSinAsignar111.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbSinAsignar111.Location = New System.Drawing.Point(111, 204)
+        Me.RdbSinAsignar111.Location = New System.Drawing.Point(43, 204)
         Me.RdbSinAsignar111.Name = "RdbSinAsignar111"
         Me.RdbSinAsignar111.Size = New System.Drawing.Size(82, 19)
         Me.RdbSinAsignar111.TabIndex = 5
@@ -568,7 +586,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbRugby3.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbRugby3.AutoSize = True
         Me.RdbRugby3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbRugby3.Location = New System.Drawing.Point(134, 174)
+        Me.RdbRugby3.Location = New System.Drawing.Point(66, 174)
         Me.RdbRugby3.Name = "RdbRugby3"
         Me.RdbRugby3.Size = New System.Drawing.Size(59, 19)
         Me.RdbRugby3.TabIndex = 4
@@ -581,7 +599,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbMusica3.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbMusica3.AutoSize = True
         Me.RdbMusica3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbMusica3.Location = New System.Drawing.Point(130, 142)
+        Me.RdbMusica3.Location = New System.Drawing.Point(62, 142)
         Me.RdbMusica3.Name = "RdbMusica3"
         Me.RdbMusica3.Size = New System.Drawing.Size(63, 19)
         Me.RdbMusica3.TabIndex = 3
@@ -594,7 +612,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbHockey3.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbHockey3.AutoSize = True
         Me.RdbHockey3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbHockey3.Location = New System.Drawing.Point(128, 110)
+        Me.RdbHockey3.Location = New System.Drawing.Point(60, 110)
         Me.RdbHockey3.Name = "RdbHockey3"
         Me.RdbHockey3.Size = New System.Drawing.Size(65, 19)
         Me.RdbHockey3.TabIndex = 2
@@ -607,7 +625,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbFutbol3.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbFutbol3.AutoSize = True
         Me.RdbFutbol3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbFutbol3.Location = New System.Drawing.Point(134, 82)
+        Me.RdbFutbol3.Location = New System.Drawing.Point(66, 82)
         Me.RdbFutbol3.Name = "RdbFutbol3"
         Me.RdbFutbol3.Size = New System.Drawing.Size(59, 19)
         Me.RdbFutbol3.TabIndex = 1
@@ -620,13 +638,184 @@ Partial Class FrmInscripcionTalleres
         Me.RdbNinguno3.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbNinguno3.AutoSize = True
         Me.RdbNinguno3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbNinguno3.Location = New System.Drawing.Point(121, 52)
+        Me.RdbNinguno3.Location = New System.Drawing.Point(53, 52)
         Me.RdbNinguno3.Name = "RdbNinguno3"
         Me.RdbNinguno3.Size = New System.Drawing.Size(72, 19)
         Me.RdbNinguno3.TabIndex = 0
         Me.RdbNinguno3.TabStop = True
         Me.RdbNinguno3.Text = "Ninguno"
         Me.RdbNinguno3.UseVisualStyleBackColor = True
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox5.Controls.Add(Me.LblSinAsignarIVVT)
+        Me.GroupBox5.Controls.Add(Me.LblSinAsignarIIIVT)
+        Me.GroupBox5.Controls.Add(Me.LblSinAsignarIIVT)
+        Me.GroupBox5.Controls.Add(Me.LblSinAsignarIVT)
+        Me.GroupBox5.Controls.Add(Me.LblMusica)
+        Me.GroupBox5.Controls.Add(Me.LblRugby)
+        Me.GroupBox5.Controls.Add(Me.LblHockey)
+        Me.GroupBox5.Controls.Add(Me.LblFutbol)
+        Me.GroupBox5.Controls.Add(Me.Label8)
+        Me.GroupBox5.Controls.Add(Me.Label7)
+        Me.GroupBox5.Controls.Add(Me.Label6)
+        Me.GroupBox5.Controls.Add(Me.Label5)
+        Me.GroupBox5.Controls.Add(Me.Label4)
+        Me.GroupBox5.Controls.Add(Me.Label3)
+        Me.GroupBox5.Controls.Add(Me.Label2)
+        Me.GroupBox5.Controls.Add(Me.Label1)
+        Me.GroupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.GroupBox5.Location = New System.Drawing.Point(30, 265)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(162, 334)
+        Me.GroupBox5.TabIndex = 30
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Valores talleres"
+        '
+        'LblFutbol
+        '
+        Me.LblFutbol.AutoSize = True
+        Me.LblFutbol.Location = New System.Drawing.Point(87, 52)
+        Me.LblFutbol.Name = "LblFutbol"
+        Me.LblFutbol.Size = New System.Drawing.Size(41, 15)
+        Me.LblFutbol.TabIndex = 8
+        Me.LblFutbol.Text = "Label9"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(23, 266)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(41, 15)
+        Me.Label8.TabIndex = 7
+        Me.Label8.Text = "Label8"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(23, 234)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(41, 15)
+        Me.Label7.TabIndex = 6
+        Me.Label7.Text = "Label7"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(23, 206)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(41, 15)
+        Me.Label6.TabIndex = 5
+        Me.Label6.Text = "Label6"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(23, 178)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(41, 15)
+        Me.Label5.TabIndex = 4
+        Me.Label5.Text = "Label5"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(23, 142)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(41, 15)
+        Me.Label4.TabIndex = 3
+        Me.Label4.Text = "Label4"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(23, 114)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(41, 15)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "Label3"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(23, 84)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(41, 15)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Label2"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(23, 52)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(41, 15)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Label1"
+        '
+        'LblHockey
+        '
+        Me.LblHockey.AutoSize = True
+        Me.LblHockey.Location = New System.Drawing.Point(87, 84)
+        Me.LblHockey.Name = "LblHockey"
+        Me.LblHockey.Size = New System.Drawing.Size(41, 15)
+        Me.LblHockey.TabIndex = 9
+        Me.LblHockey.Text = "Label9"
+        '
+        'LblRugby
+        '
+        Me.LblRugby.AutoSize = True
+        Me.LblRugby.Location = New System.Drawing.Point(87, 142)
+        Me.LblRugby.Name = "LblRugby"
+        Me.LblRugby.Size = New System.Drawing.Size(41, 15)
+        Me.LblRugby.TabIndex = 10
+        Me.LblRugby.Text = "Label9"
+        '
+        'LblMusica
+        '
+        Me.LblMusica.AutoSize = True
+        Me.LblMusica.Location = New System.Drawing.Point(87, 114)
+        Me.LblMusica.Name = "LblMusica"
+        Me.LblMusica.Size = New System.Drawing.Size(41, 15)
+        Me.LblMusica.TabIndex = 11
+        Me.LblMusica.Text = "Label9"
+        '
+        'LblSinAsignarIVT
+        '
+        Me.LblSinAsignarIVT.AutoSize = True
+        Me.LblSinAsignarIVT.Location = New System.Drawing.Point(87, 174)
+        Me.LblSinAsignarIVT.Name = "LblSinAsignarIVT"
+        Me.LblSinAsignarIVT.Size = New System.Drawing.Size(41, 15)
+        Me.LblSinAsignarIVT.TabIndex = 12
+        Me.LblSinAsignarIVT.Text = "Label9"
+        '
+        'LblSinAsignarIIVT
+        '
+        Me.LblSinAsignarIIVT.AutoSize = True
+        Me.LblSinAsignarIIVT.Location = New System.Drawing.Point(87, 206)
+        Me.LblSinAsignarIIVT.Name = "LblSinAsignarIIVT"
+        Me.LblSinAsignarIIVT.Size = New System.Drawing.Size(41, 15)
+        Me.LblSinAsignarIIVT.TabIndex = 13
+        Me.LblSinAsignarIIVT.Text = "Label9"
+        '
+        'LblSinAsignarIIIVT
+        '
+        Me.LblSinAsignarIIIVT.AutoSize = True
+        Me.LblSinAsignarIIIVT.Location = New System.Drawing.Point(87, 234)
+        Me.LblSinAsignarIIIVT.Name = "LblSinAsignarIIIVT"
+        Me.LblSinAsignarIIIVT.Size = New System.Drawing.Size(41, 15)
+        Me.LblSinAsignarIIIVT.TabIndex = 14
+        Me.LblSinAsignarIIIVT.Text = "Label9"
+        '
+        'LblSinAsignarIVVT
+        '
+        Me.LblSinAsignarIVVT.AutoSize = True
+        Me.LblSinAsignarIVVT.Location = New System.Drawing.Point(87, 264)
+        Me.LblSinAsignarIVVT.Name = "LblSinAsignarIVVT"
+        Me.LblSinAsignarIVVT.Size = New System.Drawing.Size(41, 15)
+        Me.LblSinAsignarIVVT.TabIndex = 15
+        Me.LblSinAsignarIVVT.Text = "Label9"
         '
         'FrmInscripcionTalleres
         '
@@ -635,6 +824,7 @@ Partial Class FrmInscripcionTalleres
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(974, 611)
+        Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.BtnGuardar)
@@ -646,7 +836,7 @@ Partial Class FrmInscripcionTalleres
         Me.MaximizeBox = False
         Me.Name = "FrmInscripcionTalleres"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FrmActualizaExtrasAlumno"
+        Me.Text = "Incripción a talleres"
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -659,6 +849,8 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox3.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -707,4 +899,21 @@ Partial Class FrmInscripcionTalleres
     Friend WithEvents RdbNinguno3 As RadioButton
     Friend WithEvents CbxCodigoAlumno As ComboBox
     Friend WithEvents Panel3 As Panel
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents LblFutbol As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents LblSinAsignarIVVT As Label
+    Friend WithEvents LblSinAsignarIIIVT As Label
+    Friend WithEvents LblSinAsignarIIVT As Label
+    Friend WithEvents LblSinAsignarIVT As Label
+    Friend WithEvents LblMusica As Label
+    Friend WithEvents LblRugby As Label
+    Friend WithEvents LblHockey As Label
 End Class
