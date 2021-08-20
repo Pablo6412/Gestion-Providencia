@@ -245,7 +245,7 @@ Partial Class FrmCampamentos
         '
         'TxtCodigoAño
         '
-        Me.TxtCodigoAño.Location = New System.Drawing.Point(41, 52)
+        Me.TxtCodigoAño.Location = New System.Drawing.Point(35, 117)
         Me.TxtCodigoAño.Name = "TxtCodigoAño"
         Me.TxtCodigoAño.Size = New System.Drawing.Size(100, 23)
         Me.TxtCodigoAño.TabIndex = 5
@@ -253,7 +253,7 @@ Partial Class FrmCampamentos
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
-        Me.Panel1.Location = New System.Drawing.Point(35, 45)
+        Me.Panel1.Location = New System.Drawing.Point(17, 107)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(174, 73)
         Me.Panel1.TabIndex = 6
