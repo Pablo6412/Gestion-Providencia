@@ -19,7 +19,7 @@ Public Class FrmBajasFamilias
         End If
         If (opcion = Windows.Forms.DialogResult.Yes) Then
             abrir()
-            Dim baja As String = "update gestion_providencia.familias set  estado = 'Inactivo'
+            Dim baja As String = "update familias set  estado = 'Inactivo'
                                                                               
                                          where codigo_familia='" & Me.CbxCodigo.Text & "' "
 
@@ -48,7 +48,7 @@ Public Class FrmBajasFamilias
         End If
         If (opcion = Windows.Forms.DialogResult.Yes) Then
             abrir()
-            Dim actualiza As String = "update gestion_providencia.familias set  estado = 'Activo'
+            Dim actualiza As String = "update familias set  estado = 'Activo'
                                                                               
                                          where codigo_familia='" & Me.CbxReincorporaCodigo.Text & "' "
 
@@ -72,15 +72,15 @@ Public Class FrmBajasFamilias
         abrir()
 
         Try
-            concatena = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia, estado from gestion_providencia.familias where estado = 'activo'"
+            concatena = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia, estado from familias where estado = 'activo'"
             adaptador = New SqlDataAdapter(concatena, conexion)
             datos = New DataSet
-            datos.Tables.Add("gestion_providencia.familias")
-            adaptador.Fill(datos.Tables("gestion_providencia.familias"))
+            datos.Tables.Add("familias")
+            adaptador.Fill(datos.Tables("familias"))
 
-            CbxFamilia.DataSource = datos.Tables("gestion_providencia.familias")
+            CbxFamilia.DataSource = datos.Tables("familias")
             CbxFamilia.DisplayMember = "familia"
-            CbxCodigo.DataSource = datos.Tables("gestion_providencia.familias")
+            CbxCodigo.DataSource = datos.Tables("familias")
             CbxCodigo.DisplayMember = "codigo_familia"
 
         Catch ex As Exception
@@ -89,14 +89,14 @@ Public Class FrmBajasFamilias
 
         'Carga familias dadas de baja
         Try
-            concatena = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia, estado from gestion_providencia.familias where estado = 'inactivo'"
+            concatena = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia, estado from familias where estado = 'inactivo'"
             adaptador = New SqlDataAdapter(concatena, conexion)
             datos = New DataSet
-            datos.Tables.Add("gestion_providencia.familias")
-            adaptador.Fill(datos.Tables("gestion_providencia.familias"))
-            CbxReincorporaFamilia.DataSource = datos.Tables("gestion_providencia.familias")
+            datos.Tables.Add("familias")
+            adaptador.Fill(datos.Tables("familias"))
+            CbxReincorporaFamilia.DataSource = datos.Tables("familias")
             CbxReincorporaFamilia.DisplayMember = "familia"
-            CbxReincorporaCodigo.DataSource = datos.Tables("gestion_providencia.familias")
+            CbxReincorporaCodigo.DataSource = datos.Tables("familias")
             CbxReincorporaCodigo.DisplayMember = "codigo_familia"
         Catch ex As Exception
             MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo

@@ -31,15 +31,18 @@ Partial Class FrmActualizaAlumnos
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CbxAlumno = New System.Windows.Forms.ComboBox()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TxtFecha = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.RdbNo = New System.Windows.Forms.RadioButton()
+        Me.RdbSi = New System.Windows.Forms.RadioButton()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TxtCodigoAlumno = New System.Windows.Forms.TextBox()
         Me.TxtCodigoCurso = New System.Windows.Forms.TextBox()
         Me.TxtCurso = New System.Windows.Forms.TextBox()
+        Me.BtnActualiza = New System.Windows.Forms.Button()
         Me.CbxCodigoAlumno = New System.Windows.Forms.ComboBox()
         Me.CbxCodigoCurso = New System.Windows.Forms.ComboBox()
         Me.CbxCurso = New System.Windows.Forms.ComboBox()
@@ -55,7 +58,6 @@ Partial Class FrmActualizaAlumnos
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.DtpFechaActual = New System.Windows.Forms.DateTimePicker()
-        Me.BtnActualiza = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.TxtEdad = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -177,13 +179,12 @@ Partial Class FrmActualizaAlumnos
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox1.Controls.Add(Me.CbxAlumno)
-        Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.GroupBox1.Location = New System.Drawing.Point(18, 58)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(923, 112)
+        Me.GroupBox1.Size = New System.Drawing.Size(923, 81)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Alumno"
@@ -191,26 +192,16 @@ Partial Class FrmActualizaAlumnos
         'CbxAlumno
         '
         Me.CbxAlumno.FormattingEnabled = True
-        Me.CbxAlumno.Location = New System.Drawing.Point(301, 52)
+        Me.CbxAlumno.Location = New System.Drawing.Point(301, 31)
         Me.CbxAlumno.Name = "CbxAlumno"
         Me.CbxAlumno.Size = New System.Drawing.Size(267, 29)
         Me.CbxAlumno.TabIndex = 6
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label3.Location = New System.Drawing.Point(300, 25)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(121, 19)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Nombre y apellido"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(226, 55)
+        Me.Label2.Location = New System.Drawing.Point(226, 34)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(68, 21)
         Me.Label2.TabIndex = 3
@@ -239,6 +230,9 @@ Partial Class FrmActualizaAlumnos
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.RdbNo)
+        Me.GroupBox2.Controls.Add(Me.RdbSi)
+        Me.GroupBox2.Controls.Add(Me.Label17)
         Me.GroupBox2.Controls.Add(Me.Panel3)
         Me.GroupBox2.Controls.Add(Me.TxtCodigoAlumno)
         Me.GroupBox2.Controls.Add(Me.TxtCodigoCurso)
@@ -258,11 +252,42 @@ Partial Class FrmActualizaAlumnos
         Me.GroupBox2.Controls.Add(Me.Label7)
         Me.GroupBox2.Controls.Add(Me.Label6)
         Me.GroupBox2.Controls.Add(Me.Label5)
-        Me.GroupBox2.Location = New System.Drawing.Point(18, 198)
+        Me.GroupBox2.Location = New System.Drawing.Point(18, 150)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(696, 236)
+        Me.GroupBox2.Size = New System.Drawing.Size(696, 284)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
+        '
+        'RdbNo
+        '
+        Me.RdbNo.AutoSize = True
+        Me.RdbNo.Location = New System.Drawing.Point(227, 161)
+        Me.RdbNo.Name = "RdbNo"
+        Me.RdbNo.Size = New System.Drawing.Size(47, 24)
+        Me.RdbNo.TabIndex = 26
+        Me.RdbNo.TabStop = True
+        Me.RdbNo.Text = "No"
+        Me.RdbNo.UseVisualStyleBackColor = True
+        '
+        'RdbSi
+        '
+        Me.RdbSi.AutoSize = True
+        Me.RdbSi.Location = New System.Drawing.Point(167, 161)
+        Me.RdbSi.Name = "RdbSi"
+        Me.RdbSi.Size = New System.Drawing.Size(39, 24)
+        Me.RdbSi.TabIndex = 25
+        Me.RdbSi.TabStop = True
+        Me.RdbSi.Text = "Si"
+        Me.RdbSi.UseVisualStyleBackColor = True
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(37, 161)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(122, 20)
+        Me.Label17.TabIndex = 24
+        Me.Label17.Text = "Alumno especial:"
         '
         'Panel3
         '
@@ -292,6 +317,19 @@ Partial Class FrmActualizaAlumnos
         Me.TxtCurso.Size = New System.Drawing.Size(20, 27)
         Me.TxtCurso.TabIndex = 21
         '
+        'BtnActualiza
+        '
+        Me.BtnActualiza.BackColor = System.Drawing.Color.White
+        Me.BtnActualiza.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.BtnActualiza.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
+        Me.BtnActualiza.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnActualiza.Location = New System.Drawing.Point(605, 111)
+        Me.BtnActualiza.Name = "BtnActualiza"
+        Me.BtnActualiza.Size = New System.Drawing.Size(85, 32)
+        Me.BtnActualiza.TabIndex = 8
+        Me.BtnActualiza.Text = "Actualizar"
+        Me.BtnActualiza.UseVisualStyleBackColor = False
+        '
         'CbxCodigoAlumno
         '
         Me.CbxCodigoAlumno.FormattingEnabled = True
@@ -318,7 +356,7 @@ Partial Class FrmActualizaAlumnos
         '
         'TxtObservaciones
         '
-        Me.TxtObservaciones.Location = New System.Drawing.Point(166, 157)
+        Me.TxtObservaciones.Location = New System.Drawing.Point(166, 199)
         Me.TxtObservaciones.Multiline = True
         Me.TxtObservaciones.Name = "TxtObservaciones"
         Me.TxtObservaciones.Size = New System.Drawing.Size(397, 65)
@@ -327,7 +365,7 @@ Partial Class FrmActualizaAlumnos
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(52, 160)
+        Me.Label4.Location = New System.Drawing.Point(52, 202)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(108, 20)
         Me.Label4.TabIndex = 18
@@ -337,7 +375,7 @@ Partial Class FrmActualizaAlumnos
         '
         Me.TxtNombreApellido.BackColor = System.Drawing.Color.White
         Me.TxtNombreApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNombreApellido.Location = New System.Drawing.Point(166, 28)
+        Me.TxtNombreApellido.Location = New System.Drawing.Point(165, 28)
         Me.TxtNombreApellido.Name = "TxtNombreApellido"
         Me.TxtNombreApellido.PlaceholderText = "Primero nombre, luego apellido"
         Me.TxtNombreApellido.Size = New System.Drawing.Size(397, 27)
@@ -425,19 +463,6 @@ Partial Class FrmActualizaAlumnos
         Me.DtpFechaActual.TabIndex = 18
         Me.DtpFechaActual.Visible = False
         '
-        'BtnActualiza
-        '
-        Me.BtnActualiza.BackColor = System.Drawing.Color.White
-        Me.BtnActualiza.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.BtnActualiza.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
-        Me.BtnActualiza.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnActualiza.Location = New System.Drawing.Point(605, 111)
-        Me.BtnActualiza.Name = "BtnActualiza"
-        Me.BtnActualiza.Size = New System.Drawing.Size(85, 32)
-        Me.BtnActualiza.TabIndex = 8
-        Me.BtnActualiza.Text = "Actualizar"
-        Me.BtnActualiza.UseVisualStyleBackColor = False
-        '
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
@@ -449,9 +474,9 @@ Partial Class FrmActualizaAlumnos
         Me.GroupBox3.Controls.Add(Me.TxtArancel)
         Me.GroupBox3.Controls.Add(Me.Label10)
         Me.GroupBox3.Controls.Add(Me.Label11)
-        Me.GroupBox3.Location = New System.Drawing.Point(741, 197)
+        Me.GroupBox3.Location = New System.Drawing.Point(741, 150)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(200, 237)
+        Me.GroupBox3.Size = New System.Drawing.Size(200, 284)
         Me.GroupBox3.TabIndex = 6
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Información adicional"
@@ -926,4 +951,7 @@ Partial Class FrmActualizaAlumnos
     Friend WithEvents CheckBox3 As CheckBox
     Friend WithEvents CheckBox2 As CheckBox
     Friend WithEvents ChbFutbol As CheckBox
+    Friend WithEvents RdbNo As RadioButton
+    Friend WithEvents RdbSi As RadioButton
+    Friend WithEvents Label17 As Label
 End Class

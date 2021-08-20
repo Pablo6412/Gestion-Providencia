@@ -17,7 +17,7 @@ Public Class FrmAltaAlumnos
     Dim cuota As Decimal
 
     Public Sub FrmAltaAlumnos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        RdbNo.Checked = True
         conectar()
         BuscaFamilia()
         DataGrid()
@@ -30,18 +30,18 @@ Public Class FrmAltaAlumnos
 
     Private Sub BuscaFamilia()    'Carga combobox con familia (concatena apellidos paternos) y código_familia
         Try
-            concatena = "select codigo_familia, codigo_beca, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia from gestion_providencia.familias where estado = 'activo'"
+            concatena = "select codigo_familia, codigo_beca, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia from familias where estado = 'activo'"
             adaptador = New SqlDataAdapter(concatena, conexion)
             Dim comando As New SqlCommand
             datos = New DataSet
-            datos.Tables.Add("gestion_providencia.familias")
-            adaptador.Fill(datos.Tables("gestion_providencia.familias"))
+            datos.Tables.Add("familias")
+            adaptador.Fill(datos.Tables("familias"))
 
-            CbxCodigoBeca.DataSource = datos.Tables("gestion_providencia.familias")
+            CbxCodigoBeca.DataSource = datos.Tables("familias")
             CbxCodigoBeca.DisplayMember = "codigo_beca"
-            CbxFamilia.DataSource = datos.Tables("gestion_providencia.familias")
+            CbxFamilia.DataSource = datos.Tables("familias")
             CbxFamilia.DisplayMember = "familia"
-            CbxCodigoFamilia.DataSource = datos.Tables("gestion_providencia.familias")
+            CbxCodigoFamilia.DataSource = datos.Tables("familias")
             CbxCodigoFamilia.DisplayMember = "codigo_familia"
 
         Catch ex As Exception
@@ -54,7 +54,7 @@ Public Class FrmAltaAlumnos
 
         'Carga texbox con nombre y apellido de los padres
         Try
-            consulta = "select codigo_familia, codigo_beca, apellido_padre, nombre_padre, apellido_madre, nombre_madre from gestion_providencia.familias where codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' "
+            consulta = "select codigo_familia, codigo_beca, apellido_padre, nombre_padre, apellido_madre, nombre_madre from familias where codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' "
             adaptador = New SqlDataAdapter(consulta, conexion)
             datos = New DataSet
             adaptador.Fill(datos, "familias")
@@ -81,7 +81,7 @@ Public Class FrmAltaAlumnos
 
     Private Sub DataGrid()
         Try
-            consulta = "Select nombre_apellido_alumno, dni, curso, arancel_importe, valor_cuota, hermano_numero, fecha_ingreso from gestion_providencia.alumnos JOIN cursos On cursos.codigo_curso = gestion_providencia.alumnos.codigo_curso JOIN cuotas On cuotas.codigo_alumno = gestion_providencia.alumnos.codigo_alumno join Aranceles On aranceles.codigo_arancel = gestion_providencia.alumnos.codigo_arancel where gestion_providencia.alumnos.codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' "
+            consulta = "Select nombre_apellido_alumno, dni, curso, arancel_importe, valor_cuota, hermano_numero, fecha_ingreso from alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas On cuotas.codigo_alumno = alumnos.codigo_alumno join Aranceles On aranceles.codigo_arancel = alumnos.codigo_arancel where alumnos.codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' ORDER BY alumnos.codigo_alumno"
 
             comando = New SqlCommand()
             comando.CommandText = consulta
@@ -100,7 +100,7 @@ Public Class FrmAltaAlumnos
 
 
 
-    Private Sub BuscaCurso()   'Pone lista de cursos en  combobox para elegir el que corresponda
+    Private Sub BuscaCurso()   'Pone lista de cursos en  combobox para elegir el que corresponda al nuevo alumno
         Try
             Dim curso As String = "select codigo_curso, codigo_nivel, curso from cursos"
             adaptador = New SqlDataAdapter(curso, conexion)
@@ -124,19 +124,19 @@ Public Class FrmAltaAlumnos
 
 
     Public Sub NumeroHermanos()        'Calcula en número de hermano, en el colegio, del que se está por dar de alta
-        Dim concatena As String
+        'Dim concatena As String
         Dim lista
 
         Try
             Dim codigo As String = CbxCodigoFamilia.Text
-            concatena = "select count(*) as totalHermanos from gestion_providencia.alumnos  where codigo_familia like'" & codigo & "' "
-            adaptador = New SqlDataAdapter(concatena, conexion)
+            Dim cantidadHermanos = "select count(*) as totalHermanos from alumnos  where codigo_familia like'" & codigo & "' "
+            adaptador = New SqlDataAdapter(cantidadHermanos, conexion)
             Dim comando As New SqlCommand
             datos = New DataSet
-            adaptador.Fill(datos, "gestion_providencia.alumnos")
-            lista = datos.Tables("gestion_providencia.alumnos").Rows.Count
+            adaptador.Fill(datos, "alumnos")
+            lista = datos.Tables("alumnos").Rows.Count
 
-            Dim cantHermanos As Integer = datos.Tables("gestion_providencia.alumnos").Rows(0).Item("totalHermanos")
+            Dim cantHermanos As Integer = datos.Tables("alumnos").Rows(0).Item("totalHermanos")
             Dim numeHermano As Integer = cantHermanos + 1
             TxtHermanoNumero.Text = numeHermano
         Catch ex As Exception
@@ -145,7 +145,7 @@ Public Class FrmAltaAlumnos
     End Sub
 
     Private Sub CbxCurso_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCurso.SelectedValueChanged
-        'Busca el arancel que le corresponde a un nivel y luego llama al procedimiento que calcula la cuota 
+        'Busca el arancel que le corresponde a un nivel, lo guarda en la variable arancel y el txtArancel9 y luego llama al procedimiento que calcula la cuota 
 
         Dim Cocurso As String = "SELECT codigo_curso, codigo_nivel, curso FROM cursos WHERE curso = '" & CbxCurso.Text & "'"
         adaptador = New SqlDataAdapter(Cocurso, conexion)
@@ -171,11 +171,18 @@ Public Class FrmAltaAlumnos
         Else
         End If
         Contador += 1
+        MsgBox("codigo nivel: " & CodigoNivel & " codigo curso: " & CodigoCurso & " codigo arancel: " & codigoArancel & " arancel: " & arancel & " contador: " & Contador & "")
+
         CalculaCuota()
     End Sub
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-
+        Dim alumnoEspecial As String
+        If RdbNo.Checked = True Then
+            alumnoEspecial = "No"
+        Else
+            alumnoEspecial = "Si"
+        End If
         If CbxCodigoFamilia.Text = "" Then
             MsgBox("debe elegir un código de familia o un apellido")
             CbxCodigoFamilia.Focus()
@@ -190,8 +197,8 @@ Public Class FrmAltaAlumnos
 
                 If (opcion = Windows.Forms.DialogResult.Yes) Then
 
-                    Dim cadena As String = "INSERT INTO gestion_providencia.alumnos(codigo_familia, codigo_curso, codigo_arancel, nombre_apellido_alumno, edad, fecha_nacimiento, dni,  fecha_ingreso, hermano_numero,  cuota, observaciones) 
-                                       VALUES(@codigo_familia, @codigo_curso,  @codigo_arancel, @nombre_apellido_alumno, @edad, @fecha_nacimiento, @dni, @fecha_ingreso, @hermano_numero,  @cuota, @observaciones)"
+                    Dim cadena As String = "INSERT INTO alumnos(codigo_familia, codigo_curso, codigo_arancel, nombre_apellido_alumno, edad, fecha_nacimiento, dni,  fecha_ingreso, hermano_numero,  cuota, alumno_especial, observaciones) 
+                                       VALUES(@codigo_familia, @codigo_curso,  @codigo_arancel, @nombre_apellido_alumno, @edad, @fecha_nacimiento, @dni, @fecha_ingreso, @hermano_numero,  @cuota, @alumno_especial, @observaciones)"
                     comando = New SqlCommand(cadena, conexion)
 
                     comando.Parameters.AddWithValue("@codigo_familia", CbxCodigoFamilia.Text)
@@ -204,6 +211,7 @@ Public Class FrmAltaAlumnos
                     comando.Parameters.AddWithValue("@fecha_ingreso", DtpFechaIngreso.Value)
                     comando.Parameters.AddWithValue("@hermano_numero", TxtHermanoNumero.Text)
                     comando.Parameters.AddWithValue("@cuota", Val(TxtCuota.Text))
+                    comando.Parameters.AddWithValue("@alumno_especial", alumnoEspecial)
                     comando.Parameters.AddWithValue("@observaciones", TxtObservaciones.Text)
 
                     If comando.ExecuteNonQuery() = 1 Then
@@ -212,13 +220,13 @@ Public Class FrmAltaAlumnos
                         MsgBox("Error al intentar guardar los datos")
                     End If
 
-                    Dim codigoAlumno As String = "SELECT codigo_alumno from gestion_providencia.alumnos where nombre_apellido_alumno = '" & TxtNombreAlumno.Text & "' "
+                    Dim codigoAlumno As String = "SELECT codigo_alumno from alumnos where nombre_apellido_alumno = '" & TxtNombreAlumno.Text & "' "
                     adaptador = New SqlDataAdapter(codigoAlumno, conexion)
                     datos = New DataSet
-                    datos.Tables.Add("gestion_providencia.alumnos")
-                    adaptador.Fill(datos.Tables("gestion_providencia.alumnos"))
+                    datos.Tables.Add("alumnos")
+                    adaptador.Fill(datos.Tables("alumnos"))
 
-                    codAlumno = datos.Tables("gestion_providencia.alumnos").Rows(0).Item("codigo_alumno")
+                    codAlumno = datos.Tables("alumnos").Rows(0).Item("codigo_alumno")
 
                     TxtNombreAlumno.Clear()
                     TxtEdad.Clear()
@@ -297,6 +305,10 @@ Public Class FrmAltaAlumnos
 
         cuota = arancel * descuentoHermano * descuentoEspecial * descuentoBeca
         TxtCuota.Text = cuota
+
+        MsgBox("descuento hermano: " & descuentoHermano & " descuento especial: " & descuentoEspecial & " descuento beca: " & descuentoBeca & "")
+
+
     End Sub
 
     Private Sub GuardaCuota()        'Después de calculada la cuota guarda el valor en tabla cuotas y creo que al pedo

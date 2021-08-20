@@ -139,7 +139,7 @@ Public Class FrmConfiguraTalleres
         If (opcion = Windows.Forms.DialogResult.Yes) Then
 
             Try
-                Dim limpiaTaller1 As String = "UPDATE gestion_providencia.alumnos SET codigo_taller1 = '1' where codigo_taller1 = '" & CbxCodigoBaja.Text & "'"
+                Dim limpiaTaller1 As String = "UPDATE alumnos SET codigo_taller1 = '1' where codigo_taller1 = '" & CbxCodigoBaja.Text & "'"
                 Dim comandos10 As New SqlCommand(limpiaTaller1, conexion)
 
                 'comando.ExecuteNonQuery()
@@ -154,7 +154,7 @@ Public Class FrmConfiguraTalleres
                 abrir()
                 Dim uno As Integer = 1
 
-                Dim limpiaTaller2 As String = "UPDATE gestion_providencia.alumnos SET codigo_taller2 = '1' WHERE codigo_taller2 = '" & CbxCodigoBaja.Text & "' "
+                Dim limpiaTaller2 As String = "UPDATE alumnos SET codigo_taller2 = '1' WHERE codigo_taller2 = '" & CbxCodigoBaja.Text & "' "
 
                 Dim comandos11 As New SqlCommand(limpiaTaller2, conexion)
 
@@ -168,7 +168,7 @@ Public Class FrmConfiguraTalleres
 
                 cerrar()
                 abrir()
-                Dim limpiaTaller3 As String = "UPDATE gestion_providencia.alumnos SET codigo_taller3 = '1' WHERE codigo_taller3 = '" & Val(CbxCodigoBaja.Text) & "' "
+                Dim limpiaTaller3 As String = "UPDATE alumnos SET codigo_taller3 = '1' WHERE codigo_taller3 = '" & Val(CbxCodigoBaja.Text) & "' "
 
                 Dim comandos12 As New SqlCommand(limpiaTaller3, conexion)
 

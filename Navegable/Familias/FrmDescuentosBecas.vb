@@ -62,13 +62,13 @@ Public Class FrmDescuentosBecas
     Private Sub Familias()
 
         Try
-            Dim concatena As String = "Select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia from gestion_providencia.familias where estado = 'activo'"
+            Dim concatena As String = "Select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia from familias where estado = 'activo'"
             adaptador = New SqlDataAdapter(concatena, conexion)
 
             datos = New DataSet
             adaptador.Fill(datos)
-            datos.Tables.Add("gestion_providencia.familias")
-            adaptador.Fill(datos.Tables("gestion_providencia.familias"))
+            datos.Tables.Add("familias")
+            adaptador.Fill(datos.Tables("familias"))
 
             Me.CbxFamilia.DataSource = datos.Tables(0)
             Me.CbxFamilia.DisplayMember = "familia"
@@ -112,17 +112,24 @@ Public Class FrmDescuentosBecas
 
     End Sub
     Private Sub Aplicar()
-        Dim actualiza As String = "update gestion_providencia.familias set  codigo_beca ='" & beca & "' WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "'"
-        Dim comando As SqlCommand = New SqlCommand(actualiza, conexion)
-        comando.ExecuteNonQuery()
+        Dim actualizaFamilia As String = "UPDATE familias SET  codigo_beca ='" & beca & "' WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "'"
+        Dim comandoFamilia As New SqlCommand(actualizaFamilia, conexion)
+        comandoFamilia.ExecuteNonQuery()
 
-        If comando.ExecuteNonQuery() = 1 Then
+        If comandoFamilia.ExecuteNonQuery() = 1 Then
+
+            Dim actualizaAlumno As String = "UPDATE alumnos SET codigo_beca ='" & beca & "' WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "'"
+            Dim comandoAlumno As New SqlCommand(actualizaAlumno, conexion)
+            comandoAlumno.ExecuteNonQuery()
+
             MessageBox.Show("Las modificaciones se realizaron correctamente")
 
             CbxCodigo.Focus()
         Else
             MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
         End If
+
+
     End Sub
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()

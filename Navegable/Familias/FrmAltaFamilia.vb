@@ -5,6 +5,9 @@ Public Class FrmAltaFamilia
 
     Dim comandos As New SqlCommand
     Dim dr As SqlDataReader
+    Dim datos As DataSet
+    Dim adaptador As SqlDataAdapter
+
 
     'Conección a la base de datos
     Public Sub FrmAltaFamilia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -15,7 +18,7 @@ Public Class FrmAltaFamilia
     Private Function FamiliaExiste(ByVal apellido_padre As String) As Boolean
         Dim resultado As Boolean
         Try
-            comandos = New SqlCommand("select * from gestion_providencia.familias where apellido_padre='" & TxtApellidoPadre.Text & "' And nombre_padre='" & TxtNombrePadre.Text & "' and apellido_madre='" & TxtApellidoMadre.Text & "'", conexion)
+            comandos = New SqlCommand("select * from familias where apellido_padre='" & TxtApellidoPadre.Text & "' And nombre_padre='" & TxtNombrePadre.Text & "' and apellido_madre='" & TxtApellidoMadre.Text & "'", conexion)
             dr = comandos.ExecuteReader
             If dr.Read Then
                 resultado = True
@@ -43,10 +46,10 @@ Public Class FrmAltaFamilia
                 If FamiliaExiste(LCase(TxtApellidoPadre.Text)) = False Then
 
                     'Grabación
-                    Dim cadena As String = "INSERT INTO gestion_providencia.familias(apellido_padre, nombre_padre,dni_padre, apellido_madre, nombre_madre, dni_madre, domicilio, cantidad_de_hijos, telefono_celular, telefono_fijo, email, fecha_ingreso, observaciones)
+                    Dim cadena As String = "INSERT INTO familias(apellido_padre, nombre_padre,dni_padre, apellido_madre, nombre_madre, dni_madre, domicilio, cantidad_de_hijos, telefono_celular, telefono_fijo, email, fecha_ingreso, observaciones)
                                         VALUES(@apellido_padre, @nombre_padre, @dni_padre, @apellido_madre, @nombre_madre, @dni_madre, @domicilio, @cantidad_de_hijos, @telefono_celular, @telefono_fijo, @email, @fecha_ingreso, @observaciones)"
-                    Dim comandos As SqlCommand
-                    comandos = New SqlCommand(cadena, conexion)
+                    'Dim comandos As SqlCommand
+                    Dim comandos As New SqlCommand(cadena, conexion)
 
                     comandos.Parameters.AddWithValue("@apellido_padre", TxtApellidoPadre.Text)
                     comandos.Parameters.AddWithValue("@nombre_padre", TxtNombrePadre.Text)
@@ -63,11 +66,12 @@ Public Class FrmAltaFamilia
                     comandos.Parameters.AddWithValue("@observaciones", TxtObservaciones.Text)
 
                     If comandos.ExecuteNonQuery() = 1 Then
-                        MessageBox.Show("Datos guardados")
+
+                        MessageBox.Show("¡Bien vendia familia " & TxtApellidoPadre.Text & "-" & TxtApellidoMadre.Text & "!")
 
                         Blanqueo()
                     Else
-                        MsgBox("No grabó nada")
+                        MsgBox("Error en la grabación")
                     End If
                 Else
                     MsgBox("La familia " & TxtApellidoPadre.Text & "-" & TxtApellidoMadre.Text & " ya está registrada")

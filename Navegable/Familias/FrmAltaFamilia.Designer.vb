@@ -125,7 +125,7 @@ Partial Class FrmAltaFamilia
         Me.LblFechaIngreso.AutoSize = True
         Me.LblFechaIngreso.BackColor = System.Drawing.Color.Transparent
         Me.LblFechaIngreso.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.LblFechaIngreso.Location = New System.Drawing.Point(123, 101)
+        Me.LblFechaIngreso.Location = New System.Drawing.Point(413, 104)
         Me.LblFechaIngreso.Name = "LblFechaIngreso"
         Me.LblFechaIngreso.Size = New System.Drawing.Size(142, 21)
         Me.LblFechaIngreso.TabIndex = 2
@@ -135,7 +135,7 @@ Partial Class FrmAltaFamilia
         '
         Me.DtpFechaIngreso.CalendarFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.DtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaIngreso.Location = New System.Drawing.Point(271, 100)
+        Me.DtpFechaIngreso.Location = New System.Drawing.Point(561, 103)
         Me.DtpFechaIngreso.Name = "DtpFechaIngreso"
         Me.DtpFechaIngreso.Size = New System.Drawing.Size(143, 23)
         Me.DtpFechaIngreso.TabIndex = 3
@@ -245,7 +245,7 @@ Partial Class FrmAltaFamilia
         'LblDomicilio
         '
         Me.LblDomicilio.AutoSize = True
-        Me.LblDomicilio.Location = New System.Drawing.Point(124, 199)
+        Me.LblDomicilio.Location = New System.Drawing.Point(124, 198)
         Me.LblDomicilio.Name = "LblDomicilio"
         Me.LblDomicilio.Size = New System.Drawing.Size(89, 21)
         Me.LblDomicilio.TabIndex = 9
@@ -254,7 +254,7 @@ Partial Class FrmAltaFamilia
         'TxtDomicilio
         '
         Me.TxtDomicilio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDomicilio.Location = New System.Drawing.Point(222, 191)
+        Me.TxtDomicilio.Location = New System.Drawing.Point(222, 190)
         Me.TxtDomicilio.MaxLength = 100
         Me.TxtDomicilio.Name = "TxtDomicilio"
         Me.TxtDomicilio.Size = New System.Drawing.Size(723, 29)
@@ -276,7 +276,7 @@ Partial Class FrmAltaFamilia
         Me.TxtNombrePadre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtNombrePadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNombrePadre.Location = New System.Drawing.Point(648, 28)
+        Me.TxtNombrePadre.Location = New System.Drawing.Point(654, 28)
         Me.TxtNombrePadre.MaxLength = 50
         Me.TxtNombrePadre.Name = "TxtNombrePadre"
         Me.TxtNombrePadre.Size = New System.Drawing.Size(291, 29)
@@ -312,7 +312,7 @@ Partial Class FrmAltaFamilia
         'LLblNombrePadre
         '
         Me.LLblNombrePadre.AutoSize = True
-        Me.LLblNombrePadre.Location = New System.Drawing.Point(489, 36)
+        Me.LLblNombrePadre.Location = New System.Drawing.Point(495, 36)
         Me.LLblNombrePadre.Name = "LLblNombrePadre"
         Me.LLblNombrePadre.Size = New System.Drawing.Size(153, 21)
         Me.LLblNombrePadre.TabIndex = 2

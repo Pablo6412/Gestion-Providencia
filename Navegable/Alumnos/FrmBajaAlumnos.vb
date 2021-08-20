@@ -25,7 +25,7 @@ Public Class FrmBajaAlumnos
         If (opcion = Windows.Forms.DialogResult.Yes) Then
 
             Try
-                Dim baja As String = "Delete  from gestion_providencia.alumnos where codigo_alumno ='" & CbxCodigoAlumno.Text & "' "
+                Dim baja As String = "Delete  from alumnos where codigo_alumno ='" & CbxCodigoAlumno.Text & "' "
                 Dim comando As New SqlCommand(baja, conexion)
 
                 If comando.ExecuteNonQuery() = 1 Then
@@ -51,7 +51,7 @@ Public Class FrmBajaAlumnos
         Dim parcial As Integer
         Dim totalHermanos As Integer
         abrir()
-        hermanos = "select count(hermano_numero) from gestion_providencia.alumnos where codigo_familia = '" & CbxCodigoFamilia.Text & "'"
+        hermanos = "select count(hermano_numero) from alumnos where codigo_familia = '" & CbxCodigoFamilia.Text & "'"
 
         Dim comando1 As New SqlCommand(hermanos, conexion)
         parcial = comando1.ExecuteScalar
@@ -61,7 +61,7 @@ Public Class FrmBajaAlumnos
             'la variable: mayor
             Dim mayor As Integer
             Dim maximo As String
-            maximo = "select max(codigo_alumno) from gestion_providencia.alumnos where codigo_familia= '" & CbxCodigoFamilia.Text & "'"
+            maximo = "select max(codigo_alumno) from alumnos where codigo_familia= '" & CbxCodigoFamilia.Text & "'"
             Dim comando2 As New SqlCommand(maximo, conexion)
             mayor = comando2.ExecuteScalar
 
@@ -77,7 +77,7 @@ Public Class FrmBajaAlumnos
 
 
                 While mayor > codigoDeleted
-                    Dim actualiza As String = "update gestion_providencia.alumnos Set  hermano_numero = '" & totalHermanos & "'  where  codigo_alumno = '" & mayor & "'  and codigo_familia= '" & CodigoFam & "'"
+                    Dim actualiza As String = "update alumnos Set  hermano_numero = '" & totalHermanos & "'  where  codigo_alumno = '" & mayor & "'  and codigo_familia= '" & CodigoFam & "'"
                     Dim comando3 As New SqlCommand(actualiza, conexion)
                     comando3.ExecuteNonQuery()
 
@@ -96,29 +96,29 @@ Public Class FrmBajaAlumnos
     Sub Cargar()
         Dim adaptador2 As New SqlDataAdapter
         Dim filasTabla As Integer
-        Dim consulta2 As String = "Select COUNT(codigo_alumno) FROM gestion_providencia.alumnos"
+        Dim consulta2 As String = "Select COUNT(codigo_alumno) FROM alumnos"
         Dim comando4 As New SqlCommand(consulta2, conexion)
         filasTabla = comando4.ExecuteScalar
 
         If filasTabla <> 0 Then
             Try
-                consulta = "select codigo_familia, codigo_alumno, nombre_apellido_alumno, hermano_numero from gestion_providencia.alumnos"
+                consulta = "select codigo_familia, codigo_alumno, nombre_apellido_alumno, hermano_numero from alumnos"
                 adaptador = New SqlDataAdapter(consulta, conexion)
                 datos = New DataSet
 
-                datos.Tables.Add("gestion_providencia.alumnos")
-                adaptador.Fill(datos.Tables("gestion_providencia.alumnos"))
+                datos.Tables.Add("alumnos")
+                adaptador.Fill(datos.Tables("alumnos"))
 
-                CbxCodigoFamilia.DataSource = datos.Tables("gestion_providencia.alumnos")
+                CbxCodigoFamilia.DataSource = datos.Tables("alumnos")
                 CbxCodigoFamilia.DisplayMember = "codigo_familia"
 
-                CbxNumeroOrden.DataSource = datos.Tables("gestion_providencia.alumnos")
+                CbxNumeroOrden.DataSource = datos.Tables("alumnos")
                 CbxNumeroOrden.DisplayMember = "hermano_numero"
 
 
-                CbxAlumno.DataSource = datos.Tables("gestion_providencia.alumnos")
+                CbxAlumno.DataSource = datos.Tables("alumnos")
                 CbxAlumno.DisplayMember = "nombre_apellido_alumno"
-                CbxCodigoAlumno.DataSource = datos.Tables("gestion_providencia.alumnos")
+                CbxCodigoAlumno.DataSource = datos.Tables("alumnos")
                 CbxCodigoAlumno.DisplayMember = "codigo_alumno"
             Catch ex As Exception
                 MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
@@ -132,8 +132,8 @@ Public Class FrmBajaAlumnos
 
     Private Sub DataGrid()
         Try
-            consulta = "Select dni, edad, curso from gestion_providencia.alumnos JOIN cursos On cursos.codigo_curso = gestion_providencia.alumnos.codigo_curso where codigo_alumno= '" & Val(CbxCodigoAlumno.Text) & "' "
-            'consulta = "select dni, edad, curso from gestion_providencia.alumnos where codigo_alumno= '" & Val(CbxCodigoAlumno.Text) & "' "
+            consulta = "Select dni, edad, curso from alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso where codigo_alumno= '" & Val(CbxCodigoAlumno.Text) & "' "
+            'consulta = "select dni, edad, curso from alumnos where codigo_alumno= '" & Val(CbxCodigoAlumno.Text) & "' "
             Dim comando5 As New SqlCommand(consulta, conexion)
             adaptador = New SqlDataAdapter(comando5)
             Dim dataSet As DataSet = New DataSet()
