@@ -38,6 +38,7 @@ Partial Class FrmConfiguracion
         Me.BtnCampamentos = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.BtnComedor = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -121,7 +122,9 @@ Partial Class FrmConfiguracion
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
+        Me.Panel1.Controls.Add(Me.BtnComedor)
         Me.Panel1.Controls.Add(Me.BtnMateriales)
+        Me.Panel1.Controls.Add(Me.BtnCampamentos)
         Me.Panel1.Controls.Add(Me.BtnTalleres)
         Me.Panel1.Controls.Add(Me.BtnBecas)
         Me.Panel1.Controls.Add(Me.BtnConcepto)
@@ -207,7 +210,7 @@ Partial Class FrmConfiguracion
         Me.BtnCampamentos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.BtnCampamentos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnCampamentos.ForeColor = System.Drawing.Color.White
-        Me.BtnCampamentos.Location = New System.Drawing.Point(718, 106)
+        Me.BtnCampamentos.Location = New System.Drawing.Point(459, 0)
         Me.BtnCampamentos.Name = "BtnCampamentos"
         Me.BtnCampamentos.Size = New System.Drawing.Size(115, 73)
         Me.BtnCampamentos.TabIndex = 4
@@ -230,9 +233,22 @@ Partial Class FrmConfiguracion
         Me.Label3.ForeColor = System.Drawing.Color.White
         Me.Label3.Location = New System.Drawing.Point(317, 18)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(472, 60)
+        Me.Label3.Size = New System.Drawing.Size(471, 60)
         Me.Label3.TabIndex = 12
         Me.Label3.Text = resources.GetString("Label3.Text")
+        '
+        'BtnComedor
+        '
+        Me.BtnComedor.FlatAppearance.BorderSize = 0
+        Me.BtnComedor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnComedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnComedor.ForeColor = System.Drawing.Color.White
+        Me.BtnComedor.Location = New System.Drawing.Point(916, 0)
+        Me.BtnComedor.Name = "BtnComedor"
+        Me.BtnComedor.Size = New System.Drawing.Size(115, 73)
+        Me.BtnComedor.TabIndex = 6
+        Me.BtnComedor.Text = "Comedor"
+        Me.BtnComedor.UseVisualStyleBackColor = True
         '
         'FrmConfiguracion
         '
@@ -244,7 +260,6 @@ Partial Class FrmConfiguracion
         Me.ClientSize = New System.Drawing.Size(1364, 744)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Panel2)
-        Me.Controls.Add(Me.BtnCampamentos)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -274,4 +289,5 @@ Partial Class FrmConfiguracion
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label3 As Label
     Friend WithEvents BtnCampamentos As Button
+    Friend WithEvents BtnComedor As Button
 End Class
