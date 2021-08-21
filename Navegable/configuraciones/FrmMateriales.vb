@@ -51,7 +51,7 @@ Public Class FrmMateriales
         Else
             TxtMaterial.Text = ""
             TxtValor.Text = ""
-            MsgBox("Aquí Solo puede agregar materiales nuevos. Para actualizar valores click en la pestaña 'actualización de materiales'")
+            MsgBox("Aquí Solo puede agregar materiales nuevos a cursos que aún no lo tengan cargado. Para actualizar valores click en la pestaña 'actualización de materiales'")
         End If
     End Sub
 
@@ -62,18 +62,22 @@ Public Class FrmMateriales
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
         TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
         Me.RadioButton1.ForeColor = System.Drawing.Color.Black
+        Me.RadioButton2.ForeColor = System.Drawing.Color.White
+        Me.RadioButton3.ForeColor = System.Drawing.Color.White
     End Sub
 
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
         TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
         Me.RadioButton2.ForeColor = System.Drawing.Color.Black
-
+        Me.RadioButton1.ForeColor = System.Drawing.Color.White
+        Me.RadioButton3.ForeColor = System.Drawing.Color.White
     End Sub
 
     Private Sub RadioButton3_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton3.CheckedChanged
         TabControl1.SelectedTab = TabControl1.TabPages.Item(2)
         Me.RadioButton3.ForeColor = System.Drawing.Color.Black
-
+        Me.RadioButton2.ForeColor = System.Drawing.Color.White
+        Me.RadioButton1.ForeColor = System.Drawing.Color.White
     End Sub
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click

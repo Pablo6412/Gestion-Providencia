@@ -32,6 +32,8 @@ Partial Class FrmCampamentos
         Me.BtnSalir = New System.Windows.Forms.Button()
         Me.CbxCodigonivel = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TxtDuracion = New System.Windows.Forms.TextBox()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.DtpFecha = New System.Windows.Forms.DateTimePicker()
         Me.TxtValor = New System.Windows.Forms.TextBox()
@@ -167,6 +169,8 @@ Partial Class FrmCampamentos
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.TxtDuracion)
+        Me.GroupBox2.Controls.Add(Me.Label15)
         Me.GroupBox2.Controls.Add(Me.BtnGuardar)
         Me.GroupBox2.Controls.Add(Me.DtpFecha)
         Me.GroupBox2.Controls.Add(Me.TxtValor)
@@ -175,19 +179,35 @@ Partial Class FrmCampamentos
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.GroupBox2.Location = New System.Drawing.Point(84, 329)
+        Me.GroupBox2.Location = New System.Drawing.Point(42, 329)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(776, 161)
+        Me.GroupBox2.Size = New System.Drawing.Size(880, 161)
         Me.GroupBox2.TabIndex = 4
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "GroupBox2"
+        '
+        'TxtDuracion
+        '
+        Me.TxtDuracion.Location = New System.Drawing.Point(547, 50)
+        Me.TxtDuracion.Name = "TxtDuracion"
+        Me.TxtDuracion.Size = New System.Drawing.Size(113, 23)
+        Me.TxtDuracion.TabIndex = 8
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(483, 56)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(58, 15)
+        Me.Label15.TabIndex = 7
+        Me.Label15.Text = "Duración:"
         '
         'BtnGuardar
         '
         Me.BtnGuardar.BackColor = System.Drawing.Color.White
         Me.BtnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnGuardar.Location = New System.Drawing.Point(359, 107)
+        Me.BtnGuardar.Location = New System.Drawing.Point(398, 108)
         Me.BtnGuardar.Name = "BtnGuardar"
         Me.BtnGuardar.Size = New System.Drawing.Size(85, 34)
         Me.BtnGuardar.TabIndex = 5
@@ -197,29 +217,29 @@ Partial Class FrmCampamentos
         'DtpFecha
         '
         Me.DtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFecha.Location = New System.Drawing.Point(624, 50)
+        Me.DtpFecha.Location = New System.Drawing.Point(715, 50)
         Me.DtpFecha.Name = "DtpFecha"
         Me.DtpFecha.Size = New System.Drawing.Size(112, 23)
         Me.DtpFecha.TabIndex = 6
         '
         'TxtValor
         '
-        Me.TxtValor.Location = New System.Drawing.Point(453, 50)
+        Me.TxtValor.Location = New System.Drawing.Point(375, 50)
         Me.TxtValor.Name = "TxtValor"
-        Me.TxtValor.Size = New System.Drawing.Size(100, 23)
+        Me.TxtValor.Size = New System.Drawing.Size(80, 23)
         Me.TxtValor.TabIndex = 5
         '
         'TxtLugar
         '
-        Me.TxtLugar.Location = New System.Drawing.Point(79, 50)
+        Me.TxtLugar.Location = New System.Drawing.Point(61, 50)
         Me.TxtLugar.Name = "TxtLugar"
-        Me.TxtLugar.Size = New System.Drawing.Size(278, 23)
+        Me.TxtLugar.Size = New System.Drawing.Size(245, 23)
         Me.TxtLugar.TabIndex = 4
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(577, 56)
+        Me.Label5.Location = New System.Drawing.Point(671, 56)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(41, 15)
         Me.Label5.TabIndex = 2
@@ -228,7 +248,7 @@ Partial Class FrmCampamentos
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(399, 56)
+        Me.Label4.Location = New System.Drawing.Point(321, 56)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(48, 15)
         Me.Label4.TabIndex = 1
@@ -237,7 +257,7 @@ Partial Class FrmCampamentos
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(33, 56)
+        Me.Label3.Location = New System.Drawing.Point(15, 56)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(40, 15)
         Me.Label3.TabIndex = 0
@@ -570,9 +590,9 @@ Partial Class FrmCampamentos
         Me.RadioButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue
         Me.RadioButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.RadioButton3.ForeColor = System.Drawing.Color.White
-        Me.RadioButton3.Location = New System.Drawing.Point(207, 0)
+        Me.RadioButton3.Location = New System.Drawing.Point(205, 0)
         Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(97, 60)
+        Me.RadioButton3.Size = New System.Drawing.Size(97, 65)
         Me.RadioButton3.TabIndex = 2
         Me.RadioButton3.TabStop = True
         Me.RadioButton3.Text = "Baja de campamentos"
@@ -586,9 +606,9 @@ Partial Class FrmCampamentos
         Me.RadioButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue
         Me.RadioButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.RadioButton2.ForeColor = System.Drawing.Color.White
-        Me.RadioButton2.Location = New System.Drawing.Point(110, 0)
+        Me.RadioButton2.Location = New System.Drawing.Point(108, 0)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(97, 60)
+        Me.RadioButton2.Size = New System.Drawing.Size(97, 65)
         Me.RadioButton2.TabIndex = 1
         Me.RadioButton2.TabStop = True
         Me.RadioButton2.Text = "Modificación de campamentos"
@@ -703,4 +723,6 @@ Partial Class FrmCampamentos
     Friend WithEvents MySqlCommand1 As MySql.Data.MySqlClient.MySqlCommand
     Friend WithEvents DtpFechaNueva As DateTimePicker
     Friend WithEvents Panel3 As Panel
+    Friend WithEvents TxtDuracion As TextBox
+    Friend WithEvents Label15 As Label
 End Class
