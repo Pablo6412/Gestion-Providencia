@@ -311,7 +311,7 @@ Partial Class FrmMateriales
         '
         Me.TxtMaterialNuevo.Location = New System.Drawing.Point(209, 43)
         Me.TxtMaterialNuevo.Name = "TxtMaterialNuevo"
-        Me.TxtMaterialNuevo.Size = New System.Drawing.Size(215, 27)
+        Me.TxtMaterialNuevo.Size = New System.Drawing.Size(213, 27)
         Me.TxtMaterialNuevo.TabIndex = 12
         '
         'Label13
@@ -326,7 +326,7 @@ Partial Class FrmMateriales
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(140, 48)
+        Me.Label14.Location = New System.Drawing.Point(140, 47)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(67, 20)
         Me.Label14.TabIndex = 8
@@ -363,31 +363,31 @@ Partial Class FrmMateriales
         '
         'TxtValorActual
         '
-        Me.TxtValorActual.Location = New System.Drawing.Point(473, 42)
+        Me.TxtValorActual.Location = New System.Drawing.Point(505, 42)
         Me.TxtValorActual.Name = "TxtValorActual"
         Me.TxtValorActual.Size = New System.Drawing.Size(80, 27)
         Me.TxtValorActual.TabIndex = 5
         '
         'TxtMaterialActual
         '
-        Me.TxtMaterialActual.Location = New System.Drawing.Point(228, 42)
+        Me.TxtMaterialActual.Location = New System.Drawing.Point(209, 42)
         Me.TxtMaterialActual.Name = "TxtMaterialActual"
-        Me.TxtMaterialActual.Size = New System.Drawing.Size(194, 27)
+        Me.TxtMaterialActual.Size = New System.Drawing.Size(213, 27)
         Me.TxtMaterialActual.TabIndex = 4
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(428, 47)
+        Me.Label9.Location = New System.Drawing.Point(441, 47)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(39, 20)
+        Me.Label9.Size = New System.Drawing.Size(62, 20)
         Me.Label9.TabIndex = 1
-        Me.Label9.Text = "Año:"
+        Me.Label9.Text = "Valor:  $"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(160, 47)
+        Me.Label8.Location = New System.Drawing.Point(140, 47)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(67, 20)
         Me.Label8.TabIndex = 0

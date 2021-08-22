@@ -38,4 +38,8 @@
     Private Sub BtnMateriales_Click(sender As Object, e As EventArgs) Handles BtnMateriales.Click
         FrmMateriales.Show()
     End Sub
+
+    Private Sub BtnComedor_Click(sender As Object, e As EventArgs) Handles BtnComedor.Click
+        FrmComedor.Show()
+    End Sub
 End Class

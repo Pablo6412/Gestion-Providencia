@@ -4,7 +4,7 @@ Public Class FrmMateriales
     Dim codigoMaterial As Integer
     Dim contador As Integer = 0
     Private Sub FrmMateriales_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        RadioButton1.Checked = True
         conectar()
         abrir()
         Dim año As String = "SELECT codigo_año, año FROM cursos GROUP BY codigo_año, año"
@@ -25,7 +25,10 @@ Public Class FrmMateriales
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
 
-        If TxtMaterial.Text = "" Then
+        If TxtMaterial.Text = "" Or TxtValor.Text = "" Then
+            MsgBox("Debe llenar todos los campos")
+        Else
+
             Dim material As String = "INSERT INTO material (codigo_año, material_nombre, valor) VALUES(@codigo_año, @material_nombre, @valor)"
             Dim comando As New SqlCommand(material, conexion)
 
@@ -48,10 +51,6 @@ Public Class FrmMateriales
 
             TxtMaterial.Text = ""
             TxtValor.Text = ""
-        Else
-            TxtMaterial.Text = ""
-            TxtValor.Text = ""
-            MsgBox("Aquí Solo puede agregar materiales nuevos a cursos que aún no lo tengan cargado. Para actualizar valores click en la pestaña 'actualización de materiales'")
         End If
     End Sub
 
@@ -91,6 +90,7 @@ Public Class FrmMateriales
     End Sub
 
     Private Sub CbxCodigoAño_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoAño.SelectedValueChanged
+
         Dim material As String = "SELECT codigo_material, material_nombre, valor FROM material WHERE codigo_año = '" & Val(CbxCodigoAño.Text) & "' "
 
         Dim adaptadorMaterial As New SqlDataAdapter(material, conexion)
@@ -105,7 +105,7 @@ Public Class FrmMateriales
                 TxtValor.Text = tabla.Rows(0)("valor")
                 TxtMaterialNuevo.Text = TxtMaterialActual.Text
                 TxtValorNuevo.Text = TxtValorActual.Text
-
+                BtnGuardar.Enabled = False
             Else
                 TxtMaterialActual.Text = ""
                 TxtMaterial.Text = ""
@@ -114,8 +114,11 @@ Public Class FrmMateriales
                 TxtMaterialNuevo.Text = ""
                 TxtValorNuevo.Text = ""
                 MsgBox("" & CbxAño.Text & " no tiene cargados materales")
+                BtnGuardar.Enabled = True
             End If
         End If
         contador += 1
     End Sub
+
+
 End Class
