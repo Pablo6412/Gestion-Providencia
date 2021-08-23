@@ -189,6 +189,7 @@ Partial Class FrmCampamentos
         'TxtDuracion
         '
         Me.TxtDuracion.Location = New System.Drawing.Point(547, 50)
+        Me.TxtDuracion.MaxLength = 50
         Me.TxtDuracion.Name = "TxtDuracion"
         Me.TxtDuracion.Size = New System.Drawing.Size(113, 23)
         Me.TxtDuracion.TabIndex = 8
@@ -225,6 +226,7 @@ Partial Class FrmCampamentos
         'TxtValor
         '
         Me.TxtValor.Location = New System.Drawing.Point(375, 50)
+        Me.TxtValor.MaxLength = 8
         Me.TxtValor.Name = "TxtValor"
         Me.TxtValor.Size = New System.Drawing.Size(80, 23)
         Me.TxtValor.TabIndex = 5
@@ -232,6 +234,7 @@ Partial Class FrmCampamentos
         'TxtLugar
         '
         Me.TxtLugar.Location = New System.Drawing.Point(61, 50)
+        Me.TxtLugar.MaxLength = 50
         Me.TxtLugar.Name = "TxtLugar"
         Me.TxtLugar.Size = New System.Drawing.Size(245, 23)
         Me.TxtLugar.TabIndex = 4
@@ -375,6 +378,7 @@ Partial Class FrmCampamentos
         'TxtDuracionNueva
         '
         Me.TxtDuracionNueva.Location = New System.Drawing.Point(511, 43)
+        Me.TxtDuracionNueva.MaxLength = 50
         Me.TxtDuracionNueva.Name = "TxtDuracionNueva"
         Me.TxtDuracionNueva.Size = New System.Drawing.Size(116, 23)
         Me.TxtDuracionNueva.TabIndex = 14
@@ -382,6 +386,7 @@ Partial Class FrmCampamentos
         'TxtValorNuevo
         '
         Me.TxtValorNuevo.Location = New System.Drawing.Point(360, 43)
+        Me.TxtValorNuevo.MaxLength = 8
         Me.TxtValorNuevo.Name = "TxtValorNuevo"
         Me.TxtValorNuevo.Size = New System.Drawing.Size(80, 23)
         Me.TxtValorNuevo.TabIndex = 13
@@ -389,6 +394,7 @@ Partial Class FrmCampamentos
         'TxtLugarNuevo
         '
         Me.TxtLugarNuevo.Location = New System.Drawing.Point(77, 43)
+        Me.TxtLugarNuevo.MaxLength = 50
         Me.TxtLugarNuevo.Name = "TxtLugarNuevo"
         Me.TxtLugarNuevo.Size = New System.Drawing.Size(215, 23)
         Me.TxtLugarNuevo.TabIndex = 12
@@ -563,6 +569,7 @@ Partial Class FrmCampamentos
         'TabPage3
         '
         Me.TabPage3.BackgroundImage = CType(resources.GetObject("TabPage3.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.TabPage3.Location = New System.Drawing.Point(4, 24)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)

@@ -90,7 +90,11 @@ Public Class FrmMateriales
     End Sub
 
     Private Sub CbxCodigoAño_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoAño.SelectedValueChanged
+        CargaMateriales()
+    End Sub
 
+
+    Private Sub CargaMateriales()
         Dim material As String = "SELECT codigo_material, material_nombre, valor FROM material WHERE codigo_año = '" & Val(CbxCodigoAño.Text) & "' "
 
         Dim adaptadorMaterial As New SqlDataAdapter(material, conexion)
@@ -120,5 +124,14 @@ Public Class FrmMateriales
         contador += 1
     End Sub
 
-
+    Private Sub BtnActualizar_Click(sender As Object, e As EventArgs) Handles BtnActualizar.Click
+        Dim actualiza As String = "UPDATE material SET material_nombre = '" & TxtMaterialNuevo.Text & "', valor = '" & TxtValorNuevo.Text & "' WHERE codigo_material = '" & codigoMaterial & "'"
+        Dim comando As New SqlCommand(actualiza, conexion)
+        If comando.ExecuteNonQuery() = 0 Then
+            MsgBox("Error de grabación")
+        Else
+            MsgBox("Datos actualizados")
+        End If
+        CargaMateriales()
+    End Sub
 End Class

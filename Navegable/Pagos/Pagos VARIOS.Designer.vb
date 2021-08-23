@@ -672,7 +672,7 @@ Partial Class Pagos
         Me.TxtOtros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtOtros.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TxtOtros.Location = New System.Drawing.Point(645, 45)
-        Me.TxtOtros.MaxLength = 15
+        Me.TxtOtros.MaxLength = 8
         Me.TxtOtros.Name = "TxtOtros"
         Me.TxtOtros.Size = New System.Drawing.Size(100, 23)
         Me.TxtOtros.TabIndex = 18
@@ -683,7 +683,7 @@ Partial Class Pagos
         Me.TxtEfectivo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtEfectivo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TxtEfectivo.Location = New System.Drawing.Point(145, 45)
-        Me.TxtEfectivo.MaxLength = 15
+        Me.TxtEfectivo.MaxLength = 8
         Me.TxtEfectivo.Name = "TxtEfectivo"
         Me.TxtEfectivo.Size = New System.Drawing.Size(100, 23)
         Me.TxtEfectivo.TabIndex = 13
@@ -694,7 +694,7 @@ Partial Class Pagos
         Me.TxtMercadopago.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtMercadopago.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TxtMercadopago.Location = New System.Drawing.Point(545, 45)
-        Me.TxtMercadopago.MaxLength = 15
+        Me.TxtMercadopago.MaxLength = 8
         Me.TxtMercadopago.Name = "TxtMercadopago"
         Me.TxtMercadopago.Size = New System.Drawing.Size(100, 23)
         Me.TxtMercadopago.TabIndex = 17
@@ -705,7 +705,7 @@ Partial Class Pagos
         Me.TxtDebito.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDebito.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TxtDebito.Location = New System.Drawing.Point(245, 45)
-        Me.TxtDebito.MaxLength = 15
+        Me.TxtDebito.MaxLength = 8
         Me.TxtDebito.Name = "TxtDebito"
         Me.TxtDebito.Size = New System.Drawing.Size(100, 23)
         Me.TxtDebito.TabIndex = 14
@@ -716,7 +716,7 @@ Partial Class Pagos
         Me.TxtTransferencia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtTransferencia.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TxtTransferencia.Location = New System.Drawing.Point(445, 45)
-        Me.TxtTransferencia.MaxLength = 15
+        Me.TxtTransferencia.MaxLength = 8
         Me.TxtTransferencia.Name = "TxtTransferencia"
         Me.TxtTransferencia.Size = New System.Drawing.Size(100, 23)
         Me.TxtTransferencia.TabIndex = 16
@@ -727,7 +727,7 @@ Partial Class Pagos
         Me.TxtCheque.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCheque.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TxtCheque.Location = New System.Drawing.Point(345, 45)
-        Me.TxtCheque.MaxLength = 15
+        Me.TxtCheque.MaxLength = 8
         Me.TxtCheque.Name = "TxtCheque"
         Me.TxtCheque.Size = New System.Drawing.Size(100, 23)
         Me.TxtCheque.TabIndex = 15
@@ -1146,6 +1146,7 @@ Partial Class Pagos
         Me.TxtSinAsignar3.BackColor = System.Drawing.Color.White
         Me.TxtSinAsignar3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtSinAsignar3.Location = New System.Drawing.Point(352, 166)
+        Me.TxtSinAsignar3.MaxLength = 8
         Me.TxtSinAsignar3.Name = "TxtSinAsignar3"
         Me.TxtSinAsignar3.Size = New System.Drawing.Size(100, 29)
         Me.TxtSinAsignar3.TabIndex = 21
@@ -1155,6 +1156,7 @@ Partial Class Pagos
         Me.TxtSinasignar2.BackColor = System.Drawing.Color.White
         Me.TxtSinasignar2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtSinasignar2.Location = New System.Drawing.Point(352, 130)
+        Me.TxtSinasignar2.MaxLength = 8
         Me.TxtSinasignar2.Name = "TxtSinasignar2"
         Me.TxtSinasignar2.Size = New System.Drawing.Size(100, 29)
         Me.TxtSinasignar2.TabIndex = 20
@@ -1164,6 +1166,7 @@ Partial Class Pagos
         Me.TxtSinAsignar1.BackColor = System.Drawing.Color.White
         Me.TxtSinAsignar1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtSinAsignar1.Location = New System.Drawing.Point(352, 95)
+        Me.TxtSinAsignar1.MaxLength = 8
         Me.TxtSinAsignar1.Name = "TxtSinAsignar1"
         Me.TxtSinAsignar1.Size = New System.Drawing.Size(100, 29)
         Me.TxtSinAsignar1.TabIndex = 19
@@ -1238,7 +1241,7 @@ Partial Class Pagos
         Me.TxtCampamento.BackColor = System.Drawing.Color.White
         Me.TxtCampamento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCampamento.Location = New System.Drawing.Point(352, 26)
-        Me.TxtCampamento.MaxLength = 15
+        Me.TxtCampamento.MaxLength = 8
         Me.TxtCampamento.Name = "TxtCampamento"
         Me.TxtCampamento.Size = New System.Drawing.Size(100, 29)
         Me.TxtCampamento.TabIndex = 12
@@ -1294,7 +1297,7 @@ Partial Class Pagos
         Me.TxtComedor.BackColor = System.Drawing.Color.White
         Me.TxtComedor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtComedor.Location = New System.Drawing.Point(109, 96)
-        Me.TxtComedor.MaxLength = 15
+        Me.TxtComedor.MaxLength = 8
         Me.TxtComedor.Name = "TxtComedor"
         Me.TxtComedor.Size = New System.Drawing.Size(100, 29)
         Me.TxtComedor.TabIndex = 5
@@ -1304,7 +1307,7 @@ Partial Class Pagos
         Me.TxtAdicionalJardin.BackColor = System.Drawing.Color.White
         Me.TxtAdicionalJardin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtAdicionalJardin.Location = New System.Drawing.Point(352, 61)
-        Me.TxtAdicionalJardin.MaxLength = 15
+        Me.TxtAdicionalJardin.MaxLength = 8
         Me.TxtAdicionalJardin.Name = "TxtAdicionalJardin"
         Me.TxtAdicionalJardin.Size = New System.Drawing.Size(100, 29)
         Me.TxtAdicionalJardin.TabIndex = 4
@@ -1314,7 +1317,7 @@ Partial Class Pagos
         Me.TxtTalleres.BackColor = System.Drawing.Color.White
         Me.TxtTalleres.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtTalleres.Location = New System.Drawing.Point(109, 166)
-        Me.TxtTalleres.MaxLength = 15
+        Me.TxtTalleres.MaxLength = 8
         Me.TxtTalleres.Name = "TxtTalleres"
         Me.TxtTalleres.Size = New System.Drawing.Size(100, 29)
         Me.TxtTalleres.TabIndex = 3
@@ -1324,7 +1327,7 @@ Partial Class Pagos
         Me.TxtMateriales.BackColor = System.Drawing.Color.White
         Me.TxtMateriales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtMateriales.Location = New System.Drawing.Point(109, 131)
-        Me.TxtMateriales.MaxLength = 15
+        Me.TxtMateriales.MaxLength = 8
         Me.TxtMateriales.Name = "TxtMateriales"
         Me.TxtMateriales.Size = New System.Drawing.Size(100, 29)
         Me.TxtMateriales.TabIndex = 2
@@ -1334,7 +1337,7 @@ Partial Class Pagos
         Me.TxtArancel.BackColor = System.Drawing.Color.White
         Me.TxtArancel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtArancel.Location = New System.Drawing.Point(109, 61)
-        Me.TxtArancel.MaxLength = 15
+        Me.TxtArancel.MaxLength = 8
         Me.TxtArancel.Name = "TxtArancel"
         Me.TxtArancel.Size = New System.Drawing.Size(100, 29)
         Me.TxtArancel.TabIndex = 1
@@ -1344,7 +1347,7 @@ Partial Class Pagos
         Me.TxtMatricula.BackColor = System.Drawing.Color.White
         Me.TxtMatricula.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtMatricula.Location = New System.Drawing.Point(109, 26)
-        Me.TxtMatricula.MaxLength = 15
+        Me.TxtMatricula.MaxLength = 8
         Me.TxtMatricula.Name = "TxtMatricula"
         Me.TxtMatricula.Size = New System.Drawing.Size(100, 29)
         Me.TxtMatricula.TabIndex = 0

@@ -24,13 +24,13 @@ Partial Class FrmComedor
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmComedor))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.BtnGuardar = New System.Windows.Forms.Button()
-        Me.BtnSalir = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TxtValorActual = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.TxtNuevoValor = New System.Windows.Forms.TextBox()
+        Me.BtnGuardar = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TxtValorActual = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.BtnSalir = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -50,6 +50,26 @@ Partial Class FrmComedor
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Atención Comedor"
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.TxtNuevoValor)
+        Me.GroupBox2.Controls.Add(Me.BtnGuardar)
+        Me.GroupBox2.Controls.Add(Me.Label2)
+        Me.GroupBox2.Location = New System.Drawing.Point(131, 151)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(285, 139)
+        Me.GroupBox2.TabIndex = 4
+        Me.GroupBox2.TabStop = False
+        '
+        'TxtNuevoValor
+        '
+        Me.TxtNuevoValor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtNuevoValor.Location = New System.Drawing.Point(147, 34)
+        Me.TxtNuevoValor.MaxLength = 8
+        Me.TxtNuevoValor.Name = "TxtNuevoValor"
+        Me.TxtNuevoValor.Size = New System.Drawing.Size(100, 29)
+        Me.TxtNuevoValor.TabIndex = 5
+        '
         'BtnGuardar
         '
         Me.BtnGuardar.BackColor = System.Drawing.Color.White
@@ -61,28 +81,6 @@ Partial Class FrmComedor
         Me.BtnGuardar.TabIndex = 0
         Me.BtnGuardar.Text = "Guardar"
         Me.BtnGuardar.UseVisualStyleBackColor = False
-        '
-        'BtnSalir
-        '
-        Me.BtnSalir.BackColor = System.Drawing.Color.White
-        Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue
-        Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnSalir.Location = New System.Drawing.Point(840, 537)
-        Me.BtnSalir.Name = "BtnSalir"
-        Me.BtnSalir.Size = New System.Drawing.Size(84, 31)
-        Me.BtnSalir.TabIndex = 1
-        Me.BtnSalir.Text = "Salir"
-        Me.BtnSalir.UseVisualStyleBackColor = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(160, 74)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(111, 21)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Valor actual:  $"
         '
         'Label2
         '
@@ -103,24 +101,27 @@ Partial Class FrmComedor
         Me.TxtValorActual.Size = New System.Drawing.Size(100, 29)
         Me.TxtValorActual.TabIndex = 3
         '
-        'GroupBox2
+        'Label1
         '
-        Me.GroupBox2.Controls.Add(Me.TxtNuevoValor)
-        Me.GroupBox2.Controls.Add(Me.BtnGuardar)
-        Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Location = New System.Drawing.Point(131, 151)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(285, 139)
-        Me.GroupBox2.TabIndex = 4
-        Me.GroupBox2.TabStop = False
+        Me.Label1.AutoSize = True
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(160, 74)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(111, 21)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Valor actual:  $"
         '
-        'TxtNuevoValor
+        'BtnSalir
         '
-        Me.TxtNuevoValor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNuevoValor.Location = New System.Drawing.Point(147, 34)
-        Me.TxtNuevoValor.Name = "TxtNuevoValor"
-        Me.TxtNuevoValor.Size = New System.Drawing.Size(100, 29)
-        Me.TxtNuevoValor.TabIndex = 5
+        Me.BtnSalir.BackColor = System.Drawing.Color.White
+        Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue
+        Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnSalir.Location = New System.Drawing.Point(840, 537)
+        Me.BtnSalir.Name = "BtnSalir"
+        Me.BtnSalir.Size = New System.Drawing.Size(84, 31)
+        Me.BtnSalir.TabIndex = 1
+        Me.BtnSalir.Text = "Salir"
+        Me.BtnSalir.UseVisualStyleBackColor = False
         '
         'FrmComedor
         '

@@ -111,6 +111,7 @@ Partial Class FrmBecas
         'TxtPorcentaje
         '
         Me.TxtPorcentaje.Location = New System.Drawing.Point(421, 54)
+        Me.TxtPorcentaje.MaxLength = 2
         Me.TxtPorcentaje.Name = "TxtPorcentaje"
         Me.TxtPorcentaje.Size = New System.Drawing.Size(63, 29)
         Me.TxtPorcentaje.TabIndex = 5
@@ -136,6 +137,7 @@ Partial Class FrmBecas
         'TxtTipoBeca
         '
         Me.TxtTipoBeca.Location = New System.Drawing.Point(140, 54)
+        Me.TxtTipoBeca.MaxLength = 50
         Me.TxtTipoBeca.Name = "TxtTipoBeca"
         Me.TxtTipoBeca.Size = New System.Drawing.Size(154, 29)
         Me.TxtTipoBeca.TabIndex = 2
@@ -272,6 +274,7 @@ Partial Class FrmBecas
         'TxtEliminaPorcentaje
         '
         Me.TxtEliminaPorcentaje.Location = New System.Drawing.Point(431, 77)
+        Me.TxtEliminaPorcentaje.MaxLength = 2
         Me.TxtEliminaPorcentaje.Name = "TxtEliminaPorcentaje"
         Me.TxtEliminaPorcentaje.Size = New System.Drawing.Size(100, 29)
         Me.TxtEliminaPorcentaje.TabIndex = 3
@@ -279,6 +282,7 @@ Partial Class FrmBecas
         'TxtEliminaBeca
         '
         Me.TxtEliminaBeca.Location = New System.Drawing.Point(128, 76)
+        Me.TxtEliminaBeca.MaxLength = 50
         Me.TxtEliminaBeca.Name = "TxtEliminaBeca"
         Me.TxtEliminaBeca.Size = New System.Drawing.Size(197, 29)
         Me.TxtEliminaBeca.TabIndex = 2

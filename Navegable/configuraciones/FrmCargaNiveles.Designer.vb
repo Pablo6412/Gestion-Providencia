@@ -40,6 +40,7 @@ Partial Class FrmCargaNiveles
         Me.CbxNivel = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.LbxNiveles2 = New System.Windows.Forms.ListBox()
         Me.BtnSalirBaja = New System.Windows.Forms.Button()
         Me.BtnBaja = New System.Windows.Forms.Button()
@@ -50,7 +51,6 @@ Partial Class FrmCargaNiveles
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -71,6 +71,7 @@ Partial Class FrmCargaNiveles
         'TxtNivel
         '
         Me.TxtNivel.Location = New System.Drawing.Point(156, 287)
+        Me.TxtNivel.MaxLength = 30
         Me.TxtNivel.Name = "TxtNivel"
         Me.TxtNivel.Size = New System.Drawing.Size(206, 23)
         Me.TxtNivel.TabIndex = 1
@@ -201,6 +202,7 @@ Partial Class FrmCargaNiveles
         'TxtNivelActualizado
         '
         Me.TxtNivelActualizado.Location = New System.Drawing.Point(203, 66)
+        Me.TxtNivelActualizado.MaxLength = 30
         Me.TxtNivelActualizado.Name = "TxtNivelActualizado"
         Me.TxtNivelActualizado.Size = New System.Drawing.Size(121, 23)
         Me.TxtNivelActualizado.TabIndex = 3
@@ -250,6 +252,13 @@ Partial Class FrmCargaNiveles
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "TabPage3"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'Panel2
+        '
+        Me.Panel2.Location = New System.Drawing.Point(8, 345)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(160, 69)
+        Me.Panel2.TabIndex = 13
         '
         'LbxNiveles2
         '
@@ -375,13 +384,6 @@ Partial Class FrmCargaNiveles
         Me.RadioButton1.Text = "Carga de Niveles"
         Me.RadioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.RadioButton1.UseVisualStyleBackColor = True
-        '
-        'Panel2
-        '
-        Me.Panel2.Location = New System.Drawing.Point(8, 345)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(160, 69)
-        Me.Panel2.TabIndex = 13
         '
         'FrmCargaNiveles
         '

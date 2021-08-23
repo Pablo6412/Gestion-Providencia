@@ -125,6 +125,7 @@ Partial Class FrmMateriales
         'TxtValor
         '
         Me.TxtValor.Location = New System.Drawing.Point(505, 40)
+        Me.TxtValor.MaxLength = 8
         Me.TxtValor.Name = "TxtValor"
         Me.TxtValor.Size = New System.Drawing.Size(100, 27)
         Me.TxtValor.TabIndex = 4
@@ -132,6 +133,7 @@ Partial Class FrmMateriales
         'TxtMaterial
         '
         Me.TxtMaterial.Location = New System.Drawing.Point(183, 44)
+        Me.TxtMaterial.MaxLength = 50
         Me.TxtMaterial.Name = "TxtMaterial"
         Me.TxtMaterial.Size = New System.Drawing.Size(248, 27)
         Me.TxtMaterial.TabIndex = 3
@@ -302,14 +304,18 @@ Partial Class FrmMateriales
         '
         'TxtValorNuevo
         '
+        Me.TxtValorNuevo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtValorNuevo.Location = New System.Drawing.Point(505, 43)
+        Me.TxtValorNuevo.MaxLength = 8
         Me.TxtValorNuevo.Name = "TxtValorNuevo"
         Me.TxtValorNuevo.Size = New System.Drawing.Size(80, 27)
         Me.TxtValorNuevo.TabIndex = 13
         '
         'TxtMaterialNuevo
         '
+        Me.TxtMaterialNuevo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtMaterialNuevo.Location = New System.Drawing.Point(209, 43)
+        Me.TxtMaterialNuevo.MaxLength = 50
         Me.TxtMaterialNuevo.Name = "TxtMaterialNuevo"
         Me.TxtMaterialNuevo.Size = New System.Drawing.Size(213, 27)
         Me.TxtMaterialNuevo.TabIndex = 12
@@ -363,6 +369,7 @@ Partial Class FrmMateriales
         '
         'TxtValorActual
         '
+        Me.TxtValorActual.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtValorActual.Location = New System.Drawing.Point(505, 42)
         Me.TxtValorActual.Name = "TxtValorActual"
         Me.TxtValorActual.Size = New System.Drawing.Size(80, 27)
@@ -370,7 +377,9 @@ Partial Class FrmMateriales
         '
         'TxtMaterialActual
         '
+        Me.TxtMaterialActual.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtMaterialActual.Location = New System.Drawing.Point(209, 42)
+        Me.TxtMaterialActual.MaxLength = 50
         Me.TxtMaterialActual.Name = "TxtMaterialActual"
         Me.TxtMaterialActual.Size = New System.Drawing.Size(213, 27)
         Me.TxtMaterialActual.TabIndex = 4
