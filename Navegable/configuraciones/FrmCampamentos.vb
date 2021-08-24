@@ -49,7 +49,6 @@ Public Class FrmCampamentos
         If tabla.Rows.Count > 0 Then
             TxtCodigoAño.Text = tabla.Rows(0)("codigo_año")
 
-
             Dim datosCurso As New DataSet
             datosCurso.Tables.Add("cursos")
             adaptadorAño.Fill(datosCurso.Tables("cursos"))
@@ -65,6 +64,7 @@ Public Class FrmCampamentos
     Private Sub CbxCurso_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCurso.SelectedValueChanged
         Dim codAño As String
 
+
         Dim año As String = "SELECT   codigo_año FROM cursos WHERE año = '" & (CbxCurso.Text) & "' GROUP BY codigo_año"
         Dim adaptadorAño As New SqlDataAdapter(año, conexion)
         Dim tabla As New DataTable
@@ -73,6 +73,33 @@ Public Class FrmCampamentos
         If tabla.Rows.Count > 0 Then
             codAño = tabla.Rows(0)("codigo_año")
             TxtCodigoAño.Text = codAño
+        End If
+
+        Dim campamentosExistentes As String = "SELECT lugar, valor, duracion, fecha FROM campamento WHERE codigo_año = '" & Val(TxtCodigoAño.Text) & "' "
+        Dim adaptadorExiste As New SqlDataAdapter(campamentosExistentes, conexion)
+        Dim tablaExiste As New DataTable
+        adaptadorExiste.Fill(tablaExiste)
+
+        If tablaExiste.Rows.Count > 0 Then
+            TxtLugar.Text = tablaExiste.Rows(0)("lugar")
+            TxtValor.Text = tablaExiste.Rows(0)("valor")
+            TxtDuracion.Text = tablaExiste.Rows(0)("duracion")
+            DtpFecha.Value = tablaExiste.Rows(0)("fecha")
+
+            TxtLugar.Enabled = False
+            TxtValor.Enabled = False
+            TxtDuracion.Enabled = False
+            DtpFecha.Enabled = False
+            BtnGuardar.Enabled = False
+        Else
+            TxtLugar.Text = ""
+            TxtValor.Text = ""
+            TxtDuracion.Text = ""
+            TxtLugar.Enabled = Enabled
+            TxtValor.Enabled = Enabled
+            TxtDuracion.Enabled = Enabled
+            DtpFecha.Enabled = Enabled
+            BtnGuardar.Enabled = Enabled
         End If
 
     End Sub

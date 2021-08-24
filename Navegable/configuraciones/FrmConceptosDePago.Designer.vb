@@ -52,6 +52,7 @@ Partial Class FrmConceptosDePago
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -129,6 +130,7 @@ Partial Class FrmConceptosDePago
         'TxtNuevoConcepto
         '
         Me.TxtNuevoConcepto.Location = New System.Drawing.Point(195, 49)
+        Me.TxtNuevoConcepto.MaxLength = 50
         Me.TxtNuevoConcepto.Name = "TxtNuevoConcepto"
         Me.TxtNuevoConcepto.Size = New System.Drawing.Size(202, 29)
         Me.TxtNuevoConcepto.TabIndex = 3
@@ -168,6 +170,7 @@ Partial Class FrmConceptosDePago
         '
         Me.TabPage2.BackColor = System.Drawing.Color.RoyalBlue
         Me.TabPage2.BackgroundImage = CType(resources.GetObject("TabPage2.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.TabPage2.Controls.Add(Me.Panel2)
         Me.TabPage2.Controls.Add(Me.CbxConcepto)
         Me.TabPage2.Controls.Add(Me.CbxCodigoConcepto)
@@ -185,8 +188,8 @@ Partial Class FrmConceptosDePago
         '
         'Panel2
         '
-        Me.Panel2.BackColor = System.Drawing.Color.RoyalBlue
-        Me.Panel2.Location = New System.Drawing.Point(633, 290)
+        Me.Panel2.BackColor = System.Drawing.Color.Transparent
+        Me.Panel2.Location = New System.Drawing.Point(419, 295)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(200, 100)
         Me.Panel2.TabIndex = 7
@@ -245,6 +248,7 @@ Partial Class FrmConceptosDePago
         'TxtActualizaConcepto
         '
         Me.TxtActualizaConcepto.Location = New System.Drawing.Point(381, 109)
+        Me.TxtActualizaConcepto.MaxLength = 50
         Me.TxtActualizaConcepto.Name = "TxtActualizaConcepto"
         Me.TxtActualizaConcepto.Size = New System.Drawing.Size(181, 23)
         Me.TxtActualizaConcepto.TabIndex = 1
@@ -263,6 +267,7 @@ Partial Class FrmConceptosDePago
         Me.TabPage3.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.TabPage3.BackgroundImage = CType(resources.GetObject("TabPage3.BackgroundImage"), System.Drawing.Image)
         Me.TabPage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage3.Controls.Add(Me.Panel3)
         Me.TabPage3.Controls.Add(Me.LbxBajaConcepto)
         Me.TabPage3.Controls.Add(Me.BtnSalirBaja)
         Me.TabPage3.Controls.Add(Me.BtnConceptoBaja)
@@ -399,6 +404,14 @@ Partial Class FrmConceptosDePago
         Me.RadioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.Transparent
+        Me.Panel3.Location = New System.Drawing.Point(255, 392)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(200, 100)
+        Me.Panel3.TabIndex = 19
+        '
         'FrmConceptosDePago
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -453,4 +466,5 @@ Partial Class FrmConceptosDePago
     Friend WithEvents CbxNivelBaja As ComboBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
+    Friend WithEvents Panel3 As Panel
 End Class

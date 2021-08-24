@@ -111,6 +111,7 @@ Partial Class FrmBecas
         'TxtPorcentaje
         '
         Me.TxtPorcentaje.Location = New System.Drawing.Point(421, 54)
+        Me.TxtPorcentaje.MaxLength = 2
         Me.TxtPorcentaje.Name = "TxtPorcentaje"
         Me.TxtPorcentaje.Size = New System.Drawing.Size(63, 29)
         Me.TxtPorcentaje.TabIndex = 5
@@ -136,6 +137,7 @@ Partial Class FrmBecas
         'TxtTipoBeca
         '
         Me.TxtTipoBeca.Location = New System.Drawing.Point(140, 54)
+        Me.TxtTipoBeca.MaxLength = 50
         Me.TxtTipoBeca.Name = "TxtTipoBeca"
         Me.TxtTipoBeca.Size = New System.Drawing.Size(154, 29)
         Me.TxtTipoBeca.TabIndex = 2
@@ -173,7 +175,8 @@ Partial Class FrmBecas
         'TabPage1
         '
         Me.TabPage1.BackgroundImage = CType(resources.GetObject("TabPage1.BackgroundImage"), System.Drawing.Image)
-        Me.TabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.TabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TabPage1.Controls.Add(Me.Label7)
         Me.TabPage1.Controls.Add(Me.Label3)
         Me.TabPage1.Controls.Add(Me.GroupBox1)
@@ -184,7 +187,7 @@ Partial Class FrmBecas
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(982, 616)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "TabPage1"
+        Me.TabPage1.Text = "BECAS"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'Label7
@@ -272,6 +275,7 @@ Partial Class FrmBecas
         'TxtEliminaPorcentaje
         '
         Me.TxtEliminaPorcentaje.Location = New System.Drawing.Point(431, 77)
+        Me.TxtEliminaPorcentaje.MaxLength = 2
         Me.TxtEliminaPorcentaje.Name = "TxtEliminaPorcentaje"
         Me.TxtEliminaPorcentaje.Size = New System.Drawing.Size(100, 29)
         Me.TxtEliminaPorcentaje.TabIndex = 3
@@ -279,6 +283,7 @@ Partial Class FrmBecas
         'TxtEliminaBeca
         '
         Me.TxtEliminaBeca.Location = New System.Drawing.Point(128, 76)
+        Me.TxtEliminaBeca.MaxLength = 50
         Me.TxtEliminaBeca.Name = "TxtEliminaBeca"
         Me.TxtEliminaBeca.Size = New System.Drawing.Size(197, 29)
         Me.TxtEliminaBeca.TabIndex = 2
@@ -393,7 +398,7 @@ Partial Class FrmBecas
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.TabControl1)
         Me.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.Name = "FrmBecas"

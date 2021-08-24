@@ -176,6 +176,7 @@ Partial Class FrmAltaFamilia
         '
         Me.TxtDniMadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDniMadre.Location = New System.Drawing.Point(222, 138)
+        Me.TxtDniMadre.MaxLength = 10
         Me.TxtDniMadre.Name = "TxtDniMadre"
         Me.TxtDniMadre.Size = New System.Drawing.Size(130, 29)
         Me.TxtDniMadre.TabIndex = 6
@@ -184,6 +185,7 @@ Partial Class FrmAltaFamilia
         '
         Me.TxtDniPadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDniPadre.Location = New System.Drawing.Point(222, 63)
+        Me.TxtDniPadre.MaxLength = 10
         Me.TxtDniPadre.Name = "TxtDniPadre"
         Me.TxtDniPadre.Size = New System.Drawing.Size(130, 29)
         Me.TxtDniPadre.TabIndex = 3

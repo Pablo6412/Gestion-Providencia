@@ -139,6 +139,7 @@ Partial Class FrmCargaCursos
         'TxtCursoCarga
         '
         Me.TxtCursoCarga.Location = New System.Drawing.Point(105, 124)
+        Me.TxtCursoCarga.MaxLength = 50
         Me.TxtCursoCarga.Name = "TxtCursoCarga"
         Me.TxtCursoCarga.Size = New System.Drawing.Size(165, 23)
         Me.TxtCursoCarga.TabIndex = 3
@@ -283,6 +284,7 @@ Partial Class FrmCargaCursos
         'TxtCursoActualizado
         '
         Me.TxtCursoActualizado.Location = New System.Drawing.Point(221, 81)
+        Me.TxtCursoActualizado.MaxLength = 50
         Me.TxtCursoActualizado.Name = "TxtCursoActualizado"
         Me.TxtCursoActualizado.Size = New System.Drawing.Size(121, 23)
         Me.TxtCursoActualizado.TabIndex = 15

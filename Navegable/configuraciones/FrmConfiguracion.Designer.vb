@@ -30,14 +30,15 @@ Partial Class FrmConfiguracion
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.BtnComedor = New System.Windows.Forms.Button()
+        Me.BtnMateriales = New System.Windows.Forms.Button()
+        Me.BtnCampamentos = New System.Windows.Forms.Button()
         Me.BtnTalleres = New System.Windows.Forms.Button()
         Me.BtnConcepto = New System.Windows.Forms.Button()
         Me.BtnCursos = New System.Windows.Forms.Button()
         Me.BtnAranceles = New System.Windows.Forms.Button()
-        Me.BtnCampamentos = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -121,7 +122,9 @@ Partial Class FrmConfiguracion
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
-        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Controls.Add(Me.BtnComedor)
+        Me.Panel1.Controls.Add(Me.BtnMateriales)
+        Me.Panel1.Controls.Add(Me.BtnCampamentos)
         Me.Panel1.Controls.Add(Me.BtnTalleres)
         Me.Panel1.Controls.Add(Me.BtnBecas)
         Me.Panel1.Controls.Add(Me.BtnConcepto)
@@ -132,6 +135,46 @@ Partial Class FrmConfiguracion
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1043, 73)
         Me.Panel1.TabIndex = 10
+        '
+        'BtnComedor
+        '
+        Me.BtnComedor.FlatAppearance.BorderSize = 0
+        Me.BtnComedor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnComedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnComedor.ForeColor = System.Drawing.Color.White
+        Me.BtnComedor.Location = New System.Drawing.Point(916, 0)
+        Me.BtnComedor.Name = "BtnComedor"
+        Me.BtnComedor.Size = New System.Drawing.Size(115, 73)
+        Me.BtnComedor.TabIndex = 6
+        Me.BtnComedor.Text = "Comedor"
+        Me.BtnComedor.UseVisualStyleBackColor = True
+        '
+        'BtnMateriales
+        '
+        Me.BtnMateriales.FlatAppearance.BorderSize = 0
+        Me.BtnMateriales.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnMateriales.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnMateriales.ForeColor = System.Drawing.Color.White
+        Me.BtnMateriales.Location = New System.Drawing.Point(802, 0)
+        Me.BtnMateriales.Name = "BtnMateriales"
+        Me.BtnMateriales.Size = New System.Drawing.Size(115, 73)
+        Me.BtnMateriales.TabIndex = 5
+        Me.BtnMateriales.Text = "Materiales"
+        Me.BtnMateriales.UseVisualStyleBackColor = True
+        '
+        'BtnCampamentos
+        '
+        Me.BtnCampamentos.BackColor = System.Drawing.Color.Transparent
+        Me.BtnCampamentos.FlatAppearance.BorderSize = 0
+        Me.BtnCampamentos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.BtnCampamentos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnCampamentos.ForeColor = System.Drawing.Color.White
+        Me.BtnCampamentos.Location = New System.Drawing.Point(459, 0)
+        Me.BtnCampamentos.Name = "BtnCampamentos"
+        Me.BtnCampamentos.Size = New System.Drawing.Size(115, 73)
+        Me.BtnCampamentos.TabIndex = 4
+        Me.BtnCampamentos.Text = "Campamentos"
+        Me.BtnCampamentos.UseVisualStyleBackColor = False
         '
         'BtnTalleres
         '
@@ -187,20 +230,6 @@ Partial Class FrmConfiguracion
         Me.BtnAranceles.Text = "Aranceles"
         Me.BtnAranceles.UseVisualStyleBackColor = False
         '
-        'BtnCampamentos
-        '
-        Me.BtnCampamentos.BackColor = System.Drawing.Color.Transparent
-        Me.BtnCampamentos.FlatAppearance.BorderSize = 0
-        Me.BtnCampamentos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.BtnCampamentos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnCampamentos.ForeColor = System.Drawing.Color.White
-        Me.BtnCampamentos.Location = New System.Drawing.Point(718, 106)
-        Me.BtnCampamentos.Name = "BtnCampamentos"
-        Me.BtnCampamentos.Size = New System.Drawing.Size(115, 73)
-        Me.BtnCampamentos.TabIndex = 4
-        Me.BtnCampamentos.Text = "Campamentos"
-        Me.BtnCampamentos.UseVisualStyleBackColor = False
-        '
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.SystemColors.Highlight
@@ -221,19 +250,6 @@ Partial Class FrmConfiguracion
         Me.Label3.TabIndex = 12
         Me.Label3.Text = resources.GetString("Label3.Text")
         '
-        'Button1
-        '
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(802, 0)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(115, 73)
-        Me.Button1.TabIndex = 5
-        Me.Button1.Text = "Materiales"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'FrmConfiguracion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -244,7 +260,6 @@ Partial Class FrmConfiguracion
         Me.ClientSize = New System.Drawing.Size(1364, 744)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Panel2)
-        Me.Controls.Add(Me.BtnCampamentos)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -269,9 +284,10 @@ Partial Class FrmConfiguracion
     Friend WithEvents BtnAranceles As Button
     Friend WithEvents BtnCursos As Button
     Friend WithEvents BtnConcepto As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents BtnMateriales As Button
     Friend WithEvents BtnTalleres As Button
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label3 As Label
     Friend WithEvents BtnCampamentos As Button
+    Friend WithEvents BtnComedor As Button
 End Class

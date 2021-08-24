@@ -376,6 +376,7 @@ Partial Class FrmActualizaAlumnos
         Me.TxtNombreApellido.BackColor = System.Drawing.Color.White
         Me.TxtNombreApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtNombreApellido.Location = New System.Drawing.Point(165, 28)
+        Me.TxtNombreApellido.MaxLength = 60
         Me.TxtNombreApellido.Name = "TxtNombreApellido"
         Me.TxtNombreApellido.PlaceholderText = "Primero nombre, luego apellido"
         Me.TxtNombreApellido.Size = New System.Drawing.Size(397, 27)

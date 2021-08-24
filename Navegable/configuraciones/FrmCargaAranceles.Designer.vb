@@ -58,6 +58,7 @@ Partial Class FrmCargaAranceles
         Me.BtnSalir = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.TxtCodigoActualizacion = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -95,7 +96,6 @@ Partial Class FrmCargaAranceles
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -389,6 +389,7 @@ Partial Class FrmCargaAranceles
         '
         Me.TxtMatricula.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtMatricula.Location = New System.Drawing.Point(461, 89)
+        Me.TxtMatricula.MaxLength = 8
         Me.TxtMatricula.Name = "TxtMatricula"
         Me.TxtMatricula.Size = New System.Drawing.Size(119, 27)
         Me.TxtMatricula.TabIndex = 5
@@ -397,6 +398,7 @@ Partial Class FrmCargaAranceles
         '
         Me.TxtArancel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtArancel.Location = New System.Drawing.Point(230, 91)
+        Me.TxtArancel.MaxLength = 8
         Me.TxtArancel.Name = "TxtArancel"
         Me.TxtArancel.Size = New System.Drawing.Size(119, 27)
         Me.TxtArancel.TabIndex = 4
@@ -469,6 +471,13 @@ Partial Class FrmCargaAranceles
         Me.GroupBox3.TabIndex = 11
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Valores actuales"
+        '
+        'Panel4
+        '
+        Me.Panel4.Location = New System.Drawing.Point(519, 133)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(109, 53)
+        Me.Panel4.TabIndex = 12
         '
         'TxtCodigoActualizacion
         '
@@ -606,6 +615,7 @@ Partial Class FrmCargaAranceles
         '
         Me.TxtMatriculaModificada.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtMatriculaModificada.Location = New System.Drawing.Point(231, 133)
+        Me.TxtMatriculaModificada.MaxLength = 8
         Me.TxtMatriculaModificada.Name = "TxtMatriculaModificada"
         Me.TxtMatriculaModificada.Size = New System.Drawing.Size(119, 27)
         Me.TxtMatriculaModificada.TabIndex = 5
@@ -614,6 +624,7 @@ Partial Class FrmCargaAranceles
         '
         Me.TxtArancelModificado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtArancelModificado.Location = New System.Drawing.Point(231, 51)
+        Me.TxtArancelModificado.MaxLength = 8
         Me.TxtArancelModificado.Name = "TxtArancelModificado"
         Me.TxtArancelModificado.Size = New System.Drawing.Size(119, 27)
         Me.TxtArancelModificado.TabIndex = 4
@@ -867,13 +878,6 @@ Partial Class FrmCargaAranceles
         Me.RadioButton2.Text = "Actualización de aranceles"
         Me.RadioButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.RadioButton2.UseVisualStyleBackColor = True
-        '
-        'Panel4
-        '
-        Me.Panel4.Location = New System.Drawing.Point(519, 133)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(109, 53)
-        Me.Panel4.TabIndex = 12
         '
         'FrmCargaAranceles
         '

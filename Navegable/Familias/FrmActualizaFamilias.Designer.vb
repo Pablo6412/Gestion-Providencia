@@ -213,6 +213,7 @@ Partial Class FrmActualizaFamilias
         Me.TxtEmail.BackColor = System.Drawing.Color.White
         Me.TxtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtEmail.Location = New System.Drawing.Point(234, 179)
+        Me.TxtEmail.MaxLength = 50
         Me.TxtEmail.Name = "TxtEmail"
         Me.TxtEmail.Size = New System.Drawing.Size(289, 29)
         Me.TxtEmail.TabIndex = 8
@@ -235,6 +236,7 @@ Partial Class FrmActualizaFamilias
         Me.TxtTelFijo.BackColor = System.Drawing.Color.White
         Me.TxtTelFijo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtTelFijo.Location = New System.Drawing.Point(556, 130)
+        Me.TxtTelFijo.MaxLength = 20
         Me.TxtTelFijo.Name = "TxtTelFijo"
         Me.TxtTelFijo.Size = New System.Drawing.Size(181, 29)
         Me.TxtTelFijo.TabIndex = 7
@@ -244,6 +246,7 @@ Partial Class FrmActualizaFamilias
         Me.TxtTelCelular.BackColor = System.Drawing.Color.White
         Me.TxtTelCelular.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtTelCelular.Location = New System.Drawing.Point(234, 130)
+        Me.TxtTelCelular.MaxLength = 20
         Me.TxtTelCelular.Name = "TxtTelCelular"
         Me.TxtTelCelular.Size = New System.Drawing.Size(176, 29)
         Me.TxtTelCelular.TabIndex = 6
@@ -293,6 +296,7 @@ Partial Class FrmActualizaFamilias
         Me.TxtNumeroHijos.BackColor = System.Drawing.Color.White
         Me.TxtNumeroHijos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtNumeroHijos.Location = New System.Drawing.Point(234, 80)
+        Me.TxtNumeroHijos.MaxLength = 2
         Me.TxtNumeroHijos.Name = "TxtNumeroHijos"
         Me.TxtNumeroHijos.Size = New System.Drawing.Size(35, 29)
         Me.TxtNumeroHijos.TabIndex = 5
@@ -302,6 +306,7 @@ Partial Class FrmActualizaFamilias
         Me.TxtDomicilio.BackColor = System.Drawing.Color.White
         Me.TxtDomicilio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDomicilio.Location = New System.Drawing.Point(234, 36)
+        Me.TxtDomicilio.MaxLength = 100
         Me.TxtDomicilio.Name = "TxtDomicilio"
         Me.TxtDomicilio.Size = New System.Drawing.Size(503, 29)
         Me.TxtDomicilio.TabIndex = 4
