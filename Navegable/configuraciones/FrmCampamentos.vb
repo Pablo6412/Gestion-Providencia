@@ -33,7 +33,7 @@ Public Class FrmCampamentos
         CbxCodigoAño.DataSource = datosAño.Tables("cursos")
         CbxCodigoAño.DisplayMember = "codigo_año"
 
-
+        BtnGuardar.Enabled = False
 
 
     End Sub
@@ -62,8 +62,8 @@ Public Class FrmCampamentos
     End Sub
 
     Private Sub CbxCurso_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCurso.SelectedValueChanged
-        Dim codAño As String
 
+        Dim codAño As String
 
         Dim año As String = "SELECT   codigo_año FROM cursos WHERE año = '" & (CbxCurso.Text) & "' GROUP BY codigo_año"
         Dim adaptadorAño As New SqlDataAdapter(año, conexion)
@@ -99,33 +99,45 @@ Public Class FrmCampamentos
             TxtValor.Enabled = Enabled
             TxtDuracion.Enabled = Enabled
             DtpFecha.Enabled = Enabled
-            BtnGuardar.Enabled = Enabled
+            BtnGuardar.Enabled = True
         End If
+
 
     End Sub
 
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-        Dim campamento As String = "INSERT INTO campamento ( codigo_año,  valor, lugar, fecha) VALUES(@codigo_año,  @valor, @lugar, @fecha)"
-        Dim comandoCampamento As New SqlCommand(campamento, conexion)
 
-        comandoCampamento.Parameters.AddWithValue("@codigo_año", Val(TxtCodigoAño.Text))
-        comandoCampamento.Parameters.AddWithValue("@valor", Val(TxtValor.Text))
-        comandoCampamento.Parameters.AddWithValue("@lugar", TxtLugar.Text)
-        comandoCampamento.Parameters.AddWithValue("@fecha", DtpFecha.Value)
+        If TxtLugar.Text <> "" And TxtValor.Text <> "" Then
+            Dim campamento As String = "INSERT INTO campamento ( codigo_año,  valor, lugar, fecha) VALUES(@codigo_año,  @valor, @lugar, @fecha)"
+            Dim comandoCampamento As New SqlCommand(campamento, conexion)
 
-        If comandoCampamento.ExecuteNonQuery() = 0 Then
-            MsgBox("Error en la grabación")
-        End If
+            comandoCampamento.Parameters.AddWithValue("@codigo_año", Val(TxtCodigoAño.Text))
+            comandoCampamento.Parameters.AddWithValue("@valor", Val(TxtValor.Text))
+            comandoCampamento.Parameters.AddWithValue("@lugar", TxtLugar.Text)
+            comandoCampamento.Parameters.AddWithValue("@fecha", DtpFecha.Value)
 
-        Dim actualizaCurso As String = "UPDATE cursos SET campamento_importe = '" & Val(TxtValor.Text) & "' WHERE codigo_año ='" & TxtCodigoAño.Text & "'"
-        Dim comando As New SqlCommand(actualizaCurso, conexion)
-        comando.ExecuteNonQuery()
-        If comando.ExecuteNonQuery() = 0 Then
-            MsgBox("Error en la actualización")
+            If comandoCampamento.ExecuteNonQuery() = 0 Then
+                MsgBox("Error en la grabación")
+            End If
+
+            Dim actualizaCurso As String = "UPDATE cursos SET campamento_importe = '" & Val(TxtValor.Text) / 10 & "' WHERE codigo_año ='" & TxtCodigoAño.Text & "'"
+            Dim comando As New SqlCommand(actualizaCurso, conexion)
+            comando.ExecuteNonQuery()
+            If comando.ExecuteNonQuery() = 0 Then
+                MsgBox("Error en la actualización")
+            Else
+                MsgBox("Datos actualizados")
+            End If
+            BtnGuardar.Enabled = False
+            TxtLugar.Text = ""
+            TxtValor.Text = ""
+            TxtDuracion.Text = ""
         Else
-            MsgBox("Datos actualizados")
+            MsgBox("Los campos lugar y valor son obligatorios")
         End If
+
+
     End Sub
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
@@ -156,16 +168,25 @@ Public Class FrmCampamentos
 
     Private Sub BtnActualizar_Click(sender As Object, e As EventArgs) Handles BtnActualizar.Click
 
-        Dim actualiza As String = "UPDATE campamento SET lugar = '" & TxtLugarNuevo.Text & "', valor = '" & Val(TxtValorNuevo.Text) & "', duracion = '" & TxtDuracionNueva.Text & "', fecha = '" & DtpFechaNueva.Value & "' where codigo_campamento = '" & codigoCampamento & "' "
+        Dim actualiza As String = "UPDATE campamento SET lugar = '" & TxtLugarNuevo.Text & "', valor = '" & Val(TxtValorNuevo.Text) & "', duracion = '" & TxtDuracionNueva.Text & "', fecha = '" & DtpFechaNueva.Value & "' where codigo_año = '" & CbxCodigoAño.Text & "' "
         Dim comando As New SqlCommand(actualiza, conexion)
 
         If comando.ExecuteNonQuery Then
+
+
+        Else
+            MsgBox("Error en la actualización")
+        End If
+
+        Dim actualizaCuota As String = "UPDATE cursos SET campamento_importe = '" & Val(TxtValorNuevo.Text) / 10 & "' WHERE codigo_año = '" & CbxCodigoAño.Text & "' "
+        Dim comandoCuota As New SqlCommand(actualizaCuota, conexion)
+        If comandoCuota.ExecuteNonQuery() > 0 Then
             MsgBox("DatosActualizados")
             TxtLugarNuevo.Text = ""
             TxtValorNuevo.Text = ""
             TxtDuracionNueva.Text = ""
         Else
-            MsgBox("Error en la actualización")
+            MsgBox("Error al actualizar los datos")
         End If
 
 
@@ -178,11 +199,11 @@ Public Class FrmCampamentos
             Dim tabla As New DataTable
             adaptadorCampamento.Fill(tabla)
 
-            If tabla.Rows.Count > 0 Then
-                codigoCampamento = tabla.Rows(0)("codigo_campamento")
-                TxtLugarActual.Text = tabla.Rows(0)("lugar")
-                TxtValorActual.Text = tabla.Rows(0)("valor")
-                TxtDuracionActual.Text = tabla.Rows(0)("duracion")
+        If tabla.Rows.Count > 0 Then
+            codigoCampamento = tabla.Rows(0)("codigo_campamento")
+            TxtLugarActual.Text = tabla.Rows(0)("lugar")
+            TxtValorActual.Text = tabla.Rows(0)("valor")
+            TxtDuracionActual.Text = tabla.Rows(0)("duracion")
             TxtFechaActual.Text = tabla.Rows(0)("fecha")
 
             TxtLugarNuevo.Text = TxtLugarActual.Text
@@ -190,19 +211,24 @@ Public Class FrmCampamentos
             TxtDuracionNueva.Text = TxtDuracionActual.Text
             DtpFechaNueva.Text = (TxtFechaActual.Text)
 
+        Else
 
+            TxtLugarActual.Text = ""
+            TxtValorActual.Text = ""
+            TxtDuracionActual.Text = ""
+            TxtFechaActual.Text = ""
+
+            TxtLugarNuevo.Text = TxtLugarActual.Text
+            TxtValorNuevo.Text = TxtValorActual.Text
+            TxtDuracionNueva.Text = TxtDuracionActual.Text
+            DtpFechaNueva.Text = (TxtFechaActual.Text)
+            BtnGuardar.Enabled = True
+            'BtnActualizar.Enabled = False
         End If
 
 
 
-
-
-
-
-
-
-
-            'Dim adaptadorCampamento As New SqlDataAdapter(campamento, conexion)
+        'Dim adaptadorCampamento As New SqlDataAdapter(campamento, conexion)
         'Dim datosCampamento As New DataSet
         'adaptadorCampamento.Fill(datosCampamento, "campamento")
 
@@ -221,6 +247,10 @@ Public Class FrmCampamentos
     End Sub
 
     Private Sub TxtValorNuevo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtValorNuevo.KeyPress
+        SoloNumeros(e)
+    End Sub
+
+    Private Sub TxtValor_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtValor.KeyPress
         SoloNumeros(e)
     End Sub
 End Class
