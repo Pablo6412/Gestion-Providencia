@@ -179,6 +179,7 @@ Partial Class FrmCampamentos
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.GroupBox2.Location = New System.Drawing.Point(42, 329)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(880, 161)
@@ -188,18 +189,18 @@ Partial Class FrmCampamentos
         '
         'TxtDuracion
         '
-        Me.TxtDuracion.Location = New System.Drawing.Point(547, 50)
+        Me.TxtDuracion.Location = New System.Drawing.Point(563, 50)
         Me.TxtDuracion.MaxLength = 50
         Me.TxtDuracion.Name = "TxtDuracion"
-        Me.TxtDuracion.Size = New System.Drawing.Size(113, 23)
+        Me.TxtDuracion.Size = New System.Drawing.Size(113, 27)
         Me.TxtDuracion.TabIndex = 8
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(483, 56)
+        Me.Label15.Location = New System.Drawing.Point(487, 56)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(58, 15)
+        Me.Label15.Size = New System.Drawing.Size(72, 20)
         Me.Label15.TabIndex = 7
         Me.Label15.Text = "Duración:"
         '
@@ -218,17 +219,17 @@ Partial Class FrmCampamentos
         'DtpFecha
         '
         Me.DtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFecha.Location = New System.Drawing.Point(715, 50)
+        Me.DtpFecha.Location = New System.Drawing.Point(749, 50)
         Me.DtpFecha.Name = "DtpFecha"
-        Me.DtpFecha.Size = New System.Drawing.Size(112, 23)
+        Me.DtpFecha.Size = New System.Drawing.Size(112, 27)
         Me.DtpFecha.TabIndex = 6
         '
         'TxtValor
         '
-        Me.TxtValor.Location = New System.Drawing.Point(375, 50)
+        Me.TxtValor.Location = New System.Drawing.Point(387, 50)
         Me.TxtValor.MaxLength = 8
         Me.TxtValor.Name = "TxtValor"
-        Me.TxtValor.Size = New System.Drawing.Size(80, 23)
+        Me.TxtValor.Size = New System.Drawing.Size(80, 27)
         Me.TxtValor.TabIndex = 5
         '
         'TxtLugar
@@ -236,15 +237,15 @@ Partial Class FrmCampamentos
         Me.TxtLugar.Location = New System.Drawing.Point(61, 50)
         Me.TxtLugar.MaxLength = 50
         Me.TxtLugar.Name = "TxtLugar"
-        Me.TxtLugar.Size = New System.Drawing.Size(245, 23)
+        Me.TxtLugar.Size = New System.Drawing.Size(245, 27)
         Me.TxtLugar.TabIndex = 4
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(671, 56)
+        Me.Label5.Location = New System.Drawing.Point(696, 56)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(41, 15)
+        Me.Label5.Size = New System.Drawing.Size(50, 20)
         Me.Label5.TabIndex = 2
         Me.Label5.Text = "Fecha:"
         '
@@ -253,16 +254,16 @@ Partial Class FrmCampamentos
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(321, 56)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(48, 15)
+        Me.Label4.Size = New System.Drawing.Size(62, 20)
         Me.Label4.TabIndex = 1
         Me.Label4.Text = "Valor:  $"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(15, 56)
+        Me.Label3.Location = New System.Drawing.Point(12, 56)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(40, 15)
+        Me.Label3.Size = New System.Drawing.Size(49, 20)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Lugar:"
         '
