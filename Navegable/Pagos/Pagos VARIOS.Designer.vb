@@ -1706,4 +1706,7 @@ Partial Class Pagos
     Friend WithEvents TxtCredDisp As TextBox
     Friend WithEvents Label19 As Label
     Friend WithEvents TxtTotalAPagar As TextBox
+
+
+
 End Class

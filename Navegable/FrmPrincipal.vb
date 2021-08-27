@@ -3,9 +3,6 @@
 Public Class FrmPrincipal
     'Dim conexion As New MySqlConnection
 
-    Private Sub FrmPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 
 
     'End Sub
@@ -93,4 +90,6 @@ Public Class FrmPrincipal
     Private Sub EmisiónDeVencimientosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmisiónDeVencimientosToolStripMenuItem.Click
         FrmEmisiónDeVencimientos.Show()
     End Sub
+
+
 End Class
