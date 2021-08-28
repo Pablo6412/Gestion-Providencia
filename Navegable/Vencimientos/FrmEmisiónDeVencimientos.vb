@@ -15,13 +15,29 @@ Public Class FrmEmisiónDeVencimientos
     Dim totalAdicional As Decimal
     Dim totalComedor As Decimal
     Dim totalArancel As Decimal
-    'Dim fechaActual As Date
     Dim hermanoNumero As Integer
     Dim cuota As Decimal
-
     Dim descuentoHermano As Decimal
     Dim descuentoBeca As Decimal
     Dim descuentoEspecial As Decimal
+
+
+
+    Private Sub FrmEmisiónDeVencimientos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim ultimaFecha As Date
+
+        conectar()
+        abrir()
+        Dim fecha As String = "SELECT fecha_vencimiento FROM detalle_vencimientos_escolares where codigo_pago_v = (select max(codigo_pago_v) from detalle_vencimientos_escolares)"
+        Dim comando As New SqlCommand(fecha, conexion)
+        ultimaFecha = comando.ExecuteScalar
+
+        If (fechaActual.Month = ultimaFecha.Month) Then
+            BtnVencimientos.Enabled = False
+            MsgBox("Los vencimientos del presente mes ya fueron realizados. Debe cerrar este formulario")
+        End If
+    End Sub
+
 
     Private Sub BtnVencimientos_Click(sender As Object, e As EventArgs) Handles BtnVencimientos.Click
         conectar()
@@ -30,8 +46,9 @@ Public Class FrmEmisiónDeVencimientos
 
     End Sub
     Private Sub grabaVencimientos()
-        'Dim codFam As Integer
+
         Dim maxcod As Integer = 1
+        Dim codigo As Integer
 
         'Dim CantFam As String = "SELECT COUNT (*) FROM familias"
         'Dim comando1 As New SqlCommand(CantFam, conexion)
@@ -92,7 +109,7 @@ Public Class FrmEmisiónDeVencimientos
             Next
 
             If hermanoNumero <> 0 Then
-                Dim vencimiento As String = "INSERT INTO detalle_vencimientos_escolares(codigo_familia, aranceles, materiales, talleres, campamento, adicional_jardin, comedor, fecha_vencimiento) VALUES(@codFam, @totalCuota, @totalMateriales, @totalTaller, @totalCampamento, @totalAdicional, @totalComedor, @fechaVencimiento)"
+                Dim vencimiento As String = "INSERT INTO detalle_vencimientos_escolares(codigo_familia, aranceles_v, materiales_v, talleres_v, campamento_v, adicional_jardin_v, comedor_v, fecha_vencimiento) VALUES(@codFam, @totalCuota, @totalMateriales, @totalTaller, @totalCampamento, @totalAdicional, @totalComedor, @fechaVencimiento)"
 
                 comando2 = New SqlCommand(vencimiento, conexion)
 
@@ -112,20 +129,73 @@ Public Class FrmEmisiónDeVencimientos
                     MsgBox("No grabó nada")
                 End If
 
-
+                ActualizaCredito(codFam)
 
 
                 arancel = 0
-                hermanoNumero = 0
-                totalCampamento = 0
-                totalTaller = 0
-                totalMateriales = 0
-                totalAdicional = 0
-                totalComedor = 0
-            End If
-            codFam += 1
+                    hermanoNumero = 0
+                    totalCampamento = 0
+                    totalTaller = 0
+                    totalMateriales = 0
+                    totalAdicional = 0
+                    totalComedor = 0
+                End If
+                codFam += 1
 
         End While
+
+
+    End Sub
+
+    Private Sub ActualizaCredito(codFam)
+
+        Dim credito As Decimal
+        Dim codigo
+
+
+        Dim maxCod As String = "SELECT MAX(codigo_detalle_pago) as codigo FROM detalle_pago_escolar WHERE codigo_familia = " & codFam & ""
+
+        adaptador = New SqlDataAdapter(maxCod, conexion)
+
+        Dim comandoMaxCod As New SqlCommand(maxCod, conexion)
+
+        codigo = comandoMaxCod.ExecuteScalar()
+        If comandoMaxCod.ExecuteNonQuery = 0 Then
+            MsgBox("Error consultando código")
+        End If
+
+
+        If codigo Is Nothing Then
+
+            Else
+
+
+            Try
+                Dim consultaCredito As String = "SELECT  credito FROM detalle_pago_escolar WHERE codigo_detalle_pago = '" & codigo & "' "
+                Dim comando As New SqlCommand(consultaCredito, conexion)
+                credito = comando.ExecuteScalar
+
+            Catch ex As Exception
+                    MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
+                End Try
+
+
+                Dim buscaCodigo As String = "SELECT MAX(codigo_pago_v) from detalle_vencimientos_escolares WHERE codigo_familia = " & codFam & ""
+                Dim comandoBuscaCodigo As New SqlCommand(buscaCodigo, conexion)
+                codigo = comandoBuscaCodigo.ExecuteScalar
+                If comandoBuscaCodigo.ExecuteNonQuery = 0 Then
+                    MsgBox("Error buscando codigo")
+                End If
+
+
+                Dim actualizaCredito As String = "UPDATE detalle_vencimientos_escolares SET credito_v = " & credito & " WHERE codigo_familia = " & codFam & " AND codigo_pago_v = " & codigo & ""
+                Dim comandoActualizaCredito As New SqlCommand(actualizaCredito, conexion)
+                If comandoActualizaCredito.ExecuteNonQuery = 0 Then
+                    MsgBox("Error actualizando crédito")
+                End If
+
+            End If
+
 
 
     End Sub
@@ -209,7 +279,5 @@ Public Class FrmEmisiónDeVencimientos
         Me.Close()
     End Sub
 
-    Private Sub FrmEmisiónDeVencimientos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    End Sub
 End Class
