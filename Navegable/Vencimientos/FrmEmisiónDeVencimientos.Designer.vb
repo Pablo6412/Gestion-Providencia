@@ -26,9 +26,10 @@ Partial Class FrmEmisiónDeVencimientos
         Me.BtnVencimientos = New System.Windows.Forms.Button()
         Me.BtnSalir = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
-        Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
+        Me.Pbuno = New System.Windows.Forms.ProgressBar()
+        Me.Pbdos = New System.Windows.Forms.ProgressBar()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.LblPbuno = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -66,31 +67,41 @@ Partial Class FrmEmisiónDeVencimientos
         Me.Label1.TabIndex = 2
         Me.Label1.Text = resources.GetString("Label1.Text")
         '
-        'ProgressBar1
+        'Pbuno
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(291, 44)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(365, 23)
-        Me.ProgressBar1.TabIndex = 3
+        Me.Pbuno.Location = New System.Drawing.Point(291, 34)
+        Me.Pbuno.Name = "Pbuno"
+        Me.Pbuno.Size = New System.Drawing.Size(365, 23)
+        Me.Pbuno.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+        Me.Pbuno.TabIndex = 3
         '
-        'ProgressBar2
+        'Pbdos
         '
-        Me.ProgressBar2.Location = New System.Drawing.Point(291, 100)
-        Me.ProgressBar2.Name = "ProgressBar2"
-        Me.ProgressBar2.Size = New System.Drawing.Size(365, 23)
-        Me.ProgressBar2.TabIndex = 4
+        Me.Pbdos.Location = New System.Drawing.Point(291, 115)
+        Me.Pbdos.Name = "Pbdos"
+        Me.Pbdos.Size = New System.Drawing.Size(365, 23)
+        Me.Pbdos.TabIndex = 4
         '
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox1.Controls.Add(Me.LblPbuno)
         Me.GroupBox1.Controls.Add(Me.BtnVencimientos)
-        Me.GroupBox1.Controls.Add(Me.ProgressBar2)
-        Me.GroupBox1.Controls.Add(Me.ProgressBar1)
+        Me.GroupBox1.Controls.Add(Me.Pbdos)
+        Me.GroupBox1.Controls.Add(Me.Pbuno)
         Me.GroupBox1.Location = New System.Drawing.Point(47, 152)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(728, 160)
+        Me.GroupBox1.Size = New System.Drawing.Size(728, 196)
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
+        '
+        'LblPbuno
+        '
+        Me.LblPbuno.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.LblPbuno.Location = New System.Drawing.Point(291, 60)
+        Me.LblPbuno.Name = "LblPbuno"
+        Me.LblPbuno.Size = New System.Drawing.Size(365, 18)
+        Me.LblPbuno.TabIndex = 5
         '
         'FrmEmisiónDeVencimientos
         '
@@ -113,7 +124,8 @@ Partial Class FrmEmisiónDeVencimientos
     Friend WithEvents BtnVencimientos As Button
     Friend WithEvents BtnSalir As Button
     Friend WithEvents Label1 As Label
-    Friend WithEvents ProgressBar1 As ProgressBar
-    Friend WithEvents ProgressBar2 As ProgressBar
+    Friend WithEvents Pbuno As ProgressBar
+    Friend WithEvents Pbdos As ProgressBar
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents LblPbuno As Label
 End Class

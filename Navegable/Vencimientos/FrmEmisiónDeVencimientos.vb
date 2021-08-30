@@ -34,7 +34,7 @@ Public Class FrmEmisiónDeVencimientos
 
         If (fechaActual.Month = ultimaFecha.Month) Then
             BtnVencimientos.Enabled = False
-            MsgBox("Los vencimientos del presente mes ya fueron realizados. Debe cerrar este formulario")
+            MsgBox("Los vencimientos del presente mes ya fueron realizados.")
         End If
     End Sub
 
@@ -47,24 +47,31 @@ Public Class FrmEmisiónDeVencimientos
     End Sub
     Private Sub grabaVencimientos()
 
-        Dim maxcod As Integer = 1
-        Dim codigo As Integer
+        Dim cantidadFamilias As String = "SELECT COUNT(codigo_familia) FROM familias WHERE estado = 'activo'"
+        Dim comandoCantidad As New SqlCommand(cantidadFamilias, conexion)
+        cantidadFamilias = comandoCantidad.ExecuteScalar
 
-        'Dim CantFam As String = "SELECT COUNT (*) FROM familias"
-        'Dim comando1 As New SqlCommand(CantFam, conexion)
-        'filas = comando1.ExecuteScalar
+        Pbuno.Minimum = 0
+        Pbuno.Maximum = cantidadFamilias
+        Pbuno.Value = 0
+
+        Dim maxcod As Integer
 
         Dim maximocod As String = "SELECT MAX(codigo_familia) FROM familias"
         Dim comando1 As New SqlCommand(maximocod, conexion)
         maxcod = comando1.ExecuteScalar
-        MsgBox("Maximo código" & maxcod & "")
-        MsgBox("Codigo de familia" & codFam & "")
+        'MsgBox("Maximo código" & maxcod & "")
+        'MsgBox("Codigo de familia" & codFam & "")
 
-        'Try
+
         While codFam <= maxcod
+
+            Dim porcentaje As Double = Pbuno.Value / 1000
+            LblPbuno.Text = "Vencimientos generados al: " & Math.Round(Pbuno.Value / 0.03, 2) & "%"
+            LblPbuno.Refresh()
+
             Dim consulta As String = " SELECT codigo_alumno, nombre_apellido_alumno, curso, arancel_importe, hermano_numero, campamento_importe, taller_importe, materiales_importe, adicional_importe, comedor_importe, descuento_beca, descuento from alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles On aranceles.codigo_arancel = alumnos.codigo_arancel JOIN taller On taller.codigo_taller = alumnos.codigo_taller1 JOIN descuento_beca On descuento_beca.codigo_beca = alumnos.codigo_beca JOIN descuento_especial On descuento_especial.codigo_descuento_especial = alumnos.codigo_descuento WHERE alumnos.codigo_familia = '" & codFam & "' ORDER BY alumnos.codigo_alumno"
 
-            '"SELECT nombre_apellido_alumno, curso, arancel_importe, hermano_numero, campamento_importe, taller_importe, materiales_importe, adicional_importe,comedor_importe, descuento, descuento_beca from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel JOIN taller ON taller.codigo_taller = alumnos.codigo_taller1  JOIN descuento_especial  ON descuento_especial.codigo_familia = familias.codigo_familia JOIN descuento_beca ON descuento_beca.codigo_beca = familias.codigo_beca WHERE alumnos.codigo_familia = '" & codFam & "' ORDER BY alumnos.codigo_alumno"
 
 
             comando = New SqlCommand()
@@ -89,7 +96,7 @@ Public Class FrmEmisiónDeVencimientos
                 totalComedor += Val(fila(9))
                 CalculaCuota()
 
-                MsgBox("Codigo Familia: " & codFam & " Codigo alumno: " & codigoAlumno & " descuento Herman0: " & descuentoHermano & " descuento beca: " & descuentoBeca & " descuento especial: " & descuentoEspecial & " arancel: " & arancel & " cuota: " & cuota & "")
+                'MsgBox("Codigo Familia: " & codFam & " Codigo alumno: " & codigoAlumno & " descuento Herman0: " & descuentoHermano & " descuento beca: " & descuentoBeca & " descuento especial: " & descuentoEspecial & " arancel: " & arancel & " cuota: " & cuota & "")
 
                 Dim valorCuota As String = " UPDATE cuotas SET valor_cuota = '" & cuota & "' WHERE codigo_alumno = '" & codigoAlumno & "' "
                 Dim comando As New SqlCommand(valorCuota, conexion)
@@ -123,7 +130,7 @@ Public Class FrmEmisiónDeVencimientos
                 comando2.Parameters.AddWithValue("@fechaVencimiento", fechaActual)
 
                 If comando2.ExecuteNonQuery() = 1 Then
-                    MessageBox.Show("Datos guardados")
+                    'MessageBox.Show("Datos guardados")
 
                 Else
                     MsgBox("No grabó nada")
@@ -131,20 +138,20 @@ Public Class FrmEmisiónDeVencimientos
 
                 ActualizaCredito(codFam)
 
-
                 arancel = 0
-                    hermanoNumero = 0
-                    totalCampamento = 0
-                    totalTaller = 0
-                    totalMateriales = 0
-                    totalAdicional = 0
-                    totalComedor = 0
-                End If
-                codFam += 1
+                hermanoNumero = 0
+                totalCampamento = 0
+                totalTaller = 0
+                totalMateriales = 0
+                totalAdicional = 0
+                totalComedor = 0
+            End If
+            codFam += 1
 
+
+            Pbuno.Value = codFam - 1
         End While
-
-
+        MsgBox("Datos guardados")
     End Sub
 
     Private Sub ActualizaCredito(codFam)
@@ -153,10 +160,8 @@ Public Class FrmEmisiónDeVencimientos
         Dim codigo
 
 
-        Dim maxCod As String = "SELECT MAX(codigo_detalle_pago) as codigo FROM detalle_pago_escolar WHERE codigo_familia = " & codFam & ""
-
+        Dim maxCod As String = "SELECT MAX(codigo_detalle_pago) as codigo FROM detalle_pago_escolar WHERE codigo_familia = '" & codFam & "' "
         adaptador = New SqlDataAdapter(maxCod, conexion)
-
         Dim comandoMaxCod As New SqlCommand(maxCod, conexion)
 
         codigo = comandoMaxCod.ExecuteScalar()
@@ -164,32 +169,27 @@ Public Class FrmEmisiónDeVencimientos
             MsgBox("Error consultando código")
         End If
 
-
         If codigo Is Nothing Then
 
             Else
-
-
             Try
                 Dim consultaCredito As String = "SELECT  credito FROM detalle_pago_escolar WHERE codigo_detalle_pago = '" & codigo & "' "
                 Dim comando As New SqlCommand(consultaCredito, conexion)
                 credito = comando.ExecuteScalar
 
             Catch ex As Exception
-                    MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
+                MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
                 End Try
 
-
-                Dim buscaCodigo As String = "SELECT MAX(codigo_pago_v) from detalle_vencimientos_escolares WHERE codigo_familia = " & codFam & ""
-                Dim comandoBuscaCodigo As New SqlCommand(buscaCodigo, conexion)
+            Dim buscaCodigo As String = "SELECT MAX(codigo_pago_v) from detalle_vencimientos_escolares WHERE codigo_familia = '" & codFam & "' "
+            Dim comandoBuscaCodigo As New SqlCommand(buscaCodigo, conexion)
                 codigo = comandoBuscaCodigo.ExecuteScalar
                 If comandoBuscaCodigo.ExecuteNonQuery = 0 Then
                     MsgBox("Error buscando codigo")
                 End If
 
-
-                Dim actualizaCredito As String = "UPDATE detalle_vencimientos_escolares SET credito_v = " & credito & " WHERE codigo_familia = " & codFam & " AND codigo_pago_v = " & codigo & ""
-                Dim comandoActualizaCredito As New SqlCommand(actualizaCredito, conexion)
+            Dim actualizaCredito As String = "UPDATE detalle_vencimientos_escolares SET credito_v = " & credito & " WHERE codigo_familia = " & codFam & " AND codigo_pago_v = " & codigo & ""
+            Dim comandoActualizaCredito As New SqlCommand(actualizaCredito, conexion)
                 If comandoActualizaCredito.ExecuteNonQuery = 0 Then
                     MsgBox("Error actualizando crédito")
                 End If
@@ -272,7 +272,6 @@ Public Class FrmEmisiónDeVencimientos
         cuota = arancel * descuentoHermano * descuentoEspecial * descuentoBeca
         'TxtCuota.Text = cuota
         'MsgBox("cuota: " & cuota & "")
-
     End Sub
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click

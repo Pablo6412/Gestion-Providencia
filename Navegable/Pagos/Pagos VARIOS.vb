@@ -31,7 +31,16 @@ Public Class Pagos
     End Property
 
     '------------------------------------------------------------------------------
-
+    Dim matricula As Decimal
+    Dim arancel As Decimal
+    Dim materiales As Decimal
+    Dim talleres As Decimal
+    Dim campamento As Decimal
+    Dim adicionalJardin As Decimal
+    Dim comedor As Decimal
+    Dim sinAsignar1 As Decimal
+    Dim sinAsignar2 As Decimal
+    Dim sinAsignar3 As Decimal
     Dim total As Decimal
     Dim diferencia As Decimal
     Dim pagoCompleto As Boolean
@@ -167,7 +176,7 @@ Public Class Pagos
                 TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
 
             Else
-                opcion = MessageBox.Show("El monto es insuficiente para afrontar el total de los conceptos del mes." + vbCr + "SI para realizar el pago parcial" + vbCr + "NO para rectificar el monto a pagar", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                opcion = MessageBox.Show("El monto es insuficiente para afrontar el total de los conceptos del mes." + vbCr + "En este pago hay un faltante de: $" & Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text) & vbCr + vbCr + "SI: para realizar el pago parcial." + vbCr + "" + vbCr + "NO: para rectificar el monto a pagar." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 If (opcion = Windows.Forms.DialogResult.No) Then
 
                     TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
@@ -201,6 +210,9 @@ Public Class Pagos
         Dim pagoEfectivo As Decimal = Val(TxtEfectivo.Text)
         Dim credito As Decimal = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
         Dim efectivoDef As Decimal
+
+
+
 
         If TxtMatricula.Text <> "" Or TxtArancel.Text <> "" Or TxtComedor.Text <> "" Or TxtMateriales.Text <> "" Or TxtTalleres.Text <> "" Or TxtCampamento.Text <> "" Or TxtAdicionalJardin.Text <> "" Or TxtSinAsignar1.Text <> "" Or TxtSinasignar2.Text <> "" Or TxtSinAsignar3.Text <> "" Then
             If pagoACuenta = False Then
@@ -424,19 +436,21 @@ Public Class Pagos
     End Sub
 
     Private Sub PagoTotal()
+
+
         'Dim maximo As String = "select max(codigo_pago) as codigo_pago FROM pagos_escolares WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "'"
         'Dim comando3 As New SqlCommand(maximo, conexion)
         'TxtCodigoPago.Text = comando3.ExecuteScalar
-        TxtMatricula.Text = TxtMatricula.PlaceholderText
-        TxtArancel.Text = TxtArancel.PlaceholderText
-        TxtMateriales.Text = TxtMateriales.PlaceholderText
-        TxtTalleres.Text = TxtTalleres.PlaceholderText
+        matricula = TxtMatricula.Text = TxtMatricula.PlaceholderText
+        arancel = TxtArancel.Text = TxtArancel.PlaceholderText
+        materiales = TxtMateriales.Text = TxtMateriales.PlaceholderText
+        talleres = TxtTalleres.Text = TxtTalleres.PlaceholderText
         TxtCampamento.Text = TxtCampamento.PlaceholderText
-        TxtAdicionalJardin.Text = TxtAdicionalJardin.PlaceholderText
-        TxtComedor.Text = TxtComedor.PlaceholderText
-        TxtSinAsignar1.Text = TxtSinAsignar1.PlaceholderText
-        TxtSinasignar2.Text = TxtSinasignar2.PlaceholderText
-        TxtSinAsignar3.Text = TxtSinAsignar3.PlaceholderText
+        adicionalJardin = TxtAdicionalJardin.Text = TxtAdicionalJardin.PlaceholderText
+        comedor = TxtComedor.Text = TxtComedor.PlaceholderText
+        sinAsignar1 = TxtSinAsignar1.Text = TxtSinAsignar1.PlaceholderText
+        sinAsignar2 = TxtSinasignar2.Text = TxtSinasignar2.PlaceholderText
+        sinAsignar3 = TxtSinAsignar3.Text = TxtSinAsignar3.PlaceholderText
         TxtMatricula.Enabled = False
         TxtArancel.Enabled = False
         TxtMateriales.Enabled = False
@@ -576,37 +590,42 @@ Public Class Pagos
                 TotalCuota += Val(row.Cells(col).Value)
             Next
             TxtArancel.PlaceholderText = TotalCuota
+            arancel = TotalCuota
 
             Dim colCamp As Integer = 3
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalCampamento += (Val(row.Cells(colCamp).Value))
             Next
             TxtCampamento.PlaceholderText = TotalCampamento
-
+            campamento = TotalCampamento
 
             Dim colTaller As Integer = 4
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalTalleres += Val(row.Cells(colTaller).Value)
             Next
             TxtTalleres.PlaceholderText = TotalTalleres
+            talleres = TotalTalleres
 
             Dim colMaterial As Integer = 5
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalMaterial += Val(row.Cells(colMaterial).Value)
             Next
             TxtMateriales.PlaceholderText = TotalMaterial
+            materiales = TotalMaterial
 
             Dim colAdicional As Integer = 6
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalAdicional += Val(row.Cells(colAdicional).Value)
             Next
             TxtAdicionalJardin.PlaceholderText = TotalAdicional
+            adicionalJardin = TotalAdicional
 
             Dim colComedor As Integer = 7
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalComedor += Val(row.Cells(colComedor).Value)
             Next
             TxtComedor.PlaceholderText = TotalComedor
+            comedor = TotalComedor
         End If
         contador += 1
         TxtMatricula.Enabled = False
@@ -697,6 +716,7 @@ Public Class Pagos
 
     Private Sub TxtCampamento_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtCampamento.KeyPress
         SoloNumeros(e)
+
     End Sub
 
     Private Sub TxtAdicionalJardin_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtAdicionalJardin.KeyPress
@@ -773,4 +793,63 @@ Public Class Pagos
         CalculoTotal()
     End Sub
 
+    Private Sub TxtCampamento_Leave(sender As Object, e As EventArgs) Handles TxtCampamento.Leave
+        If Val(TxtCampamento.Text) > campamento Then
+            MsgBox("El monto ingresado en campamento debe ser igual o menor al exibido")
+        End If
+    End Sub
+
+    Private Sub TxtMatricula_Leave(sender As Object, e As EventArgs) Handles TxtMatricula.Leave
+        If Val(TxtMatricula.Text) > matricula Then
+            MsgBox("El monto ingresado en matricula debe ser igual o menor al exibido")
+        End If
+    End Sub
+
+    Private Sub TxtArancel_Leave(sender As Object, e As EventArgs) Handles TxtArancel.Leave
+        If Val(TxtArancel.Text) > arancel Then
+            MsgBox("El monto ingresado en arancel debe ser igual o menor al exibido")
+        End If
+    End Sub
+
+    Private Sub TxtComedor_Leave(sender As Object, e As EventArgs) Handles TxtComedor.Leave
+        If Val(TxtComedor.Text) > comedor Then
+            MsgBox("El monto ingresado en comedor debe ser igual o menor al exibido")
+        End If
+    End Sub
+
+    Private Sub TxtMateriales_Leave(sender As Object, e As EventArgs) Handles TxtMateriales.Leave
+        If Val(TxtMateriales.Text) > materiales Then
+            MsgBox("El monto ingresado en materiales debe ser igual o menor al exibido")
+        End If
+    End Sub
+
+    Private Sub TxtTalleres_Leave(sender As Object, e As EventArgs) Handles TxtTalleres.Leave
+        If Val(TxtTalleres.Text) > talleres Then
+            MsgBox("El monto ingresado en talleres debe ser igual o menor al exibido")
+        End If
+    End Sub
+
+    Private Sub TxtAdicionalJardin_Leave(sender As Object, e As EventArgs) Handles TxtAdicionalJardin.Leave
+        If Val(TxtAdicionalJardin.Text) > adicionalJardin Then
+            MsgBox("El monto ingresado en Adicional jardín debe ser igual o menor al exibido")
+        End If
+    End Sub
+
+    Private Sub TxtSinAsignar1_Leave(sender As Object, e As EventArgs) Handles TxtSinAsignar1.Leave
+        If Val(TxtSinAsignar1.Text) > sinAsignar1 Then
+            MsgBox("El monto ingresado en ... debe ser igual o menor al exibido")
+        End If
+    End Sub
+
+    Private Sub TxtSinasignar2_Leave(sender As Object, e As EventArgs) Handles TxtSinasignar2.Leave
+        If Val(TxtSinasignar2.Text) > sinAsignar2 Then
+            MsgBox("El monto ingresado en ... debe ser igual o menor al exibido")
+        End If
+    End Sub
+
+    Private Sub TxtSinAsignar3_Leave(sender As Object, e As EventArgs) Handles TxtSinAsignar3.Leave
+        If Val(TxtSinAsignar3.Text) > sinAsignar3 Then
+            MsgBox("El monto ingresado en ... debe ser igual o menor al exibido")
+        End If
+    End Sub
 End Class
