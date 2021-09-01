@@ -34,73 +34,79 @@ Public Class FrmAltaFamilia
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
         Dim codigoFamilia As Integer
 
-        If Validar_Mail(LCase(TxtEmail.Text)) = False Then
-            MessageBox.Show("Dirección de correo electrónico no valida, por favor seleccione un correo valido", "Validación de correo electrónico", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            TxtEmail.Focus()                 'Si hay error el foco queda en casilla de mail
-            TxtEmail.SelectAll()             'Y Queda todo seleccionado lo que esté en la casilla
+        If Validar_Mail(LCase(TxtEmailPadre.Text)) = False Then
+            MessageBox.Show("Dirección de correo electrónico del padre no valida, por favor seleccione un correo valido", "Validación de correo electrónico", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            TxtEmailPadre.Focus()                 'Si hay error el foco queda en casilla de mail
+            TxtEmailPadre.SelectAll()             'Y Queda todo seleccionado lo que esté en la casilla
         Else
-
-            'Verifica casillas vacías
-            If TxtApellidoPadre.Text = "" Or TxtNombrePadre.Text = "" Or TxtNombrePadre.Text = "" Or TxtNombreMadre.Text = "" Or TxtDomicilio.Text = "" Or TxtCantidadDeHijos.Text = "" Or TxtTelCel.Text = "" Or TxtTelFijo.Text = "" Then
-                MessageBox.Show("Debe llenar todos los campor, solo el campo observaciones puede quedar vacío", "Campos sin completar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            If Validar_Mail(LCase(TxtEmailMadre.Text)) = False Then
+                MessageBox.Show("Dirección de correo electrónico de la madre no valida, por favor seleccione un correo valido", "Validación de correo electrónico", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                TxtEmailMadre.Focus()                 'Si hay error el foco queda en casilla de mail
+                TxtEmailMadre.SelectAll()             'Y Queda todo seleccionado lo que esté en la casilla
             Else
-                If FamiliaExiste(LCase(TxtApellidoPadre.Text)) = False Then
 
-                    'Grabación
-                    Dim cadena As String = "INSERT INTO familias(apellido_padre, nombre_padre,dni_padre, apellido_madre, nombre_madre, dni_madre, domicilio, cantidad_de_hijos, telefono_celular, telefono_fijo, email, fecha_ingreso, observaciones)
-                                        VALUES(@apellido_padre, @nombre_padre, @dni_padre, @apellido_madre, @nombre_madre, @dni_madre, @domicilio, @cantidad_de_hijos, @telefono_celular, @telefono_fijo, @email, @fecha_ingreso, @observaciones)"
-                    'Dim comandos As SqlCommand
-                    Dim comandos As New SqlCommand(cadena, conexion)
+                'Verifica casillas vacías
+                If TxtApellidoPadre.Text = "" Or TxtNombrePadre.Text = "" Or TxtNombrePadre.Text = "" Or TxtNombreMadre.Text = "" Or TxtDomicilio.Text = "" Or TxtCantidadDeHijos.Text = "" Or TxtTelCel.Text = "" Or TxtTelFijo.Text = "" Then
+                    MessageBox.Show("Debe llenar todos los campor, solo el campo observaciones puede quedar vacío", "Campos sin completar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Else
+                    If FamiliaExiste(LCase(TxtApellidoPadre.Text)) = False Then
 
-                    comandos.Parameters.AddWithValue("@apellido_padre", TxtApellidoPadre.Text)
-                    comandos.Parameters.AddWithValue("@nombre_padre", TxtNombrePadre.Text)
-                    comandos.Parameters.AddWithValue("@dni_padre", TxtDniPadre.Text)
-                    comandos.Parameters.AddWithValue("@apellido_madre", TxtApellidoMadre.Text)
-                    comandos.Parameters.AddWithValue("@nombre_madre", TxtNombreMadre.Text)
-                    comandos.Parameters.AddWithValue("@dni_madre", TxtDniMadre.Text)
-                    comandos.Parameters.AddWithValue("@domicilio", TxtDomicilio.Text)
-                    comandos.Parameters.AddWithValue("@cantidad_de_hijos", TxtCantidadDeHijos.Text)
-                    comandos.Parameters.AddWithValue("@telefono_celular", TxtTelCel.Text)
-                    comandos.Parameters.AddWithValue("@telefono_fijo", TxtTelFijo.Text)
-                    comandos.Parameters.AddWithValue("@email", TxtEmail.Text)
-                    comandos.Parameters.AddWithValue("@fecha_ingreso", DtpFechaIngreso.Value)
-                    comandos.Parameters.AddWithValue("@observaciones", TxtObservaciones.Text)
+                        'Grabación
+                        Dim cadena As String = "INSERT INTO familias(apellido_padre, nombre_padre,dni_padre, apellido_madre, nombre_madre, dni_madre, domicilio, cantidad_de_hijos, telefono_celular, telefono_fijo, email_padre, email_madre, fecha_ingreso, observaciones)
+                                        VALUES(@apellido_padre, @nombre_padre, @dni_padre, @apellido_madre, @nombre_madre, @dni_madre, @domicilio, @cantidad_de_hijos, @telefono_celular, @telefono_fijo, @email_padre, @email_madre, @fecha_ingreso, @observaciones)"
+                        'Dim comandos As SqlCommand
+                        Dim comandos As New SqlCommand(cadena, conexion)
+
+                        comandos.Parameters.AddWithValue("@apellido_padre", TxtApellidoPadre.Text)
+                        comandos.Parameters.AddWithValue("@nombre_padre", TxtNombrePadre.Text)
+                        comandos.Parameters.AddWithValue("@dni_padre", TxtDniPadre.Text)
+                        comandos.Parameters.AddWithValue("@apellido_madre", TxtApellidoMadre.Text)
+                        comandos.Parameters.AddWithValue("@nombre_madre", TxtNombreMadre.Text)
+                        comandos.Parameters.AddWithValue("@dni_madre", TxtDniMadre.Text)
+                        comandos.Parameters.AddWithValue("@domicilio", TxtDomicilio.Text)
+                        comandos.Parameters.AddWithValue("@cantidad_de_hijos", TxtCantidadDeHijos.Text)
+                        comandos.Parameters.AddWithValue("@telefono_celular", TxtTelCel.Text)
+                        comandos.Parameters.AddWithValue("@telefono_fijo", TxtTelFijo.Text)
+                        comandos.Parameters.AddWithValue("@email_padre", TxtEmailPadre.Text)
+                        comandos.Parameters.AddWithValue("@email_madre", TxtEmailMadre.Text)
+                        comandos.Parameters.AddWithValue("@fecha_ingreso", DtpFechaIngreso.Value)
+                        comandos.Parameters.AddWithValue("@observaciones", TxtObservaciones.Text)
 
 
-                    If comandos.ExecuteNonQuery() = 1 Then
+                        If comandos.ExecuteNonQuery() = 1 Then
 
 
 
-                        'busca el codigo_familia de la familia recien incorporada
-                        Dim codFam As String = "SELECT MAX(codigo_familia) FROM familias"
-                        Dim comando As New SqlCommand(codFam, conexion)
-                        codigoFamilia = comando.ExecuteScalar
+                            'busca el codigo_familia de la familia recien incorporada
+                            Dim codFam As String = "SELECT MAX(codigo_familia) FROM familias"
+                            Dim comando As New SqlCommand(codFam, conexion)
+                            codigoFamilia = comando.ExecuteScalar
 
-                        Dim descuentoEspecial As String = "INSERT INTO descuento_especial(codigo_familia, tipo_descuento, descuento) VALUES(@codigo_familia, @tipo_descuento, @descuento)"
-                        Dim comandoDescuento As New SqlCommand(descuentoEspecial, conexion)
-                        comandoDescuento.Parameters.AddWithValue("@codigo_familia", codigoFamilia)
-                        comandoDescuento.Parameters.AddWithValue("@tipo_descuento", 1)
-                        comandoDescuento.Parameters.AddWithValue("@descuento", 1)
+                            Dim descuentoEspecial As String = "INSERT INTO descuento_especial(codigo_familia, tipo_descuento, descuento) VALUES(@codigo_familia, @tipo_descuento, @descuento)"
+                            Dim comandoDescuento As New SqlCommand(descuentoEspecial, conexion)
+                            comandoDescuento.Parameters.AddWithValue("@codigo_familia", codigoFamilia)
+                            comandoDescuento.Parameters.AddWithValue("@tipo_descuento", 1)
+                            comandoDescuento.Parameters.AddWithValue("@descuento", 1)
 
-                        If comandoDescuento.ExecuteNonQuery() = 1 Then
+                            If comandoDescuento.ExecuteNonQuery() = 1 Then
 
-                            MessageBox.Show("¡Bien vendia familia " & TxtApellidoPadre.Text & "-" & TxtApellidoMadre.Text & "!")
+                                MessageBox.Show("¡Bien vendia familia " & TxtApellidoPadre.Text & "-" & TxtApellidoMadre.Text & "!")
 
-                            Blanqueo()
+                                Blanqueo()
+                            Else
+                                MsgBox("Error en la grabación")
+                            End If
                         Else
                             MsgBox("Error en la grabación")
+
                         End If
                     Else
-                        MsgBox("Error en la grabación")
-
+                        MsgBox("La familia " & TxtApellidoPadre.Text & "-" & TxtApellidoMadre.Text & " ya está registrada")
+                        Blanqueo()
                     End If
-                Else
-                    MsgBox("La familia " & TxtApellidoPadre.Text & "-" & TxtApellidoMadre.Text & " ya está registrada")
-                    Blanqueo()
                 End If
             End If
         End If
-
     End Sub
 
     Sub Blanqueo()
@@ -115,7 +121,8 @@ Public Class FrmAltaFamilia
         TxtObservaciones.Clear()
         TxtTelCel.Clear()
         TxtTelFijo.Clear()
-        TxtEmail.Clear()
+        TxtEmailPadre.Clear()
+        TxtEmailMadre.Clear()
         TxtApellidoPadre.Focus()
     End Sub
 

@@ -9,7 +9,7 @@ Public Class FrmCampamentos
         conectar()
         abrir()
 
-        Dim nivel As String = "SELECT codigo_nivel, nivel FROM niveles"
+        Dim nivel As String = "SELECT codigo_nivel, nivel FROM niveles ORDER BY codigo_nivel"
         Dim adaptadorNivel As New SqlDataAdapter(nivel, conexion)
         Dim datosNivel As New DataSet
         datosNivel.Tables.Add("niveles")
@@ -21,7 +21,7 @@ Public Class FrmCampamentos
         CbxCodigonivel.DisplayMember = "codigo_nivel"
 
 
-        Dim año As String = "SELECT codigo_año, año  FROM cursos group by año, codigo_año order by codigo_año"
+        Dim año As String = "SELECT codigo_año, año  FROM cursos GROUP BY año, codigo_año ORDER BY codigo_año"
         Dim adaptadorAño As New SqlDataAdapter(año, conexion)
         Dim datosAño As New DataSet
         datosAño.Tables.Add("cursos")
@@ -41,7 +41,7 @@ Public Class FrmCampamentos
 
     Private Sub CbxCodigonivel_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigonivel.SelectedValueChanged
 
-        Dim año As String = "SELECT  codigo_año,  año FROM cursos WHERE codigo_nivel = '" & Val(CbxCodigonivel.Text) & "' GROUP BY año, codigo_año "
+        Dim año As String = "SELECT  codigo_año,  año FROM cursos WHERE codigo_nivel = '" & Val(CbxCodigonivel.Text) & "' GROUP BY año, codigo_año ORDER BY codigo_año"
         Dim adaptadorAño As New SqlDataAdapter(año, conexion)
         Dim tabla As New DataTable
         adaptadorAño.Fill(tabla)

@@ -132,13 +132,13 @@ Public Class FrmInscripcionTalleres
     Private Sub CargaAlumnos()
         'Si no hay alumnos registrados sale por el else
         Dim cuenta As Integer
-        Dim consulta As String = "Select COUNT(codigo_alumno) FROM alumnos"
+        Dim consulta As String = "SELECT COUNT(codigo_alumno) FROM alumnos"
         Dim comando As New SqlCommand(consulta, conexion)
         cuenta = comando.ExecuteScalar
 
         If cuenta <> 0 Then
             Try
-                Dim alumno As String = "select codigo_alumno, nombre_apellido_alumno from alumnos"
+                Dim alumno As String = "SELECT codigo_alumno, nombre_apellido_alumno FROM alumnos ORDER BY nombre_apellido_alumno"
                 adaptador = New SqlDataAdapter(alumno, conexion)
                 datos = New DataSet
                 adaptador.Fill(datos)

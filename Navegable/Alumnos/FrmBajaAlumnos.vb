@@ -96,13 +96,13 @@ Public Class FrmBajaAlumnos
     Sub Cargar()
         Dim adaptador2 As New SqlDataAdapter
         Dim filasTabla As Integer
-        Dim consulta2 As String = "Select COUNT(codigo_alumno) FROM alumnos"
+        Dim consulta2 As String = "SELECT COUNT(codigo_alumno) FROM alumnos"
         Dim comando4 As New SqlCommand(consulta2, conexion)
         filasTabla = comando4.ExecuteScalar
 
         If filasTabla <> 0 Then
             Try
-                consulta = "select codigo_familia, codigo_alumno, nombre_apellido_alumno, hermano_numero from alumnos"
+                consulta = "SELECT codigo_familia, codigo_alumno, nombre_apellido_alumno, hermano_numero FROM alumnos ORDER BY nombre_apellido_alumno"
                 adaptador = New SqlDataAdapter(consulta, conexion)
                 datos = New DataSet
 

@@ -72,7 +72,7 @@ Public Class FrmBajasFamilias
         abrir()
 
         Try
-            concatena = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia, estado from familias where estado = 'activo'"
+            concatena = "SELECT codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, CONCAT (apellido_padre,' - ', apellido_madre) AS familia, estado FROM familias WHERE estado = 'activo' ORDER BY familia"
             adaptador = New SqlDataAdapter(concatena, conexion)
             datos = New DataSet
             datos.Tables.Add("familias")

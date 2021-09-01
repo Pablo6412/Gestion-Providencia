@@ -65,7 +65,7 @@ Public Class FrmDescuentosBecas
     Private Sub Familias()
 
         Try
-            Dim concatena As String = "Select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia from familias where estado = 'activo'"
+            Dim concatena As String = "SELECT codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, CONCAT (apellido_padre,' - ', apellido_madre) AS familia FROM familias WHERE estado = 'activo' ORDER BY familia"
             adaptador = New SqlDataAdapter(concatena, conexion)
 
             datos = New DataSet

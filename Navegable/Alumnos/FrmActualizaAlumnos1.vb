@@ -28,7 +28,7 @@ Public Class FrmActualizaAlumnos
 
             'Carga combobox con alumnos 
             Try
-                Dim alumno As String = "select codigo_alumno, nombre_apellido_alumno from alumnos"
+                Dim alumno As String = "SELECT codigo_alumno, nombre_apellido_alumno FROM alumnos ORDER BY nombre_apellido_alumno"
                 adaptador = New SqlDataAdapter(alumno, conexion)
 
                 datos = New DataSet
@@ -57,13 +57,13 @@ Public Class FrmActualizaAlumnos
 
     Private Sub CbxCodigoAlumno_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoAlumno.SelectedValueChanged
 
-        Dim datosAlumno As String
+        'Dim datosAlumno As String
         Dim lista As Byte
         Dim consulta2 As String
         Dim Codigo As String = CbxCodigoAlumno.Text
         If Val(Codigo) <> 0 Then
             Try
-                consulta2 = "select nombre_apellido_alumno, edad, fecha_nacimiento, dni, curso, fecha_ingreso, hermano_numero, arancel_importe, cuota, observaciones from gestion_providencia.alumnos JOIN cursos ON cursos.codigo_curso = gestion_providencia.alumnos.codigo_curso JOIN aranceles ON aranceles.codigo_arancel = gestion_providencia.alumnos.codigo_arancel where gestion_providencia.alumnos.codigo_alumno= '" & Codigo & "' "
+                consulta2 = "SELECT nombre_apellido_alumno, edad, fecha_nacimiento, dni, curso, fecha_ingreso, hermano_numero, arancel_importe, cuota, observaciones FROM alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel WHERE alumnos.codigo_alumno= '" & Codigo & "' "
                 adaptador = New SqlDataAdapter(consulta2, conexion)
                 Dim comando As New SqlCommand
                 datos2 = New DataSet
@@ -114,7 +114,7 @@ Public Class FrmActualizaAlumnos
             alumnoEspecial = 0
         End If
 
-        Dim actualizaAlumno As String = "UPDATE gestion_providencia.alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "', fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "', edad =" & Me.TxtEdad.Text & ", dni ='" & Me.TxtDni.Text & "', codigo_curso = '" & Me.TxtCodigoCurso.Text & "', fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "', hermano_numero = " & Me.TxtHermanoNumero.Text & ", observaciones = '" & Me.TxtObservaciones.Text & "'  where codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
+        Dim actualizaAlumno As String = "UPDATE alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "', fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "', edad =" & Me.TxtEdad.Text & ", dni ='" & Me.TxtDni.Text & "', codigo_curso = '" & Me.TxtCodigoCurso.Text & "', fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "', hermano_numero = " & Me.TxtHermanoNumero.Text & ", observaciones = '" & Me.TxtObservaciones.Text & "'  WHERE codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
 
         Dim comando As New SqlCommand(actualizaAlumno, conexion)
         comando.ExecuteNonQuery()
@@ -127,40 +127,6 @@ Public Class FrmActualizaAlumnos
         Else
             MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
         End If
-
-
-        'Dim actualiza As String = "UPDATE gestion_providencia.alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "'," &
-        '"fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "'," &
-        '"edad =" & Me.TxtEdad.Text & "," &
-        '"dni ='" & Me.TxtDni.Text & "'," &
-        ' "curso = '" & Me.TxtCurso.Text & "'," &
-        ' "fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "'," &
-        ' "hermano_numero = " & Me.TxtHermanoNumero.Text & "," &
-        ' "arancel= " & Val(Me.TxtArancel.Text) & "," &
-        ' "cuota = " & Val(Me.TxtCuota.Text) & "," &
-        ' "observaciones = '" & Me.TxtObservaciones.Text & "' " &
-        ' "where codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
-
-        'Dim comando As New SqlCommand(actualiza, conexion)
-        'comando.ExecuteNonQuery()
-
-        'If comando.ExecuteNonQuery() = 1 Then
-        '    MessageBox.Show("Datos actualizados")
-        '    CbxCodigoAlumno.SelectedText = TxtNombreApellido.Text
-
-        '    TxtNombreApellido.Clear()
-        '    TxtDni.Clear()
-        '    'TxtCurso.Clear()
-        '    TxtHermanoNumero.Clear()
-        '    TxtArancel.Clear()
-        '    TxtCuota.Clear()
-        '    TxtEdad.Clear()
-        '    TxtObservaciones.Clear()
-        '    CbxAlumno.Focus()
-
-        'Else
-        '    MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
-        'End If
 
 
         Cargar()

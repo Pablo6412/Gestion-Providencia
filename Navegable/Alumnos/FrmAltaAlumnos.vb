@@ -30,7 +30,7 @@ Public Class FrmAltaAlumnos
 
     Private Sub BuscaFamilia()    'Carga combobox con familia (concatena apellidos paternos) y código_familia
         Try
-            concatena = "select codigo_familia, codigo_beca, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia from familias where estado = 'activo'"
+            concatena = "SELECT codigo_familia, codigo_beca, apellido_padre, nombre_padre, apellido_madre, nombre_madre, CONCAT (apellido_padre,' - ', apellido_madre) AS familia FROM familias WHERE estado = 'activo' ORDER BY familia"
             adaptador = New SqlDataAdapter(concatena, conexion)
             Dim comando As New SqlCommand
             datos = New DataSet

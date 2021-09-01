@@ -23,18 +23,18 @@ Partial Class Pagos
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Pagos))
-        Dim DataGridViewCellStyle49 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle50 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle58 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle59 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle60 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle51 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle52 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle53 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle54 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle55 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle56 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle57 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -62,7 +62,6 @@ Partial Class Pagos
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TxtEfectivoComprobante = New System.Windows.Forms.TextBox()
@@ -74,8 +73,6 @@ Partial Class Pagos
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TxtOtrosComprobante = New System.Windows.Forms.TextBox()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
         Me.TxtOtros = New System.Windows.Forms.TextBox()
         Me.TxtEfectivo = New System.Windows.Forms.TextBox()
         Me.TxtMercadopago = New System.Windows.Forms.TextBox()
@@ -374,8 +371,6 @@ Partial Class Pagos
         Me.GroupBox4.Controls.Add(Me.TextBox5)
         Me.GroupBox4.Controls.Add(Me.Panel5)
         Me.GroupBox4.Controls.Add(Me.TxtOtrosComprobante)
-        Me.GroupBox4.Controls.Add(Me.TextBox9)
-        Me.GroupBox4.Controls.Add(Me.TextBox7)
         Me.GroupBox4.Controls.Add(Me.TxtOtros)
         Me.GroupBox4.Controls.Add(Me.TxtEfectivo)
         Me.GroupBox4.Controls.Add(Me.TxtMercadopago)
@@ -481,7 +476,6 @@ Partial Class Pagos
         Me.Panel4.Controls.Add(Me.Label12)
         Me.Panel4.Controls.Add(Me.Label11)
         Me.Panel4.Controls.Add(Me.Label10)
-        Me.Panel4.Controls.Add(Me.Label9)
         Me.Panel4.Controls.Add(Me.Label8)
         Me.Panel4.Controls.Add(Me.Label7)
         Me.Panel4.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
@@ -494,7 +488,7 @@ Partial Class Pagos
         '
         Me.Label13.AutoSize = True
         Me.Label13.ForeColor = System.Drawing.Color.White
-        Me.Label13.Location = New System.Drawing.Point(238, 5)
+        Me.Label13.Location = New System.Drawing.Point(274, 5)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(45, 15)
         Me.Label13.TabIndex = 6
@@ -504,7 +498,7 @@ Partial Class Pagos
         '
         Me.Label12.AutoSize = True
         Me.Label12.ForeColor = System.Drawing.Color.White
-        Me.Label12.Location = New System.Drawing.Point(136, 6)
+        Me.Label12.Location = New System.Drawing.Point(144, 6)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(58, 15)
         Me.Label12.TabIndex = 5
@@ -514,7 +508,7 @@ Partial Class Pagos
         '
         Me.Label11.AutoSize = True
         Me.Label11.ForeColor = System.Drawing.Color.White
-        Me.Label11.Location = New System.Drawing.Point(513, 6)
+        Me.Label11.Location = New System.Drawing.Point(598, 6)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(95, 15)
         Me.Label11.TabIndex = 4
@@ -524,27 +518,17 @@ Partial Class Pagos
         '
         Me.Label10.AutoSize = True
         Me.Label10.ForeColor = System.Drawing.Color.White
-        Me.Label10.Location = New System.Drawing.Point(637, 5)
+        Me.Label10.Location = New System.Drawing.Point(733, 5)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(43, 15)
         Me.Label10.TabIndex = 3
         Me.Label10.Text = "OTROS"
         '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.ForeColor = System.Drawing.Color.White
-        Me.Label9.Location = New System.Drawing.Point(735, 5)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(41, 15)
-        Me.Label9.TabIndex = 2
-        Me.Label9.Text = "Label9"
-        '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.ForeColor = System.Drawing.Color.White
-        Me.Label8.Location = New System.Drawing.Point(412, 6)
+        Me.Label8.Location = New System.Drawing.Point(477, 6)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(96, 15)
         Me.Label8.TabIndex = 1
@@ -554,7 +538,7 @@ Partial Class Pagos
         '
         Me.Label7.AutoSize = True
         Me.Label7.ForeColor = System.Drawing.Color.White
-        Me.Label7.Location = New System.Drawing.Point(338, 5)
+        Me.Label7.Location = New System.Drawing.Point(387, 5)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(53, 15)
         Me.Label7.TabIndex = 0
@@ -562,14 +546,15 @@ Partial Class Pagos
         '
         'TxtEfectivoComprobante
         '
-        Me.TxtEfectivoComprobante.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.TxtEfectivoComprobante.BackColor = System.Drawing.Color.MistyRose
         Me.TxtEfectivoComprobante.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtEfectivoComprobante.Enabled = False
         Me.TxtEfectivoComprobante.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TxtEfectivoComprobante.Location = New System.Drawing.Point(145, 68)
         Me.TxtEfectivoComprobante.MaxLength = 30
         Me.TxtEfectivoComprobante.Name = "TxtEfectivoComprobante"
         Me.TxtEfectivoComprobante.ReadOnly = True
-        Me.TxtEfectivoComprobante.Size = New System.Drawing.Size(100, 23)
+        Me.TxtEfectivoComprobante.Size = New System.Drawing.Size(120, 23)
         Me.TxtEfectivoComprobante.TabIndex = 5
         '
         'TxtDebitoNumero
@@ -577,10 +562,10 @@ Partial Class Pagos
         Me.TxtDebitoNumero.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.TxtDebitoNumero.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDebitoNumero.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TxtDebitoNumero.Location = New System.Drawing.Point(245, 68)
+        Me.TxtDebitoNumero.Location = New System.Drawing.Point(264, 68)
         Me.TxtDebitoNumero.MaxLength = 30
         Me.TxtDebitoNumero.Name = "TxtDebitoNumero"
-        Me.TxtDebitoNumero.Size = New System.Drawing.Size(100, 23)
+        Me.TxtDebitoNumero.Size = New System.Drawing.Size(120, 23)
         Me.TxtDebitoNumero.TabIndex = 6
         '
         'TxtChequeNumero
@@ -588,10 +573,10 @@ Partial Class Pagos
         Me.TxtChequeNumero.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.TxtChequeNumero.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtChequeNumero.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TxtChequeNumero.Location = New System.Drawing.Point(345, 68)
+        Me.TxtChequeNumero.Location = New System.Drawing.Point(384, 68)
         Me.TxtChequeNumero.MaxLength = 30
         Me.TxtChequeNumero.Name = "TxtChequeNumero"
-        Me.TxtChequeNumero.Size = New System.Drawing.Size(100, 23)
+        Me.TxtChequeNumero.Size = New System.Drawing.Size(116, 23)
         Me.TxtChequeNumero.TabIndex = 7
         '
         'TxtTransferenciaNumero
@@ -599,10 +584,10 @@ Partial Class Pagos
         Me.TxtTransferenciaNumero.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.TxtTransferenciaNumero.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtTransferenciaNumero.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TxtTransferenciaNumero.Location = New System.Drawing.Point(445, 68)
+        Me.TxtTransferenciaNumero.Location = New System.Drawing.Point(500, 68)
         Me.TxtTransferenciaNumero.MaxLength = 30
         Me.TxtTransferenciaNumero.Name = "TxtTransferenciaNumero"
-        Me.TxtTransferenciaNumero.Size = New System.Drawing.Size(100, 23)
+        Me.TxtTransferenciaNumero.Size = New System.Drawing.Size(121, 23)
         Me.TxtTransferenciaNumero.TabIndex = 8
         '
         'TextBox5
@@ -610,10 +595,10 @@ Partial Class Pagos
         Me.TextBox5.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox5.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TextBox5.Location = New System.Drawing.Point(545, 68)
+        Me.TextBox5.Location = New System.Drawing.Point(621, 68)
         Me.TextBox5.MaxLength = 30
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(100, 23)
+        Me.TextBox5.Size = New System.Drawing.Size(116, 23)
         Me.TextBox5.TabIndex = 9
         '
         'Panel5
@@ -652,45 +637,21 @@ Partial Class Pagos
         Me.TxtOtrosComprobante.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.TxtOtrosComprobante.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtOtrosComprobante.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TxtOtrosComprobante.Location = New System.Drawing.Point(645, 68)
+        Me.TxtOtrosComprobante.Location = New System.Drawing.Point(737, 68)
         Me.TxtOtrosComprobante.MaxLength = 30
         Me.TxtOtrosComprobante.Name = "TxtOtrosComprobante"
-        Me.TxtOtrosComprobante.Size = New System.Drawing.Size(100, 23)
+        Me.TxtOtrosComprobante.Size = New System.Drawing.Size(107, 23)
         Me.TxtOtrosComprobante.TabIndex = 11
-        '
-        'TextBox9
-        '
-        Me.TextBox9.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.TextBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox9.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TextBox9.Location = New System.Drawing.Point(745, 45)
-        Me.TextBox9.MaxLength = 15
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.ReadOnly = True
-        Me.TextBox9.Size = New System.Drawing.Size(100, 23)
-        Me.TextBox9.TabIndex = 19
-        '
-        'TextBox7
-        '
-        Me.TextBox7.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.TextBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox7.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TextBox7.Location = New System.Drawing.Point(745, 68)
-        Me.TextBox7.MaxLength = 30
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.ReadOnly = True
-        Me.TextBox7.Size = New System.Drawing.Size(100, 23)
-        Me.TextBox7.TabIndex = 12
         '
         'TxtOtros
         '
         Me.TxtOtros.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.TxtOtros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtOtros.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TxtOtros.Location = New System.Drawing.Point(645, 45)
+        Me.TxtOtros.Location = New System.Drawing.Point(737, 45)
         Me.TxtOtros.MaxLength = 8
         Me.TxtOtros.Name = "TxtOtros"
-        Me.TxtOtros.Size = New System.Drawing.Size(100, 23)
+        Me.TxtOtros.Size = New System.Drawing.Size(107, 23)
         Me.TxtOtros.TabIndex = 18
         '
         'TxtEfectivo
@@ -701,7 +662,7 @@ Partial Class Pagos
         Me.TxtEfectivo.Location = New System.Drawing.Point(145, 45)
         Me.TxtEfectivo.MaxLength = 8
         Me.TxtEfectivo.Name = "TxtEfectivo"
-        Me.TxtEfectivo.Size = New System.Drawing.Size(100, 23)
+        Me.TxtEfectivo.Size = New System.Drawing.Size(120, 23)
         Me.TxtEfectivo.TabIndex = 13
         '
         'TxtMercadopago
@@ -709,10 +670,10 @@ Partial Class Pagos
         Me.TxtMercadopago.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.TxtMercadopago.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtMercadopago.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TxtMercadopago.Location = New System.Drawing.Point(545, 45)
+        Me.TxtMercadopago.Location = New System.Drawing.Point(621, 45)
         Me.TxtMercadopago.MaxLength = 8
         Me.TxtMercadopago.Name = "TxtMercadopago"
-        Me.TxtMercadopago.Size = New System.Drawing.Size(100, 23)
+        Me.TxtMercadopago.Size = New System.Drawing.Size(116, 23)
         Me.TxtMercadopago.TabIndex = 17
         '
         'TxtDebito
@@ -720,10 +681,10 @@ Partial Class Pagos
         Me.TxtDebito.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.TxtDebito.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDebito.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TxtDebito.Location = New System.Drawing.Point(245, 45)
+        Me.TxtDebito.Location = New System.Drawing.Point(264, 45)
         Me.TxtDebito.MaxLength = 8
         Me.TxtDebito.Name = "TxtDebito"
-        Me.TxtDebito.Size = New System.Drawing.Size(100, 23)
+        Me.TxtDebito.Size = New System.Drawing.Size(120, 23)
         Me.TxtDebito.TabIndex = 14
         '
         'TxtTransferencia
@@ -731,10 +692,10 @@ Partial Class Pagos
         Me.TxtTransferencia.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.TxtTransferencia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtTransferencia.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TxtTransferencia.Location = New System.Drawing.Point(445, 45)
+        Me.TxtTransferencia.Location = New System.Drawing.Point(500, 45)
         Me.TxtTransferencia.MaxLength = 8
         Me.TxtTransferencia.Name = "TxtTransferencia"
-        Me.TxtTransferencia.Size = New System.Drawing.Size(100, 23)
+        Me.TxtTransferencia.Size = New System.Drawing.Size(121, 23)
         Me.TxtTransferencia.TabIndex = 16
         '
         'TxtCheque
@@ -742,10 +703,10 @@ Partial Class Pagos
         Me.TxtCheque.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.TxtCheque.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCheque.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TxtCheque.Location = New System.Drawing.Point(345, 45)
+        Me.TxtCheque.Location = New System.Drawing.Point(384, 45)
         Me.TxtCheque.MaxLength = 8
         Me.TxtCheque.Name = "TxtCheque"
-        Me.TxtCheque.Size = New System.Drawing.Size(100, 23)
+        Me.TxtCheque.Size = New System.Drawing.Size(116, 23)
         Me.TxtCheque.TabIndex = 15
         '
         'DtpFechaPago
@@ -1051,12 +1012,12 @@ Partial Class Pagos
         Me.DgvHijos.AllowUserToAddRows = False
         Me.DgvHijos.AllowUserToDeleteRows = False
         Me.DgvHijos.AllowUserToOrderColumns = True
-        DataGridViewCellStyle49.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle49.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle49.NullValue = Nothing
-        DataGridViewCellStyle49.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle49.SelectionForeColor = System.Drawing.Color.White
-        Me.DgvHijos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle49
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.NullValue = Nothing
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
+        Me.DgvHijos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DgvHijos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DgvHijos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
@@ -1064,46 +1025,46 @@ Partial Class Pagos
         Me.DgvHijos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvHijos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.DgvHijos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle50.BackColor = System.Drawing.SystemColors.HotTrack
-        DataGridViewCellStyle50.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle50.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle50.NullValue = Nothing
-        DataGridViewCellStyle50.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle50.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle50.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DgvHijos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle50
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.HotTrack
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.NullValue = Nothing
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvHijos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DgvHijos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvHijos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Nombre, Me.curso, Me.valor_cuota, Me.campamento_importe, Me.importe_taller, Me.materiales_importe, Me.adicional_importe, Me.comedor_importe})
-        DataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle58.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle58.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle58.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle58.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle58.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle58.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DgvHijos.DefaultCellStyle = DataGridViewCellStyle58
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle10.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DgvHijos.DefaultCellStyle = DataGridViewCellStyle10
         Me.DgvHijos.GridColor = System.Drawing.Color.SteelBlue
         Me.DgvHijos.Location = New System.Drawing.Point(30, 33)
         Me.DgvHijos.Margin = New System.Windows.Forms.Padding(4)
         Me.DgvHijos.Name = "DgvHijos"
         Me.DgvHijos.ReadOnly = True
         Me.DgvHijos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle59.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(91, Byte), Integer))
-        DataGridViewCellStyle59.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle59.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle59.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle59.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle59.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DgvHijos.RowHeadersDefaultCellStyle = DataGridViewCellStyle59
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(91, Byte), Integer))
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvHijos.RowHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.DgvHijos.RowHeadersWidth = 62
-        DataGridViewCellStyle60.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(91, Byte), Integer))
-        DataGridViewCellStyle60.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle60.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle60.NullValue = Nothing
-        DataGridViewCellStyle60.SelectionBackColor = System.Drawing.Color.SteelBlue
-        Me.DgvHijos.RowsDefaultCellStyle = DataGridViewCellStyle60
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(91, Byte), Integer))
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle12.NullValue = Nothing
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SteelBlue
+        Me.DgvHijos.RowsDefaultCellStyle = DataGridViewCellStyle12
         Me.DgvHijos.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.DgvHijos.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White
         Me.DgvHijos.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.Highlight
@@ -1116,11 +1077,11 @@ Partial Class Pagos
         'Nombre
         '
         Me.Nombre.DataPropertyName = "nombre_apellido_alumno"
-        DataGridViewCellStyle51.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle51.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle51.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle51.SelectionForeColor = System.Drawing.Color.White
-        Me.Nombre.DefaultCellStyle = DataGridViewCellStyle51
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
+        Me.Nombre.DefaultCellStyle = DataGridViewCellStyle3
         Me.Nombre.FillWeight = 110.0!
         Me.Nombre.HeaderText = "Nombre"
         Me.Nombre.MaxInputLength = 30
@@ -1141,10 +1102,10 @@ Partial Class Pagos
         'valor_cuota
         '
         Me.valor_cuota.DataPropertyName = "valor_cuota"
-        DataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle52.Format = "$#,##0.00"
-        DataGridViewCellStyle52.NullValue = Nothing
-        Me.valor_cuota.DefaultCellStyle = DataGridViewCellStyle52
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Format = "$#,##0.00"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.valor_cuota.DefaultCellStyle = DataGridViewCellStyle4
         Me.valor_cuota.HeaderText = "        Cuota"
         Me.valor_cuota.Name = "valor_cuota"
         Me.valor_cuota.ReadOnly = True
@@ -1152,9 +1113,9 @@ Partial Class Pagos
         'campamento_importe
         '
         Me.campamento_importe.DataPropertyName = "campamento_importe"
-        DataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle53.Format = "$#,##0.00"
-        Me.campamento_importe.DefaultCellStyle = DataGridViewCellStyle53
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle5.Format = "$#,##0.00"
+        Me.campamento_importe.DefaultCellStyle = DataGridViewCellStyle5
         Me.campamento_importe.HeaderText = "  Campamento"
         Me.campamento_importe.Name = "campamento_importe"
         Me.campamento_importe.ReadOnly = True
@@ -1162,9 +1123,9 @@ Partial Class Pagos
         'importe_taller
         '
         Me.importe_taller.DataPropertyName = "importe_taller"
-        DataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle54.Format = "$#,##0.00"
-        Me.importe_taller.DefaultCellStyle = DataGridViewCellStyle54
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle6.Format = "$#,##0.00"
+        Me.importe_taller.DefaultCellStyle = DataGridViewCellStyle6
         Me.importe_taller.HeaderText = "     Talleres"
         Me.importe_taller.Name = "importe_taller"
         Me.importe_taller.ReadOnly = True
@@ -1172,9 +1133,9 @@ Partial Class Pagos
         'materiales_importe
         '
         Me.materiales_importe.DataPropertyName = "materiales_importe"
-        DataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle55.Format = "$#,##0.00"
-        Me.materiales_importe.DefaultCellStyle = DataGridViewCellStyle55
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle7.Format = "$#,##0.00"
+        Me.materiales_importe.DefaultCellStyle = DataGridViewCellStyle7
         Me.materiales_importe.HeaderText = "   Materiales"
         Me.materiales_importe.Name = "materiales_importe"
         Me.materiales_importe.ReadOnly = True
@@ -1183,8 +1144,8 @@ Partial Class Pagos
         'adicional_importe
         '
         Me.adicional_importe.DataPropertyName = "adicional_importe"
-        DataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.adicional_importe.DefaultCellStyle = DataGridViewCellStyle56
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.adicional_importe.DefaultCellStyle = DataGridViewCellStyle8
         Me.adicional_importe.HeaderText = "    Adicional"
         Me.adicional_importe.Name = "adicional_importe"
         Me.adicional_importe.ReadOnly = True
@@ -1192,8 +1153,8 @@ Partial Class Pagos
         'comedor_importe
         '
         Me.comedor_importe.DataPropertyName = "comedor_importe"
-        DataGridViewCellStyle57.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.comedor_importe.DefaultCellStyle = DataGridViewCellStyle57
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.comedor_importe.DefaultCellStyle = DataGridViewCellStyle9
         Me.comedor_importe.HeaderText = "     Comedor"
         Me.comedor_importe.Name = "comedor_importe"
         Me.comedor_importe.ReadOnly = True
@@ -1552,6 +1513,8 @@ Partial Class Pagos
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.HelpButton = True
         Me.MaximizeBox = False
         Me.Name = "Pagos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -1625,14 +1588,12 @@ Partial Class Pagos
     Friend WithEvents TxtChequeNumero As TextBox
     Friend WithEvents TxtDebitoNumero As TextBox
     Friend WithEvents TxtEfectivoComprobante As TextBox
-    Friend WithEvents TextBox9 As TextBox
     Friend WithEvents TxtOtros As TextBox
     Friend WithEvents TxtMercadopago As TextBox
     Friend WithEvents TxtTransferencia As TextBox
     Friend WithEvents TxtCheque As TextBox
     Friend WithEvents TxtDebito As TextBox
     Friend WithEvents TxtEfectivo As TextBox
-    Friend WithEvents TextBox7 As TextBox
     Friend WithEvents TxtOtrosComprobante As TextBox
     Friend WithEvents Panel5 As Panel
     Friend WithEvents Label15 As Label
@@ -1641,7 +1602,6 @@ Partial Class Pagos
     Friend WithEvents Label12 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
-    Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label16 As Label

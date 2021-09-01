@@ -20,6 +20,8 @@ Public Class FrmEmisiónDeVencimientos
     Dim descuentoHermano As Decimal
     Dim descuentoBeca As Decimal
     Dim descuentoEspecial As Decimal
+    Dim cantFam As Integer
+    Dim maxcod As Integer
 
 
 
@@ -32,7 +34,7 @@ Public Class FrmEmisiónDeVencimientos
         Dim comando As New SqlCommand(fecha, conexion)
         ultimaFecha = comando.ExecuteScalar
 
-        If (fechaActual.Month = ultimaFecha.Month) Then
+        If (fechaActual.Month <> ultimaFecha.Month) Then
             BtnVencimientos.Enabled = False
             MsgBox("Los vencimientos del presente mes ya fueron realizados.")
         End If
@@ -43,19 +45,23 @@ Public Class FrmEmisiónDeVencimientos
         conectar()
         abrir()
         grabaVencimientos()
+        grabaPagoNulo()
+
+
+
 
     End Sub
     Private Sub grabaVencimientos()
 
         Dim cantidadFamilias As String = "SELECT COUNT(codigo_familia) FROM familias WHERE estado = 'activo'"
         Dim comandoCantidad As New SqlCommand(cantidadFamilias, conexion)
-        cantidadFamilias = comandoCantidad.ExecuteScalar
+        cantFam = comandoCantidad.ExecuteScalar
 
         Pbuno.Minimum = 0
-        Pbuno.Maximum = cantidadFamilias
+        Pbuno.Maximum = cantFam
         Pbuno.Value = 0
 
-        Dim maxcod As Integer
+
 
         Dim maximocod As String = "SELECT MAX(codigo_familia) FROM familias"
         Dim comando1 As New SqlCommand(maximocod, conexion)
@@ -66,9 +72,9 @@ Public Class FrmEmisiónDeVencimientos
 
         While codFam <= maxcod
 
-            Dim porcentaje As Double = Pbuno.Value / 1000
-            LblPbuno.Text = "Vencimientos generados al: " & Math.Round(Pbuno.Value / 0.03, 2) & "%"
-            LblPbuno.Refresh()
+            'Dim porcentaje As Double = Pbuno.Value / 1000
+            'LblPbuno.Text = "Vencimientos generados al: " & Math.Round(Pbuno.Value / 0.03, 2) & "%"
+            'LblPbuno.Refresh()
 
             Dim consulta As String = " SELECT codigo_alumno, nombre_apellido_alumno, curso, arancel_importe, hermano_numero, campamento_importe, taller_importe, materiales_importe, adicional_importe, comedor_importe, descuento_beca, descuento from alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles On aranceles.codigo_arancel = alumnos.codigo_arancel JOIN taller On taller.codigo_taller = alumnos.codigo_taller1 JOIN descuento_beca On descuento_beca.codigo_beca = alumnos.codigo_beca JOIN descuento_especial On descuento_especial.codigo_descuento_especial = alumnos.codigo_descuento WHERE alumnos.codigo_familia = '" & codFam & "' ORDER BY alumnos.codigo_alumno"
 
@@ -149,7 +155,7 @@ Public Class FrmEmisiónDeVencimientos
             codFam += 1
 
 
-            Pbuno.Value = codFam - 1
+            'Pbuno.Value = codFam - 1
         End While
         MsgBox("Datos guardados")
     End Sub
@@ -171,7 +177,7 @@ Public Class FrmEmisiónDeVencimientos
 
         If codigo Is Nothing Then
 
-            Else
+        Else
             Try
                 Dim consultaCredito As String = "SELECT  credito FROM detalle_pago_escolar WHERE codigo_detalle_pago = '" & codigo & "' "
                 Dim comando As New SqlCommand(consultaCredito, conexion)
@@ -179,22 +185,22 @@ Public Class FrmEmisiónDeVencimientos
 
             Catch ex As Exception
                 MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
-                End Try
+            End Try
 
             Dim buscaCodigo As String = "SELECT MAX(codigo_pago_v) from detalle_vencimientos_escolares WHERE codigo_familia = '" & codFam & "' "
             Dim comandoBuscaCodigo As New SqlCommand(buscaCodigo, conexion)
-                codigo = comandoBuscaCodigo.ExecuteScalar
-                If comandoBuscaCodigo.ExecuteNonQuery = 0 Then
-                    MsgBox("Error buscando codigo")
-                End If
+            codigo = comandoBuscaCodigo.ExecuteScalar
+            If comandoBuscaCodigo.ExecuteNonQuery = 0 Then
+                MsgBox("Error buscando codigo")
+            End If
 
             Dim actualizaCredito As String = "UPDATE detalle_vencimientos_escolares SET credito_v = " & credito & " WHERE codigo_familia = " & codFam & " AND codigo_pago_v = " & codigo & ""
             Dim comandoActualizaCredito As New SqlCommand(actualizaCredito, conexion)
-                If comandoActualizaCredito.ExecuteNonQuery = 0 Then
-                    MsgBox("Error actualizando crédito")
-                End If
-
+            If comandoActualizaCredito.ExecuteNonQuery = 0 Then
+                MsgBox("Error actualizando crédito")
             End If
+
+        End If
 
 
 
@@ -272,6 +278,46 @@ Public Class FrmEmisiónDeVencimientos
         cuota = arancel * descuentoHermano * descuentoEspecial * descuentoBeca
         'TxtCuota.Text = cuota
         'MsgBox("cuota: " & cuota & "")
+    End Sub
+
+    Private Sub grabaPagoNulo()
+        Dim codigo As Integer = 1
+
+
+
+        While codigo <= maxcod
+
+            Dim familiaActiva As String = "SELECT codigo_familia FROM familias WHERE codigo_familia = '" & codigo & "' and estado = 'activo'"
+            Dim adaptador As New SqlDataAdapter(familiaActiva, conexion)
+            Dim dtDatos As DataTable = New DataTable
+            adaptador.Fill(dtDatos)
+
+            If dtDatos.Rows.Count > 0 Then
+
+                Dim pagoNulo As String = "INSERT INTO detalle_pago_escolar (codigo_familia, aranceles, materiales, talleres, campamento, adicional_jardin, comedor, fecha_de_pago, pago_cumplido) VALUES(@codFam, @totalCuota, @totalMateriales, @totalTaller, @totalCampamento, @totalAdicional, @totalComedor, @fechaDePago, @pago_cumplido)"
+                Dim comandoPagoNulo As New SqlCommand(pagoNulo, conexion)
+
+                comandoPagoNulo.Parameters.AddWithValue("@codFam", codigo)
+                comandoPagoNulo.Parameters.AddWithValue("@totalCuota", 0)
+                comandoPagoNulo.Parameters.AddWithValue("@totalMateriales", 0)
+                comandoPagoNulo.Parameters.AddWithValue("@totalTaller", 0)
+                comandoPagoNulo.Parameters.AddWithValue("@totalCampamento", 0)
+                comandoPagoNulo.Parameters.AddWithValue("@totalAdicional", 0)
+                comandoPagoNulo.Parameters.AddWithValue("@totalComedor", 0)
+                comandoPagoNulo.Parameters.AddWithValue("@fechaDePago", fechaActual)
+                comandoPagoNulo.Parameters.AddWithValue("@pago_cumplido", "Nulo")
+
+                If comandoPagoNulo.ExecuteNonQuery() = 1 Then
+                    'MessageBox.Show("Datos guardados")
+
+                Else
+                    MsgBox("No grabó nada")
+                End If
+
+            End If
+            codigo += 1
+        End While
+
     End Sub
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click

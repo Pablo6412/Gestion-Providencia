@@ -117,7 +117,7 @@ Public Class Pagos
 
         'Carga combobox con familias activas
         Try
-            Dim concatena As String = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia, estado from familias where estado = 'activo'"
+            Dim concatena As String = "SELECT codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, CONCAT(apellido_padre,' - ', apellido_madre) AS familia, estado FROM familias WHERE estado = 'activo' ORDER BY familia"
 
             adaptador = New SqlDataAdapter(concatena, conexion)
             datos = New DataSet
@@ -134,8 +134,6 @@ Public Class Pagos
         End Try
 
     End Sub
-
-
 
     Private Sub UltimoPago()
         'Fecha de último pago
@@ -176,11 +174,11 @@ Public Class Pagos
                 TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
 
             Else
-                opcion = MessageBox.Show("El monto es insuficiente para afrontar el total de los conceptos del mes." + vbCr + "En este pago hay un faltante de: $" & Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text) & vbCr + vbCr + "SI: para realizar el pago parcial." + vbCr + "" + vbCr + "NO: para rectificar el monto a pagar." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                opcion = MessageBox.Show("El monto es insuficiente para afrontar el total de los conceptos del mes." + vbCr + "En este pago hay un faltante de: $" & Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text) & vbCr + vbCr + "SI: para realizar el pago parcial." + vbCr + "" + vbCr + "NO: para rectificar el monto a pagar." + vbCr + "" + vbCr + "", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 If (opcion = Windows.Forms.DialogResult.No) Then
 
                     TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
-
+                    RadioButton1.Checked = True
                 Else
                     pagoCompleto = False
                     TxtMatricula.Enabled = True
