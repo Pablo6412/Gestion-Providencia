@@ -50,6 +50,8 @@ Partial Class FrmAltaFamilia
         Me.LblApellidoMadre = New System.Windows.Forms.Label()
         Me.LblApellidoPadre = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TxtEmailMadre = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.TxtEmailPadre = New System.Windows.Forms.TextBox()
         Me.TxtTelFijo = New System.Windows.Forms.TextBox()
         Me.TxtTelCel = New System.Windows.Forms.TextBox()
@@ -58,8 +60,6 @@ Partial Class FrmAltaFamilia
         Me.LblTelefonoCelular = New System.Windows.Forms.Label()
         Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.BtnSalir = New System.Windows.Forms.Button()
-        Me.TxtEmailMadre = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,7 +78,7 @@ Partial Class FrmAltaFamilia
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1041, 77)
+        Me.Panel1.Size = New System.Drawing.Size(1084, 77)
         Me.Panel1.TabIndex = 0
         '
         'PictureBox3
@@ -96,7 +96,7 @@ Partial Class FrmAltaFamilia
         Me.PictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox2.Location = New System.Drawing.Point(482, 0)
+        Me.PictureBox2.Location = New System.Drawing.Point(504, 0)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(77, 77)
         Me.PictureBox2.TabIndex = 1
@@ -107,7 +107,7 @@ Partial Class FrmAltaFamilia
         Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox1.Location = New System.Drawing.Point(685, 0)
+        Me.PictureBox1.Location = New System.Drawing.Point(728, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(77, 77)
         Me.PictureBox1.TabIndex = 0
@@ -119,7 +119,7 @@ Partial Class FrmAltaFamilia
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 77)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1041, 5)
+        Me.Panel2.Size = New System.Drawing.Size(1084, 5)
         Me.Panel2.TabIndex = 1
         '
         'LblFechaIngreso
@@ -127,7 +127,7 @@ Partial Class FrmAltaFamilia
         Me.LblFechaIngreso.AutoSize = True
         Me.LblFechaIngreso.BackColor = System.Drawing.Color.Transparent
         Me.LblFechaIngreso.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.LblFechaIngreso.Location = New System.Drawing.Point(413, 104)
+        Me.LblFechaIngreso.Location = New System.Drawing.Point(413, 92)
         Me.LblFechaIngreso.Name = "LblFechaIngreso"
         Me.LblFechaIngreso.Size = New System.Drawing.Size(142, 21)
         Me.LblFechaIngreso.TabIndex = 2
@@ -137,7 +137,7 @@ Partial Class FrmAltaFamilia
         '
         Me.DtpFechaIngreso.CalendarFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.DtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaIngreso.Location = New System.Drawing.Point(561, 103)
+        Me.DtpFechaIngreso.Location = New System.Drawing.Point(561, 91)
         Me.DtpFechaIngreso.Name = "DtpFechaIngreso"
         Me.DtpFechaIngreso.Size = New System.Drawing.Size(143, 23)
         Me.DtpFechaIngreso.TabIndex = 3
@@ -166,10 +166,10 @@ Partial Class FrmAltaFamilia
         Me.GroupBox1.Controls.Add(Me.LblApellidoMadre)
         Me.GroupBox1.Controls.Add(Me.LblApellidoPadre)
         Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.GroupBox1.Location = New System.Drawing.Point(38, 141)
+        Me.GroupBox1.Location = New System.Drawing.Point(38, 119)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 3, 10, 3)
-        Me.GroupBox1.Size = New System.Drawing.Size(977, 298)
+        Me.GroupBox1.Size = New System.Drawing.Size(1020, 298)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Ingreso de datos familiares:"
@@ -272,7 +272,7 @@ Partial Class FrmAltaFamilia
         Me.TxtNombreMadre.Location = New System.Drawing.Point(654, 103)
         Me.TxtNombreMadre.MaxLength = 50
         Me.TxtNombreMadre.Name = "TxtNombreMadre"
-        Me.TxtNombreMadre.Size = New System.Drawing.Size(291, 29)
+        Me.TxtNombreMadre.Size = New System.Drawing.Size(334, 29)
         Me.TxtNombreMadre.TabIndex = 5
         '
         'TxtNombrePadre
@@ -283,7 +283,7 @@ Partial Class FrmAltaFamilia
         Me.TxtNombrePadre.Location = New System.Drawing.Point(654, 28)
         Me.TxtNombrePadre.MaxLength = 50
         Me.TxtNombrePadre.Name = "TxtNombrePadre"
-        Me.TxtNombrePadre.Size = New System.Drawing.Size(291, 29)
+        Me.TxtNombrePadre.Size = New System.Drawing.Size(334, 29)
         Me.TxtNombrePadre.TabIndex = 2
         '
         'TxtApellidoMadre
@@ -343,8 +343,7 @@ Partial Class FrmAltaFamilia
         '
         'GroupBox2
         '
-        Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox2.Controls.Add(Me.TxtEmailMadre)
         Me.GroupBox2.Controls.Add(Me.Label3)
@@ -355,12 +354,30 @@ Partial Class FrmAltaFamilia
         Me.GroupBox2.Controls.Add(Me.LblTelefonoFijo)
         Me.GroupBox2.Controls.Add(Me.LblTelefonoCelular)
         Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.GroupBox2.Location = New System.Drawing.Point(38, 460)
+        Me.GroupBox2.Location = New System.Drawing.Point(38, 452)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(796, 150)
+        Me.GroupBox2.Size = New System.Drawing.Size(839, 150)
         Me.GroupBox2.TabIndex = 5
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Datos de Contacto"
+        '
+        'TxtEmailMadre
+        '
+        Me.TxtEmailMadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtEmailMadre.Location = New System.Drawing.Point(296, 101)
+        Me.TxtEmailMadre.MaxLength = 50
+        Me.TxtEmailMadre.Name = "TxtEmailMadre"
+        Me.TxtEmailMadre.Size = New System.Drawing.Size(345, 29)
+        Me.TxtEmailMadre.TabIndex = 14
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(49, 109)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(243, 21)
+        Me.Label3.TabIndex = 13
+        Me.Label3.Text = "Correo electónico de la madre:"
         '
         'TxtEmailPadre
         '
@@ -427,7 +444,7 @@ Partial Class FrmAltaFamilia
         Me.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnGuardar.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.BtnGuardar.ForeColor = System.Drawing.Color.Black
-        Me.BtnGuardar.Location = New System.Drawing.Point(906, 489)
+        Me.BtnGuardar.Location = New System.Drawing.Point(949, 470)
         Me.BtnGuardar.Name = "BtnGuardar"
         Me.BtnGuardar.Size = New System.Drawing.Size(81, 59)
         Me.BtnGuardar.TabIndex = 13
@@ -443,30 +460,12 @@ Partial Class FrmAltaFamilia
         Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
         Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnSalir.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.BtnSalir.Location = New System.Drawing.Point(906, 560)
+        Me.BtnSalir.Location = New System.Drawing.Point(949, 541)
         Me.BtnSalir.Name = "BtnSalir"
         Me.BtnSalir.Size = New System.Drawing.Size(81, 59)
         Me.BtnSalir.TabIndex = 14
         Me.BtnSalir.Text = "Salir"
         Me.BtnSalir.UseVisualStyleBackColor = False
-        '
-        'TxtEmailMadre
-        '
-        Me.TxtEmailMadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtEmailMadre.Location = New System.Drawing.Point(296, 101)
-        Me.TxtEmailMadre.MaxLength = 50
-        Me.TxtEmailMadre.Name = "TxtEmailMadre"
-        Me.TxtEmailMadre.Size = New System.Drawing.Size(345, 29)
-        Me.TxtEmailMadre.TabIndex = 14
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(49, 109)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(243, 21)
-        Me.Label3.TabIndex = 13
-        Me.Label3.Text = "Correo electónico de la madre:"
         '
         'FrmAltaFamilia
         '
@@ -478,7 +477,7 @@ Partial Class FrmAltaFamilia
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1041, 645)
+        Me.ClientSize = New System.Drawing.Size(1084, 645)
         Me.Controls.Add(Me.BtnSalir)
         Me.Controls.Add(Me.BtnGuardar)
         Me.Controls.Add(Me.GroupBox2)

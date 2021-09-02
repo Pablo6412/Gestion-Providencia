@@ -71,9 +71,6 @@ Partial Class FrmAltaAlumnos
         Me.BtnSalir = New System.Windows.Forms.Button()
         Me.TxtObservaciones = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.RdbNo = New System.Windows.Forms.RadioButton()
-        Me.RdbSi = New System.Windows.Forms.RadioButton()
-        Me.Label17 = New System.Windows.Forms.Label()
         Me.CbxCurso = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.TxtDni = New System.Windows.Forms.TextBox()
@@ -576,9 +573,6 @@ Partial Class FrmAltaAlumnos
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.AutoSize = True
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox1.Controls.Add(Me.RdbNo)
-        Me.GroupBox1.Controls.Add(Me.RdbSi)
-        Me.GroupBox1.Controls.Add(Me.Label17)
         Me.GroupBox1.Controls.Add(Me.CbxCurso)
         Me.GroupBox1.Controls.Add(Me.Label16)
         Me.GroupBox1.Controls.Add(Me.TxtDni)
@@ -600,37 +594,6 @@ Partial Class FrmAltaAlumnos
         Me.GroupBox1.TabIndex = 34
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Datos del Alumno"
-        '
-        'RdbNo
-        '
-        Me.RdbNo.AutoSize = True
-        Me.RdbNo.Location = New System.Drawing.Point(869, 99)
-        Me.RdbNo.Name = "RdbNo"
-        Me.RdbNo.Size = New System.Drawing.Size(51, 25)
-        Me.RdbNo.TabIndex = 40
-        Me.RdbNo.TabStop = True
-        Me.RdbNo.Text = "No"
-        Me.RdbNo.UseVisualStyleBackColor = True
-        '
-        'RdbSi
-        '
-        Me.RdbSi.AutoSize = True
-        Me.RdbSi.Location = New System.Drawing.Point(869, 59)
-        Me.RdbSi.Name = "RdbSi"
-        Me.RdbSi.Size = New System.Drawing.Size(42, 25)
-        Me.RdbSi.TabIndex = 39
-        Me.RdbSi.TabStop = True
-        Me.RdbSi.Text = "Si"
-        Me.RdbSi.UseVisualStyleBackColor = True
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(788, 85)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(76, 21)
-        Me.Label17.TabIndex = 20
-        Me.Label17.Text = "Especial:"
         '
         'CbxCurso
         '
@@ -982,7 +945,4 @@ Partial Class FrmAltaAlumnos
     Friend WithEvents hermano_numero As DataGridViewTextBoxColumn
     Friend WithEvents fecha_ingreso As DataGridViewTextBoxColumn
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
-    Friend WithEvents Label17 As Label
-    Friend WithEvents RdbNo As RadioButton
-    Friend WithEvents RdbSi As RadioButton
 End Class
