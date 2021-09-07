@@ -164,8 +164,6 @@ Public Class FrmBajaAlumnos
         MsgBox("" & familia & "")
     End Sub
 
-    Private Sub EdadEliminado()
 
-    End Sub
 
 End Class

@@ -82,7 +82,7 @@ Public Class FrmAltaAlumnos
 
     Private Sub DataGrid()
         Try
-            consulta = "SELECT nombre_apellido_alumno, dni, curso, arancel_importe, valor_cuota, hermano_numero, fecha_ingreso FROM alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN Aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel WHERE alumnos.codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' ORDER BY alumnos.codigo_alumno"
+            consulta = "SELECT nombre_apellido_alumno, dni, curso, arancel_importe, valor_cuota, hermano_numero, fecha_ingreso FROM alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN Aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel WHERE alumnos.codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' AND estado = 'activo'  ORDER BY alumnos.codigo_alumno"
 
             comando = New SqlCommand()
             comando.CommandText = consulta
@@ -203,9 +203,8 @@ Public Class FrmAltaAlumnos
     'El que va
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
         Dim estado As String
-        Dim tallerNumero As Integer = 1
-        Dim codigoAl As Integer
-        Dim cantHermanos As Integer
+
+
         Dim hermanoNum As Integer = Val(TxtHermanoNumero.Text) + 1
         If CbxCodigoFamilia.Text = "" Then
             MsgBox("debe elegir un código de familia o un apellido")
@@ -218,29 +217,10 @@ Public Class FrmAltaAlumnos
             If TxtNombreAlumno.Text = "" Or TxtDni.Text = "" Or TxtEdad.Text = "" Or DtpFechaIngreso.Text = "" Or DtpFechaNacimiento.Text = "" Then
                 MessageBox.Show("Debe llenar todos los campor, solo el campo observaciones puede quedar vacío", "Campos sin completar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Else
-
-                Dim opcion As DialogResult = MessageBox.Show("¿Realmente quiere dar de alta al alumno " & TxtNombreAlumno.Text & " en " & CbxCurso.Text & "?", "¡Registro a eliminar!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning)
+                Dim opcion As DialogResult = MessageBox.Show("¿Realmente quiere dar de alta al alumno " & TxtNombreAlumno.Text & " en " & CbxCurso.Text & "?", "Aviso de alta de alumnos", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information)
 
                 If (opcion = Windows.Forms.DialogResult.Yes) Then
-
-
-                    Dim cantidadHermanos As String = "SELECT COUNT(codigo_familia) FROM alumnos WHERE codigo_familia = " & codigoFamilia & " AND estado = 'activo' "
-                    Dim comandoCantidad As New SqlCommand(cantidadHermanos, conexion)
-                    cantHermanos = comandoCantidad.ExecuteScalar
-                    comandoCantidad.ExecuteNonQuery()
-                    'cantHermanos = 2
-
-                    If cantHermanos <> 0 Then
-                        While cantHermanos + 1 >= hermanoNum
-
-                            Dim actualiza As String = "UPDATE alumnos SET hermano_numero = " & (cantHermanos + 1) & " WHERE codigo_familia = " & codigoFamilia & " AND hermano_numero = " & cantHermanos & ""
-                            Dim comandoActualiza As New SqlCommand(actualiza, conexion)
-                            comandoActualiza.ExecuteNonQuery()
-                            cantHermanos -= 1
-
-                        End While
-                    End If
-
+                    'OrdenaHermanos()
 
                     If alumnoExiste(LCase(TxtApellidoPadre.Text)) = True Then
 
@@ -255,16 +235,24 @@ Public Class FrmAltaAlumnos
                         If estado = "inactivo" Or estado = "Inactivo" Then
                             MessageBox.Show("El alumno " & TxtNombreAlumno.Text & " ya fue alumno del colegio, se procederá a su reincorporación", "Aviso de reincorporación", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                            Dim reincorpora As String = "UPDATE alumnos SET codigo_curso = " & CodigoCurso & ", codigo_beca = " & codigoBeca & " codigo_arancel= " & CodigoCurso & ", nombre_apellido_alumno = '" & TxtNombreAlumno.Text & "', edad = " & Val(TxtEdad.Text) & ", fecha_nacimiento = '" & DtpFechaNacimiento.Value & "', dni = '" & TxtDni.Text & "', fecha_ingreso = '" & DtpFechaIngreso.Value & "', hermano_numero = " & Val(TxtHermanoNumero.Text) & ", cuota = " & Val(TxtCuota.Text) & ", observaciones = '" & TxtObservaciones.Text & "'"
+                            OrdenaHermanos()
+                            Dim reincorpora As String = "UPDATE alumnos SET codigo_curso = " & CodigoCurso & ", codigo_beca = " & codigoBeca & ", codigo_arancel= " & CodigoCurso & ", nombre_apellido_alumno = '" & TxtNombreAlumno.Text & "', edad = " & Val(TxtEdad.Text) & ", fecha_nacimiento = '" & DtpFechaNacimiento.Value & "', dni = '" & TxtDni.Text & "', fecha_ingreso = '" & DtpFechaIngreso.Value & "', hermano_numero = " & Val(TxtHermanoNumero.Text) & ", cuota = " & Val(TxtCuota.Text) & ", observaciones = '" & TxtObservaciones.Text & "', estado = 'activo' WHERE dni = '" & TxtDni.Text & "'"
+                            Dim comandoReincorpora As New SqlCommand(reincorpora, conexion)
+                            If comandoReincorpora.ExecuteNonQuery Then
+                                MsgBox("¡Bienvenido " & TxtNombreAlumno.Text & " nuevamente al colegio!")
+                            Else
+                                MsgBox("Error en la reincorporación. Cierre el formulario e intente nuevamente")
+                            End If
+                            Talleres()
                             LimpiaTexto()
                             NumeroHermanos()
                             CalculaCuota()
-                        Else
-                            MessageBox.Show("¡El alumno " & TxtNombreAlumno.Text & " ya está registrado!", "validación de alumno existente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            Else
+                                MessageBox.Show("¡El alumno " & TxtNombreAlumno.Text & " ya está registrado!", "validación de alumno existente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                         End If
 
                     Else
-
+                        OrdenaHermanos()
                         Dim cadena As String = "INSERT INTO alumnos(codigo_familia, codigo_curso, codigo_beca, codigo_arancel, nombre_apellido_alumno, edad, fecha_nacimiento, dni,  fecha_ingreso, hermano_numero,  cuota, observaciones) 
                                        VALUES(@codigo_familia, @codigo_curso, @codigo_beca, @codigo_arancel, @nombre_apellido_alumno, @edad, @fecha_nacimiento, @dni, @fecha_ingreso, @hermano_numero,  @cuota, @observaciones)"
                         comando = New SqlCommand(cadena, conexion)
@@ -283,21 +271,8 @@ Public Class FrmAltaAlumnos
                         comando.Parameters.AddWithValue("@observaciones", TxtObservaciones.Text)
 
                         If comando.ExecuteNonQuery() = 1 Then
+                            Talleres()
 
-                            Dim maxCod As String = "SELECT MAX(codigo_alumno) FROM alumnos"
-                            Dim comandoMaxCod As New SqlCommand(maxCod, conexion)
-                            codigoAl = comandoMaxCod.ExecuteScalar()
-
-                            While tallerNumero <= 3
-                                Dim taller As String = "INSERT INTO taller_alumno(codigo_alumno,  codigo_taller, importe_taller) VALUES(@codigo_alumno, @codigo_taller, @importe_taller)"
-                                Dim comandoTaller As New SqlCommand(taller, conexion)
-                                comandoTaller.Parameters.AddWithValue("@codigo_alumno", codigoAl)
-                                comandoTaller.Parameters.AddWithValue("@codigo_taller", 1)
-                                comandoTaller.Parameters.AddWithValue("@importe_taller", 0)
-
-                                comandoTaller.ExecuteNonQuery()
-                                tallerNumero += 1
-                            End While
 
                         Else
                             MsgBox("Error al intentar guardar los datos")
@@ -323,6 +298,48 @@ Public Class FrmAltaAlumnos
             BuscaCurso()
             NumeroHermanos()
         End If
+    End Sub
+
+    Private Sub OrdenaHermanos()
+        Dim cantHermanos As Integer
+        Dim hermanoNum As Integer = Val(TxtHermanoNumero.Text) + 1
+
+        Dim cantidadHermanos As String = "SELECT COUNT(codigo_familia) FROM alumnos WHERE codigo_familia = " & codigoFamilia & " AND estado = 'activo' "
+        Dim comandoCantidad As New SqlCommand(cantidadHermanos, conexion)
+        cantHermanos = comandoCantidad.ExecuteScalar
+        comandoCantidad.ExecuteNonQuery()
+        'cantHermanos = 2
+
+        If cantHermanos <> 0 Then
+            While cantHermanos + 1 >= hermanoNum
+
+                Dim actualiza As String = "UPDATE alumnos SET hermano_numero = " & (cantHermanos + 1) & " WHERE codigo_familia = " & codigoFamilia & " AND hermano_numero = " & cantHermanos & ""
+                Dim comandoActualiza As New SqlCommand(actualiza, conexion)
+                comandoActualiza.ExecuteNonQuery()
+                cantHermanos -= 1
+
+            End While
+        End If
+    End Sub
+
+    Private Sub Talleres()
+        Dim tallerNumero As Integer = 1
+        Dim codigoAl As Integer
+
+        Dim maxCod As String = "SELECT MAX(codigo_alumno) FROM alumnos"
+        Dim comandoMaxCod As New SqlCommand(maxCod, conexion)
+        codigoAl = comandoMaxCod.ExecuteScalar()
+
+        While tallerNumero <= 3
+            Dim taller As String = "INSERT INTO taller_alumno(codigo_alumno,  codigo_taller, importe_taller) VALUES(@codigo_alumno, @codigo_taller, @importe_taller)"
+            Dim comandoTaller As New SqlCommand(taller, conexion)
+            comandoTaller.Parameters.AddWithValue("@codigo_alumno", codigoAl)
+            comandoTaller.Parameters.AddWithValue("@codigo_taller", 1)
+            comandoTaller.Parameters.AddWithValue("@importe_taller", 0)
+
+            comandoTaller.ExecuteNonQuery()
+            tallerNumero += 1
+        End While
     End Sub
     Private Sub LimpiaTexto()
         TxtNombreAlumno.Clear()
