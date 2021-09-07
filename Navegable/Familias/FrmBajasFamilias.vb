@@ -19,23 +19,41 @@ Public Class FrmBajasFamilias
         End If
         If (opcion = Windows.Forms.DialogResult.Yes) Then
             abrir()
-            Dim baja As String = "update familias set  estado = 'Inactivo'
+            Dim baja As String = "UPDATE familias SET  estado = 'Inactivo'
                                                                               
-                                         where codigo_familia='" & Me.CbxCodigo.Text & "' "
+                                         WHERE codigo_familia='" & Me.CbxCodigo.Text & "' "
 
             Dim comando As New SqlCommand(baja, conexion)
             comando.ExecuteNonQuery()
 
             If comando.ExecuteNonQuery() = 1 Then
-                MessageBox.Show("Familia dada de baja exitosamente")
-                CbxCodigo.Text = ("")
-                CbxFamilia.Text = ("")
-                CargarFamilias()
-                CbxCodigo.Focus()
+
+                Dim bajaHijos As String = "UPDATE alumnos SET  estado = 'Inactivo'
+                                                                              
+                                         WHERE codigo_familia='" & Me.CbxCodigo.Text & "' "
+
+                Dim comandoHijos As New SqlCommand(bajaHijos, conexion)
+                comandoHijos.ExecuteNonQuery()
+
+                If comandoHijos.ExecuteNonQuery() <> 0 Then
+                    MessageBox.Show("Familia dada de baja exitosamente")
+                    CbxCodigo.Text = ("")
+                    CbxFamilia.Text = ("")
+                    CargarFamilias()
+                    CbxCodigo.Focus()
+
+                Else
+                    MessageBox.Show("¡Error! Baja fallida. Reinicie el programa e intente nuevamente. De persistir el inconveniente contacte a los programadores", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+
+
 
             Else
                 MessageBox.Show("¡Error! Baja fallida. Reinicie el programa e intente nuevamente. De persistir el inconveniente contacte a los programadores", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
+
+
+
         End If
         cerrar()
     End Sub
@@ -44,17 +62,26 @@ Public Class FrmBajasFamilias
         If CbxReincorporaCodigo.Text = "" Then
             opcion = MessageBox.Show("Debe seleccionar una familia ", "¡Campos vacios!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
-            opcion = MessageBox.Show("¿Realmente quiere reincorporar a ésta familia? ", "¡Está a punto de reincorporar ésta familia!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning)
+            opcion = MessageBox.Show("¿Realmente quiere reincorporar a ésta familia? " + vbCr + "Verifique datos a actualizar en los formularios de actualización de familias y actualización de alumnos", "¡Está a punto de reincorporar ésta familia!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning)
         End If
         If (opcion = Windows.Forms.DialogResult.Yes) Then
             abrir()
-            Dim actualiza As String = "update familias set  estado = 'Activo'
+            Dim reincorpora As String = "UPDATE familias SET  estado = 'Activo'
                                                                               
-                                         where codigo_familia='" & Me.CbxReincorporaCodigo.Text & "' "
+                                         WHERE codigo_familia='" & Me.CbxReincorporaCodigo.Text & "' "
 
-            Dim comando As New SqlCommand(actualiza, conexion)
+            Dim comando As New SqlCommand(reincorpora, conexion)
             comando.ExecuteNonQuery()
             If comando.ExecuteNonQuery() = 1 Then
+
+                Dim reincorporaHijos As String = "UPDATE alumnos SET  estado = 'Activo'
+                                                                              
+                                         WHERE codigo_familia='" & Me.CbxReincorporaCodigo.Text & "' "
+
+                Dim comandoReincorpora As New SqlCommand(reincorporaHijos, conexion)
+                comandoReincorpora.ExecuteNonQuery()
+
+
                 MessageBox.Show("Familia reincorporada exitosamente")
                 CbxReincorporaCodigo.Text = ("")
                 CbxReincorporaFamilia.Text = ("")
@@ -89,7 +116,7 @@ Public Class FrmBajasFamilias
 
         'Carga familias dadas de baja
         Try
-            concatena = "select codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, concat (apellido_padre,' - ', apellido_madre) as familia, estado from familias where estado = 'inactivo'"
+            concatena = "SELECT codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, CONCAT(apellido_padre,' - ', apellido_madre) AS familia, estado FROM familias WHERE estado = 'inactivo'"
             adaptador = New SqlDataAdapter(concatena, conexion)
             datos = New DataSet
             datos.Tables.Add("familias")

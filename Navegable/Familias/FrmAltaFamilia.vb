@@ -11,14 +11,14 @@ Public Class FrmAltaFamilia
 
     'Conección a la base de datos
     Public Sub FrmAltaFamilia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call conectar()
+        conectar()
     End Sub
 
-    'Función que comprueba si existe la familia que se está por cargar (comprueba apellido y nombre del padre y apellido de la madre)
+    'Función que comprueba si existe la familia que se está por cargar (comprueba dni del padre o de la madre)
     Private Function FamiliaExiste(ByVal apellido_padre As String) As Boolean
         Dim resultado As Boolean
         Try
-            comandos = New SqlCommand("select * from familias where apellido_padre='" & TxtApellidoPadre.Text & "' And nombre_padre='" & TxtNombrePadre.Text & "' and apellido_madre='" & TxtApellidoMadre.Text & "'", conexion)
+            comandos = New SqlCommand("SELECT * FROM familias WHERE dni_padre='" & TxtDniPadre.Text & "' OR dni_madre='" & TxtDniMadre.Text & "' ", conexion)
             dr = comandos.ExecuteReader
             If dr.Read Then
                 resultado = True
@@ -46,14 +46,14 @@ Public Class FrmAltaFamilia
             Else
 
                 'Verifica casillas vacías
-                If TxtApellidoPadre.Text = "" Or TxtNombrePadre.Text = "" Or TxtNombrePadre.Text = "" Or TxtNombreMadre.Text = "" Or TxtDomicilio.Text = "" Or TxtCantidadDeHijos.Text = "" Or TxtTelCel.Text = "" Or TxtTelFijo.Text = "" Then
+                If TxtApellidoPadre.Text = "" Or TxtNombrePadre.Text = "" Or TxtNombrePadre.Text = "" Or TxtNombreMadre.Text = "" Or TxtDomicilio.Text = "" Or TxtCantidadDeHijos.Text = "" Or TxtMovilPadre.Text = "" Or TxtTelFijo.Text = "" Then
                     MessageBox.Show("Debe llenar todos los campor, solo el campo observaciones puede quedar vacío", "Campos sin completar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Else
                     If FamiliaExiste(LCase(TxtApellidoPadre.Text)) = False Then
 
                         'Grabación
-                        Dim cadena As String = "INSERT INTO familias(apellido_padre, nombre_padre,dni_padre, apellido_madre, nombre_madre, dni_madre, domicilio, cantidad_de_hijos, telefono_celular, telefono_fijo, email_padre, email_madre, fecha_ingreso, observaciones)
-                                        VALUES(@apellido_padre, @nombre_padre, @dni_padre, @apellido_madre, @nombre_madre, @dni_madre, @domicilio, @cantidad_de_hijos, @telefono_celular, @telefono_fijo, @email_padre, @email_madre, @fecha_ingreso, @observaciones)"
+                        Dim cadena As String = "INSERT INTO familias(apellido_padre, nombre_padre,dni_padre, apellido_madre, nombre_madre, dni_madre, domicilio, cantidad_de_hijos, movil_padre, movil_madre, telefono_fijo, email_padre, email_madre, fecha_ingreso, observaciones)
+                                        VALUES(@apellido_padre, @nombre_padre, @dni_padre, @apellido_madre, @nombre_madre, @dni_madre, @domicilio, @cantidad_de_hijos, @movil_padre, @movil_madre, @telefono_fijo, @email_padre, @email_madre, @fecha_ingreso, @observaciones)"
                         'Dim comandos As SqlCommand
                         Dim comandos As New SqlCommand(cadena, conexion)
 
@@ -65,7 +65,8 @@ Public Class FrmAltaFamilia
                         comandos.Parameters.AddWithValue("@dni_madre", TxtDniMadre.Text)
                         comandos.Parameters.AddWithValue("@domicilio", TxtDomicilio.Text)
                         comandos.Parameters.AddWithValue("@cantidad_de_hijos", TxtCantidadDeHijos.Text)
-                        comandos.Parameters.AddWithValue("@telefono_celular", TxtTelCel.Text)
+                        comandos.Parameters.AddWithValue("@movil_padre", TxtMovilPadre.Text)
+                        comandos.Parameters.AddWithValue("@movil_madre", TxtMovilMadre.Text)
                         comandos.Parameters.AddWithValue("@telefono_fijo", TxtTelFijo.Text)
                         comandos.Parameters.AddWithValue("@email_padre", TxtEmailPadre.Text)
                         comandos.Parameters.AddWithValue("@email_madre", TxtEmailMadre.Text)
@@ -119,7 +120,8 @@ Public Class FrmAltaFamilia
         TxtDomicilio.Clear()
         TxtCantidadDeHijos.Clear()
         TxtObservaciones.Clear()
-        TxtTelCel.Clear()
+        TxtMovilPadre.Clear()
+        TxtMovilMadre.Clear()
         TxtTelFijo.Clear()
         TxtEmailPadre.Clear()
         TxtEmailMadre.Clear()
@@ -131,7 +133,7 @@ Public Class FrmAltaFamilia
         SoloNumeros(e)
     End Sub
 
-    Private Sub TxtTelCel_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtTelCel.KeyPress
+    Private Sub TxtTelCel_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtMovilPadre.KeyPress
         SoloNumeros(e)
     End Sub
 

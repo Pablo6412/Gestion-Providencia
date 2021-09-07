@@ -54,12 +54,14 @@ Partial Class FrmAltaFamilia
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TxtEmailPadre = New System.Windows.Forms.TextBox()
         Me.TxtTelFijo = New System.Windows.Forms.TextBox()
-        Me.TxtTelCel = New System.Windows.Forms.TextBox()
+        Me.TxtMovilPadre = New System.Windows.Forms.TextBox()
         Me.LblEmail = New System.Windows.Forms.Label()
         Me.LblTelefonoFijo = New System.Windows.Forms.Label()
         Me.LblTelefonoCelular = New System.Windows.Forms.Label()
         Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.BtnSalir = New System.Windows.Forms.Button()
+        Me.TxtMovilMadre = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -345,18 +347,20 @@ Partial Class FrmAltaFamilia
         '
         Me.GroupBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.TxtMovilMadre)
+        Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.TxtEmailMadre)
         Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Controls.Add(Me.TxtEmailPadre)
         Me.GroupBox2.Controls.Add(Me.TxtTelFijo)
-        Me.GroupBox2.Controls.Add(Me.TxtTelCel)
+        Me.GroupBox2.Controls.Add(Me.TxtMovilPadre)
         Me.GroupBox2.Controls.Add(Me.LblEmail)
         Me.GroupBox2.Controls.Add(Me.LblTelefonoFijo)
         Me.GroupBox2.Controls.Add(Me.LblTelefonoCelular)
         Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.GroupBox2.Location = New System.Drawing.Point(38, 452)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(839, 150)
+        Me.GroupBox2.Size = New System.Drawing.Size(894, 150)
         Me.GroupBox2.TabIndex = 5
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Datos de Contacto"
@@ -364,61 +368,61 @@ Partial Class FrmAltaFamilia
         'TxtEmailMadre
         '
         Me.TxtEmailMadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtEmailMadre.Location = New System.Drawing.Point(296, 101)
+        Me.TxtEmailMadre.Location = New System.Drawing.Point(604, 87)
         Me.TxtEmailMadre.MaxLength = 50
         Me.TxtEmailMadre.Name = "TxtEmailMadre"
-        Me.TxtEmailMadre.Size = New System.Drawing.Size(345, 29)
+        Me.TxtEmailMadre.Size = New System.Drawing.Size(271, 29)
         Me.TxtEmailMadre.TabIndex = 14
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(49, 109)
+        Me.Label3.Location = New System.Drawing.Point(446, 91)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(243, 21)
+        Me.Label3.Size = New System.Drawing.Size(157, 21)
         Me.Label3.TabIndex = 13
-        Me.Label3.Text = "Correo electónico de la madre:"
+        Me.Label3.Text = "E-mail de la madre:"
         '
         'TxtEmailPadre
         '
         Me.TxtEmailPadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtEmailPadre.Location = New System.Drawing.Point(296, 66)
+        Me.TxtEmailPadre.Location = New System.Drawing.Point(152, 89)
         Me.TxtEmailPadre.MaxLength = 50
         Me.TxtEmailPadre.Name = "TxtEmailPadre"
-        Me.TxtEmailPadre.Size = New System.Drawing.Size(345, 29)
+        Me.TxtEmailPadre.Size = New System.Drawing.Size(288, 29)
         Me.TxtEmailPadre.TabIndex = 12
         '
         'TxtTelFijo
         '
         Me.TxtTelFijo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTelFijo.Location = New System.Drawing.Point(541, 23)
+        Me.TxtTelFijo.Location = New System.Drawing.Point(726, 39)
         Me.TxtTelFijo.MaxLength = 20
         Me.TxtTelFijo.Name = "TxtTelFijo"
-        Me.TxtTelFijo.Size = New System.Drawing.Size(179, 29)
+        Me.TxtTelFijo.Size = New System.Drawing.Size(149, 29)
         Me.TxtTelFijo.TabIndex = 11
         '
-        'TxtTelCel
+        'TxtMovilPadre
         '
-        Me.TxtTelCel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTelCel.Location = New System.Drawing.Point(197, 23)
-        Me.TxtTelCel.MaxLength = 20
-        Me.TxtTelCel.Name = "TxtTelCel"
-        Me.TxtTelCel.Size = New System.Drawing.Size(189, 29)
-        Me.TxtTelCel.TabIndex = 10
+        Me.TxtMovilPadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtMovilPadre.Location = New System.Drawing.Point(152, 39)
+        Me.TxtMovilPadre.MaxLength = 20
+        Me.TxtMovilPadre.Name = "TxtMovilPadre"
+        Me.TxtMovilPadre.Size = New System.Drawing.Size(158, 29)
+        Me.TxtMovilPadre.TabIndex = 10
         '
         'LblEmail
         '
         Me.LblEmail.AutoSize = True
-        Me.LblEmail.Location = New System.Drawing.Point(67, 73)
+        Me.LblEmail.Location = New System.Drawing.Point(11, 92)
         Me.LblEmail.Name = "LblEmail"
-        Me.LblEmail.Size = New System.Drawing.Size(225, 21)
+        Me.LblEmail.Size = New System.Drawing.Size(135, 21)
         Me.LblEmail.TabIndex = 2
-        Me.LblEmail.Text = "Correo electónico del padre:"
+        Me.LblEmail.Text = "E-maildel padre:"
         '
         'LblTelefonoFijo
         '
         Me.LblTelefonoFijo.AutoSize = True
-        Me.LblTelefonoFijo.Location = New System.Drawing.Point(422, 31)
+        Me.LblTelefonoFijo.Location = New System.Drawing.Point(609, 43)
         Me.LblTelefonoFijo.Name = "LblTelefonoFijo"
         Me.LblTelefonoFijo.Size = New System.Drawing.Size(113, 21)
         Me.LblTelefonoFijo.TabIndex = 1
@@ -427,11 +431,11 @@ Partial Class FrmAltaFamilia
         'LblTelefonoCelular
         '
         Me.LblTelefonoCelular.AutoSize = True
-        Me.LblTelefonoCelular.Location = New System.Drawing.Point(58, 31)
+        Me.LblTelefonoCelular.Location = New System.Drawing.Point(41, 42)
         Me.LblTelefonoCelular.Name = "LblTelefonoCelular"
-        Me.LblTelefonoCelular.Size = New System.Drawing.Size(140, 21)
+        Me.LblTelefonoCelular.Size = New System.Drawing.Size(106, 21)
         Me.LblTelefonoCelular.TabIndex = 0
-        Me.LblTelefonoCelular.Text = "Teléfono Celular:"
+        Me.LblTelefonoCelular.Text = "Movil padre:"
         '
         'BtnGuardar
         '
@@ -466,6 +470,24 @@ Partial Class FrmAltaFamilia
         Me.BtnSalir.TabIndex = 14
         Me.BtnSalir.Text = "Salir"
         Me.BtnSalir.UseVisualStyleBackColor = False
+        '
+        'TxtMovilMadre
+        '
+        Me.TxtMovilMadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtMovilMadre.Location = New System.Drawing.Point(434, 39)
+        Me.TxtMovilMadre.MaxLength = 20
+        Me.TxtMovilMadre.Name = "TxtMovilMadre"
+        Me.TxtMovilMadre.Size = New System.Drawing.Size(156, 29)
+        Me.TxtMovilMadre.TabIndex = 16
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(317, 41)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(111, 21)
+        Me.Label4.TabIndex = 15
+        Me.Label4.Text = "Movil madre:"
         '
         'FrmAltaFamilia
         '
@@ -532,7 +554,7 @@ Partial Class FrmAltaFamilia
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents TxtEmailPadre As TextBox
     Friend WithEvents TxtTelFijo As TextBox
-    Friend WithEvents TxtTelCel As TextBox
+    Friend WithEvents TxtMovilPadre As TextBox
     Friend WithEvents LblEmail As Label
     Friend WithEvents LblTelefonoFijo As Label
     Friend WithEvents LblTelefonoCelular As Label
@@ -544,4 +566,6 @@ Partial Class FrmAltaFamilia
     Friend WithEvents Label1 As Label
     Friend WithEvents TxtEmailMadre As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents TxtMovilMadre As TextBox
+    Friend WithEvents Label4 As Label
 End Class

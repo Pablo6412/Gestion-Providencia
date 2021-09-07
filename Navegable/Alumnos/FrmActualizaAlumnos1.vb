@@ -4,15 +4,14 @@ Public Class FrmActualizaAlumnos
 
     Dim datos As DataSet
     Dim datos2 As DataSet
-    Dim datos3 As DataSet
+    'Dim datos3 As DataSet
     Dim adaptador As SqlDataAdapter
     Dim FechaNacimiento As Date
     Dim FechaActual As Date
-    Dim codigo As Integer
-    Dim alumnoEspecial As Integer
+    'Dim codigo As Integer
+
 
     Private Sub FrmActualizaAlumnos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         conectar()
         Cargar()
         BuscaCurso()
@@ -28,7 +27,7 @@ Public Class FrmActualizaAlumnos
 
             'Carga combobox con alumnos 
             Try
-                Dim alumno As String = "SELECT codigo_alumno, nombre_apellido_alumno FROM alumnos ORDER BY nombre_apellido_alumno"
+                Dim alumno As String = "SELECT codigo_alumno, nombre_apellido_alumno FROM alumnos WHERE estado = 'activo' ORDER BY nombre_apellido_alumno"
                 adaptador = New SqlDataAdapter(alumno, conexion)
 
                 datos = New DataSet
@@ -108,11 +107,6 @@ Public Class FrmActualizaAlumnos
     Private Sub BtnActualiza_Click(sender As Object, e As EventArgs) Handles BtnActualiza.Click
 
         abrir()
-        If RdbSi.Checked = True Then
-            alumnoEspecial = 1
-        Else
-            alumnoEspecial = 0
-        End If
 
         Dim actualizaAlumno As String = "UPDATE alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "', fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "', edad =" & Me.TxtEdad.Text & ", dni ='" & Me.TxtDni.Text & "', codigo_curso = '" & Me.TxtCodigoCurso.Text & "', fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "', hermano_numero = " & Me.TxtHermanoNumero.Text & ", observaciones = '" & Me.TxtObservaciones.Text & "'  WHERE codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
 
@@ -127,7 +121,6 @@ Public Class FrmActualizaAlumnos
         Else
             MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
         End If
-
 
         Cargar()
     End Sub
@@ -165,12 +158,10 @@ Public Class FrmActualizaAlumnos
 
     End Sub
 
-
-
     Private Sub BuscaCurso()
         Dim CodigoCurso As Integer
         Try
-            Dim curso As String = "select codigo_curso, codigo_nivel, curso from cursos"
+            Dim curso As String = "SELECT codigo_curso, codigo_nivel, curso FROM cursos"
             adaptador = New SqlDataAdapter(curso, conexion)
             datos = New DataSet
             datos.Tables.Add("cursos")
@@ -189,6 +180,7 @@ Public Class FrmActualizaAlumnos
             MsgBox("Error comprobando BD" & ex.ToString)
         End Try
     End Sub
+
     Private Sub DtpFechaNacimiento_CloseUp(sender As Object, e As EventArgs) Handles DtpFechaNacimiento.CloseUp
         FechaNacimiento = DtpFechaNacimiento.Value
         FechaActual = DtpFechaActual.Value
@@ -234,9 +226,6 @@ Public Class FrmActualizaAlumnos
     Private Sub BtnSalirExtras_Click(sender As Object, e As EventArgs) Handles BtnSalirExtras.Click
         Me.Close()
     End Sub
-
-
-
 
 End Class
 

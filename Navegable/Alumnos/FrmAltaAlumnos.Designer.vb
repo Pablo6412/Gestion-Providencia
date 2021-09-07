@@ -409,12 +409,12 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label9.Location = New System.Drawing.Point(65, 85)
+        Me.Label9.Location = New System.Drawing.Point(62, 83)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(256, 21)
         Me.Label9.TabIndex = 17
-        Me.Label9.Text = "Nombre y Apellido  del Alumno:"
+        Me.Label9.Text = "Apellido y Nombre  del Alumno:"
         '
         'TxtNombreAlumno
         '
@@ -429,7 +429,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label10.Location = New System.Drawing.Point(174, 30)
+        Me.Label10.Location = New System.Drawing.Point(170, 30)
         Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(142, 21)
@@ -491,7 +491,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label13.Location = New System.Drawing.Point(461, 29)
+        Me.Label13.Location = New System.Drawing.Point(458, 29)
         Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(175, 21)
