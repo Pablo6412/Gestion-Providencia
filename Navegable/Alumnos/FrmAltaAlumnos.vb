@@ -82,7 +82,7 @@ Public Class FrmAltaAlumnos
 
     Private Sub DataGrid()
         Try
-            consulta = "SELECT nombre_apellido_alumno, dni, curso, arancel_importe, valor_cuota, hermano_numero, fecha_ingreso FROM alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN Aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel WHERE alumnos.codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' AND estado = 'activo'  ORDER BY alumnos.codigo_alumno"
+            consulta = "SELECT nombre_apellido_alumno, dni, curso, arancel_importe, valor_cuota, hermano_numero, fecha_ingreso FROM alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN Aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel WHERE alumnos.codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' AND alumnos.estado = 'activo'  ORDER BY alumnos.codigo_alumno"
 
             comando = New SqlCommand()
             comando.CommandText = consulta
