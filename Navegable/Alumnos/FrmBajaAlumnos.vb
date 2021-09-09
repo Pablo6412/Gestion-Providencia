@@ -5,9 +5,7 @@ Imports System.Data.SqlClient
 
 Public Class FrmBajaAlumnos
 
-
     Dim numeroOrden As Integer
-
 
     Private Sub FrmBajaAlumnos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Carga de alumnos en ComboBox y DataGridView
@@ -88,14 +86,28 @@ Public Class FrmBajaAlumnos
 
                 If comando.ExecuteNonQuery() = 1 Then
                     MessageBox.Show("Alumno dado de baja exitosamente")
-
-
                     numeroOrden = Val(CbxNumeroOrden.Text)    'En la variable numeroOrden se guarda el número de hermano eliminado
-
-
                 Else
                     MessageBox.Show("¡Error! Baja fallida. Reinicie el programa e intente nuevamente. De persistir el inconveniente contacte a los programadores", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Me.Show()
+                End If
+
+                Dim bajaTaller As String = "DELETE taller_alumno  WHERE codigo_alumno = " & CbxCodigoAlumno.Text & ""
+                Dim comandoTaller As New SqlCommand(bajaTaller, conexion)
+                If comandoTaller.ExecuteNonQuery() = 0 Then
+                    MsgBox("Error actualizando tabla taller_alumno")
+                End If
+
+                Dim bajaCuotas As String = "DELETE cuotas  WHERE codigo_alumno = " & CbxCodigoAlumno.Text & " "
+                Dim comandoCuotas As New SqlCommand(bajaCuotas, conexion)
+                If comandoCuotas.ExecuteNonQuery() = 0 Then
+                    MsgBox("Error actualizando tabla taller_alumno")
+                End If
+
+                Dim bajaPagoFamilia As String = "UPDATE pago_familia SET estado = 'inactivo' WHERE codigo_alumno = " & CbxCodigoAlumno.Text & " "
+                Dim comandoPagoFamilia As New SqlCommand(bajaPagoFamilia, conexion)
+                If comandoPagoFamilia.ExecuteNonQuery() = 0 Then
+                    MsgBox("Error actualizando tabla taller_alumno")
                 End If
 
             Catch ex As Exception
@@ -146,16 +158,10 @@ Public Class FrmBajaAlumnos
         Cargar()
     End Sub
 
-
-
-
-
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         cerrar()
         Me.Close()
     End Sub
-
-
 
     Private Sub CbxCodigoAlumno_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoAlumno.SelectedValueChanged
         DataGrid()
@@ -163,7 +169,5 @@ Public Class FrmBajaAlumnos
         familia = Val(CbxCodigoFamilia.Text)
         MsgBox("" & familia & "")
     End Sub
-
-
 
 End Class

@@ -1,5 +1,16 @@
-﻿
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
+
+
+'Este formulario lee de las siguientes tablas:
+'alumnos
+'cursos
+'cursos, aranceles 
+
+'actualiza: alumnos
+
+
+
+
 Public Class FrmActualizaAlumnos
 
     Dim datos As DataSet
@@ -121,6 +132,10 @@ Public Class FrmActualizaAlumnos
         Else
             MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
         End If
+
+        Dim actualizaPagoFamilia As String = "UPDATE pago_familia SET alumno = '" & Me.TxtNombreApellido.Text & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "' "
+        Dim comandoPagoFamilia As New SqlCommand(actualizaPagoFamilia, conexion)
+        comandoPagoFamilia.ExecuteNonQuery()
 
         Cargar()
     End Sub

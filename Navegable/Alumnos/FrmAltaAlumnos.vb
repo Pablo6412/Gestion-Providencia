@@ -444,7 +444,7 @@ Public Class FrmAltaAlumnos
         Dim dr As SqlDataReader
 
         Try
-            Dim comandos As New SqlCommand("SELECT dni, estado FROM alumnos ", conexion)
+            Dim comandos As New SqlCommand("SELECT * FROM alumnos WHERE dni = '" & TxtDni.Text & "'", conexion)
             dr = comandos.ExecuteReader
             If dr.Read Then
                 resultado = True
