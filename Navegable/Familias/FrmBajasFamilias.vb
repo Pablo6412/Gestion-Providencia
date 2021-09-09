@@ -24,7 +24,7 @@ Public Class FrmBajasFamilias
                                          WHERE codigo_familia='" & Me.CbxCodigo.Text & "' "
 
             Dim comando As New SqlCommand(baja, conexion)
-            comando.ExecuteNonQuery()
+            'comando.ExecuteNonQuery()
 
             If comando.ExecuteNonQuery() = 1 Then
 
@@ -33,23 +33,33 @@ Public Class FrmBajasFamilias
                                          WHERE codigo_familia='" & Me.CbxCodigo.Text & "' "
 
                 Dim comandoHijos As New SqlCommand(bajaHijos, conexion)
-                comandoHijos.ExecuteNonQuery()
+                'comandoHijos.ExecuteNonQuery()
 
                 If comandoHijos.ExecuteNonQuery() <> 0 Then
-                    MessageBox.Show("Familia dada de baja exitosamente")
-                    CbxCodigo.Text = ("")
-                    CbxFamilia.Text = ("")
-                    CargarFamilias()
-                    CbxCodigo.Focus()
 
-                Else
-                    MessageBox.Show("¡Error! Baja fallida. Reinicie el programa e intente nuevamente. De persistir el inconveniente contacte a los programadores", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Dim bajaPagoFamilia As String = "UPDATE pago_familia SET  estado = 'Inactivo'
+                                                                              
+                                         WHERE codigo_familia='" & Val(CbxCodigo.Text) & "' "
+
+                    Dim comandoPagoFamilia As New SqlCommand(bajaPagoFamilia, conexion)
+
+                    'comandoPagoFamilia.ExecuteNonQuery()
+
+                    If comandoPagoFamilia.ExecuteNonQuery() <> 0 Then
+
+                        MessageBox.Show("Familia dada de baja exitosamente")
+                        CbxCodigo.Text = ("")
+                        CbxFamilia.Text = ("")
+                        CargarFamilias()
+                        CbxCodigo.Focus()
+
+                    Else
+                        MessageBox.Show("¡Error1! Baja fallida. Reinicie el programa e intente nuevamente. De persistir el inconveniente contacte a los programadores", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
                 End If
 
-
-
             Else
-                MessageBox.Show("¡Error! Baja fallida. Reinicie el programa e intente nuevamente. De persistir el inconveniente contacte a los programadores", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("¡Error2! Baja fallida. Reinicie el programa e intente nuevamente. De persistir el inconveniente contacte a los programadores", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
 
 

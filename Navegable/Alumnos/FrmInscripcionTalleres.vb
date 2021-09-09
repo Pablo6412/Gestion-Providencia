@@ -17,9 +17,9 @@ Public Class FrmInscripcionTalleres
         adaptadorValor.Fill(datosValor, "taller")
         listaV = datosValor.Tables("taller").Rows.Count
         LblFutbol.Text = "$ " & datosValor.Tables("taller").Rows(1).Item("taller_importe")
-        LblHockey.Text = "$ " & datosValor.Tables("taller").Rows(2).Item("taller_importe")
-        LblMusica.Text = "$ " & datosValor.Tables("taller").Rows(3).Item("taller_importe")
-        LblRugby.Text = "$ " & datosValor.Tables("taller").Rows(4).Item("taller_importe")
+        LblMusica.Text = "$ " & datosValor.Tables("taller").Rows(2).Item("taller_importe")
+        LblRugby.Text = "$ " & datosValor.Tables("taller").Rows(3).Item("taller_importe")
+        LblHockey.Text = "$ " & datosValor.Tables("taller").Rows(4).Item("taller_importe")
         LblSinAsignarIVT.Text = "$ " & datosValor.Tables("taller").Rows(5).Item("taller_importe")
         LblSinAsignarIIVT.Text = "$ " & datosValor.Tables("taller").Rows(6).Item("taller_importe")
         LblSinAsignarIIIVT.Text = "$ " & datosValor.Tables("taller").Rows(7).Item("taller_importe")
@@ -39,19 +39,19 @@ Public Class FrmInscripcionTalleres
         RdbFutbol3.Text = datos.Tables("taller").Rows(1).Item("taller_nombre")
         Label1.Text = datos.Tables("taller").Rows(1).Item("taller_nombre")
 
-        RdbHockey1.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
-        RdbHockey2.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
-        RdbHockey3.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
+        RdbMusica1.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
+        RdbMusica2.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
+        RdbMusica3.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
         Label2.Text = datos.Tables("taller").Rows(2).Item("taller_nombre")
 
-        RdbMusica1.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
-        RdbMusica2.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
-        RdbMusica3.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
+        RdbRugby1.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
+        RdbRugby2.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
+        RdbRugby3.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
         Label3.Text = datos.Tables("taller").Rows(3).Item("taller_nombre")
 
-        RdbRugby1.Text = datos.Tables("taller").Rows(4).Item("taller_nombre")
-        RdbRugby2.Text = datos.Tables("taller").Rows(4).Item("taller_nombre")
-        RdbRugby3.Text = datos.Tables("taller").Rows(4).Item("taller_nombre")
+        RdbHockey1.Text = datos.Tables("taller").Rows(4).Item("taller_nombre")
+        RdbHockey2.Text = datos.Tables("taller").Rows(4).Item("taller_nombre")
+        RdbHockey3.Text = datos.Tables("taller").Rows(4).Item("taller_nombre")
         Label4.Text = datos.Tables("taller").Rows(4).Item("taller_nombre")
 
         RdbSinAsignar1.Text = datos.Tables("taller").Rows(5).Item("taller_nombre")
@@ -127,7 +127,97 @@ Public Class FrmInscripcionTalleres
             Label8.Hide()
             LblSinAsignarIVVT.Hide()
         End If
+
     End Sub
+
+    Private Sub MuestraTalleres()
+        'Dim recorreTaller As Integer
+        Dim taller1 As Integer
+        Dim taller2 As Integer
+        Dim taller3 As Integer
+        Dim listaT As Byte
+        Dim tallerAlumno As String = "SELECT codigo_taller1, codigo_taller2, codigo_taller3 FROM alumnos WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "' AND estado = 'activo'"
+        Dim adaptadorTallerAlumno As New SqlDataAdapter(tallerAlumno, conexion)
+        Dim datosTaller As New DataSet
+        adaptadorTallerAlumno.Fill(datosTaller, "alumnos")
+        listaT = datosTaller.Tables("alumnos").Rows.Count
+
+
+
+
+
+
+        If listaT > 0 Then
+            taller1 = datosTaller.Tables("alumnos").Rows(0).Item("codigo_taller1")
+            taller2 = datosTaller.Tables("alumnos").Rows(0).Item("codigo_taller2")
+            taller3 = datosTaller.Tables("alumnos").Rows(0).Item("codigo_taller3")
+            MsgBox("" & taller1 & ", " & taller2 & ", " & taller3 & " alumno: " & Val(CbxCodigoAlumno.Text) & "")
+            If taller1 = 1 Then
+                RdbNinguno1.Checked = True
+            ElseIf taller1 = 2 Then
+                RdbFutbol1.Checked = True
+            ElseIf taller1 = 3 Then
+                RdbMusica1.Checked = True
+            ElseIf taller1 = 4 Then
+                RdbRugby1.Checked = True
+            ElseIf taller1 = 5 Then
+                RdbHockey1.Checked = True
+            ElseIf taller1 = 6 Then
+                RdbSinAsignar1.Checked = True
+            ElseIf taller1 = 7 Then
+                RdbSinAsignar2.Checked = True
+            ElseIf taller1 = 8 Then
+                RdbSinAsignar3.Checked = True
+            ElseIf taller1 = 9 Then
+                RdbSinAsignar4.Checked = True
+            End If
+
+            If taller2 = 1 Then
+                RdbNinguno2.Checked = True
+            ElseIf taller2 = 2 Then
+                RdbFutbol2.Checked = True
+            ElseIf taller2 = 3 Then
+                RdbMusica2.Checked = True
+            ElseIf taller2 = 4 Then
+                RdbRugby2.Checked = True
+            ElseIf taller2 = 5 Then
+                RdbHockey2.Checked = True
+            ElseIf taller2 = 6 Then
+                RdbSinAsignar11.Checked = True
+            ElseIf taller2 = 7 Then
+                RdbSinAsignar22.Checked = True
+            ElseIf taller2 = 8 Then
+                RdbSinAsignar33.Checked = True
+            ElseIf taller2 = 9 Then
+                RdbSinAsignar44.Checked = True
+            End If
+
+            If taller3 = 1 Then
+                RdbNinguno3.Checked = True
+            ElseIf taller3 = 2 Then
+                RdbFutbol3.Checked = True
+            ElseIf taller3 = 3 Then
+                RdbMusica3.Checked = True
+            ElseIf taller3 = 4 Then
+                RdbRugby3.Checked = True
+            ElseIf taller3 = 5 Then
+                RdbHockey3.Checked = True
+            ElseIf taller3 = 6 Then
+                RdbSinAsignar111.Checked = True
+            ElseIf taller3 = 7 Then
+                RdbSinAsignar222.Checked = True
+            ElseIf taller3 = 8 Then
+                RdbSinAsignar333.Checked = True
+            ElseIf taller3 = 9 Then
+                RdbSinAsignar444.Checked = True
+            End If
+
+
+
+        End If
+
+    End Sub
+
 
     Private Sub CargaAlumnos()
         'Si no hay alumnos registrados sale por el else
@@ -138,7 +228,7 @@ Public Class FrmInscripcionTalleres
 
         If cuenta <> 0 Then
             Try
-                Dim alumno As String = "SELECT codigo_alumno, nombre_apellido_alumno FROM alumnos ORDER BY nombre_apellido_alumno"
+                Dim alumno As String = "SELECT codigo_alumno, nombre_apellido_alumno FROM alumnos WHERE estado = 'activo' ORDER BY nombre_apellido_alumno"
                 adaptador = New SqlDataAdapter(alumno, conexion)
                 datos = New DataSet
                 adaptador.Fill(datos)
@@ -156,6 +246,7 @@ Public Class FrmInscripcionTalleres
         Else
             MsgBox("No hay alumnos ingresados en la base de datos")
         End If
+        MuestraTalleres()
     End Sub
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
@@ -317,33 +408,34 @@ Public Class FrmInscripcionTalleres
     End Sub
 
     Private Sub CbxCodigoAlumno_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoAlumno.SelectedValueChanged
-        RdbNinguno1.Checked = False
-        RdbFutbol1.Checked = False
-        RdbHockey1.Checked = False
-        RdbMusica1.Checked = False
-        RdbRugby1.Checked = False
-        RdbSinAsignar1.Checked = False
-        RdbSinAsignar2.Checked = False
-        RdbSinAsignar3.Checked = False
-        RdbSinAsignar4.Checked = False
-        RdbNinguno2.Checked = False
-        RdbFutbol2.Checked = False
-        RdbHockey2.Checked = False
-        RdbMusica2.Checked = False
-        RdbRugby2.Checked = False
-        RdbSinAsignar11.Checked = False
-        RdbSinAsignar22.Checked = False
-        RdbSinAsignar33.Checked = False
-        RdbSinAsignar44.Checked = False
-        RdbNinguno3.Checked = False
-        RdbFutbol3.Checked = False
-        RdbHockey3.Checked = False
-        RdbMusica3.Checked = False
-        RdbRugby3.Checked = False
-        RdbSinAsignar111.Checked = False
-        RdbSinAsignar222.Checked = False
-        RdbSinAsignar333.Checked = False
-        RdbSinAsignar444.Checked = False
+        'RdbNinguno1.Checked = False
+        'RdbFutbol1.Checked = False
+        'RdbHockey1.Checked = False
+        'RdbMusica1.Checked = False
+        'RdbRugby1.Checked = False
+        'RdbSinAsignar1.Checked = False
+        'RdbSinAsignar2.Checked = False
+        'RdbSinAsignar3.Checked = False
+        'RdbSinAsignar4.Checked = False
+        'RdbNinguno2.Checked = False
+        'RdbFutbol2.Checked = False
+        'RdbHockey2.Checked = False
+        'RdbMusica2.Checked = False
+        'RdbRugby2.Checked = False
+        'RdbSinAsignar11.Checked = False
+        'RdbSinAsignar22.Checked = False
+        'RdbSinAsignar33.Checked = False
+        'RdbSinAsignar44.Checked = False
+        'RdbNinguno3.Checked = False
+        'RdbFutbol3.Checked = False
+        'RdbHockey3.Checked = False
+        'RdbMusica3.Checked = False
+        'RdbRugby3.Checked = False
+        'RdbSinAsignar111.Checked = False
+        'RdbSinAsignar222.Checked = False
+        'RdbSinAsignar333.Checked = False
+        'RdbSinAsignar444.Checked = False
+        MuestraTalleres()
     End Sub
 
     Private Sub BtnSalirExtras_Click(sender As Object, e As EventArgs) Handles BtnSalirExtras.Click

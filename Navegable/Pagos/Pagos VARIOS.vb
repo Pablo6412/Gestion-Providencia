@@ -1,5 +1,23 @@
 ﻿Imports System.Data.SqlClient
 
+
+'Este formulario lee las siguientes tablas:
+'Concepto_de_pago
+'familias
+'detalle_de_pago_escolar
+'pagos_escolares
+'alumnos,
+'taller_alumno 
+'cursos, cuotas, taller_temporal 
+
+'Inserta en: pagos_escolares, pago_familia 
+
+'Actualiza: pagos_escolares
+
+'Crea: taller_temporal
+
+
+
 Public Class Pagos
 
     '-------------------------------------------------------------------------
@@ -334,6 +352,7 @@ Public Class Pagos
                 BtnGuardar2.Enabled = False
                 'MsgBox("¿Pasa o no pasa por acá?")
             End If
+            GrabaPagoFamilia()
         Else
             MsgBox("Debe cargar monto en algún concepto")
 
@@ -344,17 +363,17 @@ Public Class Pagos
     Sub GrabaPagoFamilia()
         Dim codigo As Integer
 
-        Dim minCod As String = "SELECT MIN(codigo_alumno) FROM alumnos WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' "
+        Dim minCod As String = "SELECT MIN(codigo_alumno) FROM alumnos WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' AND estado = 'activo'"
         Dim comandomin As New SqlCommand(minCod, conexion)
         Dim minimoCodigo As Decimal = comandomin.ExecuteScalar
         codigo = minimoCodigo
 
-        Dim maxCod As String = "SELECT MAX(codigo_alumno) FROM alumnos WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' "
+        Dim maxCod As String = "SELECT MAX(codigo_alumno) FROM alumnos WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' AND estado = 'activo'"
         Dim comandomax As New SqlCommand(maxCod, conexion)
         Dim maximoCodigo As Decimal = comandomax.ExecuteScalar
 
         While codigo <= maximoCodigo
-            Dim hijos As String = "SELECT codigo_alumno, nombre_apellido_alumno, arancel_matricula FROM alumnos JOIN aranceles ON alumnos.codigo_arancel = aranceles.codigo_arancel WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' AND codigo_alumno = '" & codigo & "' "
+            Dim hijos As String = "SELECT codigo_alumno, nombre_apellido_alumno, arancel_matricula FROM alumnos JOIN aranceles ON alumnos.codigo_arancel = aranceles.codigo_arancel WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' AND codigo_alumno = '" & codigo & "' AND estado = 'activo' "
             adaptador = New SqlDataAdapter(hijos, conexion)
             Dim dtDatos As DataTable = New DataTable
             adaptador.Fill(dtDatos)
@@ -367,14 +386,12 @@ Public Class Pagos
                 MsgBox("" & codigoAlumno & ", " & alumno & ", " & matricula & "")
 
                 Try
-                    Dim pagoFamilia As String = "INSERT INTO pago_familia (codigo_familia, familia, codigo_alumno, alumno, arancel, matricula, materiales, taller, campamento, adicional_jardin, comedor, fecha ) 
-                                                               VALUES(@codigo_familia, @familia, @codigo_alumno, @alumno, @arancel, @matricula, @materiales, @taller, @campamento, @adicional_jardin, @comedor, @fecha)"
+                    Dim pagoFamilia As String = "INSERT INTO pago_familia (codigo_familia, codigo_alumno, arancel, matricula, materiales, taller, campamento, adicional_jardin, comedor, fecha ) 
+                                                               VALUES(@codigo_familia, @codigo_alumno, @arancel, @matricula, @materiales, @taller, @campamento, @adicional_jardin, @comedor, @fecha)"
                     Dim comando As New SqlCommand(pagoFamilia, conexion)
 
                     comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
-                    comando.Parameters.AddWithValue("@familia", CbxFamilia.Text)
                     comando.Parameters.AddWithValue("@codigo_alumno", codigoAlumno)
-                    comando.Parameters.AddWithValue("alumno", alumno)
                     comando.Parameters.AddWithValue("@arancel", Val(TxtArancel.Text))
                     comando.Parameters.AddWithValue("@matricula", matricula)
                     comando.Parameters.AddWithValue("@materiales", Val(TxtMateriales.Text))
