@@ -13,6 +13,7 @@
 
 'INSERT: detalle_vencimientos_escolares
 '        detalle_pago_escolar
+'        vencimiento_detallado
 
 Public Class FrmEmisiónDeVencimientos
     Dim comando As SqlCommand
@@ -61,7 +62,13 @@ Public Class FrmEmisiónDeVencimientos
     End Sub
 
     Private Sub grabaVencimientos()
-
+        Dim campamento As Decimal
+        Dim taller As Decimal
+        Dim materiales As Decimal
+        Dim adicional As Decimal
+        Dim comedor As Decimal
+        Dim vencimentoAlumno As String
+        Dim comandoVencimientoAlumnos As New SqlCommand
         Dim cantidadFamilias As String = "SELECT COUNT(codigo_familia) FROM familias WHERE estado = 'activo' "
         Dim comandoCantidad As New SqlCommand(cantidadFamilias, conexion)
         cantFam = comandoCantidad.ExecuteScalar
@@ -98,12 +105,31 @@ Public Class FrmEmisiónDeVencimientos
                 arancel = Val(fila(3))
                 totalArancel += Val(fila(3))
                 hermanoNumero = fila(4)
+                campamento = Val(fila(5))
                 totalCampamento += Val(fila(5))
+                taller = Val(fila(6))
                 totalTaller += Val(fila(6))
+                materiales = Val(fila(7))
                 totalMateriales += Val(fila(7))
+                adicional = Val(fila(8))
                 totalAdicional += Val(fila(8))
+                comedor = Val(fila(9))
                 totalComedor += Val(fila(9))
                 CalculaCuota()
+                vencimentoAlumno = "INSERT INTO vencimiento_detallado (codigo_familia, codigo_alumno, cuota_alumno, materiales_alumno, talleres_alumno, campamento_alumno, adicional_alumno, comedor_alumno, fecha_vencimiento) VALUES(@codigo_familia, @codigo_alumno, @cuota_alumno, @materiales_alumno, @talleres_alumno, @campamento_alumno, @adicional_alumno, @comedor_alumno, @fecha_vencimiento) "
+                comandoVencimientoAlumnos = New SqlCommand(vencimentoAlumno, conexion)
+
+                comandoVencimientoAlumnos.Parameters.AddWithValue("@codigo_familia", codFam)
+                comandoVencimientoAlumnos.Parameters.AddWithValue("@codigo_alumno", codigoAlumno)
+                comandoVencimientoAlumnos.Parameters.AddWithValue("@cuota_alumno", cuota)
+                comandoVencimientoAlumnos.Parameters.AddWithValue("@materiales_alumno", materiales)
+                comandoVencimientoAlumnos.Parameters.AddWithValue("@talleres_alumno", taller)
+                comandoVencimientoAlumnos.Parameters.AddWithValue("@Campamento_alumno", campamento)
+                comandoVencimientoAlumnos.Parameters.AddWithValue("@Adicional_alumno", materiales)
+                comandoVencimientoAlumnos.Parameters.AddWithValue("@Comedor_alumno", comedor)
+                comandoVencimientoAlumnos.Parameters.AddWithValue("@fecha_vencimiento", fechaActual)
+
+                comandoVencimientoAlumnos.ExecuteNonQuery()
 
                 'MsgBox("Codigo Familia: " & codFam & " Codigo alumno: " & codigoAlumno & " descuento Herman0: " & descuentoHermano & " descuento beca: " & descuentoBeca & " descuento especial: " & descuentoEspecial & " arancel: " & arancel & " cuota: " & cuota & "")
 
@@ -141,7 +167,7 @@ Public Class FrmEmisiónDeVencimientos
                     'MessageBox.Show("Datos guardados")
 
                 Else
-                    MsgBox("No grabó nada")
+                    MsgBox("Error de grabación")
                 End If
 
                 ActualizaCredito(codFam)
@@ -159,7 +185,7 @@ Public Class FrmEmisiónDeVencimientos
 
             'Pbuno.Value = codFam - 1
         End While
-        MsgBox("Datos guardados")
+        'MsgBox("Datos guardados")
     End Sub
 
     Private Sub ActualizaCredito(codFam)
@@ -307,13 +333,14 @@ Public Class FrmEmisiónDeVencimientos
                 comandoPagoNulo.Parameters.AddWithValue("@pago_cumplido", "Nulo")
 
                 If comandoPagoNulo.ExecuteNonQuery() = 1 Then
-                    MessageBox.Show("Datos guardados")
+
                 Else
                     MsgBox("Error de grabación")
                 End If
             End If
             codigo += 1
         End While
+        MessageBox.Show("Datos guardados satisfactoriamente")
     End Sub
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click

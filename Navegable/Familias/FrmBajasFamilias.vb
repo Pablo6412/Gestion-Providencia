@@ -6,7 +6,7 @@
 'Delete: cuotas,
 '        taller_alumno
 
-'Update: familias, alumnos, pago_familia, detalle_pago_escolar, pagos_escolares, detalle_vencimientos_escolares
+'Update: familias, alumnos, pago_familia, detalle_pago_escolar, pagos_escolares, detalle_vencimientos_escolares, vencimiento_detallado
 
 Public Class FrmBajasFamilias
     Dim datos As DataSet
@@ -62,19 +62,25 @@ Public Class FrmBajasFamilias
                                 Dim comandoDetalle As New SqlCommand(bajaDetalleVencimientos, conexion)
                                 If comandoDetalle.ExecuteNonQuery() <> 0 Then
 
-                                    Dim bajaCuota As String = "DELETE cuotas WHERE codigo_familia = " & Val(CbxCodigo.Text) & " "
-                                    Dim comandoCuota As New SqlCommand(bajaCuota, conexion)
-                                    If comandoCuota.ExecuteNonQuery() <> 0 Then
+                                    Dim bajaVencimientoDetallado As String = "UPDATE vencimiento_detallado SET estado = 'inactivo'
+                                                                              WHERE codigo_familia = " & CbxCodigo.Text & " "
+                                    Dim comandoVencimiento As New SqlCommand(bajaVencimientoDetallado, conexion)
+                                    If comandoVencimiento.ExecuteNonQuery <> 0 Then
 
-                                        Dim bajaTaller As String = "DELETE taller_alumno WHERE codigo_familia = " & Val(CbxCodigo.Text) & " "
-                                        Dim comandoTaller As New SqlCommand(bajaTaller, conexion)
-                                        If comandoTaller.ExecuteNonQuery() Then
+                                        Dim bajaCuota As String = "DELETE cuotas WHERE codigo_familia = " & Val(CbxCodigo.Text) & " "
+                                        Dim comandoCuota As New SqlCommand(bajaCuota, conexion)
+                                        If comandoCuota.ExecuteNonQuery() <> 0 Then
 
-                                            MessageBox.Show("La familia " & CbxFamilia.Text & " fue dada de baja exitosamente")
-                                            CbxCodigo.Text = ("")
-                                            CbxFamilia.Text = ("")
-                                            CargarFamilias()
-                                            CbxCodigo.Focus()
+                                            Dim bajaTaller As String = "DELETE taller_alumno WHERE codigo_familia = " & Val(CbxCodigo.Text) & " "
+                                            Dim comandoTaller As New SqlCommand(bajaTaller, conexion)
+                                            If comandoTaller.ExecuteNonQuery() Then
+
+                                                MessageBox.Show("La familia " & CbxFamilia.Text & " fue dada de baja exitosamente")
+                                                CbxCodigo.Text = ("")
+                                                CbxFamilia.Text = ("")
+                                                CargarFamilias()
+                                                CbxCodigo.Focus()
+                                            End If
                                         End If
                                     End If
                                 End If
