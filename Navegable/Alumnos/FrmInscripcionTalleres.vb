@@ -1,4 +1,13 @@
 ﻿Imports System.Data.SqlClient
+
+
+
+'Este formulario lee las siguientes tablas: taller, alumnos, taller_alumno, 
+
+'Update:  Alumnos, taller_alumnos
+
+
+
 Public Class FrmInscripcionTalleres
 
     Dim datos As DataSet
@@ -7,6 +16,7 @@ Public Class FrmInscripcionTalleres
     Dim adaptadorValor As SqlDataAdapter
 
     Private Sub FrmInscripcionTalleres_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         conectar()
         CargaAlumnos()
 
@@ -143,10 +153,6 @@ Public Class FrmInscripcionTalleres
         listaT = datosTaller.Tables("alumnos").Rows.Count
 
 
-
-
-
-
         If listaT > 0 Then
             taller1 = datosTaller.Tables("alumnos").Rows(0).Item("codigo_taller1")
             taller2 = datosTaller.Tables("alumnos").Rows(0).Item("codigo_taller2")
@@ -211,11 +217,7 @@ Public Class FrmInscripcionTalleres
             ElseIf taller3 = 9 Then
                 RdbSinAsignar444.Checked = True
             End If
-
-
-
         End If
-
     End Sub
 
 
@@ -257,8 +259,6 @@ Public Class FrmInscripcionTalleres
         Dim alumno As String = "SELECT MIN(codigo_grupo_taller) FROM taller_alumno WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "' "
         Dim comandoAlumno As New SqlCommand(alumno, conexion)
         codigoGrupoTaller = comandoAlumno.ExecuteScalar
-
-
 
         'taller = 0
         If RdbNinguno1.Checked Then
@@ -434,6 +434,7 @@ Public Class FrmInscripcionTalleres
         'RdbSinAsignar111.Checked = False
         'RdbSinAsignar222.Checked = False
         'RdbSinAsignar333.Checked = False
+
         'RdbSinAsignar444.Checked = False
         MuestraTalleres()
     End Sub
@@ -441,6 +442,4 @@ Public Class FrmInscripcionTalleres
     Private Sub BtnSalirExtras_Click(sender As Object, e As EventArgs) Handles BtnSalirExtras.Click
         Me.Close()
     End Sub
-
-
 End Class

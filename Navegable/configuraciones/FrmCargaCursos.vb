@@ -1,5 +1,13 @@
 ﻿Imports System.Data.SqlClient
 
+'Este formulario lee las siguientes tablas:
+'cursos,
+'niveles
+
+'Insert: cursos
+
+'Update: cursos
+
 Public Class FrmCargaCursos
     Dim adaptador As New SqlDataAdapter
     Dim datos As DataSet
@@ -14,7 +22,7 @@ Public Class FrmCargaCursos
     End Sub
 
     Private Sub LlenaLista()
-        Dim curso As String = "SELECT codigo_curso, curso from cursos"
+        Dim curso As String = "SELECT codigo_curso, curso FROM cursos"
         adaptador = New SqlDataAdapter(curso, conexion)
 
         datos = New DataSet

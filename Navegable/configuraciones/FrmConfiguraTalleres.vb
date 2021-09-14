@@ -1,5 +1,12 @@
 ﻿Imports System.Data.SqlClient
 
+
+'Este formulario lee las siguientes tablas:
+'taller
+
+'Update:
+'taller
+'alumnos
 Public Class FrmConfiguraTalleres
     Dim adaptador As New SqlDataAdapter
     Dim datos As DataSet

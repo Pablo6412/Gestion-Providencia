@@ -1,6 +1,8 @@
 ﻿Imports System.Data.SqlClient
 
+'Este formulario lee las siguientes tablas: descuento_beca
 
+'Update: descuento_beca
 Public Class FrmBecas
 
     Dim adaptador As New SqlDataAdapter

@@ -1,6 +1,13 @@
 ﻿Imports System.Data.SqlClient
 
 
+'Este formulario lee las siguientes tablas: niveles, cursos, campamento
+
+'Isert: campamento, 
+
+'Update: cursos, 
+
+
 Public Class FrmCampamentos
     Dim codigoCampamento As Integer
     Dim codigoAño As Integer

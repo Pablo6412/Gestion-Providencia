@@ -1,4 +1,13 @@
 ﻿Imports System.Data.SqlClient
+
+'Este formulario lee las siguientes tablas:
+'niveles,
+'aranceles, 
+'niveles, aranceles
+
+'Update: aranceles
+
+'Isert: aranceles, 
 Public Class FrmCargaAranceles
 
     Dim adaptador As SqlDataAdapter
@@ -108,7 +117,7 @@ Public Class FrmCargaAranceles
     End Sub
     Private Sub CargaActualiza()
         Try
-            Dim nivel As String = "select codigo_nivel, nivel from niveles"
+            Dim nivel As String = "SELECT codigo_nivel, nivel FROM niveles"
             adaptador = New SqlDataAdapter(nivel, conexion)
             Dim comando As New SqlCommand
             datos = New DataSet
@@ -133,7 +142,7 @@ Public Class FrmCargaAranceles
         TxtArancelActual.Clear()
         TxtMatriculaActual.Clear()
         Try
-            Dim arancel As String = "select codigo_nivel, arancel_importe, arancel_matricula from aranceles where codigo_nivel = '" & Val(CbxCodigoNivelActualizacion.Text) & "' "
+            Dim arancel As String = "SELECT codigo_nivel, arancel_importe, arancel_matricula FROM aranceles WHERE codigo_nivel = '" & Val(CbxCodigoNivelActualizacion.Text) & "' "
             adaptador = New SqlDataAdapter(arancel, conexion)
             datos = New DataSet
             adaptador.Fill(datos, "aranceles")
@@ -197,7 +206,7 @@ Public Class FrmCargaAranceles
         TabControl1.SelectedTab = TabControl1.TabPages.Item(2)
 
         Try
-            Dim nivel As String = "select codigo_nivel, nivel from niveles"
+            Dim nivel As String = "SELECT codigo_nivel, nivel FROM niveles"
             adaptador = New SqlDataAdapter(nivel, conexion)
             Dim comando As New SqlCommand
             datos = New DataSet
@@ -218,7 +227,7 @@ Public Class FrmCargaAranceles
     Private Sub Baja()
         TxtArancelBaja.Clear()
         TxtMatriculaBaja.Clear()
-        Dim arancel As String = "select codigo_nivel, arancel_importe, arancel_matricula from aranceles where codigo_nivel = '" & Val(CbxCodigoBaja.Text) & "' "
+        Dim arancel As String = "SELECT codigo_nivel, arancel_importe, arancel_matricula FROM aranceles WHERE codigo_nivel = '" & Val(CbxCodigoBaja.Text) & "' "
         adaptador = New SqlDataAdapter(arancel, conexion)
         datos = New DataSet
         adaptador.Fill(datos, "aranceles")
@@ -272,9 +281,5 @@ Public Class FrmCargaAranceles
     End Sub
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()
-    End Sub
-
-    Private Sub TabPage1_Click(sender As Object, e As EventArgs) Handles TabPage1.Click
-
     End Sub
 End Class

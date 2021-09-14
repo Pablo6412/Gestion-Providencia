@@ -1,12 +1,16 @@
 ﻿
 Imports System.Data.SqlClient
 
+'Este formulario lee las siguientes tablas: familias, 
+
+'Insert: familias, descuento_especial
+
 Public Class FrmAltaFamilia
 
     Dim comandos As New SqlCommand
     Dim dr As SqlDataReader
-    Dim datos As DataSet
-    Dim adaptador As SqlDataAdapter
+    'Dim datos As DataSet
+    'Dim adaptador As SqlDataAdapter
 
 
     'Conección a la base de datos

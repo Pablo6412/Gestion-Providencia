@@ -1,5 +1,19 @@
 ﻿Imports System.Data.SqlClient
 
+'Este formulario lee las siguientes tablas: detalle_vencimientos_escolares
+'                                           familias
+'                                           detalle_pago_escolar
+'                                           descuento_hermano
+'                                           alumnos
+'                                           descuento_beca
+'                                           descuento_especial
+'SELECT JOIN: alumnos, curso, aranceles, taller, descuento_beca, descuento_especial
+
+'UPDATE: cuotas, detalle_vencimientos_escolares
+
+'INSERT: detalle_vencimientos_escolares
+'        detalle_pago_escolar
+
 Public Class FrmEmisiónDeVencimientos
     Dim comando As SqlCommand
     Dim comando2 As SqlCommand
@@ -27,10 +41,9 @@ Public Class FrmEmisiónDeVencimientos
 
     Private Sub FrmEmisiónDeVencimientos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim ultimaFecha As Date
-
         conectar()
         abrir()
-        Dim fecha As String = "SELECT fecha_vencimiento FROM detalle_vencimientos_escolares where codigo_pago_v = (select max(codigo_pago_v) from detalle_vencimientos_escolares)"
+        Dim fecha As String = "SELECT fecha_vencimiento FROM detalle_vencimientos_escolares WHERE codigo_pago_v = (SELECT MAX(codigo_pago_v) FROM detalle_vencimientos_escolares)"
         Dim comando As New SqlCommand(fecha, conexion)
         ultimaFecha = comando.ExecuteScalar
 
@@ -40,20 +53,16 @@ Public Class FrmEmisiónDeVencimientos
         End If
     End Sub
 
-
     Private Sub BtnVencimientos_Click(sender As Object, e As EventArgs) Handles BtnVencimientos.Click
         conectar()
         abrir()
         grabaVencimientos()
         grabaPagoNulo()
-
-
-
-
     End Sub
+
     Private Sub grabaVencimientos()
 
-        Dim cantidadFamilias As String = "SELECT COUNT(codigo_familia) FROM familias WHERE estado = 'activo'"
+        Dim cantidadFamilias As String = "SELECT COUNT(codigo_familia) FROM familias WHERE estado = 'activo' "
         Dim comandoCantidad As New SqlCommand(cantidadFamilias, conexion)
         cantFam = comandoCantidad.ExecuteScalar
 
@@ -61,14 +70,11 @@ Public Class FrmEmisiónDeVencimientos
         Pbuno.Maximum = cantFam
         Pbuno.Value = 0
 
-
-
-        Dim maximocod As String = "SELECT MAX(codigo_familia) FROM familias"
+        Dim maximocod As String = "SELECT MAX(codigo_familia) FROM familias WHERE estado = 'activo' "
         Dim comando1 As New SqlCommand(maximocod, conexion)
         maxcod = comando1.ExecuteScalar
         'MsgBox("Maximo código" & maxcod & "")
         'MsgBox("Codigo de familia" & codFam & "")
-
 
         While codFam <= maxcod
 
@@ -76,9 +82,7 @@ Public Class FrmEmisiónDeVencimientos
             'LblPbuno.Text = "Vencimientos generados al: " & Math.Round(Pbuno.Value / 0.03, 2) & "%"
             'LblPbuno.Refresh()
 
-            Dim consulta As String = " SELECT codigo_alumno, nombre_apellido_alumno, curso, arancel_importe, hermano_numero, campamento_importe, taller_importe, materiales_importe, adicional_importe, comedor_importe, descuento_beca, descuento from alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles On aranceles.codigo_arancel = alumnos.codigo_arancel JOIN taller On taller.codigo_taller = alumnos.codigo_taller1 JOIN descuento_beca On descuento_beca.codigo_beca = alumnos.codigo_beca JOIN descuento_especial On descuento_especial.codigo_descuento_especial = alumnos.codigo_descuento WHERE alumnos.codigo_familia = '" & codFam & "' ORDER BY alumnos.codigo_alumno"
-
-
+            Dim consulta As String = " SELECT codigo_alumno, nombre_apellido_alumno, curso, arancel_importe, hermano_numero, campamento_importe, taller_importe, materiales_importe, adicional_importe, comedor_importe, descuento_beca, descuento FROM alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles On aranceles.codigo_arancel = alumnos.codigo_arancel JOIN taller On taller.codigo_taller = alumnos.codigo_taller1 JOIN descuento_beca On descuento_beca.codigo_beca = alumnos.codigo_beca JOIN descuento_especial On descuento_especial.codigo_descuento_especial = alumnos.codigo_descuento WHERE alumnos.codigo_familia = '" & codFam & "' AND alumnos.estado = 'activo' ORDER BY alumnos.codigo_alumno"
 
             comando = New SqlCommand()
             comando.CommandText = consulta
@@ -87,7 +91,6 @@ Public Class FrmEmisiónDeVencimientos
             adaptador = New SqlDataAdapter(comando)
             Dim dataSet As DataSet = New DataSet()
             adaptador.Fill(dataSet)
-
 
             For Each fila As DataRow In dataSet.Tables(0).Rows()
 
@@ -114,7 +117,6 @@ Public Class FrmEmisiónDeVencimientos
                 Else
                     MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
                 End If
-
 
                 'MsgBox("código de familia:  " & codFam & "Hermano Número: " & hermanoNumero & " Arancel: " & arancel & " Campamento: " & totalCampamento & "")
                 'MsgBox("" & Arancel & "")
@@ -283,10 +285,7 @@ Public Class FrmEmisiónDeVencimientos
     Private Sub grabaPagoNulo()
         Dim codigo As Integer = 1
 
-
-
         While codigo <= maxcod
-
             Dim familiaActiva As String = "SELECT codigo_familia FROM familias WHERE codigo_familia = '" & codigo & "' and estado = 'activo'"
             Dim adaptador As New SqlDataAdapter(familiaActiva, conexion)
             Dim dtDatos As DataTable = New DataTable
@@ -308,21 +307,16 @@ Public Class FrmEmisiónDeVencimientos
                 comandoPagoNulo.Parameters.AddWithValue("@pago_cumplido", "Nulo")
 
                 If comandoPagoNulo.ExecuteNonQuery() = 1 Then
-                    'MessageBox.Show("Datos guardados")
-
+                    MessageBox.Show("Datos guardados")
                 Else
-                    MsgBox("No grabó nada")
+                    MsgBox("Error de grabación")
                 End If
-
             End If
             codigo += 1
         End While
-
     End Sub
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()
     End Sub
-
-
 End Class
