@@ -1,5 +1,24 @@
 ﻿
 Imports System.Data.SqlClient
+
+
+
+'Este formulario lee las siguientes tablas:
+'familias,
+'cursos,
+'aranceles,
+'descuento_hermano,
+'descuento_especial,
+'descuento_beca,
+'alumnos, cursos, cuotas, aranceles
+
+'Update: Alumnos,
+
+'Insert: Alumnos, taller_alumno, cuotas
+
+
+
+
 Public Class FrmAltaAlumnos
     Dim codAlumno As Integer
     Dim codigoArancel As Integer

@@ -1,5 +1,15 @@
 ﻿Imports System.Data.SqlClient
 
+'Este formulario lee las siguientes tablas:
+'cursos
+'material
+
+'Insert: material
+
+'Update:
+'cursos
+'material
+
 Public Class FrmMateriales
     Dim codigoMaterial As Integer
     Dim contador As Integer = 0

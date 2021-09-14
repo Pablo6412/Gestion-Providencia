@@ -1,4 +1,11 @@
 ﻿Imports System.Data.SqlClient
+
+
+
+'Este formulario lee las siguientes tablas:
+'concepto_de_pago
+
+'Update: concepto_de_pago
 Public Class FrmConceptosDePago
 
     Dim datos As DataSet
@@ -133,7 +140,7 @@ Public Class FrmConceptosDePago
     Private Function ConceptoExiste(ByVal concepto As String) As Boolean
         Dim resultado As Boolean
         Try
-            comando = New SqlCommand("select concepto_nombre from concepto_de_pago where concepto_nombre ='" & TxtNuevoConcepto.Text & "'", conexion)
+            comando = New SqlCommand("SELECT concepto_nombre FROM concepto_de_pago WHERE concepto_nombre ='" & TxtNuevoConcepto.Text & "'", conexion)
             dataRider = comando.ExecuteReader
             If dataRider.Read Then
                 resultado = True
@@ -147,7 +154,7 @@ Public Class FrmConceptosDePago
 
     Private Sub CbxCodigoConcepto_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbxCodigoConcepto.SelectedIndexChanged
         Dim CodigoConcepto As String = CbxCodigoConcepto.Text
-        Dim consulta As String = "SELECT concepto_nombre from concepto_de_pago where codigo_concepto = " & Val(CodigoConcepto) & ""
+        Dim consulta As String = "SELECT concepto_nombre FROM concepto_de_pago WHERE codigo_concepto = " & Val(CodigoConcepto) & ""
         adaptador = New SqlDataAdapter(consulta, conexion)
         datos = New DataSet
         adaptador.Fill(datos, "concepto_de_pago")

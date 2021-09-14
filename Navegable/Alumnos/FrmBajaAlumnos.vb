@@ -3,6 +3,13 @@
 Imports System.Data.SqlClient
 
 
+'Este formulario lee las siguientes tablas: Alumnos, 
+
+'Update: alumnos, pago_familia
+
+'delete: taller_alumno, cuotas
+
+
 Public Class FrmBajaAlumnos
 
     Dim numeroOrden As Integer

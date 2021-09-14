@@ -1,5 +1,10 @@
 ﻿Imports System.Data.SqlClient
 
+'Este formulario lee las siguientes tablas:
+'cursos
+
+'Update: cursos
+
 Public Class FrmComedor
 
     Private Sub FrmComedor_Load(sender As Object, e As EventArgs) Handles MyBase.Load

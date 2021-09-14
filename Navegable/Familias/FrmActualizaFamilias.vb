@@ -1,5 +1,11 @@
 ﻿Imports System.Data.SqlClient
 
+
+
+'Este formulario lee las siguientes tablas: familias
+
+'Update: familias
+
 Public Class FrmActualizaFamilias
 
     Dim datos As DataSet

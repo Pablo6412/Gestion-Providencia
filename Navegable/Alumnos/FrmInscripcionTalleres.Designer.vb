@@ -30,10 +30,11 @@ Partial Class FrmInscripcionTalleres
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.BtnSalirExtras = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.CbxCodigoFamilia = New System.Windows.Forms.ComboBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.DtpBaja = New System.Windows.Forms.DateTimePicker()
+        Me.DtpAlta = New System.Windows.Forms.DateTimePicker()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.CbxCodigoAlumno = New System.Windows.Forms.ComboBox()
         Me.CbxAlumno = New System.Windows.Forms.ComboBox()
@@ -88,6 +89,7 @@ Partial Class FrmInscripcionTalleres
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,11 +167,11 @@ Partial Class FrmInscripcionTalleres
         'GroupBox4
         '
         Me.GroupBox4.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox4.Controls.Add(Me.Panel3)
         Me.GroupBox4.Controls.Add(Me.Label10)
         Me.GroupBox4.Controls.Add(Me.Label9)
-        Me.GroupBox4.Controls.Add(Me.DateTimePicker2)
-        Me.GroupBox4.Controls.Add(Me.DateTimePicker1)
-        Me.GroupBox4.Controls.Add(Me.Panel3)
+        Me.GroupBox4.Controls.Add(Me.DtpBaja)
+        Me.GroupBox4.Controls.Add(Me.DtpAlta)
         Me.GroupBox4.Controls.Add(Me.CbxCodigoAlumno)
         Me.GroupBox4.Controls.Add(Me.CbxAlumno)
         Me.GroupBox4.Controls.Add(Me.Label14)
@@ -182,6 +184,15 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox4.TabIndex = 26
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Alumno"
+        '
+        'CbxCodigoFamilia
+        '
+        Me.CbxCodigoFamilia.BackColor = System.Drawing.SystemColors.Window
+        Me.CbxCodigoFamilia.FormattingEnabled = True
+        Me.CbxCodigoFamilia.Location = New System.Drawing.Point(162, 83)
+        Me.CbxCodigoFamilia.Name = "CbxCodigoFamilia"
+        Me.CbxCodigoFamilia.Size = New System.Drawing.Size(90, 23)
+        Me.CbxCodigoFamilia.TabIndex = 13
         '
         'Label10
         '
@@ -201,33 +212,33 @@ Partial Class FrmInscripcionTalleres
         Me.Label9.TabIndex = 11
         Me.Label9.Text = "Fecha de alta:"
         '
-        'DateTimePicker2
+        'DtpBaja
         '
-        Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker2.Location = New System.Drawing.Point(765, 68)
-        Me.DateTimePicker2.Name = "DateTimePicker2"
-        Me.DateTimePicker2.Size = New System.Drawing.Size(129, 29)
-        Me.DateTimePicker2.TabIndex = 10
+        Me.DtpBaja.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DtpBaja.Location = New System.Drawing.Point(765, 68)
+        Me.DtpBaja.Name = "DtpBaja"
+        Me.DtpBaja.Size = New System.Drawing.Size(129, 29)
+        Me.DtpBaja.TabIndex = 10
         '
-        'DateTimePicker1
+        'DtpAlta
         '
-        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker1.Location = New System.Drawing.Point(765, 25)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(129, 29)
-        Me.DateTimePicker1.TabIndex = 9
+        Me.DtpAlta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DtpAlta.Location = New System.Drawing.Point(765, 25)
+        Me.DtpAlta.Name = "DtpAlta"
+        Me.DtpAlta.Size = New System.Drawing.Size(129, 29)
+        Me.DtpAlta.TabIndex = 9
         '
         'Panel3
         '
-        Me.Panel3.Location = New System.Drawing.Point(27, 38)
+        Me.Panel3.Location = New System.Drawing.Point(74, 28)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(161, 51)
+        Me.Panel3.Size = New System.Drawing.Size(127, 75)
         Me.Panel3.TabIndex = 8
         '
         'CbxCodigoAlumno
         '
         Me.CbxCodigoAlumno.FormattingEnabled = True
-        Me.CbxCodigoAlumno.Location = New System.Drawing.Point(91, 52)
+        Me.CbxCodigoAlumno.Location = New System.Drawing.Point(91, 65)
         Me.CbxCodigoAlumno.Name = "CbxCodigoAlumno"
         Me.CbxCodigoAlumno.Size = New System.Drawing.Size(90, 29)
         Me.CbxCodigoAlumno.TabIndex = 7
@@ -859,6 +870,14 @@ Partial Class FrmInscripcionTalleres
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Label1"
         '
+        'Panel4
+        '
+        Me.Panel4.BackColor = System.Drawing.Color.Transparent
+        Me.Panel4.Location = New System.Drawing.Point(117, 76)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(200, 48)
+        Me.Panel4.TabIndex = 31
+        '
         'FrmInscripcionTalleres
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -866,6 +885,8 @@ Partial Class FrmInscripcionTalleres
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(974, 611)
+        Me.Controls.Add(Me.Panel4)
+        Me.Controls.Add(Me.CbxCodigoFamilia)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox3)
@@ -960,6 +981,8 @@ Partial Class FrmInscripcionTalleres
     Friend WithEvents LblHockey As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents DateTimePicker2 As DateTimePicker
-    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents DtpBaja As DateTimePicker
+    Friend WithEvents DtpAlta As DateTimePicker
+    Friend WithEvents CbxCodigoFamilia As ComboBox
+    Friend WithEvents Panel4 As Panel
 End Class

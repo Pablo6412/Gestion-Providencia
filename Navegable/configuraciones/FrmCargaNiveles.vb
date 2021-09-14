@@ -1,5 +1,13 @@
 ﻿Imports System.Data.SqlClient
 
+
+'Este formulario lee las siguientes tablas:
+'niveles
+
+'Insert: niveles
+
+'Update: niveles
+
 Public Class FrmCargaNiveles
     Dim dr As SqlDataReader
     Dim comando As New SqlCommand
@@ -66,7 +74,7 @@ Public Class FrmCargaNiveles
 
     Private Sub CbxCodigoNivel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbxCodigoNivel.SelectedIndexChanged
         Dim CodigoNivel As String = CbxCodigoNivel.Text
-        Dim consulta As String = "SELECT nivel from niveles where codigo_nivel = " & Val(CodigoNivel) & ""
+        Dim consulta As String = "SELECT nivel FROM niveles WHERE codigo_nivel = " & Val(CodigoNivel) & ""
         adaptador2 = New SqlDataAdapter(consulta, conexion)
         datos = New DataSet
         adaptador2.Fill(datos, "niveles")
@@ -75,7 +83,7 @@ Public Class FrmCargaNiveles
     End Sub
 
     Private Sub BtnActualizar_Click(sender As Object, e As EventArgs) Handles BtnActualizar.Click
-        Dim actualiza As String = "UPDATE niveles SET nivel = '" & Me.TxtNivelActualizado.Text & "' where codigo_nivel = " & Me.CbxCodigoNivel.Text & ""
+        Dim actualiza As String = "UPDATE niveles SET nivel = '" & Me.TxtNivelActualizado.Text & "' WHERE codigo_nivel = " & Me.CbxCodigoNivel.Text & ""
 
         Dim comando As New SqlCommand(actualiza, conexion)
         comando.ExecuteNonQuery()
@@ -114,7 +122,7 @@ Public Class FrmCargaNiveles
     Private Function NivelExiste(ByVal apellido_padre As String) As Boolean
         Dim resultado As Boolean
         Try
-            comando = New SqlCommand("select nivel from niveles where nivel ='" & TxtNivel.Text & "'", conexion)
+            comando = New SqlCommand("SELECT nivel FROM niveles WHERE nivel ='" & TxtNivel.Text & "'", conexion)
             dr = comando.ExecuteReader
             If dr.Read Then
                 resultado = True
