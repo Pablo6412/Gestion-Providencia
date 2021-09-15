@@ -452,15 +452,15 @@ Partial Class FrmAltaAlumnos
         Me.Label11.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label11.Location = New System.Drawing.Point(5, 26)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(89, 15)
+        Me.Label11.Size = New System.Drawing.Size(106, 15)
         Me.Label11.TabIndex = 21
-        Me.Label11.Text = "Hermano Nro.:"
+        Me.Label11.Text = "Orden descuento:"
         '
         'TxtHermanoNumero
         '
         Me.TxtHermanoNumero.BackColor = System.Drawing.Color.FloralWhite
         Me.TxtHermanoNumero.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtHermanoNumero.Location = New System.Drawing.Point(100, 18)
+        Me.TxtHermanoNumero.Location = New System.Drawing.Point(117, 18)
         Me.TxtHermanoNumero.Name = "TxtHermanoNumero"
         Me.TxtHermanoNumero.ReadOnly = True
         Me.TxtHermanoNumero.Size = New System.Drawing.Size(32, 29)
@@ -502,7 +502,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label14.Location = New System.Drawing.Point(145, 26)
+        Me.Label14.Location = New System.Drawing.Point(167, 26)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(52, 15)
         Me.Label14.TabIndex = 27
@@ -512,7 +512,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.TxtArancel.BackColor = System.Drawing.Color.FloralWhite
         Me.TxtArancel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtArancel.Location = New System.Drawing.Point(209, 18)
+        Me.TxtArancel.Location = New System.Drawing.Point(225, 18)
         Me.TxtArancel.MaxLength = 20
         Me.TxtArancel.Name = "TxtArancel"
         Me.TxtArancel.ReadOnly = True
@@ -659,17 +659,17 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label18.Location = New System.Drawing.Point(425, 24)
+        Me.Label18.Location = New System.Drawing.Point(424, 24)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(39, 15)
+        Me.Label18.Size = New System.Drawing.Size(42, 15)
         Me.Label18.TabIndex = 37
-        Me.Label18.Text = "Cuota"
+        Me.Label18.Text = "Cuota:"
         '
         'TxtEdad
         '
         Me.TxtEdad.BackColor = System.Drawing.Color.FloralWhite
         Me.TxtEdad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtEdad.Location = New System.Drawing.Point(376, 18)
+        Me.TxtEdad.Location = New System.Drawing.Point(381, 18)
         Me.TxtEdad.MaxLength = 2
         Me.TxtEdad.Name = "TxtEdad"
         Me.TxtEdad.ReadOnly = True
@@ -680,7 +680,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.LblEdad.AutoSize = True
         Me.LblEdad.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.LblEdad.Location = New System.Drawing.Point(334, 24)
+        Me.LblEdad.Location = New System.Drawing.Point(340, 24)
         Me.LblEdad.Name = "LblEdad"
         Me.LblEdad.Size = New System.Drawing.Size(36, 15)
         Me.LblEdad.TabIndex = 35

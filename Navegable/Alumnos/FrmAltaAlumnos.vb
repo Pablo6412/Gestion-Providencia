@@ -243,7 +243,7 @@ Public Class FrmAltaAlumnos
 
                     If alumnoExiste(LCase(TxtApellidoPadre.Text)) = True Then
 
-                        Dim activo As String = "SELECT estado FROM alumnos WHERE dni = '" & TxtDni.Text & "'"
+                        Dim activo As String = "SELECT estado, codigo_alumno FROM alumnos WHERE dni = '" & TxtDni.Text & "'"
                         Dim adaptadorActivo As New SqlDataAdapter(activo, conexion)
                         Dim datosActivo As New DataSet
                         datosActivo.Tables.Add("alumnos")
@@ -251,16 +251,28 @@ Public Class FrmAltaAlumnos
 
                         estado = datosActivo.Tables("alumnos").Rows(0).Item("estado")
 
+
+                        Dim codigoA As Integer = datosActivo.Tables("alumnos").Rows(0).Item("codigo_alumno")
                         If estado = "inactivo" Or estado = "Inactivo" Then
                             MessageBox.Show("El alumno " & TxtNombreAlumno.Text & " ya fue alumno del colegio, se procederá a su reincorporación", "Aviso de reincorporación", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                             OrdenaHermanos()
-                            Dim reincorpora As String = "UPDATE alumnos SET codigo_curso = " & CodigoCurso & ", codigo_beca = " & codigoBeca & ", codigo_arancel= " & CodigoCurso & ", nombre_apellido_alumno = '" & TxtNombreAlumno.Text & "', edad = " & Val(TxtEdad.Text) & ", fecha_nacimiento = '" & DtpFechaNacimiento.Value & "', dni = '" & TxtDni.Text & "', fecha_ingreso = '" & DtpFechaIngreso.Value & "', hermano_numero = " & Val(TxtHermanoNumero.Text) & ", cuota = " & Val(TxtCuota.Text) & ", observaciones = '" & TxtObservaciones.Text & "', estado = 'activo' WHERE dni = '" & TxtDni.Text & "'"
+                            Dim reincorpora As String = "UPDATE alumnos SET codigo_curso = " & CodigoCurso & ", codigo_beca = " & codigoBeca & ", codigo_arancel= " & codigoArancel & ", nombre_apellido_alumno = '" & TxtNombreAlumno.Text & "', edad = " & Val(TxtEdad.Text) & ", fecha_nacimiento = '" & DtpFechaNacimiento.Value & "', dni = '" & TxtDni.Text & "', fecha_ingreso = '" & DtpFechaIngreso.Value & "', hermano_numero = " & Val(TxtHermanoNumero.Text) & ", cuota = " & Val(TxtCuota.Text) & ", observaciones = '" & TxtObservaciones.Text & "', estado = 'activo' WHERE dni = '" & TxtDni.Text & "'"
                             Dim comandoReincorpora As New SqlCommand(reincorpora, conexion)
                             If comandoReincorpora.ExecuteNonQuery Then
-                                MsgBox("¡Bienvenido " & TxtNombreAlumno.Text & " nuevamente al colegio!")
-                            Else
-                                MsgBox("Error en la reincorporación. Cierre el formulario e intente nuevamente")
+
+                                Dim cuotaA As String = "INSERT INTO cuotas(codigo_familia, codigo_alumno, valor_cuota) VALUES(@codigo_familia, @codigo_alumno, @valor_cuota) "
+                                Dim comandoCuota As New SqlCommand(cuotaA, conexion)
+                                comandoCuota.Parameters.AddWithValue("@codigo_familia", CbxCodigoFamilia.Text)
+                                comandoCuota.Parameters.AddWithValue("@codigo_alumno", codigoA)
+                                comandoCuota.Parameters.AddWithValue("@valor_cuota", Val(TxtCuota.Text))
+
+                                comandoCuota.ExecuteNonQuery()
+
+                                Dim activaPagoFamilia As String = "UPDATE pago_familia SET estado = 'activo' WHERE codigo_alumno = " & codigoA & " "
+                                    MsgBox("¡Bienvenido " & TxtNombreAlumno.Text & " nuevamente al colegio!")
+                                Else
+                                    MsgBox("Error en la reincorporación. Cierre el formulario e intente nuevamente")
                             End If
                             Talleres()
                             LimpiaTexto()
@@ -305,17 +317,19 @@ Public Class FrmAltaAlumnos
 
                         codAlumno = datos.Tables("alumnos").Rows(0).Item("codigo_alumno")
 
-                        LimpiaTexto()
+
                         NumeroHermanos()
                         GuardaCuota()
-
+                        DataGrid()
                     End If
                 End If
             End If
 
             DataGrid()
             BuscaCurso()
+            LimpiaTexto()
             NumeroHermanos()
+
         End If
     End Sub
 
@@ -409,7 +423,7 @@ Public Class FrmAltaAlumnos
         'Descuento especial
         abrir()
 
-        MsgBox("" & Val(CbxCodigoFamilia.Text) & "")
+        'MsgBox("" & Val(CbxCodigoFamilia.Text) & "")
         Dim descEspecial As String = "SELECT tipo_descuento, descuento, monto FROM descuento_especial WHERE codigo_familia = '" & Val(CbxCodigoFamilia.Text) & "' "
         adaptador = New SqlDataAdapter(descEspecial, conexion)
 
@@ -453,7 +467,7 @@ Public Class FrmAltaAlumnos
             MessageBox.Show("Datos guardados")
 
         Else
-            MsgBox("No grabó nada")
+            MsgBox("error en la grabación")
         End If
     End Sub
 

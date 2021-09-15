@@ -5,8 +5,11 @@
 
 'Delete: cuotas,
 '        taller_alumno
+'        pagos_escolares
+'        detalle_vencimientos_escolares
+'        detalle_pago_escolar
 
-'Update: familias, alumnos, pago_familia, detalle_pago_escolar, pagos_escolares, detalle_vencimientos_escolares, vencimiento_detallado
+'Update: familias, alumnos, pago_familia, vencimiento_detallado
 
 Public Class FrmBajasFamilias
     Dim datos As DataSet
@@ -46,19 +49,16 @@ Public Class FrmBajasFamilias
                     Dim comandoPagoFamilia As New SqlCommand(bajaPagoFamilia, conexion)
                     If comandoPagoFamilia.ExecuteNonQuery() <> 0 Then
 
-                        Dim BajaDetallePagoEscolar As String = "UPDATE detalle_pago_escolar SET estado = 'inactivo' 
-                                                                WHERE codigo_familia = " & Val(CbxCodigo.Text) & " "
+                        Dim BajaDetallePagoEscolar As String = "DELETE detalle_pago_escolar WHERE codigo_familia = " & Val(CbxCodigo.Text) & " "
 
                         Dim comandoDetallePago As New SqlCommand(BajaDetallePagoEscolar, conexion)
                         If comandoDetallePago.ExecuteNonQuery() <> 0 Then
 
-                            Dim bajaPagosEscolares As String = "UPDATE pagos_escolares SET estado = 'inactivo' 
-                                                                WHERE codigo_familia = " & Val(CbxCodigo.Text) & " "
+                            Dim bajaPagosEscolares As String = "DELETE pagos_escolares WHERE codigo_familia = " & Val(CbxCodigo.Text) & " "
                             Dim comandoPagosEscolares As New SqlCommand(bajaPagosEscolares, conexion)
                             If comandoPagosEscolares.ExecuteNonQuery() <> 0 Then
 
-                                Dim bajaDetalleVencimientos As String = "UPDATE detalle_vencimientos_escolares SET estado = 'inactivo'
-                                                                         WHERE codigo_familia = " & CbxCodigo.Text & " "
+                                Dim bajaDetalleVencimientos As String = "DELETE detalle_vencimientos_escolares WHERE codigo_familia = " & CbxCodigo.Text & " "
                                 Dim comandoDetalle As New SqlCommand(bajaDetalleVencimientos, conexion)
                                 If comandoDetalle.ExecuteNonQuery() <> 0 Then
 
@@ -112,28 +112,19 @@ Public Class FrmBajasFamilias
                                          WHERE codigo_familia='" & Me.CbxReincorporaCodigo.Text & "' "
 
             Dim comando As New SqlCommand(reincorpora, conexion)
-            comando.ExecuteNonQuery()
             If comando.ExecuteNonQuery() = 1 Then
 
-                Dim reincorporaHijos As String = "UPDATE alumnos SET  estado = 'Activo'
-                                                                              
-                                                  WHERE codigo_familia='" & Me.CbxReincorporaCodigo.Text & "' "
-
-                Dim comandoReincorpora As New SqlCommand(reincorporaHijos, conexion)
-                comandoReincorpora.ExecuteNonQuery()
-
-
                 MessageBox.Show("La familia " & CbxReincorporaFamilia.Text & " fue reincorporada exitosamente")
-                CbxReincorporaCodigo.Text = ("")
-                CbxReincorporaFamilia.Text = ("")
-                CargarFamilias()
-                CbxCodigo.Focus()
+                    CbxReincorporaCodigo.Text = ("")
+                    CbxReincorporaFamilia.Text = ("")
+                    CargarFamilias()
+                    CbxCodigo.Focus()
 
-            Else
-                MessageBox.Show("¡Error! Reincorporación fallida. Reinicie el programa e intente nuevamente", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Else
+                    MessageBox.Show("¡Error! Reincorporación fallida. Reinicie el programa e intente nuevamente", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             End If
-        End If
-        cerrar()
+            cerrar()
     End Sub
 
     Sub CargarFamilias()
