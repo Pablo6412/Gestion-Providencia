@@ -139,32 +139,32 @@ Partial Class FrmPrincipal
         'TlsAltaAlumnos
         '
         Me.TlsAltaAlumnos.Name = "TlsAltaAlumnos"
-        Me.TlsAltaAlumnos.Size = New System.Drawing.Size(288, 24)
+        Me.TlsAltaAlumnos.Size = New System.Drawing.Size(214, 24)
         Me.TlsAltaAlumnos.Text = "Alta de alumnos"
         '
         'TlsActualizacionAlumnos
         '
         Me.TlsActualizacionAlumnos.Name = "TlsActualizacionAlumnos"
-        Me.TlsActualizacionAlumnos.Size = New System.Drawing.Size(288, 24)
+        Me.TlsActualizacionAlumnos.Size = New System.Drawing.Size(214, 24)
         Me.TlsActualizacionAlumnos.Text = "Actualización de datos"
         '
         'TlsBajaAlumnos
         '
         Me.TlsBajaAlumnos.Name = "TlsBajaAlumnos"
-        Me.TlsBajaAlumnos.Size = New System.Drawing.Size(288, 24)
-        Me.TlsBajaAlumnos.Text = "Baja y reincorporación de alumnos"
+        Me.TlsBajaAlumnos.Size = New System.Drawing.Size(214, 24)
+        Me.TlsBajaAlumnos.Text = "Baja de alumnos"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.BackColor = System.Drawing.SystemColors.Highlight
         Me.ToolStripSeparator1.ForeColor = System.Drawing.SystemColors.Highlight
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(285, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(211, 6)
         '
         'InscripciónATalleresToolStripMenuItem
         '
         Me.InscripciónATalleresToolStripMenuItem.Name = "InscripciónATalleresToolStripMenuItem"
-        Me.InscripciónATalleresToolStripMenuItem.Size = New System.Drawing.Size(288, 24)
+        Me.InscripciónATalleresToolStripMenuItem.Size = New System.Drawing.Size(214, 24)
         Me.InscripciónATalleresToolStripMenuItem.Text = "Inscripción a talleres"
         '
         'MstPagos

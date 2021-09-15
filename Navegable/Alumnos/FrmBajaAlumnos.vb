@@ -82,6 +82,7 @@ Public Class FrmBajaAlumnos
         Dim parcial As Integer
         Dim totalHermanos As Integer
         Dim maximo As Integer
+        Dim comprueba As Integer
         abrir()
         Dim opcion As DialogResult = MessageBox.Show("¿Realmente quiere dar de baja al alumno " & CbxAlumno.Text & "?", "¡Registro a eliminar!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning)
 
@@ -108,15 +109,19 @@ Public Class FrmBajaAlumnos
                 Dim bajaCuotas As String = "DELETE cuotas  WHERE codigo_alumno = " & CbxCodigoAlumno.Text & " "
                 Dim comandoCuotas As New SqlCommand(bajaCuotas, conexion)
                 If comandoCuotas.ExecuteNonQuery() = 0 Then
-                    MsgBox("Error actualizando tabla taller_alumno")
+                    MsgBox("Error actualizando tabla cuotas")
                 End If
 
-                Dim bajaPagoFamilia As String = "UPDATE pago_familia SET estado = 'inactivo' WHERE codigo_alumno = " & CbxCodigoAlumno.Text & " "
-                Dim comandoPagoFamilia As New SqlCommand(bajaPagoFamilia, conexion)
-                If comandoPagoFamilia.ExecuteNonQuery() = 0 Then
-                    MsgBox("Error actualizando tabla taller_alumno")
-                End If
+                Dim estadoPago As String = "SELECT * FROM pago_familia WHERE codigo_alumno = " & CbxCodigoAlumno.Text & " "
+                Dim comandoEstadoPago As New SqlCommand(estadoPago, conexion)
+                If comandoEstadoPago.ExecuteScalar() > 0 Then
 
+                    Dim bajaPagoFamilia As String = "UPDATE pago_familia SET estado = 'inactivo' WHERE codigo_alumno = " & CbxCodigoAlumno.Text & " "
+                    Dim comandoPagoFamilia As New SqlCommand(bajaPagoFamilia, conexion)
+                    If comandoPagoFamilia.ExecuteNonQuery() = 0 Then
+                        MsgBox("Error actualizando tabla pago_familia")
+                    End If
+                End If
             Catch ex As Exception
                 MsgBox("Error comprobando BD" & ex.ToString)
             End Try
@@ -174,7 +179,7 @@ Public Class FrmBajaAlumnos
         DataGrid()
         Dim familia As Integer
         familia = Val(CbxCodigoFamilia.Text)
-        MsgBox("" & familia & "")
+
     End Sub
 
 End Class
