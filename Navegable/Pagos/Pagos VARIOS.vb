@@ -23,6 +23,7 @@ Public Class Pagos
     '-------------------------------------------------------------------------
     'Deshabilita botón cerrar del formulario
     Dim _enabledCerrar As Boolean = False
+    Dim fechaActual As Date = Date.Today
 
     <System.ComponentModel.DefaultValue(False), System.ComponentModel.Description("Define si se habilita el botón cerrar enel formulario")>
     Public Property enabledCerrar() As Boolean
@@ -62,7 +63,7 @@ Public Class Pagos
     Dim total As Decimal
     Dim diferencia As Decimal
     Dim pagoCompleto As Boolean
-    Dim decision As Boolean
+    'Dim decision As Boolean
     Dim pagoACuenta As Boolean
     Dim datos As DataSet
     Dim adaptador As SqlDataAdapter
@@ -70,7 +71,7 @@ Public Class Pagos
     Dim contador As Integer = 0
     Dim TotalCuota As Decimal
     Dim TotalCampamento As Decimal
-    Dim CuotaCampamento As Decimal
+    'Dim CuotaCampamento As Decimal
     Dim TotalTalleres As Decimal
     Dim TotalMaterial As Decimal
     Dim TotalAdicional As Decimal
@@ -226,9 +227,6 @@ Public Class Pagos
         Dim pagoEfectivo As Decimal = Val(TxtEfectivo.Text)
         Dim credito As Decimal = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
         Dim efectivoDef As Decimal
-
-
-
 
         If TxtMatricula.Text <> "" Or TxtArancel.Text <> "" Or TxtComedor.Text <> "" Or TxtMateriales.Text <> "" Or TxtTalleres.Text <> "" Or TxtCampamento.Text <> "" Or TxtAdicionalJardin.Text <> "" Or TxtSinAsignar1.Text <> "" Or TxtSinasignar2.Text <> "" Or TxtSinAsignar3.Text <> "" Then
             If pagoACuenta = False Then
@@ -556,7 +554,8 @@ Public Class Pagos
     End Sub
 
     Sub DataGrid()
-
+        Dim mes As Integer
+        Dim parImpar As Integer
         Dim restrictionValues() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
         Dim dt As DataTable = conexion.GetSchema("TABLES", restrictionValues)
         Dim rows() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
@@ -584,7 +583,7 @@ Public Class Pagos
 
             Try
 
-                Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, importe_taller, materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller_temporal ON taller_temporal.codigo_alumno = alumnos.codigo_alumno  WHERE alumnos.codigo_familia = '" & CbxCodigo.Text & "' "
+                Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, importe_taller, materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller_temporal ON taller_temporal.codigo_alumno = alumnos.codigo_alumno  WHERE alumnos.codigo_familia = '" & CbxCodigo.Text & "' AND alumnos.estado = 'activo' "
 
                 comando = New SqlCommand()
                 comando.CommandText = consulta
@@ -639,8 +638,16 @@ Public Class Pagos
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalComedor += Val(row.Cells(colComedor).Value)
             Next
-            TxtComedor.PlaceholderText = TotalComedor
-            comedor = TotalComedor
+            mes = fechaActual.Month
+            parImpar = mes Mod 2
+            If parImpar <> 0 Then
+                TxtComedor.PlaceholderText = TotalComedor
+                comedor = TotalComedor
+            Else
+                TxtComedor.PlaceholderText = 0
+                comedor = 0
+                TotalComedor = comedor
+            End If
         End If
         contador += 1
         TxtMatricula.Enabled = False

@@ -48,10 +48,10 @@ Public Class FrmEmisiónDeVencimientos
         Dim comando As New SqlCommand(fecha, conexion)
         ultimaFecha = comando.ExecuteScalar
 
-        If (fechaActual.Month <> ultimaFecha.Month) Then
-            BtnVencimientos.Enabled = False
-            MsgBox("Los vencimientos del presente mes ya fueron realizados.")
-        End If
+        'If (fechaActual.Month <> ultimaFecha.Month) Then
+        '    BtnVencimientos.Enabled = False
+        '    MsgBox("Los vencimientos del presente mes ya fueron realizados.")
+        'End If
     End Sub
 
     Private Sub BtnVencimientos_Click(sender As Object, e As EventArgs) Handles BtnVencimientos.Click

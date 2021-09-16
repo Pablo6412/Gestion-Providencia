@@ -222,7 +222,7 @@ Public Class FrmAltaAlumnos
     'El que va
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
         Dim estado As String
-
+        Dim nombreApellido As String = (TxtNombreAlumno.Text & " " & TxtApellidoPadre.Text)
 
         Dim hermanoNum As Integer = Val(TxtHermanoNumero.Text) + 1
         If CbxCodigoFamilia.Text = "" Then
@@ -236,7 +236,7 @@ Public Class FrmAltaAlumnos
             If TxtNombreAlumno.Text = "" Or TxtDni.Text = "" Or TxtEdad.Text = "" Or DtpFechaIngreso.Text = "" Or DtpFechaNacimiento.Text = "" Then
                 MessageBox.Show("Debe llenar todos los campor, solo el campo observaciones puede quedar vacío", "Campos sin completar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Else
-                Dim opcion As DialogResult = MessageBox.Show("¿Realmente quiere dar de alta al alumno " & TxtNombreAlumno.Text & " en " & CbxCurso.Text & "?", "Aviso de alta de alumnos", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information)
+                Dim opcion As DialogResult = MessageBox.Show("¿Realmente quiere dar de alta al alumno " & TxtNombreAlumno.Text & " " & TxtApellidoPadre.Text & " en " & CbxCurso.Text & "?", "Aviso de alta de alumnos", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information)
 
                 If (opcion = Windows.Forms.DialogResult.Yes) Then
                     'OrdenaHermanos()
@@ -254,7 +254,7 @@ Public Class FrmAltaAlumnos
 
                         Dim codigoA As Integer = datosActivo.Tables("alumnos").Rows(0).Item("codigo_alumno")
                         If estado = "inactivo" Or estado = "Inactivo" Then
-                            MessageBox.Show("El alumno " & TxtNombreAlumno.Text & " ya fue alumno del colegio, se procederá a su reincorporación", "Aviso de reincorporación", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            MessageBox.Show("El alumno " & TxtNombreAlumno.Text & " " & TxtApellidoPadre.Text & " ya fue alumno del colegio, se procederá a su reincorporación", "Aviso de reincorporación", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                             OrdenaHermanos()
                             Dim reincorpora As String = "UPDATE alumnos SET codigo_curso = " & CodigoCurso & ", codigo_beca = " & codigoBeca & ", codigo_arancel= " & codigoArancel & ", nombre_apellido_alumno = '" & TxtNombreAlumno.Text & "', edad = " & Val(TxtEdad.Text) & ", fecha_nacimiento = '" & DtpFechaNacimiento.Value & "', dni = '" & TxtDni.Text & "', fecha_ingreso = '" & DtpFechaIngreso.Value & "', hermano_numero = " & Val(TxtHermanoNumero.Text) & ", cuota = " & Val(TxtCuota.Text) & ", observaciones = '" & TxtObservaciones.Text & "', estado = 'activo' WHERE dni = '" & TxtDni.Text & "'"
@@ -270,8 +270,8 @@ Public Class FrmAltaAlumnos
                                 comandoCuota.ExecuteNonQuery()
 
                                 Dim activaPagoFamilia As String = "UPDATE pago_familia SET estado = 'activo' WHERE codigo_alumno = " & codigoA & " "
-                                    MsgBox("¡Bienvenido " & TxtNombreAlumno.Text & " nuevamente al colegio!")
-                                Else
+                                MsgBox("¡Bienvenido " & TxtNombreAlumno.Text & " " & TxtApellidoPadre.Text & " nuevamente al colegio!")
+                            Else
                                     MsgBox("Error en la reincorporación. Cierre el formulario e intente nuevamente")
                             End If
                             Talleres()
@@ -279,7 +279,7 @@ Public Class FrmAltaAlumnos
                             NumeroHermanos()
                             CalculaCuota()
                             Else
-                                MessageBox.Show("¡El alumno " & TxtNombreAlumno.Text & " ya está registrado!", "validación de alumno existente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            MessageBox.Show("¡El alumno " & TxtNombreAlumno.Text & " " & TxtApellidoPadre.Text & " ya está registrado!", "validación de alumno existente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                         End If
 
                     Else
@@ -292,7 +292,7 @@ Public Class FrmAltaAlumnos
                         comando.Parameters.AddWithValue("@codigo_curso", CodigoCurso)
                         comando.Parameters.AddWithValue("@codigo_beca", codigoBeca)
                         comando.Parameters.AddWithValue("@codigo_arancel", codigoArancel)
-                        comando.Parameters.AddWithValue("@nombre_apellido_alumno", TxtNombreAlumno.Text)
+                        comando.Parameters.AddWithValue("@nombre_apellido_alumno", TxtApellidoPadre.Text & " " & TxtNombreAlumno.Text)
                         comando.Parameters.AddWithValue("@edad", TxtEdad.Text)
                         comando.Parameters.AddWithValue("@fecha_nacimiento", DtpFechaNacimiento.Value)
                         comando.Parameters.AddWithValue("@dni", TxtDni.Text)
@@ -309,7 +309,7 @@ Public Class FrmAltaAlumnos
                             MsgBox("Error al intentar guardar los datos")
                         End If
 
-                        Dim codigoAlumno As String = "SELECT codigo_alumno FROM alumnos WHERE nombre_apellido_alumno = '" & TxtNombreAlumno.Text & "' "
+                        Dim codigoAlumno As String = "SELECT codigo_alumno FROM alumnos WHERE dni = '" & TxtDni.Text & "' "
                         adaptador = New SqlDataAdapter(codigoAlumno, conexion)
                         datos = New DataSet
                         datos.Tables.Add("alumnos")
