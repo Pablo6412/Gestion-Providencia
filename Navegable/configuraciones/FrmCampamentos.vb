@@ -15,7 +15,7 @@ Public Class FrmCampamentos
 
         conectar()
         abrir()
-
+        RadioButton1.Checked = True
         Dim nivel As String = "SELECT codigo_nivel, nivel FROM niveles ORDER BY codigo_nivel"
         Dim adaptadorNivel As New SqlDataAdapter(nivel, conexion)
         Dim datosNivel As New DataSet

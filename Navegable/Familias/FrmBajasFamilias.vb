@@ -114,16 +114,31 @@ Public Class FrmBajasFamilias
             Dim comando As New SqlCommand(reincorpora, conexion)
             If comando.ExecuteNonQuery() = 1 Then
 
-                MessageBox.Show("La familia " & CbxReincorporaFamilia.Text & " fue reincorporada exitosamente")
-                    CbxReincorporaCodigo.Text = ("")
-                    CbxReincorporaFamilia.Text = ("")
-                    CargarFamilias()
-                    CbxCodigo.Focus()
+                Dim reincorporaPagoFamilia As String = "UPDATE pago_familia SET estado = 'activo' WHERE codigo_familia = " & Val(CbxReincorporaCodigo.Text) & " "
+                Dim comandoPagoF As New SqlCommand(reincorporaPagoFamilia, conexion)
 
+                If comandoPagoF.ExecuteNonQuery <> 0 Then
+
+                    Dim reincorporaVencimientos As String = "UPDATE detalle_vencimientos_escolares SET estado = 'activo' "
+                    Dim comandoVencimientos As New SqlCommand(reincorporaVencimientos, conexion)
+                    If comandoVencimientos.ExecuteNonQuery Then
+
+                        MessageBox.Show("La familia " & CbxReincorporaFamilia.Text & " fue reincorporada exitosamente")
+                        CbxReincorporaCodigo.Text = ("")
+                        CbxReincorporaFamilia.Text = ("")
+                        CargarFamilias()
+                        CbxCodigo.Focus()
+
+                    Else
+                        MessageBox.Show("¡Error! Reincorporación fallida. Reinicie el programa e intente nuevamente", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
                 Else
                     MessageBox.Show("¡Error! Reincorporación fallida. Reinicie el programa e intente nuevamente", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
+            Else
+                MessageBox.Show("¡Error! Reincorporación fallida. Reinicie el programa e intente nuevamente", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
+        End If
             cerrar()
     End Sub
 

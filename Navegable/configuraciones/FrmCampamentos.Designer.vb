@@ -189,6 +189,7 @@ Partial Class FrmCampamentos
         '
         'TxtDuracion
         '
+        Me.TxtDuracion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDuracion.Location = New System.Drawing.Point(563, 50)
         Me.TxtDuracion.MaxLength = 50
         Me.TxtDuracion.Name = "TxtDuracion"
@@ -226,6 +227,7 @@ Partial Class FrmCampamentos
         '
         'TxtValor
         '
+        Me.TxtValor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtValor.Location = New System.Drawing.Point(387, 50)
         Me.TxtValor.MaxLength = 8
         Me.TxtValor.Name = "TxtValor"
@@ -234,6 +236,7 @@ Partial Class FrmCampamentos
         '
         'TxtLugar
         '
+        Me.TxtLugar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtLugar.Location = New System.Drawing.Point(61, 50)
         Me.TxtLugar.MaxLength = 50
         Me.TxtLugar.Name = "TxtLugar"
@@ -349,9 +352,10 @@ Partial Class FrmCampamentos
         Me.GroupBox4.Controls.Add(Me.Label13)
         Me.GroupBox4.Controls.Add(Me.Label14)
         Me.GroupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.GroupBox4.Location = New System.Drawing.Point(77, 373)
+        Me.GroupBox4.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.GroupBox4.Location = New System.Drawing.Point(55, 373)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(800, 132)
+        Me.GroupBox4.Size = New System.Drawing.Size(843, 132)
         Me.GroupBox4.TabIndex = 3
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Valores a actualizar"
@@ -359,9 +363,9 @@ Partial Class FrmCampamentos
         'DtpFechaNueva
         '
         Me.DtpFechaNueva.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaNueva.Location = New System.Drawing.Point(682, 43)
+        Me.DtpFechaNueva.Location = New System.Drawing.Point(721, 43)
         Me.DtpFechaNueva.Name = "DtpFechaNueva"
-        Me.DtpFechaNueva.Size = New System.Drawing.Size(94, 23)
+        Me.DtpFechaNueva.Size = New System.Drawing.Size(94, 27)
         Me.DtpFechaNueva.TabIndex = 17
         '
         'BtnActualizar
@@ -369,7 +373,7 @@ Partial Class FrmCampamentos
         Me.BtnActualizar.BackColor = System.Drawing.Color.White
         Me.BtnActualizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue
         Me.BtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnActualizar.Location = New System.Drawing.Point(354, 86)
+        Me.BtnActualizar.Location = New System.Drawing.Point(370, 86)
         Me.BtnActualizar.Name = "BtnActualizar"
         Me.BtnActualizar.Size = New System.Drawing.Size(94, 31)
         Me.BtnActualizar.TabIndex = 16
@@ -378,43 +382,46 @@ Partial Class FrmCampamentos
         '
         'TxtDuracionNueva
         '
-        Me.TxtDuracionNueva.Location = New System.Drawing.Point(511, 43)
+        Me.TxtDuracionNueva.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtDuracionNueva.Location = New System.Drawing.Point(539, 43)
         Me.TxtDuracionNueva.MaxLength = 50
         Me.TxtDuracionNueva.Name = "TxtDuracionNueva"
-        Me.TxtDuracionNueva.Size = New System.Drawing.Size(116, 23)
+        Me.TxtDuracionNueva.Size = New System.Drawing.Size(116, 27)
         Me.TxtDuracionNueva.TabIndex = 14
         '
         'TxtValorNuevo
         '
-        Me.TxtValorNuevo.Location = New System.Drawing.Point(360, 43)
+        Me.TxtValorNuevo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtValorNuevo.Location = New System.Drawing.Point(376, 43)
         Me.TxtValorNuevo.MaxLength = 8
         Me.TxtValorNuevo.Name = "TxtValorNuevo"
-        Me.TxtValorNuevo.Size = New System.Drawing.Size(80, 23)
+        Me.TxtValorNuevo.Size = New System.Drawing.Size(80, 27)
         Me.TxtValorNuevo.TabIndex = 13
         '
         'TxtLugarNuevo
         '
-        Me.TxtLugarNuevo.Location = New System.Drawing.Point(77, 43)
+        Me.TxtLugarNuevo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtLugarNuevo.Location = New System.Drawing.Point(80, 43)
         Me.TxtLugarNuevo.MaxLength = 50
         Me.TxtLugarNuevo.Name = "TxtLugarNuevo"
-        Me.TxtLugarNuevo.Size = New System.Drawing.Size(215, 23)
+        Me.TxtLugarNuevo.Size = New System.Drawing.Size(215, 27)
         Me.TxtLugarNuevo.TabIndex = 12
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(640, 49)
+        Me.Label7.Location = New System.Drawing.Point(667, 49)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(41, 15)
+        Me.Label7.Size = New System.Drawing.Size(50, 20)
         Me.Label7.TabIndex = 11
         Me.Label7.Text = "Fecha:"
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(456, 48)
+        Me.Label12.Location = New System.Drawing.Point(463, 48)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(58, 15)
+        Me.Label12.Size = New System.Drawing.Size(72, 20)
         Me.Label12.TabIndex = 10
         Me.Label12.Text = "Duración:"
         '
@@ -423,16 +430,16 @@ Partial Class FrmCampamentos
         Me.Label13.AutoSize = True
         Me.Label13.Location = New System.Drawing.Point(309, 48)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(48, 15)
+        Me.Label13.Size = New System.Drawing.Size(62, 20)
         Me.Label13.TabIndex = 9
         Me.Label13.Text = "Valor:  $"
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(30, 49)
+        Me.Label14.Location = New System.Drawing.Point(25, 49)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(40, 15)
+        Me.Label14.Size = New System.Drawing.Size(49, 20)
         Me.Label14.TabIndex = 8
         Me.Label14.Text = "Lugar:"
         '
@@ -441,6 +448,7 @@ Partial Class FrmCampamentos
         Me.BtnSalirActualiza.BackColor = System.Drawing.Color.White
         Me.BtnSalirActualiza.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue
         Me.BtnSalirActualiza.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnSalirActualiza.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.BtnSalirActualiza.Location = New System.Drawing.Point(859, 520)
         Me.BtnSalirActualiza.Name = "BtnSalirActualiza"
         Me.BtnSalirActualiza.Size = New System.Drawing.Size(82, 32)
@@ -461,9 +469,10 @@ Partial Class FrmCampamentos
         Me.GroupBox3.Controls.Add(Me.GroupBox5)
         Me.GroupBox3.Controls.Add(Me.CbxAño)
         Me.GroupBox3.Controls.Add(Me.Label6)
-        Me.GroupBox3.Location = New System.Drawing.Point(77, 94)
+        Me.GroupBox3.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.GroupBox3.Location = New System.Drawing.Point(55, 94)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(800, 257)
+        Me.GroupBox3.Size = New System.Drawing.Size(843, 257)
         Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Seleccione año"
@@ -481,54 +490,58 @@ Partial Class FrmCampamentos
         Me.GroupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox5.Location = New System.Drawing.Point(39, 133)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(709, 100)
+        Me.GroupBox5.Size = New System.Drawing.Size(764, 100)
         Me.GroupBox5.TabIndex = 2
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Valores actuales"
         '
         'TxtFechaActual
         '
-        Me.TxtFechaActual.Location = New System.Drawing.Point(608, 41)
+        Me.TxtFechaActual.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtFechaActual.Location = New System.Drawing.Point(659, 41)
         Me.TxtFechaActual.Name = "TxtFechaActual"
-        Me.TxtFechaActual.Size = New System.Drawing.Size(86, 23)
+        Me.TxtFechaActual.Size = New System.Drawing.Size(86, 27)
         Me.TxtFechaActual.TabIndex = 7
         '
         'TxtDuracionActual
         '
-        Me.TxtDuracionActual.Location = New System.Drawing.Point(446, 41)
+        Me.TxtDuracionActual.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtDuracionActual.Location = New System.Drawing.Point(483, 41)
         Me.TxtDuracionActual.Name = "TxtDuracionActual"
-        Me.TxtDuracionActual.Size = New System.Drawing.Size(114, 23)
+        Me.TxtDuracionActual.Size = New System.Drawing.Size(114, 27)
         Me.TxtDuracionActual.TabIndex = 6
         '
         'TxtValorActual
         '
-        Me.TxtValorActual.Location = New System.Drawing.Point(303, 41)
+        Me.TxtValorActual.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtValorActual.Location = New System.Drawing.Point(316, 41)
         Me.TxtValorActual.Name = "TxtValorActual"
-        Me.TxtValorActual.Size = New System.Drawing.Size(80, 23)
+        Me.TxtValorActual.Size = New System.Drawing.Size(80, 27)
         Me.TxtValorActual.TabIndex = 5
         '
         'TxtLugarActual
         '
-        Me.TxtLugarActual.Location = New System.Drawing.Point(72, 41)
+        Me.TxtLugarActual.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtLugarActual.Location = New System.Drawing.Point(76, 41)
         Me.TxtLugarActual.Name = "TxtLugarActual"
-        Me.TxtLugarActual.Size = New System.Drawing.Size(171, 23)
+        Me.TxtLugarActual.Size = New System.Drawing.Size(171, 27)
         Me.TxtLugarActual.TabIndex = 4
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(566, 47)
+        Me.Label11.Location = New System.Drawing.Point(606, 47)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(41, 15)
+        Me.Label11.Size = New System.Drawing.Size(50, 20)
         Me.Label11.TabIndex = 3
         Me.Label11.Text = "Fecha:"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(389, 46)
+        Me.Label10.Location = New System.Drawing.Point(406, 46)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(58, 15)
+        Me.Label10.Size = New System.Drawing.Size(72, 20)
         Me.Label10.TabIndex = 2
         Me.Label10.Text = "Duración:"
         '
@@ -537,7 +550,7 @@ Partial Class FrmCampamentos
         Me.Label9.AutoSize = True
         Me.Label9.Location = New System.Drawing.Point(252, 46)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(48, 15)
+        Me.Label9.Size = New System.Drawing.Size(62, 20)
         Me.Label9.TabIndex = 1
         Me.Label9.Text = "Valor:  $"
         '
@@ -546,24 +559,24 @@ Partial Class FrmCampamentos
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(25, 47)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(40, 15)
+        Me.Label8.Size = New System.Drawing.Size(49, 20)
         Me.Label8.TabIndex = 0
         Me.Label8.Text = "Lugar:"
         '
         'CbxAño
         '
         Me.CbxAño.FormattingEnabled = True
-        Me.CbxAño.Location = New System.Drawing.Point(244, 72)
+        Me.CbxAño.Location = New System.Drawing.Point(329, 72)
         Me.CbxAño.Name = "CbxAño"
-        Me.CbxAño.Size = New System.Drawing.Size(186, 23)
+        Me.CbxAño.Size = New System.Drawing.Size(186, 28)
         Me.CbxAño.TabIndex = 1
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(206, 79)
+        Me.Label6.Location = New System.Drawing.Point(291, 79)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(32, 15)
+        Me.Label6.Size = New System.Drawing.Size(39, 20)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Año:"
         '
