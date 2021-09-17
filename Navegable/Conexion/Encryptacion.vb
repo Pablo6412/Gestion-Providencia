@@ -1,5 +1,5 @@
-﻿Imports System.Security.Cryptography
-Imports System.IO
+﻿Imports System.IO
+Imports System.Security.Cryptography
 
 Public Class AES
     Private Function Encrypt(ByVal clearData() As Byte, ByVal Key() As Byte, ByVal IV() As Byte) As Byte()

@@ -63,10 +63,6 @@ Public Class FrmPrincipal
         FrmGastos.Show()
     End Sub
 
-    Private Sub OtrosPagosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OtrosPagosToolStripMenuItem.Click
-        FrmIngresoDePagos.Show()
-    End Sub
-
     Private Sub BtnConfiguracion_Click(sender As Object, e As EventArgs) Handles BtnConfiguracion.Click
         'BtnConfiguracion.BackColor = System.Drawing.SystemColors.HotTrack
         Me.Hide()
@@ -91,5 +87,15 @@ Public Class FrmPrincipal
         FrmEmisiónDeVencimientos.Show()
     End Sub
 
+    Private Sub ToolStripMenuItem9_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem9.Click
+        FrmPagosDeudaAño.Show()
+    End Sub
 
+    Private Sub OtrosPagosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OtrosPagosToolStripMenuItem.Click
+        FrmPagoDeudaAñosAnteriores.Show()
+    End Sub
+
+    Private Sub PagosDeudaCampamentoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PagosDeudaCampamentoToolStripMenuItem.Click
+        FrmPagoDeudaCampamento.Show()
+    End Sub
 End Class

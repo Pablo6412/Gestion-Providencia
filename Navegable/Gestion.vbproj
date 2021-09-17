@@ -33,6 +33,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="gestion_providenciaDataSet.Designer.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>gestion_providenciaDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="gestion_providenciaDataSet1.Designer.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>gestion_providenciaDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Update="My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -54,10 +64,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="gestion_providenciaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>gestion_providenciaDataSet.Designer.vb</LastGenOutput>
+    </None>
+    <None Update="gestion_providenciaDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>gestion_providenciaDataSet1.Designer.vb</LastGenOutput>
+    </None>
     <None Update="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pagos\Reportes deuda\" />
   </ItemGroup>
 
 </Project>

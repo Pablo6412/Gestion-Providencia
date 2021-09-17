@@ -139,7 +139,7 @@ Public Class FrmBajasFamilias
                 MessageBox.Show("¡Error! Reincorporación fallida. Reinicie el programa e intente nuevamente", "¡Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         End If
-            cerrar()
+        cerrar()
     End Sub
 
     Sub CargarFamilias()
