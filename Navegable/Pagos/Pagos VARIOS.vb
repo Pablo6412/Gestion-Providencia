@@ -874,4 +874,9 @@ Public Class Pagos
             MsgBox("El monto ingresado en ... debe ser igual o menor al exibido")
         End If
     End Sub
+
+    Private Sub BtnCerrarDeuda_Click(sender As Object, e As EventArgs) Handles BtnCerrarDeuda.Click
+        Me.Close()
+    End Sub
+++ 
 End Class

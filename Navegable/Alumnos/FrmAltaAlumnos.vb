@@ -272,13 +272,13 @@ Public Class FrmAltaAlumnos
                                 Dim activaPagoFamilia As String = "UPDATE pago_familia SET estado = 'activo' WHERE codigo_alumno = " & codigoA & " "
                                 MsgBox("¡Bienvenido " & TxtNombreAlumno.Text & " " & TxtApellidoPadre.Text & " nuevamente al colegio!")
                             Else
-                                    MsgBox("Error en la reincorporación. Cierre el formulario e intente nuevamente")
+                                MsgBox("Error en la reincorporación. Cierre el formulario e intente nuevamente")
                             End If
                             Talleres()
                             LimpiaTexto()
                             NumeroHermanos()
                             CalculaCuota()
-                            Else
+                        Else
                             MessageBox.Show("¡El alumno " & TxtNombreAlumno.Text & " " & TxtApellidoPadre.Text & " ya está registrado!", "validación de alumno existente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                         End If
 
