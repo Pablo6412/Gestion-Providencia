@@ -50,6 +50,7 @@ Public Class Pagos
     End Property
 
     '------------------------------------------------------------------------------
+    Dim pagoCumplido As String
     Dim matricula As Decimal
     Dim arancel As Decimal
     Dim materiales As Decimal
@@ -175,22 +176,28 @@ Public Class Pagos
             RdbDetallesPago.Checked = True
 
             If Val(TxtMontoAPagar.Text) <= Val(TxtTotal.Text) Then
-
-                If decision < 0 Then
-                    opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & (Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                If Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) = 0 Then
+                    BtnGuardar2.Enabled = True
+                    MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
-                    opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & Val(TxtEfectivo.Text) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                End If
+                    If decision < 0 Then
+                        opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & (Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                    Else
+                        opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & Val(TxtEfectivo.Text) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                    End If
 
-                If (opcion1 = Windows.Forms.DialogResult.No) Then
-                    pagoACuenta = False
-                Else
-                    pagoACuenta = True
+                    If (opcion1 = Windows.Forms.DialogResult.No) Then
+                        pagoACuenta = False
+                    Else
+                        pagoACuenta = True
+                    End If
+
+                    pagoCompleto = True
+                    pagoCumplido = "completo"
+                    BtnGuardar2.Enabled = True
+                    PagoTotal()
+                    TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
                 End If
-                pagoCompleto = True
-                BtnGuardar2.Enabled = True
-                PagoTotal()
-                TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
 
             Else
                 opcion = MessageBox.Show("El monto es insuficiente para afrontar el total de los conceptos del mes." + vbCr + "En este pago hay un faltante de: $" & Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text) & vbCr + vbCr + "SI: para realizar el pago parcial." + vbCr + "" + vbCr + "NO: para rectificar el monto a pagar." + vbCr + "" + vbCr + "", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
@@ -208,12 +215,14 @@ Public Class Pagos
                     TxtAdicionalJardin.Enabled = True
                     TxtComedor.Enabled = True
                     BtnGuardar2.Enabled = True
+                    pagoCumplido = "incompleto"
                     'PagoParcial()
                     TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
                 End If
             End If
         Else
             MsgBox("Debe ingresar un monto de pago")
+
         End If
         DataGrid()
         CalculoTotal()
@@ -221,6 +230,7 @@ Public Class Pagos
 
 
     Private Sub BtnGuardar2_Click(sender As Object, e As EventArgs) Handles BtnGuardar2.Click
+
         Dim vuelto As Decimal = (Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text))
         Dim efectivo As Decimal = Val(TxtEfectivo.Text)
         Dim disponible As Decimal = Val(TxtDisponible.Text)
@@ -254,8 +264,8 @@ Public Class Pagos
             Else                     'Si elije no devolución la suma se carga como crédito del próximo vencimiento
                 credito = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
             End If
-            Dim cadena As String = "INSERT INTO dbo.detalle_pago_escolar(codigo_familia, matricula, aranceles, materiales, talleres, campamento, adicional_jardin, comedor, credito, fecha_de_pago) 
-                                       VALUES(@codigo_familia, @matricula, @aranceles, @materiales, @talleres, @campamento, @adicional_jardin, @comedor, @credito, @fecha_de_pago)"
+            Dim cadena As String = "INSERT INTO dbo.detalle_pago_escolar(codigo_familia, matricula, aranceles, materiales, talleres, campamento, adicional_jardin, comedor, credito, fecha_de_pago, pago_cumplido) 
+                                       VALUES(@codigo_familia, @matricula, @aranceles, @materiales, @talleres, @campamento, @adicional_jardin, @comedor, @credito, @fecha_de_pago, @pago_cumplido)"
             comando = New SqlCommand(cadena, conexion)
 
             comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
@@ -268,7 +278,7 @@ Public Class Pagos
             comando.Parameters.AddWithValue("@comedor", Val(TxtComedor.Text))
             comando.Parameters.AddWithValue("@credito", credito)
             comando.Parameters.AddWithValue("@fecha_de_pago", DtpFechaDePago.Value)
-
+            comando.Parameters.AddWithValue("@pago_cumplido", pagoCumplido)
             'txtPrecio.Text = Format(CDec(txtPrecio.Text), "C")
             'SaldosDeudores()
 
@@ -455,12 +465,17 @@ Public Class Pagos
         'Dim comando3 As New SqlCommand(maximo, conexion)
         'TxtCodigoPago.Text = comando3.ExecuteScalar
         matricula = TxtMatricula.Text = TxtMatricula.PlaceholderText
-        arancel = TxtArancel.Text = TxtArancel.PlaceholderText
-        materiales = TxtMateriales.Text = TxtMateriales.PlaceholderText
-        talleres = TxtTalleres.Text = TxtTalleres.PlaceholderText
+        TxtArancel.Text = TxtArancel.PlaceholderText
+        arancel = TxtArancel.Text
+        TxtMateriales.Text = TxtMateriales.PlaceholderText
+        materiales = TxtMateriales.Text
+        TxtTalleres.Text = TxtTalleres.PlaceholderText
+        talleres = TxtTalleres.Text
         TxtCampamento.Text = TxtCampamento.PlaceholderText
-        adicionalJardin = TxtAdicionalJardin.Text = TxtAdicionalJardin.PlaceholderText
-        comedor = TxtComedor.Text = TxtComedor.PlaceholderText
+        TxtAdicionalJardin.Text = TxtAdicionalJardin.PlaceholderText
+        adicionalJardin = TxtAdicionalJardin.Text
+        TxtComedor.Text = TxtComedor.PlaceholderText
+        comedor = TxtComedor.Text
         sinAsignar1 = TxtSinAsignar1.Text = TxtSinAsignar1.PlaceholderText
         sinAsignar2 = TxtSinasignar2.Text = TxtSinasignar2.PlaceholderText
         sinAsignar3 = TxtSinAsignar3.Text = TxtSinAsignar3.PlaceholderText
@@ -873,5 +888,13 @@ Public Class Pagos
         If Val(TxtSinAsignar3.Text) > sinAsignar3 Then
             MsgBox("El monto ingresado en ... debe ser igual o menor al exibido")
         End If
+    End Sub
+
+    Private Sub BtnCerrarDeuda_Click(sender As Object, e As EventArgs) Handles BtnCerrarDeuda.Click
+        Me.Close()
+    End Sub
+
+    Private Sub BtnResumenDeuda_Click(sender As Object, e As EventArgs) Handles BtnResumenDeuda.Click
+
     End Sub
 End Class

@@ -1,6 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
-Imports System.Net
-Imports System.Net.Mail
+﻿Imports System.Net.Mail
+Imports MySql.Data.MySqlClient
 Public Class FrmEnviaMail
     Dim conexion As New MySqlConnection
     Public cmd As MySqlCommand

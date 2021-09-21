@@ -465,14 +465,14 @@ Public Class FrmInscripcionTalleres
                 comandoFechaB.ExecuteNonQuery()
             End If
             Dim fechaAlta As String = "INSERT INTO alta_baja_taller(codigo_familia, codigo_alumno, codigo_taller, fecha_alta) VALUES(@codigo_familia, @codigo_alumno, @codigo_taller, @fecha_alta)"
-                Dim comandoFechaA As New SqlCommand(fechaAlta, conexion)
+            Dim comandoFechaA As New SqlCommand(fechaAlta, conexion)
 
-                comandoFechaA.Parameters.AddWithValue("@codigo_familia", CbxCodigoFamilia.Text)
-                comandoFechaA.Parameters.AddWithValue("@codigo_alumno", CbxCodigoAlumno.Text)
-                comandoFechaA.Parameters.AddWithValue("@codigo_taller", taller)
-                comandoFechaA.Parameters.AddWithValue("@fecha_alta", DtpAlta.Value)
+            comandoFechaA.Parameters.AddWithValue("@codigo_familia", CbxCodigoFamilia.Text)
+            comandoFechaA.Parameters.AddWithValue("@codigo_alumno", CbxCodigoAlumno.Text)
+            comandoFechaA.Parameters.AddWithValue("@codigo_taller", taller)
+            comandoFechaA.Parameters.AddWithValue("@fecha_alta", DtpAlta.Value)
 
-                comandoFechaA.ExecuteNonQuery()
+            comandoFechaA.ExecuteNonQuery()
 
         End If
     End Sub

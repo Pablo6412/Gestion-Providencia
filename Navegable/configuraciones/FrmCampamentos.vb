@@ -202,9 +202,9 @@ Public Class FrmCampamentos
     Private Sub CbxCodigoAño_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoAño.SelectedValueChanged
 
         Dim campamento As String = "SELECT codigo_campamento, lugar, valor, duracion, fecha FROM campamento WHERE codigo_año = " & Val(CbxCodigoAño.Text) & " "
-            Dim adaptadorCampamento As New SqlDataAdapter(campamento, conexion)
-            Dim tabla As New DataTable
-            adaptadorCampamento.Fill(tabla)
+        Dim adaptadorCampamento As New SqlDataAdapter(campamento, conexion)
+        Dim tabla As New DataTable
+        adaptadorCampamento.Fill(tabla)
 
         If tabla.Rows.Count > 0 Then
             codigoCampamento = tabla.Rows(0)("codigo_campamento")
