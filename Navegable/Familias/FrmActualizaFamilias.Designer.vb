@@ -29,16 +29,32 @@ Partial Class FrmActualizaFamilias
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.DtpModificacion = New System.Windows.Forms.DateTimePicker()
         Me.CbxCodigo = New System.Windows.Forms.ComboBox()
         Me.LblCodigo = New System.Windows.Forms.Label()
         Me.CbxFamilia = New System.Windows.Forms.ComboBox()
         Me.LblFamilia = New System.Windows.Forms.Label()
+        Me.DtpModificacion = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.TxtEmail = New System.Windows.Forms.TextBox()
+        Me.TxtMovilPadre = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.TxtEmailMadre = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TxtDniPadre = New System.Windows.Forms.TextBox()
+        Me.TxtDniMadre = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TxtNombrePadre = New System.Windows.Forms.TextBox()
+        Me.TxtApellidoPadre = New System.Windows.Forms.TextBox()
+        Me.TxtNombreMadre = New System.Windows.Forms.TextBox()
+        Me.TxtApellidoMadre = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TxtEmailPadre = New System.Windows.Forms.TextBox()
         Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.TxtTelFijo = New System.Windows.Forms.TextBox()
-        Me.TxtTelCelular = New System.Windows.Forms.TextBox()
+        Me.TxtMovilMadre = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -66,7 +82,7 @@ Partial Class FrmActualizaFamilias
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(974, 77)
+        Me.Panel1.Size = New System.Drawing.Size(1034, 77)
         Me.Panel1.TabIndex = 0
         '
         'PictureBox3
@@ -84,7 +100,7 @@ Partial Class FrmActualizaFamilias
         Me.PictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox2.Location = New System.Drawing.Point(445, 0)
+        Me.PictureBox2.Location = New System.Drawing.Point(475, 0)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(77, 77)
         Me.PictureBox2.TabIndex = 1
@@ -95,7 +111,7 @@ Partial Class FrmActualizaFamilias
         Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox1.Location = New System.Drawing.Point(607, 0)
+        Me.PictureBox1.Location = New System.Drawing.Point(667, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(77, 77)
         Me.PictureBox1.TabIndex = 0
@@ -107,7 +123,7 @@ Partial Class FrmActualizaFamilias
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 77)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(974, 5)
+        Me.Panel2.Size = New System.Drawing.Size(1034, 5)
         Me.Panel2.TabIndex = 1
         '
         'GroupBox1
@@ -115,28 +131,17 @@ Partial Class FrmActualizaFamilias
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox1.Controls.Add(Me.DtpModificacion)
         Me.GroupBox1.Controls.Add(Me.CbxCodigo)
         Me.GroupBox1.Controls.Add(Me.LblCodigo)
         Me.GroupBox1.Controls.Add(Me.CbxFamilia)
         Me.GroupBox1.Controls.Add(Me.LblFamilia)
         Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.GroupBox1.Location = New System.Drawing.Point(28, 103)
+        Me.GroupBox1.Location = New System.Drawing.Point(28, 113)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(914, 117)
+        Me.GroupBox1.Size = New System.Drawing.Size(974, 70)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Seleccionar familia"
-        '
-        'DtpModificacion
-        '
-        Me.DtpModificacion.Enabled = False
-        Me.DtpModificacion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpModificacion.Location = New System.Drawing.Point(363, 14)
-        Me.DtpModificacion.Name = "DtpModificacion"
-        Me.DtpModificacion.Size = New System.Drawing.Size(200, 29)
-        Me.DtpModificacion.TabIndex = 1
-        Me.DtpModificacion.Visible = False
         '
         'CbxCodigo
         '
@@ -145,7 +150,7 @@ Partial Class FrmActualizaFamilias
         Me.CbxCodigo.BackColor = System.Drawing.Color.White
         Me.CbxCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CbxCodigo.FormattingEnabled = True
-        Me.CbxCodigo.Location = New System.Drawing.Point(90, 49)
+        Me.CbxCodigo.Location = New System.Drawing.Point(90, 25)
         Me.CbxCodigo.Name = "CbxCodigo"
         Me.CbxCodigo.Size = New System.Drawing.Size(121, 29)
         Me.CbxCodigo.TabIndex = 2
@@ -154,7 +159,7 @@ Partial Class FrmActualizaFamilias
         '
         Me.LblCodigo.AutoSize = True
         Me.LblCodigo.ForeColor = System.Drawing.Color.OrangeRed
-        Me.LblCodigo.Location = New System.Drawing.Point(15, 57)
+        Me.LblCodigo.Location = New System.Drawing.Point(15, 33)
         Me.LblCodigo.Name = "LblCodigo"
         Me.LblCodigo.Size = New System.Drawing.Size(69, 21)
         Me.LblCodigo.TabIndex = 2
@@ -167,7 +172,7 @@ Partial Class FrmActualizaFamilias
         Me.CbxFamilia.BackColor = System.Drawing.Color.White
         Me.CbxFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CbxFamilia.FormattingEnabled = True
-        Me.CbxFamilia.Location = New System.Drawing.Point(363, 49)
+        Me.CbxFamilia.Location = New System.Drawing.Point(363, 25)
         Me.CbxFamilia.Name = "CbxFamilia"
         Me.CbxFamilia.Size = New System.Drawing.Size(374, 29)
         Me.CbxFamilia.TabIndex = 3
@@ -176,21 +181,47 @@ Partial Class FrmActualizaFamilias
         '
         Me.LblFamilia.AutoSize = True
         Me.LblFamilia.ForeColor = System.Drawing.Color.OrangeRed
-        Me.LblFamilia.Location = New System.Drawing.Point(287, 57)
+        Me.LblFamilia.Location = New System.Drawing.Point(287, 33)
         Me.LblFamilia.Name = "LblFamilia"
         Me.LblFamilia.Size = New System.Drawing.Size(70, 21)
         Me.LblFamilia.TabIndex = 0
         Me.LblFamilia.Text = "Familia:"
+        '
+        'DtpModificacion
+        '
+        Me.DtpModificacion.Enabled = False
+        Me.DtpModificacion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DtpModificacion.Location = New System.Drawing.Point(408, 85)
+        Me.DtpModificacion.Name = "DtpModificacion"
+        Me.DtpModificacion.Size = New System.Drawing.Size(200, 29)
+        Me.DtpModificacion.TabIndex = 1
+        Me.DtpModificacion.Visible = False
         '
         'GroupBox2
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox2.Controls.Add(Me.TxtEmail)
+        Me.GroupBox2.Controls.Add(Me.TxtMovilPadre)
+        Me.GroupBox2.Controls.Add(Me.Label11)
+        Me.GroupBox2.Controls.Add(Me.TxtEmailMadre)
+        Me.GroupBox2.Controls.Add(Me.Label10)
+        Me.GroupBox2.Controls.Add(Me.TxtDniPadre)
+        Me.GroupBox2.Controls.Add(Me.TxtDniMadre)
+        Me.GroupBox2.Controls.Add(Me.Label9)
+        Me.GroupBox2.Controls.Add(Me.Label8)
+        Me.GroupBox2.Controls.Add(Me.TxtNombrePadre)
+        Me.GroupBox2.Controls.Add(Me.TxtApellidoPadre)
+        Me.GroupBox2.Controls.Add(Me.TxtNombreMadre)
+        Me.GroupBox2.Controls.Add(Me.TxtApellidoMadre)
+        Me.GroupBox2.Controls.Add(Me.Label7)
+        Me.GroupBox2.Controls.Add(Me.Label6)
+        Me.GroupBox2.Controls.Add(Me.Label5)
+        Me.GroupBox2.Controls.Add(Me.Label4)
+        Me.GroupBox2.Controls.Add(Me.TxtEmailPadre)
         Me.GroupBox2.Controls.Add(Me.BtnGuardar)
         Me.GroupBox2.Controls.Add(Me.TxtTelFijo)
-        Me.GroupBox2.Controls.Add(Me.TxtTelCelular)
+        Me.GroupBox2.Controls.Add(Me.TxtMovilMadre)
         Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Controls.Add(Me.Label2)
         Me.GroupBox2.Controls.Add(Me.Label1)
@@ -201,22 +232,162 @@ Partial Class FrmActualizaFamilias
         Me.GroupBox2.Controls.Add(Me.LblNumeroHijos)
         Me.GroupBox2.Controls.Add(Me.LblDomicilio)
         Me.GroupBox2.ForeColor = System.Drawing.Color.Black
-        Me.GroupBox2.Location = New System.Drawing.Point(28, 226)
+        Me.GroupBox2.Location = New System.Drawing.Point(28, 203)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(914, 319)
+        Me.GroupBox2.Size = New System.Drawing.Size(974, 342)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Panel de actualización "
         '
-        'TxtEmail
+        'TxtMovilPadre
         '
-        Me.TxtEmail.BackColor = System.Drawing.Color.White
-        Me.TxtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtEmail.Location = New System.Drawing.Point(234, 179)
-        Me.TxtEmail.MaxLength = 50
-        Me.TxtEmail.Name = "TxtEmail"
-        Me.TxtEmail.Size = New System.Drawing.Size(289, 29)
-        Me.TxtEmail.TabIndex = 8
+        Me.TxtMovilPadre.BackColor = System.Drawing.Color.White
+        Me.TxtMovilPadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtMovilPadre.Location = New System.Drawing.Point(507, 218)
+        Me.TxtMovilPadre.MaxLength = 20
+        Me.TxtMovilPadre.Name = "TxtMovilPadre"
+        Me.TxtMovilPadre.Size = New System.Drawing.Size(176, 29)
+        Me.TxtMovilPadre.TabIndex = 25
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.ForeColor = System.Drawing.Color.Black
+        Me.Label11.Location = New System.Drawing.Point(397, 223)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(106, 21)
+        Me.Label11.TabIndex = 26
+        Me.Label11.Text = "Movil padre:"
+        '
+        'TxtEmailMadre
+        '
+        Me.TxtEmailMadre.BackColor = System.Drawing.Color.White
+        Me.TxtEmailMadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtEmailMadre.Location = New System.Drawing.Point(184, 168)
+        Me.TxtEmailMadre.MaxLength = 50
+        Me.TxtEmailMadre.Name = "TxtEmailMadre"
+        Me.TxtEmailMadre.Size = New System.Drawing.Size(308, 29)
+        Me.TxtEmailMadre.TabIndex = 23
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.ForeColor = System.Drawing.Color.Black
+        Me.Label10.Location = New System.Drawing.Point(22, 173)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(157, 21)
+        Me.Label10.TabIndex = 24
+        Me.Label10.Text = "e-mail de la madre:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'TxtDniPadre
+        '
+        Me.TxtDniPadre.Location = New System.Drawing.Point(847, 81)
+        Me.TxtDniPadre.Name = "TxtDniPadre"
+        Me.TxtDniPadre.Size = New System.Drawing.Size(108, 29)
+        Me.TxtDniPadre.TabIndex = 22
+        '
+        'TxtDniMadre
+        '
+        Me.TxtDniMadre.Location = New System.Drawing.Point(847, 38)
+        Me.TxtDniMadre.Name = "TxtDniMadre"
+        Me.TxtDniMadre.Size = New System.Drawing.Size(108, 29)
+        Me.TxtDniMadre.TabIndex = 21
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(797, 86)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(44, 21)
+        Me.Label9.TabIndex = 20
+        Me.Label9.Text = "DNI:"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(797, 41)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(44, 21)
+        Me.Label8.TabIndex = 19
+        Me.Label8.Text = "DNI:"
+        '
+        'TxtNombrePadre
+        '
+        Me.TxtNombrePadre.Location = New System.Drawing.Point(621, 78)
+        Me.TxtNombrePadre.MaxLength = 50
+        Me.TxtNombrePadre.Name = "TxtNombrePadre"
+        Me.TxtNombrePadre.Size = New System.Drawing.Size(170, 29)
+        Me.TxtNombrePadre.TabIndex = 18
+        '
+        'TxtApellidoPadre
+        '
+        Me.TxtApellidoPadre.Location = New System.Drawing.Point(186, 78)
+        Me.TxtApellidoPadre.MaxLength = 50
+        Me.TxtApellidoPadre.Name = "TxtApellidoPadre"
+        Me.TxtApellidoPadre.Size = New System.Drawing.Size(243, 29)
+        Me.TxtApellidoPadre.TabIndex = 17
+        '
+        'TxtNombreMadre
+        '
+        Me.TxtNombreMadre.Location = New System.Drawing.Point(621, 33)
+        Me.TxtNombreMadre.MaxLength = 50
+        Me.TxtNombreMadre.Name = "TxtNombreMadre"
+        Me.TxtNombreMadre.Size = New System.Drawing.Size(170, 29)
+        Me.TxtNombreMadre.TabIndex = 16
+        '
+        'TxtApellidoMadre
+        '
+        Me.TxtApellidoMadre.Location = New System.Drawing.Point(187, 30)
+        Me.TxtApellidoMadre.MaxLength = 50
+        Me.TxtApellidoMadre.Name = "TxtApellidoMadre"
+        Me.TxtApellidoMadre.Size = New System.Drawing.Size(243, 29)
+        Me.TxtApellidoMadre.TabIndex = 15
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(457, 81)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(153, 21)
+        Me.Label7.TabIndex = 14
+        Me.Label7.Text = "Nombre del padre:"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(31, 81)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(150, 21)
+        Me.Label6.TabIndex = 13
+        Me.Label6.Text = "Apellido de padre:"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(444, 33)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(171, 21)
+        Me.Label5.TabIndex = 12
+        Me.Label5.Text = "Nombre de la madre:"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(9, 35)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(173, 21)
+        Me.Label4.TabIndex = 11
+        Me.Label4.Text = "Apellido de la madre:"
+        '
+        'TxtEmailPadre
+        '
+        Me.TxtEmailPadre.BackColor = System.Drawing.Color.White
+        Me.TxtEmailPadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtEmailPadre.Location = New System.Drawing.Point(641, 166)
+        Me.TxtEmailPadre.MaxLength = 50
+        Me.TxtEmailPadre.Name = "TxtEmailPadre"
+        Me.TxtEmailPadre.Size = New System.Drawing.Size(314, 29)
+        Me.TxtEmailPadre.TabIndex = 8
         '
         'BtnGuardar
         '
@@ -224,7 +395,7 @@ Partial Class FrmActualizaFamilias
         Me.BtnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
         Me.BtnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnGuardar.Location = New System.Drawing.Point(784, 264)
+        Me.BtnGuardar.Location = New System.Drawing.Point(827, 288)
         Me.BtnGuardar.Name = "BtnGuardar"
         Me.BtnGuardar.Size = New System.Drawing.Size(98, 32)
         Me.BtnGuardar.TabIndex = 10
@@ -235,67 +406,67 @@ Partial Class FrmActualizaFamilias
         '
         Me.TxtTelFijo.BackColor = System.Drawing.Color.White
         Me.TxtTelFijo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTelFijo.Location = New System.Drawing.Point(556, 130)
+        Me.TxtTelFijo.Location = New System.Drawing.Point(774, 216)
         Me.TxtTelFijo.MaxLength = 20
         Me.TxtTelFijo.Name = "TxtTelFijo"
         Me.TxtTelFijo.Size = New System.Drawing.Size(181, 29)
         Me.TxtTelFijo.TabIndex = 7
         '
-        'TxtTelCelular
+        'TxtMovilMadre
         '
-        Me.TxtTelCelular.BackColor = System.Drawing.Color.White
-        Me.TxtTelCelular.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTelCelular.Location = New System.Drawing.Point(234, 130)
-        Me.TxtTelCelular.MaxLength = 20
-        Me.TxtTelCelular.Name = "TxtTelCelular"
-        Me.TxtTelCelular.Size = New System.Drawing.Size(176, 29)
-        Me.TxtTelCelular.TabIndex = 6
+        Me.TxtMovilMadre.BackColor = System.Drawing.Color.White
+        Me.TxtMovilMadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtMovilMadre.Location = New System.Drawing.Point(183, 218)
+        Me.TxtMovilMadre.MaxLength = 20
+        Me.TxtMovilMadre.Name = "TxtMovilMadre"
+        Me.TxtMovilMadre.Size = New System.Drawing.Size(176, 29)
+        Me.TxtMovilMadre.TabIndex = 6
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(73, 187)
+        Me.Label3.Location = New System.Drawing.Point(496, 171)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(155, 21)
+        Me.Label3.Size = New System.Drawing.Size(139, 21)
         Me.Label3.TabIndex = 8
-        Me.Label3.Text = "Correo electrónico:"
+        Me.Label3.Text = "e-mail del padre:"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(439, 138)
+        Me.Label2.Location = New System.Drawing.Point(727, 221)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(111, 21)
+        Me.Label2.Size = New System.Drawing.Size(42, 21)
         Me.Label2.TabIndex = 7
-        Me.Label2.Text = "Teléfono fijo:"
+        Me.Label2.Text = "Fijo:"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(90, 138)
+        Me.Label1.Location = New System.Drawing.Point(67, 223)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(138, 21)
+        Me.Label1.Size = New System.Drawing.Size(111, 21)
         Me.Label1.TabIndex = 6
-        Me.Label1.Text = "Teléfono celular:"
+        Me.Label1.Text = "Movil madre:"
         '
         'TxtObservaciones
         '
         Me.TxtObservaciones.BackColor = System.Drawing.Color.White
         Me.TxtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtObservaciones.Location = New System.Drawing.Point(234, 232)
+        Me.TxtObservaciones.Location = New System.Drawing.Point(180, 271)
         Me.TxtObservaciones.Multiline = True
         Me.TxtObservaciones.Name = "TxtObservaciones"
-        Me.TxtObservaciones.Size = New System.Drawing.Size(503, 64)
+        Me.TxtObservaciones.Size = New System.Drawing.Size(503, 49)
         Me.TxtObservaciones.TabIndex = 9
         '
         'TxtNumeroHijos
         '
         Me.TxtNumeroHijos.BackColor = System.Drawing.Color.White
         Me.TxtNumeroHijos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNumeroHijos.Location = New System.Drawing.Point(234, 80)
+        Me.TxtNumeroHijos.Location = New System.Drawing.Point(847, 122)
         Me.TxtNumeroHijos.MaxLength = 2
         Me.TxtNumeroHijos.Name = "TxtNumeroHijos"
         Me.TxtNumeroHijos.Size = New System.Drawing.Size(35, 29)
@@ -305,7 +476,7 @@ Partial Class FrmActualizaFamilias
         '
         Me.TxtDomicilio.BackColor = System.Drawing.Color.White
         Me.TxtDomicilio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDomicilio.Location = New System.Drawing.Point(234, 36)
+        Me.TxtDomicilio.Location = New System.Drawing.Point(185, 123)
         Me.TxtDomicilio.MaxLength = 100
         Me.TxtDomicilio.Name = "TxtDomicilio"
         Me.TxtDomicilio.Size = New System.Drawing.Size(503, 29)
@@ -315,7 +486,7 @@ Partial Class FrmActualizaFamilias
         '
         Me.LblObservaciones.AutoSize = True
         Me.LblObservaciones.ForeColor = System.Drawing.Color.Black
-        Me.LblObservaciones.Location = New System.Drawing.Point(102, 234)
+        Me.LblObservaciones.Location = New System.Drawing.Point(48, 273)
         Me.LblObservaciones.Name = "LblObservaciones"
         Me.LblObservaciones.Size = New System.Drawing.Size(126, 21)
         Me.LblObservaciones.TabIndex = 2
@@ -325,7 +496,7 @@ Partial Class FrmActualizaFamilias
         '
         Me.LblNumeroHijos.AutoSize = True
         Me.LblNumeroHijos.ForeColor = System.Drawing.Color.Black
-        Me.LblNumeroHijos.Location = New System.Drawing.Point(87, 88)
+        Me.LblNumeroHijos.Location = New System.Drawing.Point(700, 128)
         Me.LblNumeroHijos.Name = "LblNumeroHijos"
         Me.LblNumeroHijos.Size = New System.Drawing.Size(141, 21)
         Me.LblNumeroHijos.TabIndex = 1
@@ -335,7 +506,7 @@ Partial Class FrmActualizaFamilias
         '
         Me.LblDomicilio.AutoSize = True
         Me.LblDomicilio.ForeColor = System.Drawing.Color.Black
-        Me.LblDomicilio.Location = New System.Drawing.Point(139, 44)
+        Me.LblDomicilio.Location = New System.Drawing.Point(91, 128)
         Me.LblDomicilio.Name = "LblDomicilio"
         Me.LblDomicilio.Size = New System.Drawing.Size(89, 21)
         Me.LblDomicilio.TabIndex = 0
@@ -348,7 +519,7 @@ Partial Class FrmActualizaFamilias
         Me.BtnSalir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
         Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnSalir.Location = New System.Drawing.Point(812, 563)
+        Me.BtnSalir.Location = New System.Drawing.Point(872, 563)
         Me.BtnSalir.Name = "BtnSalir"
         Me.BtnSalir.Size = New System.Drawing.Size(98, 32)
         Me.BtnSalir.TabIndex = 11
@@ -363,7 +534,8 @@ Partial Class FrmActualizaFamilias
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(974, 611)
+        Me.ClientSize = New System.Drawing.Size(1034, 611)
+        Me.Controls.Add(Me.DtpModificacion)
         Me.Controls.Add(Me.BtnSalir)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -403,14 +575,29 @@ Partial Class FrmActualizaFamilias
     Friend WithEvents LblObservaciones As Label
     Friend WithEvents LblNumeroHijos As Label
     Friend WithEvents LblDomicilio As Label
-    Friend WithEvents TxtEmail As TextBox
+    Friend WithEvents TxtEmailPadre As TextBox
     Friend WithEvents TxtTelFijo As TextBox
-    Friend WithEvents TxtTelCelular As TextBox
+    Friend WithEvents TxtMovilMadre As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents CbxCodigo As ComboBox
     Friend WithEvents LblCodigo As Label
     Friend WithEvents DtpModificacion As DateTimePicker
-
+    Friend WithEvents TxtApellidoMadre As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents TxtEmailMadre As TextBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents TxtDniPadre As TextBox
+    Friend WithEvents TxtDniMadre As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents TxtNombrePadre As TextBox
+    Friend WithEvents TxtApellidoPadre As TextBox
+    Friend WithEvents TxtNombreMadre As TextBox
+    Friend WithEvents TxtMovilPadre As TextBox
+    Friend WithEvents Label11 As Label
 End Class

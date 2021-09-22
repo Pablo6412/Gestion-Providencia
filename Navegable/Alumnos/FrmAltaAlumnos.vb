@@ -1,5 +1,24 @@
 ﻿
 Imports System.Data.SqlClient
+
+
+
+'Este formulario lee las siguientes tablas:
+'familias,
+'cursos,
+'aranceles,
+'descuento_hermano,
+'descuento_especial,
+'descuento_beca,
+'alumnos, cursos, cuotas, aranceles
+
+'Update: Alumnos,
+
+'Insert: Alumnos, taller_alumno, cuotas
+
+
+
+
 Public Class FrmAltaAlumnos
     Dim codAlumno As Integer
     Dim codigoArancel As Integer
@@ -24,7 +43,7 @@ Public Class FrmAltaAlumnos
         BuscaFamilia()
         DataGrid()
         BuscaCurso()             'Pone lista de cursos en  combobox para elegir el que corresponda
-        NumeroHermanos()         'Calcula el número de hermano que se va a dar de alta
+        'NumeroHermanos()         'Calcula el número de hermano que se va a dar de alta
         CalculaCuota()           'Toma el arancel correspondiente al nivel y lo afecta por nº hermano, beca, etc. 
         TxtNombreAlumno.Focus()
 
@@ -56,7 +75,7 @@ Public Class FrmAltaAlumnos
 
         'Carga texbox con nombre y apellido de los padres
         Try
-            consulta = "select codigo_familia, codigo_beca, apellido_padre, nombre_padre, apellido_madre, nombre_madre from familias where codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' "
+            consulta = "SELECT codigo_familia, codigo_beca, apellido_padre, nombre_padre, apellido_madre, nombre_madre FROM familias WHERE codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' "
             adaptador = New SqlDataAdapter(consulta, conexion)
             datos = New DataSet
             adaptador.Fill(datos, "familias")
@@ -83,7 +102,7 @@ Public Class FrmAltaAlumnos
 
     Private Sub DataGrid()
         Try
-            consulta = "SELECT nombre_apellido_alumno, dni, curso, arancel_importe, valor_cuota, hermano_numero, fecha_ingreso FROM alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN Aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel WHERE alumnos.codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' ORDER BY alumnos.codigo_alumno"
+            consulta = "SELECT nombre_apellido_alumno, dni, curso, arancel_importe, valor_cuota, hermano_numero, fecha_ingreso FROM alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN Aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel WHERE alumnos.codigo_familia= '" & Val(CbxCodigoFamilia.Text) & "' AND alumnos.estado = 'activo'  ORDER BY alumnos.codigo_alumno"
 
             comando = New SqlCommand()
             comando.CommandText = consulta
@@ -127,48 +146,36 @@ Public Class FrmAltaAlumnos
 
     Public Sub NumeroHermanos()        'Calcula en número de hermano, en el colegio, del que se está por dar de alta
 
-
+        Dim cantHermanos As Integer = 1
         Dim numeroHermano As Integer = 1
-        Dim numeroOrden As Integer
-        Dim edad As Integer
+        Dim numeroOrden As Integer = 1
+        Dim años As Integer
         Dim contador As Integer = 1
         'Dim ("hermano" & numeroOrden & "") As Integer
         Try
+            abrir()
             codigoFamilia = Val(CbxCodigoFamilia.Text)
-            Dim cantidadHermanos As String = "SELECT codigo_familia, edad FROM alumnos WHERE codigo_familia = '" & codigoFamilia & "' ORDER BY edad ASC "
-            adaptador = New SqlDataAdapter(cantidadHermanos, conexion)
-            Dim dtDatos As DataTable = New DataTable
-            adaptador.Fill(dtDatos)
-            cantHermanos = dtDatos.Rows.Count
-            MsgBox("Cantidad De hermanos = " & cantHermanos & "")
+            Dim cantidadHermanos As String = "SELECT COUNT(codigo_familia) FROM alumnos WHERE codigo_familia = '" & codigoFamilia & "' AND estado = 'activo'"
+            Dim comandoCantidad As New SqlCommand(cantidadHermanos, conexion)
+            'cantHermanos = comandoCantidad.ExecuteScalar + 1
+
             If cantHermanos = 0 Then
                 TxtHermanoNumero.Text = 1
             Else
-                Dim hermanoNumero As String = "SELECT edad FROM alumnos WHERE codigo_familia = '" & codigoFamilia & "' ORDER BY edad ASC"
-                'adaptador = New SqlDataAdapter(comando)
-                'Dim dataSet As DataSet = New DataSet()
-                'adaptador.Fill(dataSet)
+                Dim hermanoNumero As String = "SELECT edad FROM alumnos WHERE codigo_familia = '" & codigoFamilia & "' AND estado = 'activo' ORDER BY edad desc"
+                Dim adaptadorHermano As New SqlDataAdapter(hermanoNumero, conexion)
+                Dim tabla As New DataTable
+                adaptadorHermano.Fill(tabla)
 
-                'If dataSet.Rows.Count <> 0 Then
-                Dim adaptador As New SqlDataAdapter(hermanoNumero, conexion)
-                Dim dtDatoshermano As New DataTable
-                adaptador.Fill(dtDatoshermano)
+                For Each row As DataRow In tabla.Rows
 
-                If dtDatoshermano.Rows.Count > 0 Then
-                    MsgBox("Edad" & edad & "")
-                    For Each row As DataRow In dtDatoshermano.Rows
-
-                        edad = Val(row(0))
-                        MsgBox("Edad" & edad & "")
-                        If Val(TxtEdad.Text) > edad Then
-                            numeroOrden = numeroHermano
-                        End If
-                        numeroHermano += 1
-                    Next
-                    TxtHermanoNumero.Text = numeroOrden
-                    MsgBox("Numero Orden = " & numeroOrden & "")
-                End If
-
+                    años = Val(row("edad"))
+                    If Val(TxtEdad.Text) < años Then
+                        numeroOrden = cantHermanos + 1
+                    End If
+                    cantHermanos += 1
+                Next
+                TxtHermanoNumero.Text = numeroOrden
             End If
 
 
@@ -198,7 +205,7 @@ Public Class FrmAltaAlumnos
 
             Dim consulta As String = "SELECT codigo_arancel, arancel_importe from aranceles WHERE codigo_nivel = '" & CodigoNivel & "'"
             adaptador = New SqlDataAdapter(consulta, conexion)
-            Dim comando1 As New SqlCommand
+            'Dim comando1 As New SqlCommand
             datos = New DataSet
             datos.Tables.Add("aranceles")
             adaptador.Fill(datos.Tables("aranceles"))
@@ -213,12 +220,12 @@ Public Class FrmAltaAlumnos
 
         CalculaCuota()
     End Sub
-
+    'El que va
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-        Dim tallerNumero As Integer = 1
-        Dim codigoAl As Integer
-        Dim hermanoNum As Integer = Val(TxtHermanoNumero.Text) + 1
+        Dim estado As String
+        Dim nombreApellido As String = (TxtNombreAlumno.Text & " " & TxtApellidoPadre.Text)
 
+        Dim hermanoNum As Integer = Val(TxtHermanoNumero.Text) + 1
         If CbxCodigoFamilia.Text = "" Then
             MsgBox("debe elegir un código de familia o un apellido")
             CbxCodigoFamilia.Focus()
@@ -230,29 +237,55 @@ Public Class FrmAltaAlumnos
             If TxtNombreAlumno.Text = "" Or TxtDni.Text = "" Or TxtEdad.Text = "" Or DtpFechaIngreso.Text = "" Or DtpFechaNacimiento.Text = "" Then
                 MessageBox.Show("Debe llenar todos los campor, solo el campo observaciones puede quedar vacío", "Campos sin completar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Else
-
-                Dim opcion As DialogResult = MessageBox.Show("¿Realmente quiere dar de alta al alumno " & TxtNombreAlumno.Text & " en " & CbxCurso.Text & "?", "¡Registro a eliminar!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning)
+                Dim opcion As DialogResult = MessageBox.Show("¿Realmente quiere dar de alta al alumno " & TxtNombreAlumno.Text & " " & TxtApellidoPadre.Text & " en " & CbxCurso.Text & "?", "Aviso de alta de alumnos", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information)
 
                 If (opcion = Windows.Forms.DialogResult.Yes) Then
+                    'OrdenaHermanos()
 
-                    Dim cantidadHermanos As String = "SELECT codigo_familia, edad FROM alumnos WHERE codigo_familia = '" & codigoFamilia & "' ORDER BY edad ASC "
-                    adaptador = New SqlDataAdapter(cantidadHermanos, conexion)
-                    Dim dtDatos As DataTable = New DataTable
-                    adaptador.Fill(dtDatos)
-                    cantHermanos = dtDatos.Rows.Count
+                    If alumnoExiste(LCase(TxtApellidoPadre.Text)) = True Then
 
-                    If cantHermanos <> 0 Then
-                        While hermanoNum <= cantHermanos + 1
+                        Dim activo As String = "SELECT estado, codigo_alumno FROM alumnos WHERE dni = '" & TxtDni.Text & "'"
+                        Dim adaptadorActivo As New SqlDataAdapter(activo, conexion)
+                        Dim datosActivo As New DataSet
+                        datosActivo.Tables.Add("alumnos")
+                        adaptadorActivo.Fill(datosActivo.Tables("alumnos"))
 
-                            Dim actualizaNumHermano As String = "UPDATE alumnos SET hermano_numero = '" & hermanoNum & "' WHERE codigo_familia = '" & CbxCodigoFamilia.Text & "' AND hermano_numero = '" & hermanoNum - 1 & "'"
-                            Dim comandoActNum As New SqlCommand(actualizaNumHermano, conexion)
-                            comandoActNum.ExecuteNonQuery()
-                            hermanoNum = hermanoNum + 1
+                        estado = datosActivo.Tables("alumnos").Rows(0).Item("estado")
 
-                        End While
-                    End If
 
-                    Dim cadena As String = "INSERT INTO alumnos(codigo_familia, codigo_curso, codigo_beca, codigo_arancel, nombre_apellido_alumno, edad, fecha_nacimiento, dni,  fecha_ingreso, hermano_numero,  cuota, observaciones) 
+                        Dim codigoA As Integer = datosActivo.Tables("alumnos").Rows(0).Item("codigo_alumno")
+                        If estado = "inactivo" Or estado = "Inactivo" Then
+                            MessageBox.Show("El alumno " & TxtNombreAlumno.Text & " " & TxtApellidoPadre.Text & " ya fue alumno del colegio, se procederá a su reincorporación", "Aviso de reincorporación", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                            OrdenaHermanos()
+                            Dim reincorpora As String = "UPDATE alumnos SET codigo_curso = " & CodigoCurso & ", codigo_beca = " & codigoBeca & ", codigo_arancel= " & codigoArancel & ", nombre_apellido_alumno = '" & TxtNombreAlumno.Text & "', edad = " & Val(TxtEdad.Text) & ", fecha_nacimiento = '" & DtpFechaNacimiento.Value & "', dni = '" & TxtDni.Text & "', fecha_ingreso = '" & DtpFechaIngreso.Value & "', hermano_numero = " & Val(TxtHermanoNumero.Text) & ", cuota = " & Val(TxtCuota.Text) & ", observaciones = '" & TxtObservaciones.Text & "', estado = 'activo' WHERE dni = '" & TxtDni.Text & "'"
+                            Dim comandoReincorpora As New SqlCommand(reincorpora, conexion)
+                            If comandoReincorpora.ExecuteNonQuery Then
+
+                                Dim cuotaA As String = "INSERT INTO cuotas(codigo_familia, codigo_alumno, valor_cuota) VALUES(@codigo_familia, @codigo_alumno, @valor_cuota) "
+                                Dim comandoCuota As New SqlCommand(cuotaA, conexion)
+                                comandoCuota.Parameters.AddWithValue("@codigo_familia", CbxCodigoFamilia.Text)
+                                comandoCuota.Parameters.AddWithValue("@codigo_alumno", codigoA)
+                                comandoCuota.Parameters.AddWithValue("@valor_cuota", Val(TxtCuota.Text))
+
+                                comandoCuota.ExecuteNonQuery()
+
+                                Dim activaPagoFamilia As String = "UPDATE pago_familia SET estado = 'activo' WHERE codigo_alumno = " & codigoA & " "
+                                MsgBox("¡Bienvenido " & TxtNombreAlumno.Text & " " & TxtApellidoPadre.Text & " nuevamente al colegio!")
+                            Else
+                                MsgBox("Error en la reincorporación. Cierre el formulario e intente nuevamente")
+                            End If
+                            Talleres()
+                            LimpiaTexto()
+                            NumeroHermanos()
+                            CalculaCuota()
+                        Else
+                            MessageBox.Show("¡El alumno " & TxtNombreAlumno.Text & " " & TxtApellidoPadre.Text & " ya está registrado!", "validación de alumno existente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                        End If
+
+                    Else
+                        OrdenaHermanos()
+                        Dim cadena As String = "INSERT INTO alumnos(codigo_familia, codigo_curso, codigo_beca, codigo_arancel, nombre_apellido_alumno, edad, fecha_nacimiento, dni,  fecha_ingreso, hermano_numero,  cuota, observaciones) 
                                        VALUES(@codigo_familia, @codigo_curso, @codigo_beca, @codigo_arancel, @nombre_apellido_alumno, @edad, @fecha_nacimiento, @dni, @fecha_ingreso, @hermano_numero,  @cuota, @observaciones)"
                         comando = New SqlCommand(cadena, conexion)
 
@@ -260,7 +293,7 @@ Public Class FrmAltaAlumnos
                         comando.Parameters.AddWithValue("@codigo_curso", CodigoCurso)
                         comando.Parameters.AddWithValue("@codigo_beca", codigoBeca)
                         comando.Parameters.AddWithValue("@codigo_arancel", codigoArancel)
-                        comando.Parameters.AddWithValue("@nombre_apellido_alumno", TxtNombreAlumno.Text)
+                        comando.Parameters.AddWithValue("@nombre_apellido_alumno", TxtApellidoPadre.Text & " " & TxtNombreAlumno.Text)
                         comando.Parameters.AddWithValue("@edad", TxtEdad.Text)
                         comando.Parameters.AddWithValue("@fecha_nacimiento", DtpFechaNacimiento.Value)
                         comando.Parameters.AddWithValue("@dni", TxtDni.Text)
@@ -270,27 +303,14 @@ Public Class FrmAltaAlumnos
                         comando.Parameters.AddWithValue("@observaciones", TxtObservaciones.Text)
 
                         If comando.ExecuteNonQuery() = 1 Then
+                            Talleres()
 
-                            Dim maxCod As String = "SELECT MAX(codigo_alumno) FROM alumnos"
-                            Dim comandoMaxCod As New SqlCommand(maxCod, conexion)
-                            codigoAl = comandoMaxCod.ExecuteScalar()
-
-                            While tallerNumero <= 3
-                                Dim taller As String = "INSERT INTO taller_alumno(codigo_alumno,  codigo_taller, importe_taller) VALUES(@codigo_alumno, @codigo_taller, @importe_taller)"
-                                Dim comandoTaller As New SqlCommand(taller, conexion)
-                                comandoTaller.Parameters.AddWithValue("@codigo_alumno", codigoAl)
-                                comandoTaller.Parameters.AddWithValue("@codigo_taller", 1)
-                                comandoTaller.Parameters.AddWithValue("@importe_taller", 0)
-
-                                comandoTaller.ExecuteNonQuery()
-                                tallerNumero += 1
-                            End While
 
                         Else
                             MsgBox("Error al intentar guardar los datos")
                         End If
 
-                        Dim codigoAlumno As String = "SELECT codigo_alumno from alumnos where nombre_apellido_alumno = '" & TxtNombreAlumno.Text & "' "
+                        Dim codigoAlumno As String = "SELECT codigo_alumno FROM alumnos WHERE dni = '" & TxtDni.Text & "' "
                         adaptador = New SqlDataAdapter(codigoAlumno, conexion)
                         datos = New DataSet
                         datos.Tables.Add("alumnos")
@@ -299,29 +319,73 @@ Public Class FrmAltaAlumnos
                         codAlumno = datos.Tables("alumnos").Rows(0).Item("codigo_alumno")
 
 
-
-
-                        TxtNombreAlumno.Clear()
-                        TxtEdad.Clear()
-                        TxtDni.Clear()
-                        TxtHermanoNumero.Clear()
-                        TxtArancel.Clear()
-                        TxtObservaciones.Clear()
                         NumeroHermanos()
-                        TxtNombreAlumno.Focus()
-                        TxtCuota.Clear()
-                        CbxCodigoFamilia.Select()
                         GuardaCuota()
-
+                        DataGrid()
                     End If
                 End If
+            End If
 
             DataGrid()
             BuscaCurso()
+            LimpiaTexto()
             NumeroHermanos()
+
         End If
     End Sub
 
+    Private Sub OrdenaHermanos()
+        Dim cantHermanos As Integer
+        Dim hermanoNum As Integer = Val(TxtHermanoNumero.Text) + 1
+
+        Dim cantidadHermanos As String = "SELECT COUNT(codigo_familia) FROM alumnos WHERE codigo_familia = " & codigoFamilia & " AND estado = 'activo' "
+        Dim comandoCantidad As New SqlCommand(cantidadHermanos, conexion)
+        cantHermanos = comandoCantidad.ExecuteScalar
+        comandoCantidad.ExecuteNonQuery()
+        'cantHermanos = 2
+
+        If cantHermanos <> 0 Then
+            While cantHermanos + 1 >= hermanoNum
+
+                Dim actualiza As String = "UPDATE alumnos SET hermano_numero = " & (cantHermanos + 1) & " WHERE codigo_familia = " & codigoFamilia & " AND hermano_numero = " & cantHermanos & ""
+                Dim comandoActualiza As New SqlCommand(actualiza, conexion)
+                comandoActualiza.ExecuteNonQuery()
+                cantHermanos -= 1
+
+            End While
+        End If
+    End Sub
+
+    Private Sub Talleres()
+        Dim tallerNumero As Integer = 1
+        Dim codigoAl As Integer
+
+        Dim maxCod As String = "SELECT MAX(codigo_alumno) FROM alumnos"
+        Dim comandoMaxCod As New SqlCommand(maxCod, conexion)
+        codigoAl = comandoMaxCod.ExecuteScalar()
+
+        While tallerNumero <= 3
+            Dim taller As String = "INSERT INTO taller_alumno(codigo_alumno,  codigo_taller, importe_taller) VALUES(@codigo_alumno, @codigo_taller, @importe_taller)"
+            Dim comandoTaller As New SqlCommand(taller, conexion)
+            comandoTaller.Parameters.AddWithValue("@codigo_alumno", codigoAl)
+            comandoTaller.Parameters.AddWithValue("@codigo_taller", 1)
+            comandoTaller.Parameters.AddWithValue("@importe_taller", 0)
+
+            comandoTaller.ExecuteNonQuery()
+            tallerNumero += 1
+        End While
+    End Sub
+    Private Sub LimpiaTexto()
+        TxtNombreAlumno.Clear()
+        TxtEdad.Clear()
+        TxtDni.Clear()
+        TxtHermanoNumero.Clear()
+        TxtArancel.Clear()
+        TxtObservaciones.Clear()
+        TxtNombreAlumno.Focus()
+        TxtCuota.Clear()
+        CbxCodigoFamilia.Select()
+    End Sub
     Private Sub CalculaCuota()   'A partir del arancel se aplican los descuentos por hermano, beca, ayuda, etc y se calcula la cuota
         Dim tipoDescuento As Integer
         Dim descuentoHermano As Double
@@ -347,7 +411,7 @@ Public Class FrmAltaAlumnos
 
         'Descuento beca
         If CbxCodigoBeca.Text <> "" Then
-            Dim tipoBeca As String = "SELECT descuento_beca FROM descuento_beca where codigo_beca = '" & CbxCodigoBeca.Text & "' "
+            Dim tipoBeca As String = "SELECT descuento_beca FROM descuento_beca WHERE codigo_beca = '" & CbxCodigoBeca.Text & "' "
             adaptador = New SqlDataAdapter(tipoBeca, conexion)
             datos = New DataSet
             datos.Tables.Add("descuento_beca")
@@ -360,7 +424,7 @@ Public Class FrmAltaAlumnos
         'Descuento especial
         abrir()
 
-        MsgBox("" & Val(CbxCodigoFamilia.Text) & "")
+        'MsgBox("" & Val(CbxCodigoFamilia.Text) & "")
         Dim descEspecial As String = "SELECT tipo_descuento, descuento, monto FROM descuento_especial WHERE codigo_familia = '" & Val(CbxCodigoFamilia.Text) & "' "
         adaptador = New SqlDataAdapter(descEspecial, conexion)
 
@@ -404,9 +468,30 @@ Public Class FrmAltaAlumnos
             MessageBox.Show("Datos guardados")
 
         Else
-            MsgBox("No grabó nada")
+            MsgBox("error en la grabación")
         End If
     End Sub
+
+    'Función que comprueba si existe la familia que se está por cargar (comprueba dni del padre o de la madre)
+    Private Function alumnoExiste(ByVal dni As String) As Boolean
+        Dim resultado As Boolean
+        Dim dr As SqlDataReader
+
+        Try
+            Dim comandos As New SqlCommand("SELECT * FROM alumnos WHERE dni = '" & TxtDni.Text & "'", conexion)
+            dr = comandos.ExecuteReader
+            If dr.Read Then
+                resultado = True
+            Else
+                resultado = False
+            End If
+            dr.Close()
+        Catch ex As Exception
+            MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
+        End Try
+        Return resultado
+    End Function
+
 
     Public Sub DtpFechaNacimiento_CloseUp(sender As Object, e As EventArgs) Handles DtpFechaNacimiento.CloseUp
         Date1 = DtpFechaNacimiento.Value
@@ -420,7 +505,7 @@ Public Class FrmAltaAlumnos
     End Sub
 
     Public Sub TxtNombreAlumno_Click(sender As Object, e As EventArgs) Handles TxtNombreAlumno.Click
-        NumeroHermanos()
+        'NumeroHermanos()
     End Sub
 
     Private Sub TxtDni_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtDni.KeyPress
@@ -440,11 +525,11 @@ Public Class FrmAltaAlumnos
     End Sub
 
     Private Sub TxtNombreAlumno_CursorChanged(sender As Object, e As EventArgs) Handles TxtNombreAlumno.CursorChanged
-        NumeroHermanos()
+        'NumeroHermanos()
     End Sub
 
     Private Sub CbxCodigoFamilia_Leave(sender As Object, e As EventArgs) Handles CbxCodigoFamilia.Leave
-        NumeroHermanos()
+        'NumeroHermanos()
     End Sub
 
     Private Sub TxtNombreAlumno_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtNombreAlumno.KeyPress
@@ -457,5 +542,7 @@ Public Class FrmAltaAlumnos
 
     Private Sub TxtEdad_TextChanged(sender As Object, e As EventArgs) Handles TxtEdad.TextChanged
         NumeroHermanos()
+        CalculaCuota()
+
     End Sub
 End Class

@@ -1,5 +1,10 @@
 ﻿Imports System.Data.SqlClient
 
+'Este formulario lee las siguientes tablas:
+'cursos
+
+'Update: cursos
+
 Public Class FrmComedor
 
     Private Sub FrmComedor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -22,7 +27,7 @@ Public Class FrmComedor
         If TxtNuevoValor.Text = "" Then
             MsgBox("Debe ingresar un importe")
         Else
-            Dim actualiza As String = "UPDATE cursos SET comedor_importe = " & Val(TxtNuevoValor.Text) & " "
+            Dim actualiza As String = "UPDATE cursos SET comedor_importe = " & Val(TxtNuevoValor.Text) & " WHERE codigo_nivel <> 1 "
             Dim comandoActualiza As New SqlCommand(actualiza, conexion)
             If comandoActualiza.ExecuteNonQuery = 0 Then
                 MsgBox("Error al guardar datos")

@@ -45,6 +45,7 @@ Partial Class FrmConfiguraTalleres
         Me.TxtTallerActualiza = New System.Windows.Forms.TextBox()
         Me.LbxActualiza = New System.Windows.Forms.ListBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.CbxCodigoBaja = New System.Windows.Forms.ComboBox()
         Me.CbxTallerBaja = New System.Windows.Forms.ComboBox()
         Me.BtnEliminar = New System.Windows.Forms.Button()
@@ -54,7 +55,6 @@ Partial Class FrmConfiguraTalleres
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -103,7 +103,7 @@ Partial Class FrmConfiguraTalleres
         'BtnGuardar
         '
         Me.BtnGuardar.BackColor = System.Drawing.Color.White
-        Me.BtnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue
+        Me.BtnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Tan
         Me.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnGuardar.Location = New System.Drawing.Point(333, 113)
         Me.BtnGuardar.Name = "BtnGuardar"
@@ -158,7 +158,7 @@ Partial Class FrmConfiguraTalleres
         'BtnSalir
         '
         Me.BtnSalir.BackColor = System.Drawing.Color.White
-        Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue
+        Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Tan
         Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnSalir.Location = New System.Drawing.Point(844, 460)
         Me.BtnSalir.Name = "BtnSalir"
@@ -313,6 +313,13 @@ Partial Class FrmConfiguraTalleres
         Me.TabPage3.Text = "TabPage3"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'Panel2
+        '
+        Me.Panel2.Location = New System.Drawing.Point(100, 356)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(200, 100)
+        Me.Panel2.TabIndex = 7
+        '
         'CbxCodigoBaja
         '
         Me.CbxCodigoBaja.FormattingEnabled = True
@@ -413,13 +420,6 @@ Partial Class FrmConfiguraTalleres
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(974, 64)
         Me.Panel1.TabIndex = 9
-        '
-        'Panel2
-        '
-        Me.Panel2.Location = New System.Drawing.Point(100, 356)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(200, 100)
-        Me.Panel2.TabIndex = 7
         '
         'FrmConfiguraTalleres
         '

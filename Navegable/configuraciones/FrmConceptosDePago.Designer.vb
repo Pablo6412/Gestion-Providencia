@@ -42,6 +42,7 @@ Partial Class FrmConceptosDePago
         Me.TxtActualizaConcepto = New System.Windows.Forms.TextBox()
         Me.LbxActualizaConcepto = New System.Windows.Forms.ListBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.LbxBajaConcepto = New System.Windows.Forms.ListBox()
         Me.BtnSalirBaja = New System.Windows.Forms.Button()
         Me.BtnConceptoBaja = New System.Windows.Forms.Button()
@@ -52,7 +53,6 @@ Partial Class FrmConceptosDePago
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -108,19 +108,19 @@ Partial Class FrmConceptosDePago
         Me.GroupBox1.Controls.Add(Me.TxtNuevoConcepto)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.GroupBox1.Location = New System.Drawing.Point(218, 248)
+        Me.GroupBox1.Location = New System.Drawing.Point(218, 256)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(616, 100)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "GroupBox1"
+        Me.GroupBox1.Text = "Carga de nuevo concepto"
         '
         'BtnGuardarConcepto
         '
         Me.BtnGuardarConcepto.BackColor = System.Drawing.Color.White
         Me.BtnGuardarConcepto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.RoyalBlue
         Me.BtnGuardarConcepto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnGuardarConcepto.Location = New System.Drawing.Point(486, 48)
+        Me.BtnGuardarConcepto.Location = New System.Drawing.Point(486, 39)
         Me.BtnGuardarConcepto.Name = "BtnGuardarConcepto"
         Me.BtnGuardarConcepto.Size = New System.Drawing.Size(83, 30)
         Me.BtnGuardarConcepto.TabIndex = 4
@@ -129,7 +129,7 @@ Partial Class FrmConceptosDePago
         '
         'TxtNuevoConcepto
         '
-        Me.TxtNuevoConcepto.Location = New System.Drawing.Point(195, 49)
+        Me.TxtNuevoConcepto.Location = New System.Drawing.Point(195, 40)
         Me.TxtNuevoConcepto.MaxLength = 50
         Me.TxtNuevoConcepto.Name = "TxtNuevoConcepto"
         Me.TxtNuevoConcepto.Size = New System.Drawing.Size(202, 29)
@@ -138,7 +138,7 @@ Partial Class FrmConceptosDePago
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(63, 57)
+        Me.Label1.Location = New System.Drawing.Point(63, 44)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(126, 21)
         Me.Label1.TabIndex = 2
@@ -238,15 +238,18 @@ Partial Class FrmConceptosDePago
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(157, 90)
+        Me.Label2.Location = New System.Drawing.Point(157, 87)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(59, 15)
+        Me.Label2.Size = New System.Drawing.Size(64, 17)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Concepto"
         '
         'TxtActualizaConcepto
         '
+        Me.TxtActualizaConcepto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtActualizaConcepto.Location = New System.Drawing.Point(381, 109)
         Me.TxtActualizaConcepto.MaxLength = 50
         Me.TxtActualizaConcepto.Name = "TxtActualizaConcepto"
@@ -280,6 +283,14 @@ Partial Class FrmConceptosDePago
         Me.TabPage3.Size = New System.Drawing.Size(966, 580)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "TabPage3"
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.Transparent
+        Me.Panel3.Location = New System.Drawing.Point(255, 392)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(200, 100)
+        Me.Panel3.TabIndex = 19
         '
         'LbxBajaConcepto
         '
@@ -335,9 +346,12 @@ Partial Class FrmConceptosDePago
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(309, 116)
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(309, 110)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(34, 15)
+        Me.Label3.Size = New System.Drawing.Size(43, 20)
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Nivel"
         '
@@ -403,14 +417,6 @@ Partial Class FrmConceptosDePago
         Me.RadioButton1.Text = "Nuevos conceptos"
         Me.RadioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.RadioButton1.UseVisualStyleBackColor = True
-        '
-        'Panel3
-        '
-        Me.Panel3.BackColor = System.Drawing.Color.Transparent
-        Me.Panel3.Location = New System.Drawing.Point(255, 392)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(200, 100)
-        Me.Panel3.TabIndex = 19
         '
         'FrmConceptosDePago
         '

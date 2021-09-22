@@ -1,4 +1,9 @@
 ﻿Imports System.Data.SqlClient
+
+
+'Este formulario lee las siguientes tablas: descuento_beca, familias, 
+
+'Update: Familias, alumnos, descuento_especial 
 Public Class FrmDescuentosBecas
     Dim datos As DataSet
     Dim adaptador As SqlDataAdapter

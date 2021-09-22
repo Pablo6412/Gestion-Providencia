@@ -1,6 +1,13 @@
 ﻿Imports System.Data.SqlClient
 
 
+'Este formulario lee las siguientes tablas: niveles, cursos, campamento
+
+'Isert: campamento, 
+
+'Update: cursos, 
+
+
 Public Class FrmCampamentos
     Dim codigoCampamento As Integer
     Dim codigoAño As Integer
@@ -8,7 +15,7 @@ Public Class FrmCampamentos
 
         conectar()
         abrir()
-
+        RadioButton1.Checked = True
         Dim nivel As String = "SELECT codigo_nivel, nivel FROM niveles ORDER BY codigo_nivel"
         Dim adaptadorNivel As New SqlDataAdapter(nivel, conexion)
         Dim datosNivel As New DataSet
@@ -195,9 +202,9 @@ Public Class FrmCampamentos
     Private Sub CbxCodigoAño_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoAño.SelectedValueChanged
 
         Dim campamento As String = "SELECT codigo_campamento, lugar, valor, duracion, fecha FROM campamento WHERE codigo_año = " & Val(CbxCodigoAño.Text) & " "
-            Dim adaptadorCampamento As New SqlDataAdapter(campamento, conexion)
-            Dim tabla As New DataTable
-            adaptadorCampamento.Fill(tabla)
+        Dim adaptadorCampamento As New SqlDataAdapter(campamento, conexion)
+        Dim tabla As New DataTable
+        adaptadorCampamento.Fill(tabla)
 
         If tabla.Rows.Count > 0 Then
             codigoCampamento = tabla.Rows(0)("codigo_campamento")

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmActualizaAlumnos
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FrmActualizaAlumnos
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmActualizaAlumnos))
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -35,16 +35,13 @@ Partial Class FrmActualizaAlumnos
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TxtFecha = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.RdbNo = New System.Windows.Forms.RadioButton()
-        Me.RdbSi = New System.Windows.Forms.RadioButton()
-        Me.Label17 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TxtCodigoAlumno = New System.Windows.Forms.TextBox()
         Me.TxtCodigoCurso = New System.Windows.Forms.TextBox()
         Me.TxtCurso = New System.Windows.Forms.TextBox()
         Me.BtnActualiza = New System.Windows.Forms.Button()
-        Me.CbxCodigoAlumno = New System.Windows.Forms.ComboBox()
         Me.CbxCodigoCurso = New System.Windows.Forms.ComboBox()
+        Me.CbxCodigoAlumno = New System.Windows.Forms.ComboBox()
         Me.CbxCurso = New System.Windows.Forms.ComboBox()
         Me.TxtObservaciones = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -91,6 +88,7 @@ Partial Class FrmActualizaAlumnos
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RdbExtras = New System.Windows.Forms.RadioButton()
         Me.RdbDatosAlumno = New System.Windows.Forms.RadioButton()
+        Me.TxtCodigoArancel = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -230,16 +228,14 @@ Partial Class FrmActualizaAlumnos
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox2.Controls.Add(Me.RdbNo)
-        Me.GroupBox2.Controls.Add(Me.RdbSi)
-        Me.GroupBox2.Controls.Add(Me.Label17)
+        Me.GroupBox2.Controls.Add(Me.TxtCodigoArancel)
         Me.GroupBox2.Controls.Add(Me.Panel3)
         Me.GroupBox2.Controls.Add(Me.TxtCodigoAlumno)
         Me.GroupBox2.Controls.Add(Me.TxtCodigoCurso)
         Me.GroupBox2.Controls.Add(Me.TxtCurso)
         Me.GroupBox2.Controls.Add(Me.BtnActualiza)
-        Me.GroupBox2.Controls.Add(Me.CbxCodigoAlumno)
         Me.GroupBox2.Controls.Add(Me.CbxCodigoCurso)
+        Me.GroupBox2.Controls.Add(Me.CbxCodigoAlumno)
         Me.GroupBox2.Controls.Add(Me.CbxCurso)
         Me.GroupBox2.Controls.Add(Me.TxtObservaciones)
         Me.GroupBox2.Controls.Add(Me.Label4)
@@ -258,61 +254,30 @@ Partial Class FrmActualizaAlumnos
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         '
-        'RdbNo
-        '
-        Me.RdbNo.AutoSize = True
-        Me.RdbNo.Location = New System.Drawing.Point(227, 161)
-        Me.RdbNo.Name = "RdbNo"
-        Me.RdbNo.Size = New System.Drawing.Size(47, 24)
-        Me.RdbNo.TabIndex = 26
-        Me.RdbNo.TabStop = True
-        Me.RdbNo.Text = "No"
-        Me.RdbNo.UseVisualStyleBackColor = True
-        '
-        'RdbSi
-        '
-        Me.RdbSi.AutoSize = True
-        Me.RdbSi.Location = New System.Drawing.Point(167, 161)
-        Me.RdbSi.Name = "RdbSi"
-        Me.RdbSi.Size = New System.Drawing.Size(39, 24)
-        Me.RdbSi.TabIndex = 25
-        Me.RdbSi.TabStop = True
-        Me.RdbSi.Text = "Si"
-        Me.RdbSi.UseVisualStyleBackColor = True
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(37, 161)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(122, 20)
-        Me.Label17.TabIndex = 24
-        Me.Label17.Text = "Alumno especial:"
-        '
         'Panel3
         '
-        Me.Panel3.Location = New System.Drawing.Point(567, 33)
+        Me.Panel3.Location = New System.Drawing.Point(454, 279)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(34, 192)
+        Me.Panel3.Size = New System.Drawing.Size(108, 83)
         Me.Panel3.TabIndex = 23
         '
         'TxtCodigoAlumno
         '
-        Me.TxtCodigoAlumno.Location = New System.Drawing.Point(568, 179)
+        Me.TxtCodigoAlumno.Location = New System.Drawing.Point(659, 234)
         Me.TxtCodigoAlumno.Name = "TxtCodigoAlumno"
         Me.TxtCodigoAlumno.Size = New System.Drawing.Size(20, 27)
         Me.TxtCodigoAlumno.TabIndex = 7
         '
         'TxtCodigoCurso
         '
-        Me.TxtCodigoCurso.Location = New System.Drawing.Point(568, 106)
+        Me.TxtCodigoCurso.Location = New System.Drawing.Point(633, 237)
         Me.TxtCodigoCurso.Name = "TxtCodigoCurso"
         Me.TxtCodigoCurso.Size = New System.Drawing.Size(20, 27)
         Me.TxtCodigoCurso.TabIndex = 22
         '
         'TxtCurso
         '
-        Me.TxtCurso.Location = New System.Drawing.Point(568, 72)
+        Me.TxtCurso.Location = New System.Drawing.Point(633, 203)
         Me.TxtCurso.Name = "TxtCurso"
         Me.TxtCurso.Size = New System.Drawing.Size(20, 27)
         Me.TxtCurso.TabIndex = 21
@@ -323,28 +288,28 @@ Partial Class FrmActualizaAlumnos
         Me.BtnActualiza.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
         Me.BtnActualiza.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
         Me.BtnActualiza.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnActualiza.Location = New System.Drawing.Point(605, 111)
+        Me.BtnActualiza.Location = New System.Drawing.Point(586, 116)
         Me.BtnActualiza.Name = "BtnActualiza"
         Me.BtnActualiza.Size = New System.Drawing.Size(85, 32)
         Me.BtnActualiza.TabIndex = 8
         Me.BtnActualiza.Text = "Actualizar"
         Me.BtnActualiza.UseVisualStyleBackColor = False
         '
-        'CbxCodigoAlumno
-        '
-        Me.CbxCodigoAlumno.FormattingEnabled = True
-        Me.CbxCodigoAlumno.Location = New System.Drawing.Point(568, 147)
-        Me.CbxCodigoAlumno.Name = "CbxCodigoAlumno"
-        Me.CbxCodigoAlumno.Size = New System.Drawing.Size(20, 28)
-        Me.CbxCodigoAlumno.TabIndex = 5
-        '
         'CbxCodigoCurso
         '
         Me.CbxCodigoCurso.FormattingEnabled = True
-        Me.CbxCodigoCurso.Location = New System.Drawing.Point(568, 38)
+        Me.CbxCodigoCurso.Location = New System.Drawing.Point(607, 234)
         Me.CbxCodigoCurso.Name = "CbxCodigoCurso"
         Me.CbxCodigoCurso.Size = New System.Drawing.Size(20, 28)
         Me.CbxCodigoCurso.TabIndex = 20
+        '
+        'CbxCodigoAlumno
+        '
+        Me.CbxCodigoAlumno.FormattingEnabled = True
+        Me.CbxCodigoAlumno.Location = New System.Drawing.Point(659, 202)
+        Me.CbxCodigoAlumno.Name = "CbxCodigoAlumno"
+        Me.CbxCodigoAlumno.Size = New System.Drawing.Size(20, 28)
+        Me.CbxCodigoAlumno.TabIndex = 5
         '
         'CbxCurso
         '
@@ -356,7 +321,7 @@ Partial Class FrmActualizaAlumnos
         '
         'TxtObservaciones
         '
-        Me.TxtObservaciones.Location = New System.Drawing.Point(166, 199)
+        Me.TxtObservaciones.Location = New System.Drawing.Point(166, 173)
         Me.TxtObservaciones.Multiline = True
         Me.TxtObservaciones.Name = "TxtObservaciones"
         Me.TxtObservaciones.Size = New System.Drawing.Size(397, 65)
@@ -365,7 +330,7 @@ Partial Class FrmActualizaAlumnos
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(52, 202)
+        Me.Label4.Location = New System.Drawing.Point(52, 176)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(108, 20)
         Me.Label4.TabIndex = 18
@@ -403,7 +368,7 @@ Partial Class FrmActualizaAlumnos
         '
         Me.DtpFechaIngreso.CustomFormat = "yyyy-mm-dd"
         Me.DtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaIngreso.Location = New System.Drawing.Point(442, 116)
+        Me.DtpFechaIngreso.Location = New System.Drawing.Point(442, 120)
         Me.DtpFechaIngreso.Name = "DtpFechaIngreso"
         Me.DtpFechaIngreso.Size = New System.Drawing.Size(121, 27)
         Me.DtpFechaIngreso.TabIndex = 6
@@ -412,7 +377,7 @@ Partial Class FrmActualizaAlumnos
         '
         Me.DtpFechaNacimiento.CustomFormat = "yyyy-mm-dd"
         Me.DtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaNacimiento.Location = New System.Drawing.Point(166, 116)
+        Me.DtpFechaNacimiento.Location = New System.Drawing.Point(166, 120)
         Me.DtpFechaNacimiento.Name = "DtpFechaNacimiento"
         Me.DtpFechaNacimiento.Size = New System.Drawing.Size(121, 27)
         Me.DtpFechaNacimiento.TabIndex = 5
@@ -420,7 +385,7 @@ Partial Class FrmActualizaAlumnos
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(312, 123)
+        Me.Label8.Location = New System.Drawing.Point(312, 127)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(124, 20)
         Me.Label8.TabIndex = 4
@@ -447,7 +412,7 @@ Partial Class FrmActualizaAlumnos
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(8, 121)
+        Me.Label5.Location = New System.Drawing.Point(8, 125)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(152, 20)
         Me.Label5.TabIndex = 1
@@ -846,6 +811,13 @@ Partial Class FrmActualizaAlumnos
         Me.RdbDatosAlumno.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.RdbDatosAlumno.UseVisualStyleBackColor = False
         '
+        'TxtCodigoArancel
+        '
+        Me.TxtCodigoArancel.Location = New System.Drawing.Point(607, 203)
+        Me.TxtCodigoArancel.Name = "TxtCodigoArancel"
+        Me.TxtCodigoArancel.Size = New System.Drawing.Size(20, 27)
+        Me.TxtCodigoArancel.TabIndex = 24
+        '
         'FrmActualizaAlumnos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
@@ -952,7 +924,5 @@ Partial Class FrmActualizaAlumnos
     Friend WithEvents CheckBox3 As CheckBox
     Friend WithEvents CheckBox2 As CheckBox
     Friend WithEvents ChbFutbol As CheckBox
-    Friend WithEvents RdbNo As RadioButton
-    Friend WithEvents RdbSi As RadioButton
-    Friend WithEvents Label17 As Label
+    Friend WithEvents TxtCodigoArancel As TextBox
 End Class

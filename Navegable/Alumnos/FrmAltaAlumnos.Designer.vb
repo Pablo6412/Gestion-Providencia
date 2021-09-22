@@ -117,7 +117,7 @@ Partial Class FrmAltaAlumnos
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(8, 35)
+        Me.Label2.Location = New System.Drawing.Point(130, 45)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(129, 21)
@@ -129,7 +129,7 @@ Partial Class FrmAltaAlumnos
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(262, 35)
+        Me.Label3.Location = New System.Drawing.Point(384, 45)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(70, 21)
@@ -142,7 +142,7 @@ Partial Class FrmAltaAlumnos
         Me.CbxCodigoFamilia.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CbxCodigoFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CbxCodigoFamilia.FormattingEnabled = True
-        Me.CbxCodigoFamilia.Location = New System.Drawing.Point(139, 31)
+        Me.CbxCodigoFamilia.Location = New System.Drawing.Point(261, 41)
         Me.CbxCodigoFamilia.Name = "CbxCodigoFamilia"
         Me.CbxCodigoFamilia.Size = New System.Drawing.Size(90, 25)
         Me.CbxCodigoFamilia.TabIndex = 1
@@ -154,7 +154,7 @@ Partial Class FrmAltaAlumnos
         Me.CbxFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CbxFamilia.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.CbxFamilia.FormattingEnabled = True
-        Me.CbxFamilia.Location = New System.Drawing.Point(339, 31)
+        Me.CbxFamilia.Location = New System.Drawing.Point(461, 41)
         Me.CbxFamilia.Name = "CbxFamilia"
         Me.CbxFamilia.Size = New System.Drawing.Size(432, 25)
         Me.CbxFamilia.TabIndex = 2
@@ -164,7 +164,7 @@ Partial Class FrmAltaAlumnos
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(63, 70)
+        Me.Label4.Location = New System.Drawing.Point(185, 80)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(155, 21)
@@ -176,7 +176,7 @@ Partial Class FrmAltaAlumnos
         Me.TxtApellidoPadre.BackColor = System.Drawing.Color.FloralWhite
         Me.TxtApellidoPadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtApellidoPadre.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.TxtApellidoPadre.Location = New System.Drawing.Point(225, 66)
+        Me.TxtApellidoPadre.Location = New System.Drawing.Point(347, 76)
         Me.TxtApellidoPadre.Name = "TxtApellidoPadre"
         Me.TxtApellidoPadre.ReadOnly = True
         Me.TxtApellidoPadre.Size = New System.Drawing.Size(241, 25)
@@ -187,7 +187,7 @@ Partial Class FrmAltaAlumnos
         Me.TxtNombrePadre.BackColor = System.Drawing.Color.FloralWhite
         Me.TxtNombrePadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtNombrePadre.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.TxtNombrePadre.Location = New System.Drawing.Point(596, 66)
+        Me.TxtNombrePadre.Location = New System.Drawing.Point(718, 76)
         Me.TxtNombrePadre.Name = "TxtNombrePadre"
         Me.TxtNombrePadre.ReadOnly = True
         Me.TxtNombrePadre.Size = New System.Drawing.Size(175, 25)
@@ -198,7 +198,7 @@ Partial Class FrmAltaAlumnos
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(512, 70)
+        Me.Label5.Location = New System.Drawing.Point(634, 80)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(77, 21)
@@ -210,7 +210,7 @@ Partial Class FrmAltaAlumnos
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label6.ForeColor = System.Drawing.Color.White
-        Me.Label6.Location = New System.Drawing.Point(512, 104)
+        Me.Label6.Location = New System.Drawing.Point(634, 114)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(77, 21)
@@ -222,7 +222,7 @@ Partial Class FrmAltaAlumnos
         Me.TxtNombreMadre.BackColor = System.Drawing.Color.FloralWhite
         Me.TxtNombreMadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtNombreMadre.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.TxtNombreMadre.Location = New System.Drawing.Point(596, 104)
+        Me.TxtNombreMadre.Location = New System.Drawing.Point(718, 114)
         Me.TxtNombreMadre.Name = "TxtNombreMadre"
         Me.TxtNombreMadre.ReadOnly = True
         Me.TxtNombreMadre.Size = New System.Drawing.Size(175, 25)
@@ -233,7 +233,7 @@ Partial Class FrmAltaAlumnos
         Me.TxtApellidoMadre.BackColor = System.Drawing.Color.FloralWhite
         Me.TxtApellidoMadre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtApellidoMadre.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.TxtApellidoMadre.Location = New System.Drawing.Point(225, 104)
+        Me.TxtApellidoMadre.Location = New System.Drawing.Point(347, 114)
         Me.TxtApellidoMadre.Name = "TxtApellidoMadre"
         Me.TxtApellidoMadre.ReadOnly = True
         Me.TxtApellidoMadre.Size = New System.Drawing.Size(241, 25)
@@ -244,7 +244,7 @@ Partial Class FrmAltaAlumnos
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label7.ForeColor = System.Drawing.Color.White
-        Me.Label7.Location = New System.Drawing.Point(45, 104)
+        Me.Label7.Location = New System.Drawing.Point(167, 114)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(173, 21)
@@ -409,27 +409,27 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label9.Location = New System.Drawing.Point(65, 85)
+        Me.Label9.Location = New System.Drawing.Point(27, 83)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(256, 21)
+        Me.Label9.Size = New System.Drawing.Size(178, 21)
         Me.Label9.TabIndex = 17
-        Me.Label9.Text = "Nombre y Apellido  del Alumno:"
+        Me.Label9.Text = " Nombre  del Alumno:"
         '
         'TxtNombreAlumno
         '
         Me.TxtNombreAlumno.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNombreAlumno.Location = New System.Drawing.Point(320, 77)
+        Me.TxtNombreAlumno.Location = New System.Drawing.Point(209, 77)
         Me.TxtNombreAlumno.MaxLength = 60
         Me.TxtNombreAlumno.Name = "TxtNombreAlumno"
-        Me.TxtNombreAlumno.Size = New System.Drawing.Size(287, 29)
+        Me.TxtNombreAlumno.Size = New System.Drawing.Size(336, 29)
         Me.TxtNombreAlumno.TabIndex = 5
         '
         'Label10
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label10.Location = New System.Drawing.Point(174, 30)
+        Me.Label10.Location = New System.Drawing.Point(35, 30)
         Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(142, 21)
@@ -441,7 +441,7 @@ Partial Class FrmAltaAlumnos
         Me.DtpFechaIngreso.CustomFormat = ""
         Me.DtpFechaIngreso.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.DtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaIngreso.Location = New System.Drawing.Point(314, 28)
+        Me.DtpFechaIngreso.Location = New System.Drawing.Point(179, 28)
         Me.DtpFechaIngreso.Name = "DtpFechaIngreso"
         Me.DtpFechaIngreso.Size = New System.Drawing.Size(134, 23)
         Me.DtpFechaIngreso.TabIndex = 3
@@ -452,15 +452,15 @@ Partial Class FrmAltaAlumnos
         Me.Label11.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label11.Location = New System.Drawing.Point(5, 26)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(89, 15)
+        Me.Label11.Size = New System.Drawing.Size(106, 15)
         Me.Label11.TabIndex = 21
-        Me.Label11.Text = "Hermano Nro.:"
+        Me.Label11.Text = "Orden descuento:"
         '
         'TxtHermanoNumero
         '
         Me.TxtHermanoNumero.BackColor = System.Drawing.Color.FloralWhite
         Me.TxtHermanoNumero.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtHermanoNumero.Location = New System.Drawing.Point(100, 18)
+        Me.TxtHermanoNumero.Location = New System.Drawing.Point(117, 18)
         Me.TxtHermanoNumero.Name = "TxtHermanoNumero"
         Me.TxtHermanoNumero.ReadOnly = True
         Me.TxtHermanoNumero.Size = New System.Drawing.Size(32, 29)
@@ -470,7 +470,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label12.Location = New System.Drawing.Point(62, 133)
+        Me.Label12.Location = New System.Drawing.Point(27, 133)
         Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(57, 21)
@@ -482,7 +482,7 @@ Partial Class FrmAltaAlumnos
         Me.DtpFechaNacimiento.CustomFormat = ""
         Me.DtpFechaNacimiento.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.DtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaNacimiento.Location = New System.Drawing.Point(634, 27)
+        Me.DtpFechaNacimiento.Location = New System.Drawing.Point(698, 27)
         Me.DtpFechaNacimiento.Name = "DtpFechaNacimiento"
         Me.DtpFechaNacimiento.Size = New System.Drawing.Size(134, 23)
         Me.DtpFechaNacimiento.TabIndex = 4
@@ -491,7 +491,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label13.Location = New System.Drawing.Point(461, 29)
+        Me.Label13.Location = New System.Drawing.Point(522, 29)
         Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(175, 21)
@@ -502,7 +502,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label14.Location = New System.Drawing.Point(145, 26)
+        Me.Label14.Location = New System.Drawing.Point(167, 26)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(52, 15)
         Me.Label14.TabIndex = 27
@@ -512,7 +512,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.TxtArancel.BackColor = System.Drawing.Color.FloralWhite
         Me.TxtArancel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtArancel.Location = New System.Drawing.Point(209, 18)
+        Me.TxtArancel.Location = New System.Drawing.Point(225, 18)
         Me.TxtArancel.MaxLength = 20
         Me.TxtArancel.Name = "TxtArancel"
         Me.TxtArancel.ReadOnly = True
@@ -523,7 +523,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label15.Location = New System.Drawing.Point(487, 141)
+        Me.Label15.Location = New System.Drawing.Point(570, 141)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(126, 21)
         Me.Label15.TabIndex = 29
@@ -560,11 +560,12 @@ Partial Class FrmAltaAlumnos
         'TxtObservaciones
         '
         Me.TxtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtObservaciones.Location = New System.Drawing.Point(618, 148)
+        Me.TxtObservaciones.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TxtObservaciones.Location = New System.Drawing.Point(701, 141)
         Me.TxtObservaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtObservaciones.Multiline = True
         Me.TxtObservaciones.Name = "TxtObservaciones"
-        Me.TxtObservaciones.Size = New System.Drawing.Size(328, 66)
+        Me.TxtObservaciones.Size = New System.Drawing.Size(245, 73)
         Me.TxtObservaciones.TabIndex = 8
         '
         'GroupBox1
@@ -601,7 +602,7 @@ Partial Class FrmAltaAlumnos
         Me.CbxCurso.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.CbxCurso.FormattingEnabled = True
         Me.CbxCurso.Items.AddRange(New Object() {"asdfsdfds"})
-        Me.CbxCurso.Location = New System.Drawing.Point(121, 130)
+        Me.CbxCurso.Location = New System.Drawing.Point(86, 130)
         Me.CbxCurso.Name = "CbxCurso"
         Me.CbxCurso.Size = New System.Drawing.Size(211, 25)
         Me.CbxCurso.TabIndex = 7
@@ -610,7 +611,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label16.Location = New System.Drawing.Point(613, 84)
+        Me.Label16.Location = New System.Drawing.Point(653, 84)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(41, 20)
         Me.Label16.TabIndex = 38
@@ -619,10 +620,10 @@ Partial Class FrmAltaAlumnos
         'TxtDni
         '
         Me.TxtDni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtDni.Location = New System.Drawing.Point(654, 76)
+        Me.TxtDni.Location = New System.Drawing.Point(700, 77)
         Me.TxtDni.MaxLength = 8
         Me.TxtDni.Name = "TxtDni"
-        Me.TxtDni.Size = New System.Drawing.Size(113, 29)
+        Me.TxtDni.Size = New System.Drawing.Size(127, 29)
         Me.TxtDni.TabIndex = 6
         '
         'GroupBox2
@@ -659,17 +660,17 @@ Partial Class FrmAltaAlumnos
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label18.Location = New System.Drawing.Point(425, 24)
+        Me.Label18.Location = New System.Drawing.Point(424, 24)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(39, 15)
+        Me.Label18.Size = New System.Drawing.Size(42, 15)
         Me.Label18.TabIndex = 37
-        Me.Label18.Text = "Cuota"
+        Me.Label18.Text = "Cuota:"
         '
         'TxtEdad
         '
         Me.TxtEdad.BackColor = System.Drawing.Color.FloralWhite
         Me.TxtEdad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtEdad.Location = New System.Drawing.Point(376, 18)
+        Me.TxtEdad.Location = New System.Drawing.Point(381, 18)
         Me.TxtEdad.MaxLength = 2
         Me.TxtEdad.Name = "TxtEdad"
         Me.TxtEdad.ReadOnly = True
@@ -680,7 +681,7 @@ Partial Class FrmAltaAlumnos
         '
         Me.LblEdad.AutoSize = True
         Me.LblEdad.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.LblEdad.Location = New System.Drawing.Point(334, 24)
+        Me.LblEdad.Location = New System.Drawing.Point(340, 24)
         Me.LblEdad.Name = "LblEdad"
         Me.LblEdad.Size = New System.Drawing.Size(36, 15)
         Me.LblEdad.TabIndex = 35
@@ -741,15 +742,15 @@ Partial Class FrmAltaAlumnos
         '
         'Panel3
         '
-        Me.Panel3.Location = New System.Drawing.Point(814, 35)
+        Me.Panel3.Location = New System.Drawing.Point(896, 35)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(216, 111)
+        Me.Panel3.Size = New System.Drawing.Size(146, 111)
         Me.Panel3.TabIndex = 19
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(814, 107)
+        Me.Label20.Location = New System.Drawing.Point(906, 107)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(67, 19)
         Me.Label20.TabIndex = 18
@@ -758,7 +759,7 @@ Partial Class FrmAltaAlumnos
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(814, 57)
+        Me.Label19.Location = New System.Drawing.Point(906, 57)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(63, 19)
         Me.Label19.TabIndex = 17
@@ -767,17 +768,17 @@ Partial Class FrmAltaAlumnos
         'CbxCodigoNivel
         '
         Me.CbxCodigoNivel.FormattingEnabled = True
-        Me.CbxCodigoNivel.Location = New System.Drawing.Point(890, 104)
+        Me.CbxCodigoNivel.Location = New System.Drawing.Point(960, 104)
         Me.CbxCodigoNivel.Name = "CbxCodigoNivel"
-        Me.CbxCodigoNivel.Size = New System.Drawing.Size(121, 25)
+        Me.CbxCodigoNivel.Size = New System.Drawing.Size(51, 25)
         Me.CbxCodigoNivel.TabIndex = 16
         '
         'CbxCodigoBeca
         '
         Me.CbxCodigoBeca.FormattingEnabled = True
-        Me.CbxCodigoBeca.Location = New System.Drawing.Point(890, 54)
+        Me.CbxCodigoBeca.Location = New System.Drawing.Point(960, 54)
         Me.CbxCodigoBeca.Name = "CbxCodigoBeca"
-        Me.CbxCodigoBeca.Size = New System.Drawing.Size(121, 25)
+        Me.CbxCodigoBeca.Size = New System.Drawing.Size(51, 25)
         Me.CbxCodigoBeca.TabIndex = 15
         '
         'Panel1

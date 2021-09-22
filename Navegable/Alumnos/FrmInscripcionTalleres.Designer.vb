@@ -30,6 +30,11 @@ Partial Class FrmInscripcionTalleres
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.BtnSalirExtras = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.CbxCodigoFamilia = New System.Windows.Forms.ComboBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.DtpBaja = New System.Windows.Forms.DateTimePicker()
+        Me.DtpAlta = New System.Windows.Forms.DateTimePicker()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.CbxCodigoAlumno = New System.Windows.Forms.ComboBox()
         Me.CbxAlumno = New System.Windows.Forms.ComboBox()
@@ -68,6 +73,13 @@ Partial Class FrmInscripcionTalleres
         Me.RdbFutbol3 = New System.Windows.Forms.RadioButton()
         Me.RdbNinguno3 = New System.Windows.Forms.RadioButton()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.LblSinAsignarIVVT = New System.Windows.Forms.Label()
+        Me.LblSinAsignarIIIVT = New System.Windows.Forms.Label()
+        Me.LblSinAsignarIIVT = New System.Windows.Forms.Label()
+        Me.LblSinAsignarIVT = New System.Windows.Forms.Label()
+        Me.LblMusica = New System.Windows.Forms.Label()
+        Me.LblRugby = New System.Windows.Forms.Label()
+        Me.LblHockey = New System.Windows.Forms.Label()
         Me.LblFutbol = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -77,13 +89,7 @@ Partial Class FrmInscripcionTalleres
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.LblHockey = New System.Windows.Forms.Label()
-        Me.LblRugby = New System.Windows.Forms.Label()
-        Me.LblMusica = New System.Windows.Forms.Label()
-        Me.LblSinAsignarIVT = New System.Windows.Forms.Label()
-        Me.LblSinAsignarIIVT = New System.Windows.Forms.Label()
-        Me.LblSinAsignarIIIVT = New System.Windows.Forms.Label()
-        Me.LblSinAsignarIVVT = New System.Windows.Forms.Label()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,6 +168,10 @@ Partial Class FrmInscripcionTalleres
         '
         Me.GroupBox4.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox4.Controls.Add(Me.Panel3)
+        Me.GroupBox4.Controls.Add(Me.Label10)
+        Me.GroupBox4.Controls.Add(Me.Label9)
+        Me.GroupBox4.Controls.Add(Me.DtpBaja)
+        Me.GroupBox4.Controls.Add(Me.DtpAlta)
         Me.GroupBox4.Controls.Add(Me.CbxCodigoAlumno)
         Me.GroupBox4.Controls.Add(Me.CbxAlumno)
         Me.GroupBox4.Controls.Add(Me.Label14)
@@ -175,17 +185,60 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Alumno"
         '
+        'CbxCodigoFamilia
+        '
+        Me.CbxCodigoFamilia.BackColor = System.Drawing.SystemColors.Window
+        Me.CbxCodigoFamilia.FormattingEnabled = True
+        Me.CbxCodigoFamilia.Location = New System.Drawing.Point(162, 83)
+        Me.CbxCodigoFamilia.Name = "CbxCodigoFamilia"
+        Me.CbxCodigoFamilia.Size = New System.Drawing.Size(90, 23)
+        Me.CbxCodigoFamilia.TabIndex = 13
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(652, 74)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(107, 21)
+        Me.Label10.TabIndex = 12
+        Me.Label10.Text = "Fecha de baja:"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(656, 31)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(103, 21)
+        Me.Label9.TabIndex = 11
+        Me.Label9.Text = "Fecha de alta:"
+        '
+        'DtpBaja
+        '
+        Me.DtpBaja.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DtpBaja.Location = New System.Drawing.Point(765, 68)
+        Me.DtpBaja.Name = "DtpBaja"
+        Me.DtpBaja.Size = New System.Drawing.Size(129, 29)
+        Me.DtpBaja.TabIndex = 10
+        '
+        'DtpAlta
+        '
+        Me.DtpAlta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DtpAlta.Location = New System.Drawing.Point(765, 25)
+        Me.DtpAlta.Name = "DtpAlta"
+        Me.DtpAlta.Size = New System.Drawing.Size(129, 29)
+        Me.DtpAlta.TabIndex = 9
+        '
         'Panel3
         '
-        Me.Panel3.Location = New System.Drawing.Point(37, 38)
+        Me.Panel3.Location = New System.Drawing.Point(74, 28)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(161, 51)
+        Me.Panel3.Size = New System.Drawing.Size(127, 75)
         Me.Panel3.TabIndex = 8
         '
         'CbxCodigoAlumno
         '
         Me.CbxCodigoAlumno.FormattingEnabled = True
-        Me.CbxCodigoAlumno.Location = New System.Drawing.Point(91, 52)
+        Me.CbxCodigoAlumno.Location = New System.Drawing.Point(91, 65)
         Me.CbxCodigoAlumno.Name = "CbxCodigoAlumno"
         Me.CbxCodigoAlumno.Size = New System.Drawing.Size(90, 29)
         Me.CbxCodigoAlumno.TabIndex = 7
@@ -193,7 +246,7 @@ Partial Class FrmInscripcionTalleres
         'CbxAlumno
         '
         Me.CbxAlumno.FormattingEnabled = True
-        Me.CbxAlumno.Location = New System.Drawing.Point(301, 52)
+        Me.CbxAlumno.Location = New System.Drawing.Point(281, 52)
         Me.CbxAlumno.Name = "CbxAlumno"
         Me.CbxAlumno.Size = New System.Drawing.Size(329, 29)
         Me.CbxAlumno.TabIndex = 6
@@ -202,7 +255,7 @@ Partial Class FrmInscripcionTalleres
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label14.Location = New System.Drawing.Point(300, 25)
+        Me.Label14.Location = New System.Drawing.Point(281, 25)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(121, 19)
         Me.Label14.TabIndex = 4
@@ -212,7 +265,7 @@ Partial Class FrmInscripcionTalleres
         '
         Me.Label15.AutoSize = True
         Me.Label15.ForeColor = System.Drawing.Color.White
-        Me.Label15.Location = New System.Drawing.Point(226, 55)
+        Me.Label15.Location = New System.Drawing.Point(207, 55)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(68, 21)
         Me.Label15.TabIndex = 3
@@ -463,7 +516,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbMusica2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbMusica2.AutoSize = True
         Me.RdbMusica2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbMusica2.Location = New System.Drawing.Point(62, 142)
+        Me.RdbMusica2.Location = New System.Drawing.Point(63, 144)
         Me.RdbMusica2.Name = "RdbMusica2"
         Me.RdbMusica2.Size = New System.Drawing.Size(63, 19)
         Me.RdbMusica2.TabIndex = 3
@@ -476,7 +529,7 @@ Partial Class FrmInscripcionTalleres
         Me.RdbHockey2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.RdbHockey2.AutoSize = True
         Me.RdbHockey2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RdbHockey2.Location = New System.Drawing.Point(60, 110)
+        Me.RdbHockey2.Location = New System.Drawing.Point(60, 114)
         Me.RdbHockey2.Name = "RdbHockey2"
         Me.RdbHockey2.Size = New System.Drawing.Size(65, 19)
         Me.RdbHockey2.TabIndex = 2
@@ -673,6 +726,69 @@ Partial Class FrmInscripcionTalleres
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Valores talleres"
         '
+        'LblSinAsignarIVVT
+        '
+        Me.LblSinAsignarIVVT.AutoSize = True
+        Me.LblSinAsignarIVVT.Location = New System.Drawing.Point(87, 264)
+        Me.LblSinAsignarIVVT.Name = "LblSinAsignarIVVT"
+        Me.LblSinAsignarIVVT.Size = New System.Drawing.Size(41, 15)
+        Me.LblSinAsignarIVVT.TabIndex = 15
+        Me.LblSinAsignarIVVT.Text = "Label9"
+        '
+        'LblSinAsignarIIIVT
+        '
+        Me.LblSinAsignarIIIVT.AutoSize = True
+        Me.LblSinAsignarIIIVT.Location = New System.Drawing.Point(87, 234)
+        Me.LblSinAsignarIIIVT.Name = "LblSinAsignarIIIVT"
+        Me.LblSinAsignarIIIVT.Size = New System.Drawing.Size(41, 15)
+        Me.LblSinAsignarIIIVT.TabIndex = 14
+        Me.LblSinAsignarIIIVT.Text = "Label9"
+        '
+        'LblSinAsignarIIVT
+        '
+        Me.LblSinAsignarIIVT.AutoSize = True
+        Me.LblSinAsignarIIVT.Location = New System.Drawing.Point(87, 206)
+        Me.LblSinAsignarIIVT.Name = "LblSinAsignarIIVT"
+        Me.LblSinAsignarIIVT.Size = New System.Drawing.Size(41, 15)
+        Me.LblSinAsignarIIVT.TabIndex = 13
+        Me.LblSinAsignarIIVT.Text = "Label9"
+        '
+        'LblSinAsignarIVT
+        '
+        Me.LblSinAsignarIVT.AutoSize = True
+        Me.LblSinAsignarIVT.Location = New System.Drawing.Point(87, 174)
+        Me.LblSinAsignarIVT.Name = "LblSinAsignarIVT"
+        Me.LblSinAsignarIVT.Size = New System.Drawing.Size(41, 15)
+        Me.LblSinAsignarIVT.TabIndex = 12
+        Me.LblSinAsignarIVT.Text = "Label9"
+        '
+        'LblMusica
+        '
+        Me.LblMusica.AutoSize = True
+        Me.LblMusica.Location = New System.Drawing.Point(87, 114)
+        Me.LblMusica.Name = "LblMusica"
+        Me.LblMusica.Size = New System.Drawing.Size(41, 15)
+        Me.LblMusica.TabIndex = 11
+        Me.LblMusica.Text = "Label9"
+        '
+        'LblRugby
+        '
+        Me.LblRugby.AutoSize = True
+        Me.LblRugby.Location = New System.Drawing.Point(87, 142)
+        Me.LblRugby.Name = "LblRugby"
+        Me.LblRugby.Size = New System.Drawing.Size(41, 15)
+        Me.LblRugby.TabIndex = 10
+        Me.LblRugby.Text = "Label9"
+        '
+        'LblHockey
+        '
+        Me.LblHockey.AutoSize = True
+        Me.LblHockey.Location = New System.Drawing.Point(87, 84)
+        Me.LblHockey.Name = "LblHockey"
+        Me.LblHockey.Size = New System.Drawing.Size(41, 15)
+        Me.LblHockey.TabIndex = 9
+        Me.LblHockey.Text = "Label9"
+        '
         'LblFutbol
         '
         Me.LblFutbol.AutoSize = True
@@ -754,68 +870,13 @@ Partial Class FrmInscripcionTalleres
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Label1"
         '
-        'LblHockey
+        'Panel4
         '
-        Me.LblHockey.AutoSize = True
-        Me.LblHockey.Location = New System.Drawing.Point(87, 84)
-        Me.LblHockey.Name = "LblHockey"
-        Me.LblHockey.Size = New System.Drawing.Size(41, 15)
-        Me.LblHockey.TabIndex = 9
-        Me.LblHockey.Text = "Label9"
-        '
-        'LblRugby
-        '
-        Me.LblRugby.AutoSize = True
-        Me.LblRugby.Location = New System.Drawing.Point(87, 142)
-        Me.LblRugby.Name = "LblRugby"
-        Me.LblRugby.Size = New System.Drawing.Size(41, 15)
-        Me.LblRugby.TabIndex = 10
-        Me.LblRugby.Text = "Label9"
-        '
-        'LblMusica
-        '
-        Me.LblMusica.AutoSize = True
-        Me.LblMusica.Location = New System.Drawing.Point(87, 114)
-        Me.LblMusica.Name = "LblMusica"
-        Me.LblMusica.Size = New System.Drawing.Size(41, 15)
-        Me.LblMusica.TabIndex = 11
-        Me.LblMusica.Text = "Label9"
-        '
-        'LblSinAsignarIVT
-        '
-        Me.LblSinAsignarIVT.AutoSize = True
-        Me.LblSinAsignarIVT.Location = New System.Drawing.Point(87, 174)
-        Me.LblSinAsignarIVT.Name = "LblSinAsignarIVT"
-        Me.LblSinAsignarIVT.Size = New System.Drawing.Size(41, 15)
-        Me.LblSinAsignarIVT.TabIndex = 12
-        Me.LblSinAsignarIVT.Text = "Label9"
-        '
-        'LblSinAsignarIIVT
-        '
-        Me.LblSinAsignarIIVT.AutoSize = True
-        Me.LblSinAsignarIIVT.Location = New System.Drawing.Point(87, 206)
-        Me.LblSinAsignarIIVT.Name = "LblSinAsignarIIVT"
-        Me.LblSinAsignarIIVT.Size = New System.Drawing.Size(41, 15)
-        Me.LblSinAsignarIIVT.TabIndex = 13
-        Me.LblSinAsignarIIVT.Text = "Label9"
-        '
-        'LblSinAsignarIIIVT
-        '
-        Me.LblSinAsignarIIIVT.AutoSize = True
-        Me.LblSinAsignarIIIVT.Location = New System.Drawing.Point(87, 234)
-        Me.LblSinAsignarIIIVT.Name = "LblSinAsignarIIIVT"
-        Me.LblSinAsignarIIIVT.Size = New System.Drawing.Size(41, 15)
-        Me.LblSinAsignarIIIVT.TabIndex = 14
-        Me.LblSinAsignarIIIVT.Text = "Label9"
-        '
-        'LblSinAsignarIVVT
-        '
-        Me.LblSinAsignarIVVT.AutoSize = True
-        Me.LblSinAsignarIVVT.Location = New System.Drawing.Point(87, 264)
-        Me.LblSinAsignarIVVT.Name = "LblSinAsignarIVVT"
-        Me.LblSinAsignarIVVT.Size = New System.Drawing.Size(41, 15)
-        Me.LblSinAsignarIVVT.TabIndex = 15
-        Me.LblSinAsignarIVVT.Text = "Label9"
+        Me.Panel4.BackColor = System.Drawing.Color.Transparent
+        Me.Panel4.Location = New System.Drawing.Point(117, 76)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(200, 48)
+        Me.Panel4.TabIndex = 31
         '
         'FrmInscripcionTalleres
         '
@@ -824,6 +885,8 @@ Partial Class FrmInscripcionTalleres
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(974, 611)
+        Me.Controls.Add(Me.Panel4)
+        Me.Controls.Add(Me.CbxCodigoFamilia)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox3)
@@ -836,7 +899,7 @@ Partial Class FrmInscripcionTalleres
         Me.MaximizeBox = False
         Me.Name = "FrmInscripcionTalleres"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Incripción a talleres"
+        Me.Text = "Incripción y baja de talleres"
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -916,4 +979,10 @@ Partial Class FrmInscripcionTalleres
     Friend WithEvents LblMusica As Label
     Friend WithEvents LblRugby As Label
     Friend WithEvents LblHockey As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents DtpBaja As DateTimePicker
+    Friend WithEvents DtpAlta As DateTimePicker
+    Friend WithEvents CbxCodigoFamilia As ComboBox
+    Friend WithEvents Panel4 As Panel
 End Class

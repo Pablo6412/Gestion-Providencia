@@ -1,6 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
-Imports System.Configuration
+﻿Imports System.Data.SqlClient
 Imports System.Xml
 
 Public Class FrmConexionManual
@@ -24,9 +22,9 @@ Public Class FrmConexionManual
             codigo_familia = (com.ExecuteScalar())
             conexionPrueva.Close()
             MessageBox.Show("Conexión creada exitosamente", "Conexión a gestión_providencia", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Catch ex As Exception
-                MessageBox.Show("Algo salió mal, revise la cadena de conexión", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
+        Catch ex As Exception
+            MessageBox.Show("Algo salió mal, revise la cadena de conexión", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
     End Sub
     Public Sub SavetoXML(ByVal dbcnString)

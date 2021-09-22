@@ -39,7 +39,9 @@ Partial Class FrmPrincipal
         Me.InscripciónATalleresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MstPagos = New System.Windows.Forms.ToolStripMenuItem()
         Me.TlsIngresoDePagos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem9 = New System.Windows.Forms.ToolStripMenuItem()
         Me.OtrosPagosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PagosDeudaCampamentoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MstEmisionDeVencimientos = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmisiónDeVencimientosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TlsEnviaCorreo = New System.Windows.Forms.ToolStripMenuItem()
@@ -139,37 +141,37 @@ Partial Class FrmPrincipal
         'TlsAltaAlumnos
         '
         Me.TlsAltaAlumnos.Name = "TlsAltaAlumnos"
-        Me.TlsAltaAlumnos.Size = New System.Drawing.Size(288, 24)
+        Me.TlsAltaAlumnos.Size = New System.Drawing.Size(214, 24)
         Me.TlsAltaAlumnos.Text = "Alta de alumnos"
         '
         'TlsActualizacionAlumnos
         '
         Me.TlsActualizacionAlumnos.Name = "TlsActualizacionAlumnos"
-        Me.TlsActualizacionAlumnos.Size = New System.Drawing.Size(288, 24)
+        Me.TlsActualizacionAlumnos.Size = New System.Drawing.Size(214, 24)
         Me.TlsActualizacionAlumnos.Text = "Actualización de datos"
         '
         'TlsBajaAlumnos
         '
         Me.TlsBajaAlumnos.Name = "TlsBajaAlumnos"
-        Me.TlsBajaAlumnos.Size = New System.Drawing.Size(288, 24)
-        Me.TlsBajaAlumnos.Text = "Baja y reincorporación de alumnos"
+        Me.TlsBajaAlumnos.Size = New System.Drawing.Size(214, 24)
+        Me.TlsBajaAlumnos.Text = "Baja de alumnos"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.BackColor = System.Drawing.SystemColors.Highlight
         Me.ToolStripSeparator1.ForeColor = System.Drawing.SystemColors.Highlight
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(285, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(211, 6)
         '
         'InscripciónATalleresToolStripMenuItem
         '
         Me.InscripciónATalleresToolStripMenuItem.Name = "InscripciónATalleresToolStripMenuItem"
-        Me.InscripciónATalleresToolStripMenuItem.Size = New System.Drawing.Size(288, 24)
+        Me.InscripciónATalleresToolStripMenuItem.Size = New System.Drawing.Size(214, 24)
         Me.InscripciónATalleresToolStripMenuItem.Text = "Inscripción a talleres"
         '
         'MstPagos
         '
-        Me.MstPagos.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TlsIngresoDePagos, Me.OtrosPagosToolStripMenuItem})
+        Me.MstPagos.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TlsIngresoDePagos, Me.ToolStripMenuItem9, Me.OtrosPagosToolStripMenuItem, Me.PagosDeudaCampamentoToolStripMenuItem})
         Me.MstPagos.Name = "MstPagos"
         Me.MstPagos.Size = New System.Drawing.Size(58, 23)
         Me.MstPagos.Text = "Pagos"
@@ -177,14 +179,26 @@ Partial Class FrmPrincipal
         'TlsIngresoDePagos
         '
         Me.TlsIngresoDePagos.Name = "TlsIngresoDePagos"
-        Me.TlsIngresoDePagos.Size = New System.Drawing.Size(184, 24)
-        Me.TlsIngresoDePagos.Text = "Ingreso de pagos"
+        Me.TlsIngresoDePagos.Size = New System.Drawing.Size(261, 24)
+        Me.TlsIngresoDePagos.Text = "Pagos período actual"
+        '
+        'ToolStripMenuItem9
+        '
+        Me.ToolStripMenuItem9.Name = "ToolStripMenuItem9"
+        Me.ToolStripMenuItem9.Size = New System.Drawing.Size(261, 24)
+        Me.ToolStripMenuItem9.Text = "Pagos deuda año en curso"
         '
         'OtrosPagosToolStripMenuItem
         '
         Me.OtrosPagosToolStripMenuItem.Name = "OtrosPagosToolStripMenuItem"
-        Me.OtrosPagosToolStripMenuItem.Size = New System.Drawing.Size(184, 24)
-        Me.OtrosPagosToolStripMenuItem.Text = "Otros pagos"
+        Me.OtrosPagosToolStripMenuItem.Size = New System.Drawing.Size(261, 24)
+        Me.OtrosPagosToolStripMenuItem.Text = "Pagos deudas años anteriores"
+        '
+        'PagosDeudaCampamentoToolStripMenuItem
+        '
+        Me.PagosDeudaCampamentoToolStripMenuItem.Name = "PagosDeudaCampamentoToolStripMenuItem"
+        Me.PagosDeudaCampamentoToolStripMenuItem.Size = New System.Drawing.Size(261, 24)
+        Me.PagosDeudaCampamentoToolStripMenuItem.Text = "Pagos deuda campamento"
         '
         'MstEmisionDeVencimientos
         '
@@ -511,4 +525,6 @@ Partial Class FrmPrincipal
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents DescuentosYBecasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EmisiónDeVencimientosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem9 As ToolStripMenuItem
+    Friend WithEvents PagosDeudaCampamentoToolStripMenuItem As ToolStripMenuItem
 End Class
