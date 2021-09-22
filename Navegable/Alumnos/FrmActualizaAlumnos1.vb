@@ -7,6 +7,7 @@
 'cursos, aranceles 
 
 'actualiza: alumnos
+'           pago_familia
 
 
 
@@ -67,50 +68,54 @@ Public Class FrmActualizaAlumnos
 
     Private Sub CbxCodigoAlumno_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigoAlumno.SelectedValueChanged
 
-        'Dim datosAlumno As String
-        Dim lista As Byte
-        Dim consulta2 As String
-        Dim Codigo As String = CbxCodigoAlumno.Text
-        If Val(Codigo) <> 0 Then
-            Try
-                consulta2 = "SELECT nombre_apellido_alumno, edad, fecha_nacimiento, dni, curso, fecha_ingreso, hermano_numero, arancel_importe, cuota, observaciones FROM alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel WHERE alumnos.codigo_alumno= '" & Codigo & "' "
-                adaptador = New SqlDataAdapter(consulta2, conexion)
-                Dim comando As New SqlCommand
-                datos2 = New DataSet
+        Dim lista As Integer
+        Dim Codigo As Integer = Val(CbxCodigoAlumno.Text)
 
-                adaptador.Fill(datos2, "gestion_providencia.alumnos")
-                lista = datos2.Tables("gestion_providencia.alumnos").Rows.Count
+        Try
+            Dim concatena As String = "SELECT nombre_apellido_alumno, edad, fecha_nacimiento, dni, curso, fecha_ingreso, hermano_numero, arancel_importe, cuota, observaciones FROM alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel WHERE alumnos.codigo_alumno= " & Codigo & " "
+            adaptador = New SqlDataAdapter(concatena, conexion)
+            Dim comando As New SqlCommand
+            datos2 = New DataSet
+            adaptador.Fill(datos2, "alumnos")
+            lista = datos2.Tables("alumnos").Rows.Count
 
-                TxtNombreApellido.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("nombre_apellido_alumno")
-                TxtEdad.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("edad")
-                DtpFechaNacimiento.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("fecha_nacimiento")
-                TxtDni.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("dni")
-                CbxCurso.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("curso")
+            If lista > 0 Then
 
-                DtpFechaIngreso.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("fecha_ingreso")
-                TxtHermanoNumero.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("hermano_numero")
-                TxtArancel.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("arancel_importe")
-                TxtCuota.Text = Replace(datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("cuota"), ".", ",")
-                TxtObservaciones.Text = datos2.Tables("gestion_providencia.alumnos").Rows(0).Item("observaciones")
-            Catch ex As Exception
+                TxtNombreApellido.Text = datos2.Tables("alumnos").Rows(0).Item("nombre_apellido_alumno")
+                TxtEdad.Text = datos2.Tables("alumnos").Rows(0).Item("edad")
+                DtpFechaNacimiento.Text = datos2.Tables("alumnos").Rows(0).Item("fecha_nacimiento")
+                TxtDni.Text = datos2.Tables("alumnos").Rows(0).Item("dni")
+                CbxCurso.Text = datos2.Tables("alumnos").Rows(0).Item("curso")
+
+                DtpFechaIngreso.Text = datos2.Tables("alumnos").Rows(0).Item("fecha_ingreso")
+                TxtHermanoNumero.Text = datos2.Tables("alumnos").Rows(0).Item("hermano_numero")
+                TxtArancel.Text = datos2.Tables("alumnos").Rows(0).Item("arancel_importe")
+                TxtCuota.Text = Replace(datos2.Tables("alumnos").Rows(0).Item("cuota"), ".", ",")
+                TxtObservaciones.Text = datos2.Tables("alumnos").Rows(0).Item("observaciones")
+            End If
+        Catch ex As Exception
                 MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
             End Try
-        End If
+        'End If
+
     End Sub
 
 
     Private Sub CodigoCurso()
+        Dim lista As Integer
         If CbxCurso.Text <> "" Then
             Try
-                Dim codigoCurso As String = "SELECT codigo_curso FROM cursos where curso = '" & CbxCurso.Text & "'"
+                Dim codigoCurso As String = "SELECT codigo_curso, codigo_arancel FROM cursos JOIN aranceles ON cursos.codigo_nivel = aranceles.codigo_nivel WHERE curso = '" & CbxCurso.Text & "'"
                 adaptador = New SqlDataAdapter(codigoCurso, conexion)
                 datos = New DataSet
                 adaptador.Fill(datos, "cursos")
-
-                TxtCodigoCurso.Text = datos.Tables("cursos").Rows(0).Item("codigo_curso")
-
+                lista = datos.Tables("cursos").Rows.Count
+                If lista > 0 Then
+                    TxtCodigoCurso.Text = datos.Tables("cursos").Rows(0).Item("codigo_curso")
+                    TxtCodigoArancel.Text = datos.Tables("cursos").Rows(0).Item("codigo_arancel")
+                End If
             Catch ex As Exception
-                ' MsgBox("Error comprobando BD" & ex.ToString)        
+                MsgBox("Error comprobando BD" & ex.ToString)
             End Try
         End If
     End Sub
@@ -119,7 +124,7 @@ Public Class FrmActualizaAlumnos
 
         abrir()
 
-        Dim actualizaAlumno As String = "UPDATE alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "', fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "', edad =" & Me.TxtEdad.Text & ", dni ='" & Me.TxtDni.Text & "', codigo_curso = '" & Me.TxtCodigoCurso.Text & "', fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "', hermano_numero = " & Me.TxtHermanoNumero.Text & ", observaciones = '" & Me.TxtObservaciones.Text & "'  WHERE codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
+        Dim actualizaAlumno As String = "UPDATE alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "', fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "', edad =" & Me.TxtEdad.Text & ", dni ='" & Me.TxtDni.Text & "', codigo_arancel = '" & Me.TxtCodigoArancel.Text & "', codigo_curso = '" & Me.TxtCodigoCurso.Text & "', fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "', hermano_numero = " & Me.TxtHermanoNumero.Text & ", observaciones = '" & Me.TxtObservaciones.Text & "'  WHERE codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
 
         Dim comando As New SqlCommand(actualizaAlumno, conexion)
         comando.ExecuteNonQuery()
@@ -133,9 +138,9 @@ Public Class FrmActualizaAlumnos
             MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
         End If
 
-        Dim actualizaPagoFamilia As String = "UPDATE pago_familia SET alumno = '" & Me.TxtNombreApellido.Text & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "' "
-        Dim comandoPagoFamilia As New SqlCommand(actualizaPagoFamilia, conexion)
-        comandoPagoFamilia.ExecuteNonQuery()
+        'Dim actualizaPagoFamilia As String = "UPDATE pago_familia SET alumno = '" & Me.TxtNombreApellido.Text & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "' "
+        'Dim comandoPagoFamilia As New SqlCommand(actualizaPagoFamilia, conexion)
+        'comandoPagoFamilia.ExecuteNonQuery()
 
         Cargar()
     End Sub
