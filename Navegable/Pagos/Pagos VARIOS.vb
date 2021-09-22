@@ -878,5 +878,5 @@ Public Class Pagos
     Private Sub BtnCerrarDeuda_Click(sender As Object, e As EventArgs) Handles BtnCerrarDeuda.Click
         Me.Close()
     End Sub
-++ 
+
 End Class
