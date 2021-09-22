@@ -102,15 +102,18 @@ Public Class FrmActualizaAlumnos
 
 
     Private Sub CodigoCurso()
+        Dim lista As Integer
         If CbxCurso.Text <> "" Then
             Try
                 Dim codigoCurso As String = "SELECT codigo_curso, codigo_arancel FROM cursos JOIN aranceles ON cursos.codigo_nivel = aranceles.codigo_nivel WHERE curso = '" & CbxCurso.Text & "'"
                 adaptador = New SqlDataAdapter(codigoCurso, conexion)
                 datos = New DataSet
                 adaptador.Fill(datos, "cursos")
-
-                TxtCodigoCurso.Text = datos.Tables("cursos").Rows(0).Item("codigo_curso")
-                TxtCodigoArancel.Text = datos.Tables("cursos").Rows(0).Item("codigo_arancel")
+                lista = datos.Tables("cursos").Rows.Count
+                If lista > 0 Then
+                    TxtCodigoCurso.Text = datos.Tables("cursos").Rows(0).Item("codigo_curso")
+                    TxtCodigoArancel.Text = datos.Tables("cursos").Rows(0).Item("codigo_arancel")
+                End If
             Catch ex As Exception
                 MsgBox("Error comprobando BD" & ex.ToString)
             End Try

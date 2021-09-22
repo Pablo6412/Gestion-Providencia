@@ -25,7 +25,7 @@ Public Class Pagos
     Dim _enabledCerrar As Boolean = False
     Dim fechaActual As Date = Date.Today
 
-    <System.ComponentModel.DefaultValue(False), System.ComponentModel.Description("Define si se habilita el botón cerrar enel formulario")>
+    <System.ComponentModel.DefaultValue(False), System.ComponentModel.Description("Define si se habilita el botón cerrar en el formulario")>
     Public Property enabledCerrar() As Boolean
         Get
             Return _enabledCerrar
@@ -894,7 +894,4 @@ Public Class Pagos
         Me.Close()
     End Sub
 
-    Private Sub BtnResumenDeuda_Click(sender As Object, e As EventArgs) Handles BtnResumenDeuda.Click
-
-    End Sub
 End Class
