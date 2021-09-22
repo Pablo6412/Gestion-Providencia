@@ -191,13 +191,13 @@ Public Class Pagos
                     Else
                         pagoACuenta = True
                     End If
-
-                    pagoCompleto = True
-                    pagoCumplido = "completo"
-                    BtnGuardar2.Enabled = True
-                    PagoTotal()
-                    TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
                 End If
+
+                pagoCompleto = True
+                pagoCumplido = "completo"
+                BtnGuardar2.Enabled = True
+                PagoTotal()
+                TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
 
             Else
                 opcion = MessageBox.Show("El monto es insuficiente para afrontar el total de los conceptos del mes." + vbCr + "En este pago hay un faltante de: $" & Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text) & vbCr + vbCr + "SI: para realizar el pago parcial." + vbCr + "" + vbCr + "NO: para rectificar el monto a pagar." + vbCr + "" + vbCr + "", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
@@ -381,15 +381,25 @@ Public Class Pagos
         Dim maximoCodigo As Decimal = comandomax.ExecuteScalar
 
         While codigo <= maximoCodigo
-            Dim hijos As String = "SELECT codigo_alumno, nombre_apellido_alumno, arancel_matricula FROM alumnos JOIN aranceles ON alumnos.codigo_arancel = aranceles.codigo_arancel WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' AND codigo_alumno = '" & codigo & "' AND estado = 'activo' "
-            adaptador = New SqlDataAdapter(hijos, conexion)
+
+            Dim consulta As String = "SELECT codigo_alumno, nombre_apellido_alumno, curso, valor_cuota, campamento_importe, importe_taller, materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller_temporal ON taller_temporal.codigo_alumno = alumnos.codigo_alumno  WHERE alumnos.codigo_familia = '" & CbxCodigo.Text & "' AND codigo_alumno = '" & codigo & "' AND alumnos.estado = 'activo' "
+
+            'Dim hijos As String = "SELECT codigo_alumno, nombre_apellido_alumno, arancel_matricula FROM alumnos JOIN aranceles ON alumnos.codigo_arancel = aranceles.codigo_arancel WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' AND codigo_alumno = '" & codigo & "' AND estado = 'activo' "
+            adaptador = New SqlDataAdapter(consulta, conexion)
             Dim dtDatos As DataTable = New DataTable
             adaptador.Fill(dtDatos)
+
+
 
             If dtDatos.Rows.Count > 0 Then
                 Dim codigoAlumno As Integer = dtDatos.Rows(0)("codigo_alumno")
                 Dim alumno As String = dtDatos.Rows(0)("nombre_apellido_alumno")
-                Dim matricula As Integer = dtDatos.Rows(0)("arancel_matricula")
+                Dim matricula As Decimal = dtDatos.Rows(0)("arancel_matricula")
+                Dim arancel As Decimal = dtDatos.Rows(0)("valor_cuota")
+                Dim materiales As String = dtDatos.Rows(0)("materiales_importe")
+                Dim campamento As Decimal = dtDatos.Rows(0)("campamento_importe")
+                Dim adicional As Decimal = dtDatos.Rows(0)("adicional_importe")
+                Dim comedor As Decimal = dtDatos.Rows(0)("comedor_importe")
 
                 MsgBox("" & codigoAlumno & ", " & alumno & ", " & matricula & "")
 
@@ -400,13 +410,13 @@ Public Class Pagos
 
                     comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
                     comando.Parameters.AddWithValue("@codigo_alumno", codigoAlumno)
-                    comando.Parameters.AddWithValue("@arancel", Val(TxtArancel.Text))
+                    comando.Parameters.AddWithValue("@arancel", arancel)
                     comando.Parameters.AddWithValue("@matricula", matricula)
-                    comando.Parameters.AddWithValue("@materiales", Val(TxtMateriales.Text))
+                    comando.Parameters.AddWithValue("@materiales", materiales)
                     comando.Parameters.AddWithValue("@taller", Val(TxtTalleres.Text))
-                    comando.Parameters.AddWithValue("@campamento", Val(TxtCampamento.Text))
-                    comando.Parameters.AddWithValue("@adicional_jardin", Val(TxtAdicionalJardin.Text))
-                    comando.Parameters.AddWithValue("@comedor", Val(TxtComedor.Text))
+                    comando.Parameters.AddWithValue("@campamento", campamento)
+                    comando.Parameters.AddWithValue("@adicional_jardin", adicional)
+                    comando.Parameters.AddWithValue("@comedor", comedor)
                     comando.Parameters.AddWithValue("@fecha", DtpFechaDePago.Value)
 
                     comando.ExecuteNonQuery()
@@ -585,7 +595,6 @@ Public Class Pagos
             'MsgBox("Tabla creada")
             'MessageBox.Show("No existe la tabla.")
         End If
-
 
         If contador <> 0 Then
             TotalCuota = 0
