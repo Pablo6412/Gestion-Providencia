@@ -21,7 +21,8 @@ Public Class FrmActualizaAlumnos
     Dim FechaNacimiento As Date
     Dim FechaActual As Date
     'Dim codigo As Integer
-
+    Dim cuota As Decimal
+    Dim arancel As Decimal
 
     Private Sub FrmActualizaAlumnos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         conectar()
@@ -39,14 +40,18 @@ Public Class FrmActualizaAlumnos
 
             'Carga combobox con alumnos 
             Try
-                Dim alumno As String = "SELECT codigo_alumno, nombre_apellido_alumno FROM alumnos WHERE estado = 'activo' ORDER BY nombre_apellido_alumno"
+                Dim alumno As String = "SELECT codigo_alumno, nombre_apellido_alumno, familias.codigo_familia, familias.codigo_beca FROM alumnos JOIN familias ON alumnos.codigo_familia = familias.codigo_familia WHERE alumnos.estado = 'activo' ORDER BY nombre_apellido_alumno
+"
                 adaptador = New SqlDataAdapter(alumno, conexion)
 
                 datos = New DataSet
                 adaptador.Fill(datos)
                 datos.Tables.Add("alumnos")
                 adaptador.Fill(datos.Tables("alumnos"))
-
+                CbxCodigoBeca.DataSource = datos.Tables(0)
+                CbxCodigoBeca.DisplayMember = "codigo_beca"
+                CbxCodigoFamilia.DataSource = datos.Tables(0)
+                CbxCodigoFamilia.DisplayMember = "codigo_familia"
                 CbxAlumno.DataSource = datos.Tables(0)
                 CbxAlumno.DisplayMember = "nombre_apellido_alumno"
                 CbxCodigoAlumno.DataSource = datos.Tables(0)
@@ -130,12 +135,22 @@ Public Class FrmActualizaAlumnos
         comando.ExecuteNonQuery()
 
         If comando.ExecuteNonQuery() = 1 Then
-            MessageBox.Show("Datos actualizados")
-            CbxCodigoAlumno.SelectedText = TxtNombreApellido.Text
+            CalculaCuota(cuota)
+            Dim actualizaCuota As String = "UPDATE cuotas SET  valor_cuota =" & Val(TxtCuota.Text) & "  WHERE codigo_alumno =" & Val(CbxCodigoAlumno.Text) & " "
+            Dim comandoCuota As New SqlCommand(actualizaCuota, conexion)
 
-            CbxAlumno.Focus()
+            If comandoCuota.ExecuteNonQuery() = 1 Then
+
+                MessageBox.Show("Datos actualizados")
+                CbxCodigoAlumno.SelectedText = TxtNombreApellido.Text
+
+                CbxAlumno.Focus()
+            Else
+                MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+            End If
+
         Else
-            MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
+                MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
         End If
 
         'Dim actualizaPagoFamilia As String = "UPDATE pago_familia SET alumno = '" & Me.TxtNombreApellido.Text & "' WHERE codigo_alumno = '" & Val(CbxCodigoAlumno.Text) & "' "
@@ -199,6 +214,86 @@ Public Class FrmActualizaAlumnos
         Catch ex As Exception
             MsgBox("Error comprobando BD" & ex.ToString)
         End Try
+    End Sub
+
+    Private Sub CalculaCuota(cuota)   'A partir del arancel se aplican los descuentos por hermano, beca, ayuda, etc y se calcula la cuota
+        Dim tipoDescuento As Integer
+        Dim descuentoHermano As Double
+        Dim descuentoBeca As Decimal
+        Dim descuento As Decimal
+        Dim descuentoMonto As Decimal
+        Dim cuotaSinDescuento As Decimal
+        arancel = Val(TxtArancel.Text)
+        'Descuento por hermano
+        If TxtHermanoNumero.Text <> "" Then
+            Dim descuentoPorHermano As String = "SELECT descuento_hermano FROM descuento_hermano where hermano_numero = '" & Val(TxtHermanoNumero.Text) & "' "
+            adaptador = New SqlDataAdapter(descuentoPorHermano, conexion)
+            datos = New DataSet
+            datos.Tables.Add("descuento_hermano")
+            adaptador.Fill(datos.Tables("descuento_hermano"))
+            If Val(TxtHermanoNumero.Text) > 6 Then
+                descuentoHermano = 0.5
+            Else
+                descuentoHermano = datos.Tables("descuento_hermano").Rows(0).Item("descuento_hermano")
+            End If
+        Else
+        End If
+
+        'Descuento beca
+        'If Val(CbxCodigoBeca.Text) <> 0 Then
+        Dim tipoBeca As String = "SELECT descuento_beca FROM descuento_beca WHERE codigo_beca = '" & Val(CbxCodigoBeca.Text) & "' "
+        adaptador = New SqlDataAdapter(tipoBeca, conexion)
+
+        Dim DatosBeca As DataTable = New DataTable
+        adaptador.Fill(DatosBeca)
+
+
+        If DatosBeca.Rows.Count > 0 Then
+            descuentoBeca = DatosBeca.Rows(0)("descuento_beca")
+
+        End If
+
+
+
+        'datos = New DataSet
+        'datos.Tables.Add("descuento_beca")
+        'adaptador.Fill(datos.Tables("descuento_beca"))
+        'descuentoBeca = datos.Tables("descuento_beca").Rows(0).Item("descuento_beca")
+        'Else
+        'End If
+
+        'Descuento especial
+        abrir()
+
+        'MsgBox("" & Val(CbxCodigoFamilia.Text) & "")
+        Dim descEspecial As String = "SELECT tipo_descuento, descuento, monto FROM descuento_especial WHERE codigo_familia = '" & Val(CbxCodigoFamilia.Text) & "' "
+        adaptador = New SqlDataAdapter(descEspecial, conexion)
+
+        Dim dtDatos As DataTable = New DataTable
+        adaptador.Fill(dtDatos)
+
+        If dtDatos.Rows.Count > 0 Then
+
+            tipoDescuento = dtDatos.Rows(0)("tipo_descuento")
+            descuento = dtDatos.Rows(0)("descuento")
+            descuentoMonto = dtDatos.Rows(0)("monto")
+            'TxtPrueba.Text = descuento
+
+
+            If tipoDescuento = 1 Then
+                cuota = arancel * descuentoHermano * descuento * descuentoBeca
+                cuotaSinDescuento = arancel * descuentoHermano * descuentoBeca
+                TxtCuota.Text = cuota
+            Else
+                cuota = descuentoMonto
+                cuotaSinDescuento = arancel * descuentoHermano * descuentoBeca
+            End If
+
+            cuota = arancel * descuentoHermano * descuento * descuentoBeca
+            TxtCuota.Text = cuota
+
+            'MsgBox("descuento hermano: " & descuentoHermano & " descuento especial: " & descuentoEspecial & " descuento beca: " & descuentoBeca & "")
+        End If
     End Sub
 
     Private Sub DtpFechaNacimiento_CloseUp(sender As Object, e As EventArgs) Handles DtpFechaNacimiento.CloseUp

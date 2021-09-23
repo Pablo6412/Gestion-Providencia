@@ -380,16 +380,24 @@ Public Class Pagos
         Dim comandomax As New SqlCommand(maxCod, conexion)
         Dim maximoCodigo As Decimal = comandomax.ExecuteScalar
 
+
+        Dim restrictionValues() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
+        Dim dt As DataTable = conexion.GetSchema("TABLES", restrictionValues)
+        Dim rows() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
+
+        CreaTablaTemporal(rows)
         While codigo <= maximoCodigo
 
-            Dim consulta As String = "SELECT codigo_alumno, nombre_apellido_alumno, curso, valor_cuota, campamento_importe, importe_taller, materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller_temporal ON taller_temporal.codigo_alumno = alumnos.codigo_alumno  WHERE alumnos.codigo_familia = '" & CbxCodigo.Text & "' AND codigo_alumno = '" & codigo & "' AND alumnos.estado = 'activo' "
+            Dim consulta As String = "SELECT alumnos.codigo_alumno, nombre_apellido_alumno, arancel_matricula, curso, valor_cuota, campamento_importe, importe_taller, materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN aranceles ON alumnos.codigo_arancel = aranceles.codigo_arancel JOIN taller_temporal ON taller_temporal.codigo_alumno = alumnos.codigo_alumno  WHERE alumnos.codigo_familia = '" & CbxCodigo.Text & "' AND alumnos.codigo_alumno = '" & codigo & "' AND alumnos.estado = 'activo' "
 
             'Dim hijos As String = "SELECT codigo_alumno, nombre_apellido_alumno, arancel_matricula FROM alumnos JOIN aranceles ON alumnos.codigo_arancel = aranceles.codigo_arancel WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' AND codigo_alumno = '" & codigo & "' AND estado = 'activo' "
             adaptador = New SqlDataAdapter(consulta, conexion)
             Dim dtDatos As DataTable = New DataTable
             adaptador.Fill(dtDatos)
 
-
+            'For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            '    TotalTalleres += Val(row.Cells(colTaller).Value)
+            'Next
 
             If dtDatos.Rows.Count > 0 Then
                 Dim codigoAlumno As Integer = dtDatos.Rows(0)("codigo_alumno")
@@ -397,6 +405,7 @@ Public Class Pagos
                 Dim matricula As Decimal = dtDatos.Rows(0)("arancel_matricula")
                 Dim arancel As Decimal = dtDatos.Rows(0)("valor_cuota")
                 Dim materiales As String = dtDatos.Rows(0)("materiales_importe")
+                Dim talleres As Decimal = dtDatos.Rows(0)("importe_taller")
                 Dim campamento As Decimal = dtDatos.Rows(0)("campamento_importe")
                 Dim adicional As Decimal = dtDatos.Rows(0)("adicional_importe")
                 Dim comedor As Decimal = dtDatos.Rows(0)("comedor_importe")
@@ -413,7 +422,7 @@ Public Class Pagos
                     comando.Parameters.AddWithValue("@arancel", arancel)
                     comando.Parameters.AddWithValue("@matricula", matricula)
                     comando.Parameters.AddWithValue("@materiales", materiales)
-                    comando.Parameters.AddWithValue("@taller", Val(TxtTalleres.Text))
+                    comando.Parameters.AddWithValue("@taller", talleres)
                     comando.Parameters.AddWithValue("@campamento", campamento)
                     comando.Parameters.AddWithValue("@adicional_jardin", adicional)
                     comando.Parameters.AddWithValue("@comedor", comedor)
@@ -430,7 +439,20 @@ Public Class Pagos
             codigo += 1
 
         End While
+        Dim tablaExiste() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
+        Dim datat As DataTable = conexion.GetSchema("TABLES", restrictionValues)
+        Dim rowss() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
 
+        If rowss.Length > 0 Then
+            'MessageBox.Show("Existe la tabla.")
+            Dim destruyeTabla As String = "DROP TABLE taller_temporal"
+            Dim comandoDestruye As New SqlCommand(destruyeTabla, conexion)
+            'MsgBox("Tabla destruida")
+
+            If comandoDestruye.ExecuteNonQuery() = 0 Then
+                MsgBox("No pasa nada")
+            End If
+        End If
     End Sub
 
     Sub Siexiste()
@@ -581,20 +603,12 @@ Public Class Pagos
     Sub DataGrid()
         Dim mes As Integer
         Dim parImpar As Integer
+
         Dim restrictionValues() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
         Dim dt As DataTable = conexion.GetSchema("TABLES", restrictionValues)
         Dim rows() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
 
-        If rows.Length > 0 Then
-            'MessageBox.Show("Existe la tabla.")
-        Else
-            Dim tallerTemp As String = "SELECT codigo_alumno, SUM(importe_taller) as importe_taller INTO taller_temporal FROM taller_alumno  GROUP BY codigo_alumno"
-            Dim comandoTaller As New SqlCommand(tallerTemp, conexion)
-            comandoTaller.ExecuteNonQuery()
-
-            'MsgBox("Tabla creada")
-            'MessageBox.Show("No existe la tabla.")
-        End If
+        CreaTablaTemporal(rows)
 
         If contador <> 0 Then
             TotalCuota = 0
@@ -692,7 +706,20 @@ Public Class Pagos
         End If
     End Sub
 
+    Private Sub CreaTablaTemporal(rows)
 
+
+        If rows.Length > 0 Then
+            'MessageBox.Show("Existe la tabla.")
+        Else
+            Dim tallerTemp As String = "SELECT codigo_alumno, SUM(importe_taller) as importe_taller INTO taller_temporal FROM taller_alumno  GROUP BY codigo_alumno"
+            Dim comandoTaller As New SqlCommand(tallerTemp, conexion)
+            comandoTaller.ExecuteNonQuery()
+
+            'MsgBox("Tabla creada")
+            'MessageBox.Show("No existe la tabla.")
+        End If
+    End Sub
     Private Sub TxtDebito_KeyPress(sender As Object, e As KeyPressEventArgs)
         SoloNumeros(e)
     End Sub
