@@ -89,7 +89,7 @@ Public Class FrmEmisiónDeVencimientos
             'LblPbuno.Text = "Vencimientos generados al: " & Math.Round(Pbuno.Value / 0.03, 2) & "%"
             'LblPbuno.Refresh()
 
-            Dim consulta As String = " SELECT codigo_alumno, nombre_apellido_alumno, curso, arancel_importe, hermano_numero, campamento_importe, taller_importe, materiales_importe, adicional_importe, comedor_importe, descuento_beca, descuento FROM alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles On aranceles.codigo_arancel = alumnos.codigo_arancel JOIN taller On taller.codigo_taller = alumnos.codigo_taller1 JOIN descuento_beca On descuento_beca.codigo_beca = alumnos.codigo_beca JOIN descuento_especial On descuento_especial.codigo_descuento_especial = alumnos.codigo_descuento WHERE alumnos.codigo_familia = '" & codFam & "' AND alumnos.estado = 'activo' ORDER BY alumnos.codigo_alumno"
+            Dim consulta As String = " SELECT codigo_alumno, nombre_apellido_alumno, curso, arancel_importe, hermano_numero, campamento_importe, taller_importe, materiales_importe, adicional_importe, comedor_importe, descuento_beca, descuento FROM alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles On aranceles.codigo_arancel = alumnos.codigo_arancel JOIN taller On taller.codigo_taller = alumnos.codigo_taller1 JOIN descuento_beca On descuento_beca.codigo_beca = alumnos.codigo_beca JOIN descuento_especial On descuento_especial.codigo_descuento_especial = alumnos.codigo_descuento  WHERE alumnos.codigo_familia = '" & codFam & "' AND alumnos.estado = 'activo' ORDER BY alumnos.codigo_alumno"
 
             comando = New SqlCommand()
             comando.CommandText = consulta

@@ -465,7 +465,7 @@ Public Class FrmAltaAlumnos
         comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigoFamilia.Text))
         comando.Parameters.AddWithValue("@valor_cuota", cuota)
         If comando.ExecuteNonQuery() = 1 Then
-            MessageBox.Show("Datos guardados")
+            MessageBox.Show("Bienvenido " & TxtNombreAlumno.Text & " al colegio de La Providencia")
 
         Else
             MsgBox("error en la grabación")

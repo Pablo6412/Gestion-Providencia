@@ -14,9 +14,10 @@ Public Class FrmComedor
     End Sub
 
     Private Sub Importe()
-        Dim comedor As String = "SELECT DISTINCT comedor_importe FROM cursos"
+        Dim comedor As String = "SELECT comedor_importe FROM cursos WHERE comedor_importe <> 0"
         Dim comando As New SqlCommand(comedor, conexion)
         TxtValorActual.Text = comando.ExecuteScalar()
+
         'TxtValorActual.Text = comando.ExecuteScalar
         If comando.ExecuteNonQuery = 0 Then
             MsgBox("Error leyendo base de datos")
