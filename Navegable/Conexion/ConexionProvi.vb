@@ -8,7 +8,7 @@ Module ConexionProvi
     'Public ConexionPrueva As New SqlConnection
     Sub conectar()
         cerrar()
-        conexion.ConnectionString = "Data source=PABLO\SQLEXPRESS; Initial Catalog= gestion_providencia; Integrated security = True"
+        conexion.ConnectionString = "Data source=LUIS-PC\SQLEXPRESS; Initial Catalog= gestion_providencia; Integrated security = True"
         Try
             abrir()
 

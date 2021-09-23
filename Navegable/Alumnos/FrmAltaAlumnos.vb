@@ -35,6 +35,7 @@ Public Class FrmAltaAlumnos
     Dim Contador As Integer = 0
     Dim cuota As Decimal
     Dim codigoFamilia As Integer
+    Dim cantHermanos As Integer
 
     Public Sub FrmAltaAlumnos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
