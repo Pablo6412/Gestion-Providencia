@@ -2,14 +2,18 @@
 
 
 'Este formulario lee de las siguientes tablas:
-'alumnos
-'cursos
-'cursos, aranceles 
+'                                              alumnos
+'                                              alumnos, familias
+'                                              cursos, aranceles
+'                                              alumnos,cursos, aranceles 
+'                                              cursos
+'                                              descuento_hermnano
+'                                              descuento_beca
+'                                              descuento_especial
 
 'actualiza: alumnos
+'           cuotas
 '           pago_familia
-
-
 
 
 Public Class FrmActualizaAlumnos
@@ -26,8 +30,9 @@ Public Class FrmActualizaAlumnos
 
     Private Sub FrmActualizaAlumnos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         conectar()
-        Cargar()
+
         BuscaCurso()
+        Cargar()
     End Sub
 
     Private Sub Cargar()
@@ -40,8 +45,8 @@ Public Class FrmActualizaAlumnos
 
             'Carga combobox con alumnos 
             Try
-                Dim alumno As String = "SELECT codigo_alumno, nombre_apellido_alumno, familias.codigo_familia, familias.codigo_beca FROM alumnos JOIN familias ON alumnos.codigo_familia = familias.codigo_familia WHERE alumnos.estado = 'activo' ORDER BY nombre_apellido_alumno
-"
+                Dim alumno As String = "SELECT codigo_alumno, nombre_apellido_alumno, familias.codigo_familia, familias.codigo_beca FROM alumnos JOIN familias ON alumnos.codigo_familia = familias.codigo_familia  WHERE alumnos.estado = 'activo' ORDER BY nombre_apellido_alumno"
+
                 adaptador = New SqlDataAdapter(alumno, conexion)
 
                 datos = New DataSet
@@ -75,42 +80,42 @@ Public Class FrmActualizaAlumnos
 
         Dim lista As Integer
         Dim Codigo As Integer = Val(CbxCodigoAlumno.Text)
+        If Codigo <> 0 Then
+            Try
+                Dim concatena As String = "SELECT nombre_apellido_alumno, edad, fecha_nacimiento, dni, curso, fecha_ingreso, hermano_numero, arancel_importe, valor_cuota, observaciones FROM alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel JOIN cuotas ON alumnos.codigo_alumno = cuotas.codigo_alumno WHERE alumnos.codigo_alumno= " & Codigo & " "
+                adaptador = New SqlDataAdapter(concatena, conexion)
+                Dim comando As New SqlCommand
+                datos2 = New DataSet
+                adaptador.Fill(datos2, "alumnos")
+                lista = datos2.Tables("alumnos").Rows.Count
 
-        Try
-            Dim concatena As String = "SELECT nombre_apellido_alumno, edad, fecha_nacimiento, dni, curso, fecha_ingreso, hermano_numero, arancel_importe, cuota, observaciones FROM alumnos JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles ON aranceles.codigo_arancel = alumnos.codigo_arancel WHERE alumnos.codigo_alumno= " & Codigo & " "
-            adaptador = New SqlDataAdapter(concatena, conexion)
-            Dim comando As New SqlCommand
-            datos2 = New DataSet
-            adaptador.Fill(datos2, "alumnos")
-            lista = datos2.Tables("alumnos").Rows.Count
+                If lista > 0 Then
 
-            If lista > 0 Then
+                    TxtNombreApellido.Text = datos2.Tables("alumnos").Rows(0).Item("nombre_apellido_alumno")
+                    TxtEdad.Text = datos2.Tables("alumnos").Rows(0).Item("edad")
+                    DtpFechaNacimiento.Text = datos2.Tables("alumnos").Rows(0).Item("fecha_nacimiento")
+                    TxtDni.Text = datos2.Tables("alumnos").Rows(0).Item("dni")
+                    CbxCurso.Text = datos2.Tables("alumnos").Rows(0).Item("curso")
 
-                TxtNombreApellido.Text = datos2.Tables("alumnos").Rows(0).Item("nombre_apellido_alumno")
-                TxtEdad.Text = datos2.Tables("alumnos").Rows(0).Item("edad")
-                DtpFechaNacimiento.Text = datos2.Tables("alumnos").Rows(0).Item("fecha_nacimiento")
-                TxtDni.Text = datos2.Tables("alumnos").Rows(0).Item("dni")
-                CbxCurso.Text = datos2.Tables("alumnos").Rows(0).Item("curso")
-
-                DtpFechaIngreso.Text = datos2.Tables("alumnos").Rows(0).Item("fecha_ingreso")
-                TxtHermanoNumero.Text = datos2.Tables("alumnos").Rows(0).Item("hermano_numero")
-                TxtArancel.Text = datos2.Tables("alumnos").Rows(0).Item("arancel_importe")
-                TxtCuota.Text = Replace(datos2.Tables("alumnos").Rows(0).Item("cuota"), ".", ",")
-                TxtObservaciones.Text = datos2.Tables("alumnos").Rows(0).Item("observaciones")
-            End If
-        Catch ex As Exception
+                    DtpFechaIngreso.Text = datos2.Tables("alumnos").Rows(0).Item("fecha_ingreso")
+                    TxtHermanoNumero.Text = datos2.Tables("alumnos").Rows(0).Item("hermano_numero")
+                    TxtArancel.Text = datos2.Tables("alumnos").Rows(0).Item("arancel_importe")
+                    TxtCuota.Text = datos2.Tables("alumnos").Rows(0).Item("valor_cuota")
+                    'TxtCuota.Text = Replace(datos2.Tables("alumnos").Rows(0).Item("cuota"), ".", ",")
+                    TxtObservaciones.Text = datos2.Tables("alumnos").Rows(0).Item("observaciones")
+                End If
+            Catch ex As Exception
                 MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
             End Try
-        'End If
+        End If
 
     End Sub
-
 
     Private Sub CodigoCurso()
         Dim lista As Integer
         If CbxCurso.Text <> "" Then
             Try
-                Dim codigoCurso As String = "SELECT codigo_curso, codigo_arancel FROM cursos JOIN aranceles ON cursos.codigo_nivel = aranceles.codigo_nivel WHERE curso = '" & CbxCurso.Text & "'"
+                Dim codigoCurso As String = "SELECT codigo_curso, codigo_arancel, arancel_importe FROM cursos JOIN aranceles ON cursos.codigo_nivel = aranceles.codigo_nivel WHERE curso = '" & CbxCurso.Text & "'"
                 adaptador = New SqlDataAdapter(codigoCurso, conexion)
                 datos = New DataSet
                 adaptador.Fill(datos, "cursos")
@@ -118,6 +123,7 @@ Public Class FrmActualizaAlumnos
                 If lista > 0 Then
                     TxtCodigoCurso.Text = datos.Tables("cursos").Rows(0).Item("codigo_curso")
                     TxtCodigoArancel.Text = datos.Tables("cursos").Rows(0).Item("codigo_arancel")
+                    TxtArancelCuota.Text = datos.Tables("cursos").Rows(0).Item("arancel_importe")
                 End If
             Catch ex As Exception
                 MsgBox("Error comprobando BD" & ex.ToString)
@@ -128,8 +134,8 @@ Public Class FrmActualizaAlumnos
     Private Sub BtnActualiza_Click(sender As Object, e As EventArgs) Handles BtnActualiza.Click
 
         abrir()
-
-        Dim actualizaAlumno As String = "UPDATE alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "', fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "', edad =" & Me.TxtEdad.Text & ", dni ='" & Me.TxtDni.Text & "', codigo_arancel = '" & Me.TxtCodigoArancel.Text & "', codigo_curso = '" & Me.TxtCodigoCurso.Text & "', fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "', hermano_numero = " & Me.TxtHermanoNumero.Text & ", observaciones = '" & Me.TxtObservaciones.Text & "'  WHERE codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
+        AñoCurso()
+        Dim actualizaAlumno As String = "UPDATE alumnos SET  nombre_apellido_alumno ='" & Me.TxtNombreApellido.Text & "', fecha_nacimiento ='" & Me.DtpFechaNacimiento.Text & "', edad =" & Me.TxtEdad.Text & ", dni ='" & Me.TxtDni.Text & "', codigo_arancel = '" & Me.TxtCodigoArancel.Text & "', codigo_curso = '" & Me.TxtCodigoCurso.Text & "', codigo_año = '" & Me.TxtCodigoAño.Text & "', fecha_ingreso= '" & Me.DtpFechaIngreso.Text & "', hermano_numero = " & Me.TxtHermanoNumero.Text & ", observaciones = '" & Me.TxtObservaciones.Text & "'  WHERE codigo_alumno ='" & Me.CbxCodigoAlumno.Text & "' "
 
         Dim comando As New SqlCommand(actualizaAlumno, conexion)
         comando.ExecuteNonQuery()
@@ -223,7 +229,7 @@ Public Class FrmActualizaAlumnos
         Dim descuento As Decimal
         Dim descuentoMonto As Decimal
         Dim cuotaSinDescuento As Decimal
-        arancel = Val(TxtArancel.Text)
+        arancel = Val(TxtArancelCuota.Text)
         'Descuento por hermano
         If TxtHermanoNumero.Text <> "" Then
             Dim descuentoPorHermano As String = "SELECT descuento_hermano FROM descuento_hermano where hermano_numero = '" & Val(TxtHermanoNumero.Text) & "' "
@@ -247,13 +253,10 @@ Public Class FrmActualizaAlumnos
         Dim DatosBeca As DataTable = New DataTable
         adaptador.Fill(DatosBeca)
 
-
         If DatosBeca.Rows.Count > 0 Then
             descuentoBeca = DatosBeca.Rows(0)("descuento_beca")
 
         End If
-
-
 
         'datos = New DataSet
         'datos.Tables.Add("descuento_beca")
@@ -296,6 +299,14 @@ Public Class FrmActualizaAlumnos
         End If
     End Sub
 
+    Private Sub AñoCurso()
+        Dim buscaAño As String = "SELECT codigo_año FROM cursos where codigo_curso = " & Val(TxtCodigoCurso.Text) & ""
+        Dim comandoAño As New SqlCommand(buscaAño, conexion)
+        TxtCodigoAño.Text = comandoAño.ExecuteScalar()
+        comandoAño.ExecuteNonQuery()
+    End Sub
+
+
     Private Sub DtpFechaNacimiento_CloseUp(sender As Object, e As EventArgs) Handles DtpFechaNacimiento.CloseUp
         FechaNacimiento = DtpFechaNacimiento.Value
         FechaActual = DtpFechaActual.Value
@@ -315,10 +326,6 @@ Public Class FrmActualizaAlumnos
 
     Private Sub CbxCurso_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCurso.SelectedValueChanged
         CodigoCurso()
-    End Sub
-
-    Private Sub Panel4_Paint(sender As Object, e As PaintEventArgs)
-
     End Sub
 
     Private Sub BtnExtrasAlumno_Click(sender As Object, e As EventArgs)

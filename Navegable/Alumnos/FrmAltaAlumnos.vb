@@ -4,15 +4,15 @@ Imports System.Data.SqlClient
 
 
 'Este formulario lee las siguientes tablas:
-'familias,
-'cursos,
-'aranceles,
-'descuento_hermano,
-'descuento_especial,
-'descuento_beca,
-'alumnos, cursos, cuotas, aranceles
+'                                          familias,
+'                                          alumnos, cursos, cuotas, aranceles
+'                                          cursos,
+'                                          aranceles,
+'                                          descuento_hermano,
+'                                          descuento_especial,
+'                                          descuento_beca,
 
-'Update: Alumnos,
+'Update: Alumnos, pago_familia
 
 'Insert: Alumnos, taller_alumno, cuotas
 
@@ -475,14 +475,12 @@ Public Class FrmAltaAlumnos
     End Sub
 
     Private Sub AñoCurso()
-
         Dim buscaAño As String = "SELECT codigo_año FROM cursos where codigo_curso = " & CodigoCurso & ""
         Dim comandoAño As New SqlCommand(buscaAño, conexion)
         TxtCodigoAño.Text = comandoAño.ExecuteScalar()
         comandoAño.ExecuteNonQuery()
-
-
     End Sub
+
     'Función que comprueba si existe la familia que se está por cargar (comprueba dni del padre o de la madre)
     Private Function alumnoExiste(ByVal dni As String) As Boolean
         Dim resultado As Boolean
