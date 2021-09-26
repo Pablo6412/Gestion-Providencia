@@ -70,6 +70,7 @@ Public Class Pagos
     Dim adaptador As SqlDataAdapter
     Dim comando As New SqlCommand
     Dim contador As Integer = 0
+    Dim totalMatricula As Decimal
     Dim TotalCuota As Decimal
     Dim TotalCampamento As Decimal
     'Dim CuotaCampamento As Decimal
@@ -370,7 +371,7 @@ Public Class Pagos
 
     Sub GrabaPagoFamilia()
         Dim codigo As Integer
-
+        Dim ultimoVencimiento As Date
         Dim minCod As String = "SELECT MIN(codigo_alumno) FROM alumnos WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' AND estado = 'activo'"
         Dim comandomin As New SqlCommand(minCod, conexion)
         Dim minimoCodigo As Decimal = comandomin.ExecuteScalar
@@ -380,41 +381,46 @@ Public Class Pagos
         Dim comandomax As New SqlCommand(maxCod, conexion)
         Dim maximoCodigo As Decimal = comandomax.ExecuteScalar
 
+        Dim maxFecha As String = "SELECT MAX(fecha_vencimiento) AS fecha FROM vencimiento_detallado"
+        Dim comandoFecha As New SqlCommand(maxFecha, conexion)
+        ultimoVencimiento = comandoFecha.ExecuteScalar
 
-        Dim restrictionValues() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
-        Dim dt As DataTable = conexion.GetSchema("TABLES", restrictionValues)
-        Dim rows() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
+        'Dim restrictionValues() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
+        'Dim dt As DataTable = conexion.GetSchema("TABLES", restrictionValues)
+        'Dim rows() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
+        'CreaTablaTemporal(rows)
 
-        CreaTablaTemporal(rows)
         While codigo <= maximoCodigo
 
-            Dim consulta As String = "SELECT alumnos.codigo_alumno, nombre_apellido_alumno, arancel_matricula, curso, valor_cuota, campamento_importe, importe_taller, materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN aranceles ON alumnos.codigo_arancel = aranceles.codigo_arancel JOIN taller_temporal ON taller_temporal.codigo_alumno = alumnos.codigo_alumno  WHERE alumnos.codigo_familia = '" & CbxCodigo.Text & "' AND alumnos.codigo_alumno = '" & codigo & "' AND alumnos.estado = 'activo' "
+            Dim consulta As String = "SELECT alumnos.codigo_alumno, nombre_apellido_alumno, curso, matricula_alumno, cuota_alumno, campamento_alumno, talleres_alumno,
+                                      materiales_alumno, adicional_alumno,comedor_alumno
+                                      FROM alumnos 
+                                      JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso 
+                                      JOIN vencimiento_detallado ON alumnos.codigo_alumno = vencimiento_detallado.codigo_alumno  
+                                      WHERE alumnos.codigo_familia = " & Val(CbxCodigo.Text) & "  AND fecha_vencimiento = '" & ultimoVencimiento & "' AND alumnos.estado = 'activo'"
 
-            'Dim hijos As String = "SELECT codigo_alumno, nombre_apellido_alumno, arancel_matricula FROM alumnos JOIN aranceles ON alumnos.codigo_arancel = aranceles.codigo_arancel WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' AND codigo_alumno = '" & codigo & "' AND estado = 'activo' "
             adaptador = New SqlDataAdapter(consulta, conexion)
             Dim dtDatos As DataTable = New DataTable
             adaptador.Fill(dtDatos)
 
-            'For Each row As DataGridViewRow In Me.DgvHijos.Rows
-            '    TotalTalleres += Val(row.Cells(colTaller).Value)
-            'Next
-
             If dtDatos.Rows.Count > 0 Then
                 Dim codigoAlumno As Integer = dtDatos.Rows(0)("codigo_alumno")
                 Dim alumno As String = dtDatos.Rows(0)("nombre_apellido_alumno")
-                Dim matricula As Decimal = dtDatos.Rows(0)("arancel_matricula")
-                Dim arancel As Decimal = dtDatos.Rows(0)("valor_cuota")
-                Dim materiales As String = dtDatos.Rows(0)("materiales_importe")
-                Dim talleres As Decimal = dtDatos.Rows(0)("importe_taller")
-                Dim campamento As Decimal = dtDatos.Rows(0)("campamento_importe")
-                Dim adicional As Decimal = dtDatos.Rows(0)("adicional_importe")
-                Dim comedor As Decimal = dtDatos.Rows(0)("comedor_importe")
+                Dim matricula As Decimal = dtDatos.Rows(0)("matricula_alumno")
+                Dim arancel As Decimal = dtDatos.Rows(0)("cuota_alumno")
+                Dim materiales As String = dtDatos.Rows(0)("materiales_alumno")
+                Dim talleres As Decimal = dtDatos.Rows(0)("talleres_alumno")
+                Dim campamento As Decimal = dtDatos.Rows(0)("campamento_alumno")
+                Dim adicional As Decimal = dtDatos.Rows(0)("adicional_alumno")
+                Dim comedor As Decimal = dtDatos.Rows(0)("comedor_alumno")
 
                 MsgBox("" & codigoAlumno & ", " & alumno & ", " & matricula & "")
 
                 Try
-                    Dim pagoFamilia As String = "INSERT INTO pago_familia (codigo_familia, codigo_alumno, arancel, matricula, materiales, taller, campamento, adicional_jardin, comedor, fecha ) 
-                                                               VALUES(@codigo_familia, @codigo_alumno, @arancel, @matricula, @materiales, @taller, @campamento, @adicional_jardin, @comedor, @fecha)"
+                    Dim pagoFamilia As String = "INSERT INTO pago_familia (codigo_familia, codigo_alumno, arancel, matricula, 
+                                                 materiales, taller, campamento, adicional_jardin, comedor, fecha ) 
+                                                 VALUES(@codigo_familia, @codigo_alumno, @arancel, @matricula, @materiales, 
+                                                 @taller, @campamento, @adicional_jardin, @comedor, @fecha)"
                     Dim comando As New SqlCommand(pagoFamilia, conexion)
 
                     comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
@@ -439,20 +445,20 @@ Public Class Pagos
             codigo += 1
 
         End While
-        Dim tablaExiste() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
-        Dim datat As DataTable = conexion.GetSchema("TABLES", restrictionValues)
-        Dim rowss() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
+        'Dim tablaExiste() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
+        'Dim datat As DataTable = conexion.GetSchema("TABLES", restrictionValues)
+        'Dim rowss() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
 
-        If rowss.Length > 0 Then
-            'MessageBox.Show("Existe la tabla.")
-            Dim destruyeTabla As String = "DROP TABLE taller_temporal"
-            Dim comandoDestruye As New SqlCommand(destruyeTabla, conexion)
-            'MsgBox("Tabla destruida")
+        'If rowss.Length > 0 Then
+        '    'MessageBox.Show("Existe la tabla.")
+        '    Dim destruyeTabla As String = "DROP TABLE taller_temporal"
+        '    Dim comandoDestruye As New SqlCommand(destruyeTabla, conexion)
+        '    'MsgBox("Tabla destruida")
 
-            If comandoDestruye.ExecuteNonQuery() = 0 Then
-                MsgBox("No pasa nada")
-            End If
-        End If
+        '    If comandoDestruye.ExecuteNonQuery() = 0 Then
+        '        MsgBox("No pasa nada")
+        '    End If
+        'End If
     End Sub
 
     Sub Siexiste()
@@ -463,8 +469,12 @@ Public Class Pagos
     Private Sub FormaPago(efectivoDef)
         abrir()
 
-        Dim cadenas As String = "INSERT INTO dbo.pagos_escolares(codigo_familia,fecha_pago, efectivo, cheque, cheque_numero, transferencia, transferencia_numero, debito, debito_numero, mercadopago, otros, otros_comprobante, observaciones ) 
-                                                                VALUES(@codigo_familia, @fecha_pago, @efectivo, @cheque, @cheque_numero, @transferencia, @transferencia_numero, @debito, @debito_numero, @mercadopago, @otros, @otros_comprobante, @observaciones)"
+        Dim cadenas As String = "INSERT INTO dbo.pagos_escolares(codigo_familia,fecha_pago, efectivo, cheque, cheque_numero,
+                                 transferencia, transferencia_numero, debito, debito_numero, mercadopago, otros, otros_comprobante, 
+                                 observaciones ) 
+                                 VALUES(@codigo_familia, @fecha_pago, @efectivo, @cheque, @cheque_numero, @transferencia, 
+                                 @transferencia_numero, @debito, @debito_numero, @mercadopago, @otros, @otros_comprobante, 
+                                 @observaciones)"
         comando = New SqlCommand(cadenas, conexion)
 
         comando.Parameters.AddWithValue("@codigo_familia", CbxCodigo.Text)
@@ -603,14 +613,19 @@ Public Class Pagos
     Sub DataGrid()
         Dim mes As Integer
         Dim parImpar As Integer
+        Dim ultimoVencimiento As Date
 
         Dim restrictionValues() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
         Dim dt As DataTable = conexion.GetSchema("TABLES", restrictionValues)
         Dim rows() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
-
         CreaTablaTemporal(rows)
 
+        Dim maxFecha As String = "SELECT MAX(fecha_vencimiento) AS fecha FROM vencimiento_detallado"
+        Dim comandoFecha As New SqlCommand(maxFecha, conexion)
+        ultimoVencimiento = comandoFecha.ExecuteScalar
+
         If contador <> 0 Then
+            TotalMatricula = 0
             TotalCuota = 0
             TotalCampamento = 0
             TotalTalleres = 0
@@ -621,7 +636,12 @@ Public Class Pagos
 
             Try
 
-                Dim consulta As String = "SELECT nombre_apellido_alumno, curso, valor_cuota, campamento_importe, importe_taller, materiales_importe, adicional_importe,comedor_importe from alumnos JOIN cursos on cursos.codigo_curso = alumnos.codigo_curso JOIN cuotas ON cuotas.codigo_alumno = alumnos.codigo_alumno JOIN taller_temporal ON taller_temporal.codigo_alumno = alumnos.codigo_alumno  WHERE alumnos.codigo_familia = '" & CbxCodigo.Text & "' AND alumnos.estado = 'activo' "
+                Dim consulta As String = "SELECT nombre_apellido_alumno, curso, matricula_alumno, cuota_alumno, campamento_alumno, talleres_alumno,
+                                          materiales_alumno, adicional_alumno, comedor_alumno
+                                          FROM alumnos 
+                                          JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso 
+                                          JOIN vencimiento_detallado ON alumnos.codigo_alumno = vencimiento_detallado.codigo_alumno  
+                                          WHERE alumnos.codigo_familia = " & Val(CbxCodigo.Text) & " AND fecha_vencimiento = '" & ultimoVencimiento & "' And alumnos.estado = 'activo' "
 
                 comando = New SqlCommand()
                 comando.CommandText = consulta
@@ -637,42 +657,49 @@ Public Class Pagos
                 MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
             End Try
 
-            Dim col As Integer = 2
+            Dim colMatricula As Integer = 2
+            For Each row As DataGridViewRow In Me.DgvHijos.Rows
+                TotalMatricula += Val(row.Cells(colMatricula).Value)
+            Next
+            TxtMatricula.PlaceholderText = TotalMatricula
+            matricula = TotalMatricula
+
+            Dim col As Integer = 3
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalCuota += Val(row.Cells(col).Value)
             Next
             TxtArancel.PlaceholderText = TotalCuota
             arancel = TotalCuota
 
-            Dim colCamp As Integer = 3
+            Dim colCamp As Integer = 4
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalCampamento += (Val(row.Cells(colCamp).Value))
             Next
             TxtCampamento.PlaceholderText = TotalCampamento
             campamento = TotalCampamento
 
-            Dim colTaller As Integer = 4
+            Dim colTaller As Integer = 5
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalTalleres += Val(row.Cells(colTaller).Value)
             Next
             TxtTalleres.PlaceholderText = TotalTalleres
             talleres = TotalTalleres
 
-            Dim colMaterial As Integer = 5
+            Dim colMaterial As Integer = 6
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalMaterial += Val(row.Cells(colMaterial).Value)
             Next
             TxtMateriales.PlaceholderText = TotalMaterial
             materiales = TotalMaterial
 
-            Dim colAdicional As Integer = 6
+            Dim colAdicional As Integer = 7
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalAdicional += Val(row.Cells(colAdicional).Value)
             Next
             TxtAdicionalJardin.PlaceholderText = TotalAdicional
             adicionalJardin = TotalAdicional
 
-            Dim colComedor As Integer = 7
+            Dim colComedor As Integer = 8
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalComedor += Val(row.Cells(colComedor).Value)
             Next
@@ -712,7 +739,8 @@ Public Class Pagos
         If rows.Length > 0 Then
             'MessageBox.Show("Existe la tabla.")
         Else
-            Dim tallerTemp As String = "SELECT codigo_alumno, SUM(importe_taller) as importe_taller INTO taller_temporal FROM taller_alumno  GROUP BY codigo_alumno"
+            Dim tallerTemp As String = "SELECT codigo_alumno, SUM(importe_taller) as importe_taller INTO taller_temporal 
+                                        FROM taller_alumno  GROUP BY codigo_alumno"
             Dim comandoTaller As New SqlCommand(tallerTemp, conexion)
             comandoTaller.ExecuteNonQuery()
 

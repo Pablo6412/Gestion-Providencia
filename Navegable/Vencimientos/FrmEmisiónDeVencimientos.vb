@@ -32,6 +32,7 @@ Public Class FrmEmisiónDeVencimientos
     Dim totalArancel As Decimal
     Dim hermanoNumero As Integer
     Dim cuota As Decimal
+    Dim totalCuota As Decimal
     Dim descuentoHermano As Decimal
     Dim descuentoBeca As Decimal
     Dim descuentoEspecial As Decimal
@@ -44,7 +45,9 @@ Public Class FrmEmisiónDeVencimientos
         Dim ultimaFecha As Date
         conectar()
         abrir()
-        Dim fecha As String = "SELECT fecha_vencimiento FROM detalle_vencimientos_escolares WHERE codigo_pago_v = (SELECT MAX(codigo_pago_v) FROM detalle_vencimientos_escolares)"
+        Dim fecha As String = "SELECT fecha_vencimiento FROM detalle_vencimientos_escolares 
+                               WHERE codigo_pago_v = (SELECT MAX(codigo_pago_v) 
+                               FROM detalle_vencimientos_escolares)"
         Dim comando As New SqlCommand(fecha, conexion)
         ultimaFecha = comando.ExecuteScalar
 
@@ -62,6 +65,7 @@ Public Class FrmEmisiónDeVencimientos
     End Sub
 
     Private Sub grabaVencimientos()
+        Dim numeroHijos As Integer
         Dim campamento As Decimal
         Dim taller As Decimal
         Dim materiales As Decimal
@@ -77,6 +81,11 @@ Public Class FrmEmisiónDeVencimientos
         Pbuno.Maximum = cantFam
         Pbuno.Value = 0
 
+        Dim restrictionValues() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
+        Dim dt As DataTable = conexion.GetSchema("TABLES", restrictionValues)
+        Dim rows() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
+        CreaTablaTemporal(rows)
+
         Dim maximocod As String = "SELECT MAX(codigo_familia) FROM familias WHERE estado = 'activo' "
         Dim comando1 As New SqlCommand(maximocod, conexion)
         maxcod = comando1.ExecuteScalar
@@ -84,12 +93,27 @@ Public Class FrmEmisiónDeVencimientos
         'MsgBox("Codigo de familia" & codFam & "")
 
         While codFam <= maxcod
+            totalCuota = 0
+            Dim cantidadHijos As String = "SELECT COUNT(codigo_alumno) FROM alumnos WHERE codigo_familia = " & codFam & ""
+            Dim comandoHijos As New SqlCommand(cantidadHijos, conexion)
+            numeroHijos = comandoHijos.ExecuteScalar()
+
 
             'Dim porcentaje As Double = Pbuno.Value / 1000
             'LblPbuno.Text = "Vencimientos generados al: " & Math.Round(Pbuno.Value / 0.03, 2) & "%"
             'LblPbuno.Refresh()
 
-            Dim consulta As String = " SELECT codigo_alumno, nombre_apellido_alumno, curso, arancel_importe, hermano_numero, campamento_importe, taller_importe, materiales_importe, adicional_importe, comedor_importe, descuento_beca, descuento FROM alumnos JOIN cursos On cursos.codigo_curso = alumnos.codigo_curso JOIN aranceles On aranceles.codigo_arancel = alumnos.codigo_arancel JOIN taller On taller.codigo_taller = alumnos.codigo_taller1 JOIN descuento_beca On descuento_beca.codigo_beca = alumnos.codigo_beca JOIN descuento_especial On descuento_especial.codigo_descuento_especial = alumnos.codigo_descuento  WHERE alumnos.codigo_familia = '" & codFam & "' AND alumnos.estado = 'activo' ORDER BY alumnos.codigo_alumno"
+            Dim consulta As String = " SELECT alumnos.codigo_alumno, nombre_apellido_alumno, curso, arancel_importe, hermano_numero, valor_cuota, campamento.valor as campamento_importe, importe_taller, material.valor, importe as adicional_importe, comedor_importe  FROM alumnos 
+                                       JOIN cursos ON alumnos.codigo_curso = cursos.codigo_curso
+									   JOIN aranceles ON alumnos.codigo_arancel = aranceles.codigo_arancel
+									   JOIN cuotas ON alumnos.codigo_alumno = cuotas.codigo_alumno
+									   JOIN campamento ON alumnos.codigo_año = campamento.codigo_año
+									   JOIN taller_temporal ON alumnos.codigo_alumno = taller_temporal.codigo_alumno
+									   JOIN material ON alumnos.codigo_año = material.codigo_año
+									   JOIN adicional ON alumnos.codigo_año = adicional.codigo_año
+                                       WHERE alumnos.codigo_familia = " & codFam & " AND alumnos.estado = 'activo'"
+
+            'WHERE alumnos.codigo_familia =  AND alumnos.estado = 'activo' ORDER BY alumnos.codigo_alumno"
 
             comando = New SqlCommand()
             comando.CommandText = consulta
@@ -105,18 +129,23 @@ Public Class FrmEmisiónDeVencimientos
                 arancel = Val(fila(3))
                 totalArancel += Val(fila(3))
                 hermanoNumero = fila(4)
-                campamento = Val(fila(5))
-                totalCampamento += Val(fila(5))
-                taller = Val(fila(6))
-                totalTaller += Val(fila(6))
-                materiales = Val(fila(7))
-                totalMateriales += Val(fila(7))
-                adicional = Val(fila(8))
-                totalAdicional += Val(fila(8))
-                comedor = Val(fila(9))
-                totalComedor += Val(fila(9))
+                cuota = Val(fila(5))
+                totalCuota += Val(fila(5))
+                campamento = Val(fila(6))
+                totalCampamento += Val(fila(6))
+                taller = Val(fila(7))
+                totalTaller += Val(fila(7))
+                materiales = Val(fila(8))
+                totalMateriales += Val(fila(8))
+                adicional = Val(fila(9))
+                totalAdicional += Val(fila(9))
+                comedor = Val(fila(10))
+                totalComedor += Val(fila(10))
                 CalculaCuota()
-                vencimentoAlumno = "INSERT INTO vencimiento_detallado (codigo_familia, codigo_alumno, cuota_alumno, materiales_alumno, talleres_alumno, campamento_alumno, adicional_alumno, comedor_alumno, fecha_vencimiento) VALUES(@codigo_familia, @codigo_alumno, @cuota_alumno, @materiales_alumno, @talleres_alumno, @campamento_alumno, @adicional_alumno, @comedor_alumno, @fecha_vencimiento) "
+                vencimentoAlumno = "INSERT INTO vencimiento_detallado (codigo_familia, codigo_alumno, cuota_alumno, materiales_alumno, talleres_alumno,
+                                    campamento_alumno, adicional_alumno, comedor_alumno, fecha_vencimiento) 
+                                    VALUES(@codigo_familia, @codigo_alumno, @cuota_alumno, @materiales_alumno, @talleres_alumno, @campamento_alumno, 
+                                    @adicional_alumno, @comedor_alumno, @fecha_vencimiento) "
                 comandoVencimientoAlumnos = New SqlCommand(vencimentoAlumno, conexion)
 
                 comandoVencimientoAlumnos.Parameters.AddWithValue("@codigo_familia", codFam)
@@ -150,12 +179,14 @@ Public Class FrmEmisiónDeVencimientos
             Next
 
             If hermanoNumero <> 0 Then
-                Dim vencimiento As String = "INSERT INTO detalle_vencimientos_escolares(codigo_familia, aranceles_v, materiales_v, talleres_v, campamento_v, adicional_jardin_v, comedor_v, fecha_vencimiento) VALUES(@codFam, @totalCuota, @totalMateriales, @totalTaller, @totalCampamento, @totalAdicional, @totalComedor, @fechaVencimiento)"
+                Dim vencimiento As String = "INSERT INTO detalle_vencimientos_escolares(codigo_familia, aranceles_v, materiales_v, talleres_v, 
+                                             campamento_v, adicional_jardin_v, comedor_v, fecha_vencimiento) VALUES(@codFam, @totalCuota, 
+                                             @totalMateriales, @totalTaller, @totalCampamento, @totalAdicional, @totalComedor, @fechaVencimiento)"
 
                 comando2 = New SqlCommand(vencimiento, conexion)
 
                 comando2.Parameters.AddWithValue("@codFam", codFam)
-                comando2.Parameters.AddWithValue("@totalCuota", arancel)
+                comando2.Parameters.AddWithValue("@totalCuota", totalCuota)
                 comando2.Parameters.AddWithValue("@totalMateriales", totalMateriales)
                 comando2.Parameters.AddWithValue("@totalTaller", totalTaller)
                 comando2.Parameters.AddWithValue("@totalCampamento", totalCampamento)
@@ -184,8 +215,39 @@ Public Class FrmEmisiónDeVencimientos
 
 
             'Pbuno.Value = codFam - 1
+
         End While
+
+        Dim tablaExiste() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
+        Dim datat As DataTable = conexion.GetSchema("TABLES", restrictionValues)
+        Dim rowss() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
+
+        If rowss.Length > 0 Then
+            'MessageBox.Show("Existe la tabla.")
+            Dim destruyeTabla As String = "DROP TABLE taller_temporal"
+            Dim comandoDestruye As New SqlCommand(destruyeTabla, conexion)
+            'MsgBox("Tabla destruida")
+
+            If comandoDestruye.ExecuteNonQuery() = 0 Then
+                MsgBox("No pasa nada")
+            End If
+        End If
         'MsgBox("Datos guardados")
+    End Sub
+
+    Private Sub CreaTablaTemporal(rows)
+
+
+        If rows.Length > 0 Then
+            'MessageBox.Show("Existe la tabla.")
+        Else
+            Dim tallerTemp As String = "SELECT codigo_alumno, SUM(importe_taller) as importe_taller INTO taller_temporal FROM taller_alumno  GROUP BY codigo_alumno"
+            Dim comandoTaller As New SqlCommand(tallerTemp, conexion)
+            comandoTaller.ExecuteNonQuery()
+
+            'MsgBox("Tabla creada")
+            'MessageBox.Show("No existe la tabla.")
+        End If
     End Sub
 
     Private Sub ActualizaCredito(codFam)

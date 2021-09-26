@@ -199,7 +199,7 @@ Partial Class FrmActualizaAlumnos
         '
         'Panel5
         '
-        Me.Panel5.Location = New System.Drawing.Point(784, 28)
+        Me.Panel5.Location = New System.Drawing.Point(707, 24)
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(200, 46)
         Me.Panel5.TabIndex = 13
