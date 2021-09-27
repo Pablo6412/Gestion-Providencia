@@ -36,13 +36,13 @@ Partial Class FrmPagoAdelantado
         Me.DtpFechaPago = New System.Windows.Forms.DateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.BtnGuardar = New System.Windows.Forms.Button()
+        Me.TxtTotal = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.CbxCuotas = New System.Windows.Forms.ComboBox()
         Me.TxtCuotaMensual = New System.Windows.Forms.TextBox()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.BtnSalir = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,8 +175,8 @@ Partial Class FrmPagoAdelantado
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox2.Controls.Add(Me.Button1)
-        Me.GroupBox2.Controls.Add(Me.TextBox2)
+        Me.GroupBox2.Controls.Add(Me.BtnGuardar)
+        Me.GroupBox2.Controls.Add(Me.TxtTotal)
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Controls.Add(Me.CbxCuotas)
@@ -190,24 +190,24 @@ Partial Class FrmPagoAdelantado
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Adelantos"
         '
-        'Button1
+        'BtnGuardar
         '
-        Me.Button1.BackColor = System.Drawing.Color.White
-        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(539, 177)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(85, 32)
-        Me.Button1.TabIndex = 37
-        Me.Button1.Text = "Guardar"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.BtnGuardar.BackColor = System.Drawing.Color.White
+        Me.BtnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
+        Me.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnGuardar.Location = New System.Drawing.Point(539, 177)
+        Me.BtnGuardar.Name = "BtnGuardar"
+        Me.BtnGuardar.Size = New System.Drawing.Size(85, 32)
+        Me.BtnGuardar.TabIndex = 37
+        Me.BtnGuardar.Text = "Guardar"
+        Me.BtnGuardar.UseVisualStyleBackColor = False
         '
-        'TextBox2
+        'TxtTotal
         '
-        Me.TextBox2.Location = New System.Drawing.Point(204, 177)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(115, 29)
-        Me.TextBox2.TabIndex = 36
+        Me.TxtTotal.Location = New System.Drawing.Point(204, 177)
+        Me.TxtTotal.Name = "TxtTotal"
+        Me.TxtTotal.Size = New System.Drawing.Size(115, 29)
+        Me.TxtTotal.TabIndex = 36
         '
         'Label4
         '
@@ -244,18 +244,18 @@ Partial Class FrmPagoAdelantado
         Me.TxtCuotaMensual.Size = New System.Drawing.Size(115, 29)
         Me.TxtCuotaMensual.TabIndex = 32
         '
-        'Button2
+        'BtnSalir
         '
-        Me.Button2.BackColor = System.Drawing.Color.White
-        Me.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Button2.Location = New System.Drawing.Point(798, 553)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 32)
-        Me.Button2.TabIndex = 38
-        Me.Button2.Text = "Salir"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.BtnSalir.BackColor = System.Drawing.Color.White
+        Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
+        Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnSalir.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.BtnSalir.Location = New System.Drawing.Point(798, 553)
+        Me.BtnSalir.Name = "BtnSalir"
+        Me.BtnSalir.Size = New System.Drawing.Size(75, 32)
+        Me.BtnSalir.TabIndex = 38
+        Me.BtnSalir.Text = "Salir"
+        Me.BtnSalir.UseVisualStyleBackColor = False
         '
         'FrmPagoAdelantado
         '
@@ -264,7 +264,7 @@ Partial Class FrmPagoAdelantado
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(974, 611)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.BtnSalir)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.DtpFechaPago)
         Me.Controls.Add(Me.GroupBox1)
@@ -299,11 +299,11 @@ Partial Class FrmPagoAdelantado
     Friend WithEvents DtpFechaPago As DateTimePicker
     Friend WithEvents Label2 As Label
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents BtnGuardar As Button
+    Friend WithEvents TxtTotal As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents CbxCuotas As ComboBox
     Friend WithEvents TxtCuotaMensual As TextBox
-    Friend WithEvents Button2 As Button
+    Friend WithEvents BtnSalir As Button
 End Class

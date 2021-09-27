@@ -29,13 +29,19 @@ Public Class FrmPagoAdelantado
     End Sub
 
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()
     End Sub
 
     Private Sub CbxCodigo_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigo.SelectedValueChanged
         Dim ultimoVencimiento
-        Dim totalMatricula
+        Dim totalMatricula As Decimal
+        Dim totalCuota As Decimal
+        Dim totalCampamento As Decimal
+        Dim totalTalleres As Decimal
+        Dim totalMateriales As Decimal
+        Dim totalAdicional As Decimal
+        Dim totalComedor As Decimal
         Dim maxFecha As String = "SELECT MAX(fecha_vencimiento) AS fecha FROM vencimiento_detallado"
         Dim comandoFecha As New SqlCommand(maxFecha, conexion)
         ultimoVencimiento = comandoFecha.ExecuteScalar
@@ -49,93 +55,62 @@ Public Class FrmPagoAdelantado
                                           JOIN vencimiento_detallado ON alumnos.codigo_alumno = vencimiento_detallado.codigo_alumno  
                                           WHERE alumnos.codigo_familia = " & Val(CbxCodigo.Text) & " AND fecha_vencimiento = '" & ultimoVencimiento & "' And alumnos.estado = 'activo' "
 
-            Dim comando As New SqlCommand()
-            comando.CommandText = consulta
-            comando.CommandType = CommandType.Text
-            comando.Connection = conexion
-            Dim adaptador As New SqlDataAdapter(comando)
-            Dim dataSet As DataSet = New DataSet()
-            adaptador.Fill(dataSet)
+        Dim comando As New SqlCommand(consulta, conexion)
+        Dim adaptador As New SqlDataAdapter(comando)
+        Dim dataSet As New DataSet()
+        adaptador.Fill(dataSet)
 
-            'DgvHijos.DataSource = dataSet.Tables(0).DefaultView
-
-
-
-            Dim colMatricula As Integer = 2
         For Each fila As DataRow In dataSet.Tables(0).Rows()
-            totalMatricula += Val(fila(3))
-            TxtCuotaMensual.Text = totalMatricula
-            'totalMatricula += Val(row.Cells(colMatricula).Value)
+            totalMatricula += Val(fila(2))
         Next
-        'TxtMatricula.PlaceholderText = totalMatricula
-        'matricula = totalMatricula
 
-        'Dim col As Integer = 3
-        'For Each row As DataGridViewRow In Me.DgvHijos.Rows
-        '    TotalCuota += Val(row.Cells(col).Value)
-        'Next
-        'TxtArancel.PlaceholderText = TotalCuota
-        'arancel = TotalCuota
+        For Each fila As DataRow In dataSet.Tables(0).Rows()
+            totalCuota += Val(fila(3))
+        Next
 
-        'Dim colCamp As Integer = 4
-        'For Each row As DataGridViewRow In Me.DgvHijos.Rows
-        '    TotalCampamento += (Val(row.Cells(colCamp).Value))
-        'Next
-        'TxtCampamento.PlaceholderText = TotalCampamento
-        'campamento = TotalCampamento
+        For Each fila As DataRow In dataSet.Tables(0).Rows()
+            totalCampamento += Val(fila(4))
+        Next
 
-        'Dim colTaller As Integer = 5
-        'For Each row As DataGridViewRow In Me.DgvHijos.Rows
-        '    TotalTalleres += Val(row.Cells(colTaller).Value)
-        'Next
-        'TxtTalleres.PlaceholderText = TotalTalleres
-        'talleres = TotalTalleres
+        For Each fila As DataRow In dataSet.Tables(0).Rows()
+            totalTalleres += Val(fila(5))
+        Next
 
-        'Dim colMaterial As Integer = 6
-        'For Each row As DataGridViewRow In Me.DgvHijos.Rows
-        '    TotalMaterial += Val(row.Cells(colMaterial).Value)
-        'Next
-        'TxtMateriales.PlaceholderText = TotalMaterial
-        'materiales = TotalMaterial
+        For Each fila As DataRow In dataSet.Tables(0).Rows()
+            totalMateriales += Val(fila(6))
+        Next
 
-        'Dim colAdicional As Integer = 7
-        'For Each row As DataGridViewRow In Me.DgvHijos.Rows
-        '    TotalAdicional += Val(row.Cells(colAdicional).Value)
-        'Next
-        'TxtAdicional.PlaceholderText = TotalAdicional
-        'adicional = TotalAdicional
+        For Each fila As DataRow In dataSet.Tables(0).Rows()
+            totalAdicional += Val(fila(7))
+        Next
 
-        'Dim colComedor As Integer = 8
-        'For Each row As DataGridViewRow In Me.DgvHijos.Rows
-        '    TotalComedor += Val(row.Cells(colComedor).Value)
-        'Next
-        'mes = fechaActual.Month
-        'parImpar = mes Mod 2
-        'If parImpar <> 0 Then
-        '    TxtComedor.PlaceholderText = TotalComedor
-        '    comedor = TotalComedor
-        'Else
-        '    TxtComedor.PlaceholderText = 0
-        '    comedor = 0
-        '    TotalComedor = comedor
-        'End If
-        'End If
-        'contador += 1
-        'TxtMatricula.Enabled = False
+        For Each fila As DataRow In dataSet.Tables(0).Rows()
+            totalComedor += Val(fila(8))
+        Next
 
-        'Dim tablaExiste() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
-        'Dim datat As DataTable = conexion.GetSchema("TABLES", restrictionValues)
-        'Dim rowss() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
+        TxtCuotaMensual.Text = (totalMatricula + totalCuota + totalCampamento + totalTalleres + totalMateriales + totalAdicional + totalComedor)
 
-        'If rowss.Length > 0 Then
-        '    'MessageBox.Show("Existe la tabla.")
-        '    Dim destruyeTabla As String = "DROP TABLE taller_temporal"
-        '    Dim comandoDestruye As New SqlCommand(destruyeTabla, conexion)
-        '    'MsgBox("Tabla destruida")
+    End Sub
 
-        '    If comandoDestruye.ExecuteNonQuery() = 0 Then
-        '        MsgBox("No pasa nada")
-        '    End If
-        'End If
+    Private Sub CbxCuotas_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCuotas.SelectedValueChanged
+        Dim cuotaMensual As Decimal = Val(TxtCuotaMensual.Text)
+        Dim numeroCuotas As Integer = Val(CbxCuotas.Text)
+        TxtTotal.Text = cuotaMensual * numeroCuotas
+    End Sub
+
+    Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
+        Dim guardaAdelanto As String = "INSERT INTO pago_adelantado(codigo_familia, cantidad_cuotas, monto) 
+                                        VALUES(@codigo_familia, @cantidad_cuotas, @monto) "
+        Dim comandoAdelanto As New SqlCommand(guardaAdelanto, conexion)
+
+        comandoAdelanto.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
+        comandoAdelanto.Parameters.AddWithValue("@cantidad_cuotas", Val(CbxCuotas.Text))
+        comandoAdelanto.Parameters.AddWithValue("@monto", Val(TxtTotal.Text))
+
+        If comandoAdelanto.ExecuteNonQuery() = 1 Then
+            MsgBox("Datos guardados")
+        Else
+            MsgBox("Error guardando los datos")
+        End If
     End Sub
 End Class
