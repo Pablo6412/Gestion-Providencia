@@ -108,6 +108,15 @@ Partial Class Pagos
         Me.TxtDisponible = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.DgvHijos = New System.Windows.Forms.DataGridView()
+        Me.Nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.matricula_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.curso = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cuota_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.campamento_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.talleres_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.materiales_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.adicional_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.comedor_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.TxtSinAsignar3 = New System.Windows.Forms.TextBox()
         Me.TxtSinasignar2 = New System.Windows.Forms.TextBox()
@@ -124,7 +133,7 @@ Partial Class Pagos
         Me.LblCuota = New System.Windows.Forms.Label()
         Me.LblMatricula = New System.Windows.Forms.Label()
         Me.TxtComedor = New System.Windows.Forms.TextBox()
-        Me.TxtAdicionalJardin = New System.Windows.Forms.TextBox()
+        Me.TxtAdicional = New System.Windows.Forms.TextBox()
         Me.TxtTalleres = New System.Windows.Forms.TextBox()
         Me.TxtMateriales = New System.Windows.Forms.TextBox()
         Me.TxtArancel = New System.Windows.Forms.TextBox()
@@ -151,15 +160,6 @@ Partial Class Pagos
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NÚMERO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MERCADOPAGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.matricula_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.curso = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cuota_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.campamento_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.talleres_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.materiales_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.adicional_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.comedor_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1085,6 +1085,108 @@ Partial Class Pagos
         Me.DgvHijos.Size = New System.Drawing.Size(844, 158)
         Me.DgvHijos.TabIndex = 16
         '
+        'Nombre
+        '
+        Me.Nombre.DataPropertyName = "nombre_apellido_alumno"
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
+        Me.Nombre.DefaultCellStyle = DataGridViewCellStyle3
+        Me.Nombre.FillWeight = 110.0!
+        Me.Nombre.HeaderText = "Nombre"
+        Me.Nombre.MaxInputLength = 30
+        Me.Nombre.MinimumWidth = 8
+        Me.Nombre.Name = "Nombre"
+        Me.Nombre.ReadOnly = True
+        Me.Nombre.Width = 180
+        '
+        'matricula_alumno
+        '
+        Me.matricula_alumno.DataPropertyName = "matricula_alumno"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.matricula_alumno.DefaultCellStyle = DataGridViewCellStyle4
+        Me.matricula_alumno.HeaderText = "Matrícula"
+        Me.matricula_alumno.Name = "matricula_alumno"
+        Me.matricula_alumno.ReadOnly = True
+        Me.matricula_alumno.Width = 80
+        '
+        'curso
+        '
+        Me.curso.DataPropertyName = "curso"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.curso.DefaultCellStyle = DataGridViewCellStyle5
+        Me.curso.HeaderText = "  Curso"
+        Me.curso.MaxInputLength = 50
+        Me.curso.Name = "curso"
+        Me.curso.ReadOnly = True
+        Me.curso.Width = 170
+        '
+        'cuota_alumno
+        '
+        Me.cuota_alumno.DataPropertyName = "cuota_alumno"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.Format = "$#,##0.00"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.cuota_alumno.DefaultCellStyle = DataGridViewCellStyle6
+        Me.cuota_alumno.HeaderText = "  Cuota"
+        Me.cuota_alumno.Name = "cuota_alumno"
+        Me.cuota_alumno.ReadOnly = True
+        Me.cuota_alumno.Width = 80
+        '
+        'campamento_alumno
+        '
+        Me.campamento_alumno.DataPropertyName = "campamento_alumno"
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.Format = "$#,##0.00"
+        Me.campamento_alumno.DefaultCellStyle = DataGridViewCellStyle7
+        Me.campamento_alumno.HeaderText = "Campamento"
+        Me.campamento_alumno.Name = "campamento_alumno"
+        Me.campamento_alumno.ReadOnly = True
+        Me.campamento_alumno.Width = 90
+        '
+        'talleres_alumno
+        '
+        Me.talleres_alumno.DataPropertyName = "talleres_alumno"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.Format = "$#,##0.00"
+        Me.talleres_alumno.DefaultCellStyle = DataGridViewCellStyle8
+        Me.talleres_alumno.HeaderText = " Talleres"
+        Me.talleres_alumno.Name = "talleres_alumno"
+        Me.talleres_alumno.ReadOnly = True
+        Me.talleres_alumno.Width = 80
+        '
+        'materiales_alumno
+        '
+        Me.materiales_alumno.DataPropertyName = "materiales_alumno"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.Format = "$#,##0.00"
+        Me.materiales_alumno.DefaultCellStyle = DataGridViewCellStyle9
+        Me.materiales_alumno.HeaderText = "Materiales"
+        Me.materiales_alumno.Name = "materiales_alumno"
+        Me.materiales_alumno.ReadOnly = True
+        Me.materiales_alumno.Width = 80
+        '
+        'adicional_alumno
+        '
+        Me.adicional_alumno.DataPropertyName = "adicional_alumno"
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.adicional_alumno.DefaultCellStyle = DataGridViewCellStyle10
+        Me.adicional_alumno.HeaderText = "Adicional"
+        Me.adicional_alumno.Name = "adicional_alumno"
+        Me.adicional_alumno.ReadOnly = True
+        Me.adicional_alumno.Width = 80
+        '
+        'comedor_alumno
+        '
+        Me.comedor_alumno.DataPropertyName = "comedor_alumno"
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.comedor_alumno.DefaultCellStyle = DataGridViewCellStyle11
+        Me.comedor_alumno.HeaderText = "Comedor"
+        Me.comedor_alumno.Name = "comedor_alumno"
+        Me.comedor_alumno.ReadOnly = True
+        Me.comedor_alumno.Width = 80
+        '
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
@@ -1103,7 +1205,7 @@ Partial Class Pagos
         Me.GroupBox3.Controls.Add(Me.LblCuota)
         Me.GroupBox3.Controls.Add(Me.LblMatricula)
         Me.GroupBox3.Controls.Add(Me.TxtComedor)
-        Me.GroupBox3.Controls.Add(Me.TxtAdicionalJardin)
+        Me.GroupBox3.Controls.Add(Me.TxtAdicional)
         Me.GroupBox3.Controls.Add(Me.TxtTalleres)
         Me.GroupBox3.Controls.Add(Me.TxtMateriales)
         Me.GroupBox3.Controls.Add(Me.TxtArancel)
@@ -1206,11 +1308,11 @@ Partial Class Pagos
         'LblAdicional
         '
         Me.LblAdicional.AutoSize = True
-        Me.LblAdicional.Location = New System.Drawing.Point(223, 69)
+        Me.LblAdicional.Location = New System.Drawing.Point(270, 69)
         Me.LblAdicional.Name = "LblAdicional"
-        Me.LblAdicional.Size = New System.Drawing.Size(125, 21)
+        Me.LblAdicional.Size = New System.Drawing.Size(77, 21)
         Me.LblAdicional.TabIndex = 10
-        Me.LblAdicional.Text = "Adicional jardín :"
+        Me.LblAdicional.Text = "Adicional:"
         Me.LblAdicional.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'LblTalleres
@@ -1259,15 +1361,15 @@ Partial Class Pagos
         Me.TxtComedor.Size = New System.Drawing.Size(100, 29)
         Me.TxtComedor.TabIndex = 5
         '
-        'TxtAdicionalJardin
+        'TxtAdicional
         '
-        Me.TxtAdicionalJardin.BackColor = System.Drawing.Color.White
-        Me.TxtAdicionalJardin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtAdicionalJardin.Location = New System.Drawing.Point(352, 61)
-        Me.TxtAdicionalJardin.MaxLength = 8
-        Me.TxtAdicionalJardin.Name = "TxtAdicionalJardin"
-        Me.TxtAdicionalJardin.Size = New System.Drawing.Size(100, 29)
-        Me.TxtAdicionalJardin.TabIndex = 4
+        Me.TxtAdicional.BackColor = System.Drawing.Color.White
+        Me.TxtAdicional.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtAdicional.Location = New System.Drawing.Point(352, 61)
+        Me.TxtAdicional.MaxLength = 8
+        Me.TxtAdicional.Name = "TxtAdicional"
+        Me.TxtAdicional.Size = New System.Drawing.Size(100, 29)
+        Me.TxtAdicional.TabIndex = 4
         '
         'TxtTalleres
         '
@@ -1516,108 +1618,6 @@ Partial Class Pagos
         Me.MERCADOPAGO.HeaderText = "MERCADOPAGO"
         Me.MERCADOPAGO.Name = "MERCADOPAGO"
         '
-        'Nombre
-        '
-        Me.Nombre.DataPropertyName = "nombre_apellido_alumno"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
-        Me.Nombre.DefaultCellStyle = DataGridViewCellStyle3
-        Me.Nombre.FillWeight = 110.0!
-        Me.Nombre.HeaderText = "Nombre"
-        Me.Nombre.MaxInputLength = 30
-        Me.Nombre.MinimumWidth = 8
-        Me.Nombre.Name = "Nombre"
-        Me.Nombre.ReadOnly = True
-        Me.Nombre.Width = 180
-        '
-        'matricula_alumno
-        '
-        Me.matricula_alumno.DataPropertyName = "matricula_alumno"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.matricula_alumno.DefaultCellStyle = DataGridViewCellStyle4
-        Me.matricula_alumno.HeaderText = "Matrícula"
-        Me.matricula_alumno.Name = "matricula_alumno"
-        Me.matricula_alumno.ReadOnly = True
-        Me.matricula_alumno.Width = 80
-        '
-        'curso
-        '
-        Me.curso.DataPropertyName = "curso"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.curso.DefaultCellStyle = DataGridViewCellStyle5
-        Me.curso.HeaderText = "  Curso"
-        Me.curso.MaxInputLength = 50
-        Me.curso.Name = "curso"
-        Me.curso.ReadOnly = True
-        Me.curso.Width = 170
-        '
-        'cuota_alumno
-        '
-        Me.cuota_alumno.DataPropertyName = "cuota_alumno"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle6.Format = "$#,##0.00"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.cuota_alumno.DefaultCellStyle = DataGridViewCellStyle6
-        Me.cuota_alumno.HeaderText = "  Cuota"
-        Me.cuota_alumno.Name = "cuota_alumno"
-        Me.cuota_alumno.ReadOnly = True
-        Me.cuota_alumno.Width = 80
-        '
-        'campamento_alumno
-        '
-        Me.campamento_alumno.DataPropertyName = "campamento_alumno"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.Format = "$#,##0.00"
-        Me.campamento_alumno.DefaultCellStyle = DataGridViewCellStyle7
-        Me.campamento_alumno.HeaderText = "Campamento"
-        Me.campamento_alumno.Name = "campamento_alumno"
-        Me.campamento_alumno.ReadOnly = True
-        Me.campamento_alumno.Width = 90
-        '
-        'talleres_alumno
-        '
-        Me.talleres_alumno.DataPropertyName = "talleres_alumno"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle8.Format = "$#,##0.00"
-        Me.talleres_alumno.DefaultCellStyle = DataGridViewCellStyle8
-        Me.talleres_alumno.HeaderText = " Talleres"
-        Me.talleres_alumno.Name = "talleres_alumno"
-        Me.talleres_alumno.ReadOnly = True
-        Me.talleres_alumno.Width = 80
-        '
-        'materiales_alumno
-        '
-        Me.materiales_alumno.DataPropertyName = "materiales_alumno"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.Format = "$#,##0.00"
-        Me.materiales_alumno.DefaultCellStyle = DataGridViewCellStyle9
-        Me.materiales_alumno.HeaderText = "Materiales"
-        Me.materiales_alumno.Name = "materiales_alumno"
-        Me.materiales_alumno.ReadOnly = True
-        Me.materiales_alumno.Width = 80
-        '
-        'adicional_alumno
-        '
-        Me.adicional_alumno.DataPropertyName = "adicional_alumno"
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.adicional_alumno.DefaultCellStyle = DataGridViewCellStyle10
-        Me.adicional_alumno.HeaderText = "Adicional"
-        Me.adicional_alumno.Name = "adicional_alumno"
-        Me.adicional_alumno.ReadOnly = True
-        Me.adicional_alumno.Width = 80
-        '
-        'comedor_alumno
-        '
-        Me.comedor_alumno.DataPropertyName = "comedor_alumno"
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.comedor_alumno.DefaultCellStyle = DataGridViewCellStyle11
-        Me.comedor_alumno.HeaderText = "Comedor"
-        Me.comedor_alumno.Name = "comedor_alumno"
-        Me.comedor_alumno.ReadOnly = True
-        Me.comedor_alumno.Width = 80
-        '
         'Pagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -1731,7 +1731,7 @@ Partial Class Pagos
     Friend WithEvents LblCuota As Label
     Friend WithEvents LblMatricula As Label
     Friend WithEvents TxtComedor As TextBox
-    Friend WithEvents TxtAdicionalJardin As TextBox
+    Friend WithEvents TxtAdicional As TextBox
     Friend WithEvents TxtTalleres As TextBox
     Friend WithEvents TxtMateriales As TextBox
     Friend WithEvents TxtArancel As TextBox

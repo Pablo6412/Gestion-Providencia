@@ -98,4 +98,8 @@ Public Class FrmPrincipal
     Private Sub PagosDeudaCampamentoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PagosDeudaCampamentoToolStripMenuItem.Click
         FrmPagoDeudaCampamento.Show()
     End Sub
+
+    Private Sub PagosAdelantadosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PagosAdelantadosToolStripMenuItem.Click
+        FrmPagoAdelantado.Show()
+    End Sub
 End Class

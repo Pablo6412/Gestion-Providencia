@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
-
+'Concepto_de_pago
 'Este formulario lee las siguientes tablas:
 'Concepto_de_pago
 'familias
@@ -56,7 +56,7 @@ Public Class Pagos
     Dim materiales As Decimal
     Dim talleres As Decimal
     Dim campamento As Decimal
-    Dim adicionalJardin As Decimal
+    Dim adicional As Decimal
     Dim comedor As Decimal
     Dim sinAsignar1 As Decimal
     Dim sinAsignar2 As Decimal
@@ -93,7 +93,7 @@ Public Class Pagos
         TxtMateriales.Enabled = False
         TxtTalleres.Enabled = False
         TxtCampamento.Enabled = False
-        TxtAdicionalJardin.Enabled = False
+        TxtAdicional.Enabled = False
         TxtComedor.Enabled = False
         BtnGuardar2.Enabled = False
 
@@ -138,7 +138,10 @@ Public Class Pagos
 
         'Carga combobox con familias activas
         Try
-            Dim concatena As String = "SELECT codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, CONCAT(apellido_padre,' - ', apellido_madre) AS familia, estado FROM familias WHERE estado = 'activo' ORDER BY familia"
+            Dim concatena As String = "SELECT codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, 
+                                       CONCAT(apellido_padre,' - ', apellido_madre) AS familia, estado 
+                                       FROM familias WHERE estado = 'activo' 
+                                       ORDER BY familia"
 
             adaptador = New SqlDataAdapter(concatena, conexion)
             datos = New DataSet
@@ -213,7 +216,7 @@ Public Class Pagos
                     TxtMateriales.Enabled = True
                     TxtTalleres.Enabled = True
                     TxtCampamento.Enabled = True
-                    TxtAdicionalJardin.Enabled = True
+                    TxtAdicional.Enabled = True
                     TxtComedor.Enabled = True
                     BtnGuardar2.Enabled = True
                     pagoCumplido = "incompleto"
@@ -239,7 +242,7 @@ Public Class Pagos
         Dim credito As Decimal = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
         Dim efectivoDef As Decimal
 
-        If TxtMatricula.Text <> "" Or TxtArancel.Text <> "" Or TxtComedor.Text <> "" Or TxtMateriales.Text <> "" Or TxtTalleres.Text <> "" Or TxtCampamento.Text <> "" Or TxtAdicionalJardin.Text <> "" Or TxtSinAsignar1.Text <> "" Or TxtSinasignar2.Text <> "" Or TxtSinAsignar3.Text <> "" Then
+        If TxtMatricula.Text <> "" Or TxtArancel.Text <> "" Or TxtComedor.Text <> "" Or TxtMateriales.Text <> "" Or TxtTalleres.Text <> "" Or TxtCampamento.Text <> "" Or TxtAdicional.Text <> "" Or TxtSinAsignar1.Text <> "" Or TxtSinasignar2.Text <> "" Or TxtSinAsignar3.Text <> "" Then
             If pagoACuenta = False Then
                 If efectivo <= vuelto Then
                     efectivoDef = 0
@@ -265,8 +268,18 @@ Public Class Pagos
             Else                     'Si elije no devolución la suma se carga como crédito del próximo vencimiento
                 credito = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
             End If
-            Dim cadena As String = "INSERT INTO dbo.detalle_pago_escolar(codigo_familia, matricula, aranceles, materiales, talleres, campamento, adicional_jardin, comedor, credito, fecha_de_pago, pago_cumplido) 
-                                       VALUES(@codigo_familia, @matricula, @aranceles, @materiales, @talleres, @campamento, @adicional_jardin, @comedor, @credito, @fecha_de_pago, @pago_cumplido)"
+
+
+            Dim cadena As String = "UPDATE detalle_pago_escolar SET  matricula = " & Val(TxtMatricula.Text) & ",
+                                    aranceles = " & Val(TxtArancel.Text) & ", materiales = " & Val(TxtMateriales.Text) & ", talleres = " & Val(TxtTalleres.Text) & ", 
+                                    campamento = " & Val(TxtCampamento.Text) & ", adicional = " & Val(TxtAdicional.Text) & ", comedor = " & Val(TxtComedor.Text) & ", 
+                                    credito = " & credito & ", fecha_de_pago = '" & DtpFechaDePago.Value & "', pago_cumplido = '" & pagoCumplido & "' 
+                                    WHERE codigo_familia = " & Val(CbxCodigo.Text) & "  "
+
+            'Dim cadena As String = "INSERT INTO dbo.detalle_pago_escolar(codigo_familia, matricula, aranceles, materiales, 
+            '                        talleres, campamento, adicional, comedor, credito, fecha_de_pago, pago_cumplido) 
+            '                        VALUES(@codigo_familia, @matricula, @aranceles, @materiales, @talleres, @campamento, 
+            '                        @adicional, @comedor, @credito, @fecha_de_pago, @pago_cumplido)"
             comando = New SqlCommand(cadena, conexion)
 
             comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
@@ -275,7 +288,7 @@ Public Class Pagos
             comando.Parameters.AddWithValue("@materiales", Val(TxtMateriales.Text))
             comando.Parameters.AddWithValue("@talleres", Val(TxtTalleres.Text))
             comando.Parameters.AddWithValue("@campamento", Val(TxtCampamento.Text))
-            comando.Parameters.AddWithValue("@adicional_jardin", Val(TxtAdicionalJardin.Text))
+            comando.Parameters.AddWithValue("@adicional", Val(TxtAdicional.Text))
             comando.Parameters.AddWithValue("@comedor", Val(TxtComedor.Text))
             comando.Parameters.AddWithValue("@credito", credito)
             comando.Parameters.AddWithValue("@fecha_de_pago", DtpFechaDePago.Value)
@@ -325,7 +338,8 @@ Public Class Pagos
                         Dim diferencia As Decimal = total - disponible
 
                         'Luego de la devolución se resta dicho monto de lo ingresado en la tabla pagos_escolares
-                        Dim modificaPago As String = "UPDATE pagos_escolares SET efectivo = '" & diferencia & "' WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
+                        Dim modificaPago As String = "UPDATE pagos_escolares SET efectivo = '" & diferencia & "' 
+                                                      WHERE codigo_pago = '" & TxtCodigoPago.Text & "' "
                         Dim comando5 As New SqlCommand(modificaPago, conexion)
                         comando5.ExecuteNonQuery()
                         If comando5.ExecuteNonQuery() = 1 Then
@@ -345,7 +359,7 @@ Public Class Pagos
                 TxtMateriales.Clear()
                 TxtTalleres.Clear()
                 TxtCampamento.Clear()
-                TxtAdicionalJardin.Clear()
+                TxtAdicional.Clear()
                 TxtComedor.Clear()
 
                 TxtEfectivo.Clear()
@@ -392,12 +406,13 @@ Public Class Pagos
 
         While codigo <= maximoCodigo
 
-            Dim consulta As String = "SELECT alumnos.codigo_alumno, nombre_apellido_alumno, curso, matricula_alumno, cuota_alumno, campamento_alumno, talleres_alumno,
-                                      materiales_alumno, adicional_alumno,comedor_alumno
+            Dim consulta As String = "SELECT alumnos.codigo_alumno, nombre_apellido_alumno, curso, matricula_alumno, cuota_alumno, campamento_alumno, 
+                                      talleres_alumno, materiales_alumno, adicional_alumno,comedor_alumno
                                       FROM alumnos 
                                       JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso 
                                       JOIN vencimiento_detallado ON alumnos.codigo_alumno = vencimiento_detallado.codigo_alumno  
-                                      WHERE alumnos.codigo_familia = " & Val(CbxCodigo.Text) & "  AND fecha_vencimiento = '" & ultimoVencimiento & "' AND alumnos.estado = 'activo'"
+                                      WHERE alumnos.codigo_familia = " & Val(CbxCodigo.Text) & "  
+                                      AND fecha_vencimiento = '" & ultimoVencimiento & "' AND alumnos.estado = 'activo'"
 
             adaptador = New SqlDataAdapter(consulta, conexion)
             Dim dtDatos As DataTable = New DataTable
@@ -418,9 +433,9 @@ Public Class Pagos
 
                 Try
                     Dim pagoFamilia As String = "INSERT INTO pago_familia (codigo_familia, codigo_alumno, arancel, matricula, 
-                                                 materiales, taller, campamento, adicional_jardin, comedor, fecha ) 
+                                                 materiales, taller, campamento, adicional, comedor, fecha ) 
                                                  VALUES(@codigo_familia, @codigo_alumno, @arancel, @matricula, @materiales, 
-                                                 @taller, @campamento, @adicional_jardin, @comedor, @fecha)"
+                                                 @taller, @campamento, @adicional, @comedor, @fecha)"
                     Dim comando As New SqlCommand(pagoFamilia, conexion)
 
                     comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
@@ -430,7 +445,7 @@ Public Class Pagos
                     comando.Parameters.AddWithValue("@materiales", materiales)
                     comando.Parameters.AddWithValue("@taller", talleres)
                     comando.Parameters.AddWithValue("@campamento", campamento)
-                    comando.Parameters.AddWithValue("@adicional_jardin", adicional)
+                    comando.Parameters.AddWithValue("@adicional", adicional)
                     comando.Parameters.AddWithValue("@comedor", comedor)
                     comando.Parameters.AddWithValue("@fecha", DtpFechaDePago.Value)
 
@@ -514,8 +529,8 @@ Public Class Pagos
         TxtTalleres.Text = TxtTalleres.PlaceholderText
         talleres = TxtTalleres.Text
         TxtCampamento.Text = TxtCampamento.PlaceholderText
-        TxtAdicionalJardin.Text = TxtAdicionalJardin.PlaceholderText
-        adicionalJardin = TxtAdicionalJardin.Text
+        TxtAdicional.Text = TxtAdicional.PlaceholderText
+        adicional = TxtAdicional.Text
         TxtComedor.Text = TxtComedor.PlaceholderText
         comedor = TxtComedor.Text
         sinAsignar1 = TxtSinAsignar1.Text = TxtSinAsignar1.PlaceholderText
@@ -526,7 +541,7 @@ Public Class Pagos
         TxtMateriales.Enabled = False
         TxtTalleres.Enabled = False
         TxtCampamento.Enabled = False
-        TxtAdicionalJardin.Enabled = False
+        TxtAdicional.Enabled = False
         TxtComedor.Enabled = False
         TxtTotal.Enabled = False
         TxtSinAsignar1.Enabled = False
@@ -544,7 +559,7 @@ Public Class Pagos
 
     Sub Resta()
 
-        Dim total2 As Decimal = Val(TxtMatricula.Text) + Val(TxtArancel.Text) + Val(TxtMateriales.Text) + Val(TxtTalleres.Text) + Val(TxtCampamento.Text) + Val(TxtAdicionalJardin.Text) + Val(TxtComedor.Text)
+        Dim total2 As Decimal = Val(TxtMatricula.Text) + Val(TxtArancel.Text) + Val(TxtMateriales.Text) + Val(TxtTalleres.Text) + Val(TxtCampamento.Text) + Val(TxtAdicional.Text) + Val(TxtComedor.Text)
         total = Val(TxtTotal.Text)
         diferencia = total - total2
         CompruebaDisponible()
@@ -570,8 +585,8 @@ Public Class Pagos
             ElseIf TxtCampamento.Focused() Then
                 TxtCampamento.Clear()
                 Resta()
-            ElseIf TxtAdicionalJardin.Focused Then
-                TxtAdicionalJardin.Clear()
+            ElseIf TxtAdicional.Focused Then
+                TxtAdicional.Clear()
                 Resta()
             ElseIf TxtComedor.Focused Then
                 TxtComedor.Clear()
@@ -597,8 +612,8 @@ Public Class Pagos
                 ElseIf TxtCampamento.Focused() Then
                     TxtCampamento.Text = diferencia
                     Resta()
-                ElseIf TxtAdicionalJardin.Focused Then
-                    TxtAdicionalJardin.Text = diferencia
+                ElseIf TxtAdicional.Focused Then
+                    TxtAdicional.Text = diferencia
                     Resta()
                 ElseIf TxtComedor.Focused Then
                     TxtComedor.Text = diferencia
@@ -625,7 +640,7 @@ Public Class Pagos
         ultimoVencimiento = comandoFecha.ExecuteScalar
 
         If contador <> 0 Then
-            TotalMatricula = 0
+            totalMatricula = 0
             TotalCuota = 0
             TotalCampamento = 0
             TotalTalleres = 0
@@ -654,15 +669,15 @@ Public Class Pagos
                 DgvHijos.DataSource = dataSet.Tables(0).DefaultView
 
             Catch ex As Exception
-                MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
+                MsgBox("Error comprobando BD" & ex.ToString)
             End Try
 
             Dim colMatricula As Integer = 2
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
-                TotalMatricula += Val(row.Cells(colMatricula).Value)
+                totalMatricula += Val(row.Cells(colMatricula).Value)
             Next
-            TxtMatricula.PlaceholderText = TotalMatricula
-            matricula = TotalMatricula
+            TxtMatricula.PlaceholderText = totalMatricula
+            matricula = totalMatricula
 
             Dim col As Integer = 3
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
@@ -696,8 +711,8 @@ Public Class Pagos
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalAdicional += Val(row.Cells(colAdicional).Value)
             Next
-            TxtAdicionalJardin.PlaceholderText = TotalAdicional
-            adicionalJardin = TotalAdicional
+            TxtAdicional.PlaceholderText = TotalAdicional
+            adicional = TotalAdicional
 
             Dim colComedor As Integer = 8
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
@@ -771,7 +786,7 @@ Public Class Pagos
     Private Sub TxtOtros_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtTransferencia.KeyUp, TxtOtros.KeyUp, TxtMercadopago.KeyUp, TxtEfectivo.KeyUp, TxtDebito.KeyUp, TxtCheque.KeyUp
         Suma()
     End Sub
-    Private Sub TxtCampamento_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtTalleres.KeyUp, TxtMatricula.KeyUp, TxtMateriales.KeyUp, TxtComedor.KeyUp, TxtCampamento.KeyUp, TxtArancel.KeyUp, TxtAdicionalJardin.KeyUp
+    Private Sub TxtCampamento_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtTalleres.KeyUp, TxtMatricula.KeyUp, TxtMateriales.KeyUp, TxtComedor.KeyUp, TxtCampamento.KeyUp, TxtArancel.KeyUp, TxtAdicional.KeyUp
         Resta()
     End Sub
 
@@ -820,7 +835,7 @@ Public Class Pagos
 
     End Sub
 
-    Private Sub TxtAdicionalJardin_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtAdicionalJardin.KeyPress
+    Private Sub TxtAdicionalJardin_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtAdicional.KeyPress
         SoloNumeros(e)
     End Sub
 
@@ -850,7 +865,13 @@ Public Class Pagos
     End Sub
 
     Private Sub CalculoTotal()
-        Dim codigo As String = "SELECT MAX(codigo_detalle_pago) FROM detalle_pago_escolar WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "'"
+        Dim fechaCredito As Integer
+        Dim fechaActual As Date = Date.Today
+        fechaCredito = fechaActual.Month - 1
+
+        Dim codigo As String = "SELECT MAX(codigo_detalle_pago) 
+                                FROM detalle_pago_escolar 
+                                WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' AND month(fecha_de_pago) = '" & fechaCredito & "' "
         Dim comandoCodigo As New SqlCommand(codigo, conexion)
         Dim codigoDetalle = comandoCodigo.ExecuteScalar
 
@@ -930,8 +951,8 @@ Public Class Pagos
         End If
     End Sub
 
-    Private Sub TxtAdicionalJardin_Leave(sender As Object, e As EventArgs) Handles TxtAdicionalJardin.Leave
-        If Val(TxtAdicionalJardin.Text) > adicionalJardin Then
+    Private Sub TxtAdicionalJardin_Leave(sender As Object, e As EventArgs) Handles TxtAdicional.Leave
+        If Val(TxtAdicional.Text) > adicional Then
             MsgBox("El monto ingresado en Adicional jardín debe ser igual o menor al exibido")
         End If
     End Sub
@@ -958,4 +979,7 @@ Public Class Pagos
         Me.Close()
     End Sub
 
+    'Private Sub CbxCodigo_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigo.SelectedValueChanged
+    '    CalculoTotal()
+    'End Sub
 End Class

@@ -39,8 +39,6 @@ Public Class FrmEmisiónDeVencimientos
     Dim cantFam As Integer
     Dim maxcod As Integer
 
-
-
     Private Sub FrmEmisiónDeVencimientos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim ultimaFecha As Date
         conectar()
@@ -51,7 +49,7 @@ Public Class FrmEmisiónDeVencimientos
         Dim comando As New SqlCommand(fecha, conexion)
         ultimaFecha = comando.ExecuteScalar
 
-        'If (fechaActual.Month <> ultimaFecha.Month) Then
+        'If (fechaActual.Month = ultimaFecha.Month) Then
         '    BtnVencimientos.Enabled = False
         '    MsgBox("Los vencimientos del presente mes ya fueron realizados.")
         'End If
@@ -89,8 +87,6 @@ Public Class FrmEmisiónDeVencimientos
         Dim maximocod As String = "SELECT MAX(codigo_familia) FROM familias WHERE estado = 'activo' "
         Dim comando1 As New SqlCommand(maximocod, conexion)
         maxcod = comando1.ExecuteScalar
-        'MsgBox("Maximo código" & maxcod & "")
-        'MsgBox("Codigo de familia" & codFam & "")
 
         While codFam <= maxcod
             totalCuota = 0
@@ -103,7 +99,10 @@ Public Class FrmEmisiónDeVencimientos
             'LblPbuno.Text = "Vencimientos generados al: " & Math.Round(Pbuno.Value / 0.03, 2) & "%"
             'LblPbuno.Refresh()
 
-            Dim consulta As String = " SELECT alumnos.codigo_alumno, nombre_apellido_alumno, curso, arancel_importe, hermano_numero, valor_cuota, campamento.valor as campamento_importe, importe_taller, material.valor, importe as adicional_importe, comedor_importe  FROM alumnos 
+            Dim consulta As String = " SELECT alumnos.codigo_alumno, nombre_apellido_alumno, curso, arancel_importe, hermano_numero, valor_cuota, 
+                                       campamento.valor as campamento_importe, importe_taller, material.valor, importe as adicional_importe, 
+                                       comedor_importe  
+                                       FROM alumnos 
                                        JOIN cursos ON alumnos.codigo_curso = cursos.codigo_curso
 									   JOIN aranceles ON alumnos.codigo_arancel = aranceles.codigo_arancel
 									   JOIN cuotas ON alumnos.codigo_alumno = cuotas.codigo_alumno
@@ -142,9 +141,11 @@ Public Class FrmEmisiónDeVencimientos
                 comedor = Val(fila(10))
                 totalComedor += Val(fila(10))
                 CalculaCuota()
-                vencimentoAlumno = "INSERT INTO vencimiento_detallado (codigo_familia, codigo_alumno, cuota_alumno, materiales_alumno, talleres_alumno,
+                vencimentoAlumno = "INSERT INTO vencimiento_detallado (codigo_familia, codigo_alumno, cuota_alumno, 
+                                    materiales_alumno, talleres_alumno,
                                     campamento_alumno, adicional_alumno, comedor_alumno, fecha_vencimiento) 
-                                    VALUES(@codigo_familia, @codigo_alumno, @cuota_alumno, @materiales_alumno, @talleres_alumno, @campamento_alumno, 
+                                    VALUES(@codigo_familia, @codigo_alumno, @cuota_alumno, @materiales_alumno, @talleres_alumno, 
+                                    @campamento_alumno, 
                                     @adicional_alumno, @comedor_alumno, @fecha_vencimiento) "
                 comandoVencimientoAlumnos = New SqlCommand(vencimentoAlumno, conexion)
 
@@ -154,7 +155,7 @@ Public Class FrmEmisiónDeVencimientos
                 comandoVencimientoAlumnos.Parameters.AddWithValue("@materiales_alumno", materiales)
                 comandoVencimientoAlumnos.Parameters.AddWithValue("@talleres_alumno", taller)
                 comandoVencimientoAlumnos.Parameters.AddWithValue("@Campamento_alumno", campamento)
-                comandoVencimientoAlumnos.Parameters.AddWithValue("@Adicional_alumno", materiales)
+                comandoVencimientoAlumnos.Parameters.AddWithValue("@Adicional_alumno", adicional)
                 comandoVencimientoAlumnos.Parameters.AddWithValue("@Comedor_alumno", comedor)
                 comandoVencimientoAlumnos.Parameters.AddWithValue("@fecha_vencimiento", fechaActual)
 
@@ -179,9 +180,10 @@ Public Class FrmEmisiónDeVencimientos
             Next
 
             If hermanoNumero <> 0 Then
-                Dim vencimiento As String = "INSERT INTO detalle_vencimientos_escolares(codigo_familia, aranceles_v, materiales_v, talleres_v, 
-                                             campamento_v, adicional_jardin_v, comedor_v, fecha_vencimiento) VALUES(@codFam, @totalCuota, 
-                                             @totalMateriales, @totalTaller, @totalCampamento, @totalAdicional, @totalComedor, @fechaVencimiento)"
+                Dim vencimiento As String = "INSERT INTO detalle_vencimientos_escolares(codigo_familia, aranceles_v, materiales_v, 
+                                             talleres_v, campamento_v, adicional_v, comedor_v, fecha_vencimiento) 
+                                             VALUES(@codFam, @totalCuota, @totalMateriales, @totalTaller, @totalCampamento, 
+                                             @totalAdicional, @totalComedor, @fechaVencimiento)"
 
                 comando2 = New SqlCommand(vencimiento, conexion)
 
@@ -190,7 +192,7 @@ Public Class FrmEmisiónDeVencimientos
                 comando2.Parameters.AddWithValue("@totalMateriales", totalMateriales)
                 comando2.Parameters.AddWithValue("@totalTaller", totalTaller)
                 comando2.Parameters.AddWithValue("@totalCampamento", totalCampamento)
-                comando2.Parameters.AddWithValue("@totalAdicional", totalMateriales)
+                comando2.Parameters.AddWithValue("@totalAdicional", totalAdicional)
                 comando2.Parameters.AddWithValue("@totalComedor", totalComedor)
                 comando2.Parameters.AddWithValue("@fechaVencimiento", fechaActual)
 
@@ -241,7 +243,9 @@ Public Class FrmEmisiónDeVencimientos
         If rows.Length > 0 Then
             'MessageBox.Show("Existe la tabla.")
         Else
-            Dim tallerTemp As String = "SELECT codigo_alumno, SUM(importe_taller) as importe_taller INTO taller_temporal FROM taller_alumno  GROUP BY codigo_alumno"
+            Dim tallerTemp As String = "SELECT codigo_alumno, SUM(importe_taller) as importe_taller 
+                                        INTO taller_temporal FROM taller_alumno  
+                                        GROUP BY codigo_alumno"
             Dim comandoTaller As New SqlCommand(tallerTemp, conexion)
             comandoTaller.ExecuteNonQuery()
 
@@ -256,7 +260,9 @@ Public Class FrmEmisiónDeVencimientos
         Dim codigo
 
 
-        Dim maxCod As String = "SELECT MAX(codigo_detalle_pago) as codigo FROM detalle_pago_escolar WHERE codigo_familia = '" & codFam & "' "
+        Dim maxCod As String = "SELECT MAX(codigo_detalle_pago) as codigo 
+                                FROM detalle_pago_escolar 
+                                WHERE codigo_familia = '" & codFam & "' "
         adaptador = New SqlDataAdapter(maxCod, conexion)
         Dim comandoMaxCod As New SqlCommand(maxCod, conexion)
 
@@ -269,7 +275,9 @@ Public Class FrmEmisiónDeVencimientos
 
         Else
             Try
-                Dim consultaCredito As String = "SELECT  credito FROM detalle_pago_escolar WHERE codigo_detalle_pago = '" & codigo & "' "
+                Dim consultaCredito As String = "SELECT  credito 
+                                                 FROM detalle_pago_escolar 
+                                                 WHERE codigo_detalle_pago = '" & codigo & "' "
                 Dim comando As New SqlCommand(consultaCredito, conexion)
                 credito = comando.ExecuteScalar
 
@@ -277,14 +285,18 @@ Public Class FrmEmisiónDeVencimientos
                 MsgBox("Error comprobando BD" & ex.ToString)        'Si hay fayos se presentan detalles del mismo
             End Try
 
-            Dim buscaCodigo As String = "SELECT MAX(codigo_pago_v) from detalle_vencimientos_escolares WHERE codigo_familia = '" & codFam & "' "
+            Dim buscaCodigo As String = "SELECT MAX(codigo_pago_v) 
+                                         FROM detalle_vencimientos_escolares 
+                                         WHERE codigo_familia = '" & codFam & "' "
             Dim comandoBuscaCodigo As New SqlCommand(buscaCodigo, conexion)
             codigo = comandoBuscaCodigo.ExecuteScalar
             If comandoBuscaCodigo.ExecuteNonQuery = 0 Then
                 MsgBox("Error buscando codigo")
             End If
 
-            Dim actualizaCredito As String = "UPDATE detalle_vencimientos_escolares SET credito_v = " & credito & " WHERE codigo_familia = " & codFam & " AND codigo_pago_v = " & codigo & ""
+            Dim actualizaCredito As String = "UPDATE detalle_vencimientos_escolares 
+                                              SET credito_v = " & credito & " 
+                                              WHERE codigo_familia = " & codFam & " AND codigo_pago_v = " & codigo & ""
             Dim comandoActualizaCredito As New SqlCommand(actualizaCredito, conexion)
             If comandoActualizaCredito.ExecuteNonQuery = 0 Then
                 MsgBox("Error actualizando crédito")
@@ -381,7 +393,9 @@ Public Class FrmEmisiónDeVencimientos
 
             If dtDatos.Rows.Count > 0 Then
 
-                Dim pagoNulo As String = "INSERT INTO detalle_pago_escolar (codigo_familia, aranceles, materiales, talleres, campamento, adicional_jardin, comedor, fecha_de_pago, pago_cumplido) VALUES(@codFam, @totalCuota, @totalMateriales, @totalTaller, @totalCampamento, @totalAdicional, @totalComedor, @fechaDePago, @pago_cumplido)"
+                Dim pagoNulo As String = "INSERT INTO detalle_pago_escolar (codigo_familia, aranceles, materiales, talleres, campamento, 
+                                          adicional, comedor, fecha_de_pago, pago_cumplido) VALUES(@codFam, @totalCuota, @totalMateriales, 
+                                          @totalTaller, @totalCampamento, @totalAdicional, @totalComedor, @fechaDePago, @pago_cumplido)"
                 Dim comandoPagoNulo As New SqlCommand(pagoNulo, conexion)
 
                 comandoPagoNulo.Parameters.AddWithValue("@codFam", codigo)
