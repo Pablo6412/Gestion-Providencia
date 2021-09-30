@@ -99,13 +99,14 @@ Public Class FrmPagoAdelantado
     End Sub
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-        Dim guardaAdelanto As String = "INSERT INTO pago_adelantado(codigo_familia, cantidad_cuotas, monto) 
-                                        VALUES(@codigo_familia, @cantidad_cuotas, @monto) "
+        Dim guardaAdelanto As String = "INSERT INTO pago_adelantado(codigo_familia, cantidad_cuotas, monto, cuotas_restantes ) 
+                                        VALUES(@codigo_familia, @cantidad_cuotas, @monto, @cuotas_restantes) "
         Dim comandoAdelanto As New SqlCommand(guardaAdelanto, conexion)
 
         comandoAdelanto.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
         comandoAdelanto.Parameters.AddWithValue("@cantidad_cuotas", Val(CbxCuotas.Text))
         comandoAdelanto.Parameters.AddWithValue("@monto", Val(TxtTotal.Text))
+        comandoAdelanto.Parameters.AddWithValue("@cuotas_restantes", Val(CbxCuotas.Text))
 
         If comandoAdelanto.ExecuteNonQuery() = 1 Then
             MsgBox("Datos guardados")

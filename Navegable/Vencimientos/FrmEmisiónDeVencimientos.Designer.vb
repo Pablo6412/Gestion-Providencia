@@ -30,6 +30,7 @@ Partial Class FrmEmisiónDeVencimientos
         Me.Pbdos = New System.Windows.Forms.ProgressBar()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.LblPbuno = New System.Windows.Forms.Label()
+        Me.LblPbdos = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -85,6 +86,7 @@ Partial Class FrmEmisiónDeVencimientos
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox1.Controls.Add(Me.LblPbdos)
         Me.GroupBox1.Controls.Add(Me.LblPbuno)
         Me.GroupBox1.Controls.Add(Me.BtnVencimientos)
         Me.GroupBox1.Controls.Add(Me.Pbdos)
@@ -102,6 +104,14 @@ Partial Class FrmEmisiónDeVencimientos
         Me.LblPbuno.Name = "LblPbuno"
         Me.LblPbuno.Size = New System.Drawing.Size(365, 18)
         Me.LblPbuno.TabIndex = 5
+        '
+        'LblPbdos
+        '
+        Me.LblPbdos.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.LblPbdos.Location = New System.Drawing.Point(291, 141)
+        Me.LblPbdos.Name = "LblPbdos"
+        Me.LblPbdos.Size = New System.Drawing.Size(365, 18)
+        Me.LblPbdos.TabIndex = 6
         '
         'FrmEmisiónDeVencimientos
         '
@@ -128,4 +138,5 @@ Partial Class FrmEmisiónDeVencimientos
     Friend WithEvents Pbdos As ProgressBar
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents LblPbuno As Label
+    Friend WithEvents LblPbdos As Label
 End Class
