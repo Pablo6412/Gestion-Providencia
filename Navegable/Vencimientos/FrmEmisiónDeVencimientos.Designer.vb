@@ -29,8 +29,8 @@ Partial Class FrmEmisiónDeVencimientos
         Me.Pbuno = New System.Windows.Forms.ProgressBar()
         Me.Pbdos = New System.Windows.Forms.ProgressBar()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.LblPbuno = New System.Windows.Forms.Label()
         Me.LblPbdos = New System.Windows.Forms.Label()
+        Me.LblPbuno = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -81,6 +81,7 @@ Partial Class FrmEmisiónDeVencimientos
         Me.Pbdos.Location = New System.Drawing.Point(291, 115)
         Me.Pbdos.Name = "Pbdos"
         Me.Pbdos.Size = New System.Drawing.Size(365, 23)
+        Me.Pbdos.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.Pbdos.TabIndex = 4
         '
         'GroupBox1
@@ -97,14 +98,6 @@ Partial Class FrmEmisiónDeVencimientos
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
         '
-        'LblPbuno
-        '
-        Me.LblPbuno.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.LblPbuno.Location = New System.Drawing.Point(291, 60)
-        Me.LblPbuno.Name = "LblPbuno"
-        Me.LblPbuno.Size = New System.Drawing.Size(365, 18)
-        Me.LblPbuno.TabIndex = 5
-        '
         'LblPbdos
         '
         Me.LblPbdos.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
@@ -112,6 +105,14 @@ Partial Class FrmEmisiónDeVencimientos
         Me.LblPbdos.Name = "LblPbdos"
         Me.LblPbdos.Size = New System.Drawing.Size(365, 18)
         Me.LblPbdos.TabIndex = 6
+        '
+        'LblPbuno
+        '
+        Me.LblPbuno.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.LblPbuno.Location = New System.Drawing.Point(291, 60)
+        Me.LblPbuno.Name = "LblPbuno"
+        Me.LblPbuno.Size = New System.Drawing.Size(365, 18)
+        Me.LblPbuno.TabIndex = 5
         '
         'FrmEmisiónDeVencimientos
         '

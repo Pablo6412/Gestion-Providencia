@@ -72,6 +72,7 @@ Public Class Pagos
     Dim contador As Integer = 0
     Dim totalMatricula As Decimal
     Dim TotalCuota As Decimal
+
     Dim TotalCampamento As Decimal
     'Dim CuotaCampamento As Decimal
     Dim TotalTalleres As Decimal
@@ -522,6 +523,7 @@ Public Class Pagos
         'Dim comando3 As New SqlCommand(maximo, conexion)
         'TxtCodigoPago.Text = comando3.ExecuteScalar
         matricula = TxtMatricula.Text = TxtMatricula.PlaceholderText
+       
         TxtArancel.Text = TxtArancel.PlaceholderText
         arancel = TxtArancel.Text
         TxtMateriales.Text = TxtMateriales.PlaceholderText
@@ -626,6 +628,7 @@ Public Class Pagos
     End Sub
 
     Sub DataGrid()
+
         Dim mes As Integer
         Dim parImpar As Integer
         Dim ultimoVencimiento As Date
@@ -840,7 +843,9 @@ Public Class Pagos
     End Sub
 
     Private Sub TxtComedor_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtComedor.KeyPress
+
         SoloNumeros(e)
+
     End Sub
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
@@ -978,6 +983,8 @@ Public Class Pagos
     Private Sub BtnCerrarDeuda_Click(sender As Object, e As EventArgs) Handles BtnCerrarDeuda.Click
         Me.Close()
     End Sub
+
+
 
     'Private Sub CbxCodigo_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigo.SelectedValueChanged
     '    CalculoTotal()

@@ -109,7 +109,15 @@ Public Class FrmPagoAdelantado
         comandoAdelanto.Parameters.AddWithValue("@cuotas_restantes", Val(CbxCuotas.Text))
 
         If comandoAdelanto.ExecuteNonQuery() = 1 Then
-            MsgBox("Datos guardados")
+
+            Dim si As String = "UPDATE familias SET pago_adelantado = 'si' WHERE codigo_familia = " & Val(CbxCodigo.Text) & " "
+            Dim comandoSi As New SqlCommand(si, conexion)
+            If comandoSi.ExecuteNonQuery() = 1 Then
+                MsgBox("Datos guardados")
+
+            Else
+                MsgBox("Error guardando los datos")
+            End If
         Else
             MsgBox("Error guardando los datos")
         End If

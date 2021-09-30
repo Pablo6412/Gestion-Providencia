@@ -93,6 +93,7 @@ Partial Class Pagos
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Label19 = New System.Windows.Forms.Label()
+
         Me.TxtTotalAPagar = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.TxtCredDisp = New System.Windows.Forms.TextBox()
@@ -416,6 +417,7 @@ Partial Class Pagos
         Me.TxtCredito.Name = "TxtCredito"
         Me.TxtCredito.Size = New System.Drawing.Size(148, 33)
         Me.TxtCredito.TabIndex = 28
+
         '
         'Label26
         '
@@ -1393,6 +1395,7 @@ Partial Class Pagos
         '
         'TxtArancel
         '
+
         Me.TxtArancel.BackColor = System.Drawing.Color.White
         Me.TxtArancel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtArancel.Location = New System.Drawing.Point(109, 61)

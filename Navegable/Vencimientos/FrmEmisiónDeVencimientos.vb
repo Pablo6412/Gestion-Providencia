@@ -141,14 +141,22 @@ Public Class FrmEmisiónDeVencimientos
                 Dim dataSet As DataSet = New DataSet()
                 adaptador.Fill(dataSet)
                 Dim m As Integer = 1
+                Pbdos.Value = 0
+
                 For Each fila As DataRow In dataSet.Tables(0).Rows()
-                    Pbdos.Increment(m)
+
+
+
                     Dim numHijos As String = "SELECT COUNT(codigo_alumno)  
                                               FROM alumnos 
                                               WHERE codigo_familia = " & codFam & " AND estado = 'activo' "
                     Dim comandoNum As New SqlCommand(numHijos, conexion)
                     Dim cantidad As Integer = comandoNum.ExecuteScalar
 
+                    Pbdos.Minimum = 0
+                    Pbdos.Maximum = cantidad
+
+                    Pbdos.Increment(m)
                     Dim porcentajeAl As Double = (Pbdos.Value / cantidad) * 100
                     LblPbdos.Text = "Vencimientos generados al: " & porcentajeAl & "%"
                     LblPbdos.Refresh()
@@ -403,16 +411,26 @@ Public Class FrmEmisiónDeVencimientos
 
         'Dim comandoCuotas As New SqlCommand(cuotasAdelanto, conexion)
         'cantCuotas = comandoCuotas.ExecuteScalar()
-        cantCuotas = DatosCuotas.Rows(0)("cuotas_restantes")
-        codigoAdelanto = DatosCuotas.Rows(0)("codigo")
-        cantCuotas -= 1
+        If DatosCuotas.Rows.Count > 0 Then
+            cantCuotas = DatosCuotas.Rows(0)("cuotas_restantes")
+            codigoAdelanto = DatosCuotas.Rows(0)("codigo")
+            cantCuotas -= 1
 
-        Dim restaAdelanto As String = "UPDATE pago_adelantado 
+            Dim restaAdelanto As String = "UPDATE pago_adelantado 
                                        SET cuotas_restantes = " & cantCuotas & " 
                                        WHERE codigo_pago_adelantado = " & codigoAdelanto & ""
-        Dim comandoResta As New SqlCommand(restaAdelanto, conexion)
-        comandoResta.ExecuteNonQuery()
+            Dim comandoResta As New SqlCommand(restaAdelanto, conexion)
+            comandoResta.ExecuteNonQuery()
+        Else
+            Dim no As String = "UPDATE familias SET pago_adelantado = 'no' WHERE codigo_familia = " & codFam & " "
+            Dim comandoNo As New SqlCommand(no, conexion)
+            If comandoNo.ExecuteNonQuery() = 1 Then
+                'MsgBox("Datos guardados")
 
+            Else
+                MsgBox("Error guardando los datos")
+            End If
+        End If
     End Sub
 
 
