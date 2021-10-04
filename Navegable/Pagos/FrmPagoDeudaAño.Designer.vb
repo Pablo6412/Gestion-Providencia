@@ -23,18 +23,11 @@ Partial Class FrmPagoDeudaAño
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPagoDeudaAño))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.ClbMeses = New System.Windows.Forms.CheckedListBox()
         Me.BtnPago = New System.Windows.Forms.Button()
         Me.TxtTotal = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.DgvCampamento = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.mes = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DtpFechaPago = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CbxFamilia = New System.Windows.Forms.ComboBox()
@@ -42,36 +35,36 @@ Partial Class FrmPagoDeudaAño
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.BtnSalir = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
-        CType(Me.DgvCampamento, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox2
         '
-        Me.GroupBox2.BackgroundImage = CType(resources.GetObject("GroupBox2.BackgroundImage"), System.Drawing.Image)
+        Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.GroupBox2.Controls.Add(Me.CheckedListBox1)
+        Me.GroupBox2.Controls.Add(Me.ClbMeses)
         Me.GroupBox2.Controls.Add(Me.BtnPago)
         Me.GroupBox2.Controls.Add(Me.TxtTotal)
         Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.DgvCampamento)
         Me.GroupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.GroupBox2.Location = New System.Drawing.Point(-10, 213)
+        Me.GroupBox2.Location = New System.Drawing.Point(129, 191)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(742, 220)
+        Me.GroupBox2.Size = New System.Drawing.Size(712, 374)
         Me.GroupBox2.TabIndex = 33
         Me.GroupBox2.TabStop = False
         '
-        'CheckedListBox1
+        'ClbMeses
         '
-        Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Items.AddRange(New Object() {"" & Global.Microsoft.VisualBasic.ChrW(9) & "     ENERO", "" & Global.Microsoft.VisualBasic.ChrW(9) & "     FEBRERO", "" & Global.Microsoft.VisualBasic.ChrW(9) & "     MARZO"})
-        Me.CheckedListBox1.Location = New System.Drawing.Point(158, 56)
-        Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(253, 114)
-        Me.CheckedListBox1.TabIndex = 4
+        Me.ClbMeses.CheckOnClick = True
+        Me.ClbMeses.FormattingEnabled = True
+        Me.ClbMeses.Location = New System.Drawing.Point(46, 34)
+        Me.ClbMeses.Name = "ClbMeses"
+        Me.ClbMeses.Size = New System.Drawing.Size(128, 290)
+        Me.ClbMeses.TabIndex = 4
         '
         'BtnPago
         '
@@ -102,60 +95,10 @@ Partial Class FrmPagoDeudaAño
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Total:  $"
         '
-        'DgvCampamento
-        '
-        Me.DgvCampamento.AllowUserToDeleteRows = False
-        Me.DgvCampamento.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.DgvCampamento.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.DgvCampamento.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
-        Me.DgvCampamento.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ActiveCaption
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DgvCampamento.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
-        Me.DgvCampamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvCampamento.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.mes})
-        Me.DgvCampamento.EnableHeadersVisualStyles = False
-        Me.DgvCampamento.Location = New System.Drawing.Point(119, 32)
-        Me.DgvCampamento.Name = "DgvCampamento"
-        Me.DgvCampamento.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DgvCampamento.RowHeadersDefaultCellStyle = DataGridViewCellStyle7
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.DgvCampamento.RowsDefaultCellStyle = DataGridViewCellStyle8
-        Me.DgvCampamento.RowTemplate.Height = 25
-        Me.DgvCampamento.Size = New System.Drawing.Size(292, 150)
-        Me.DgvCampamento.TabIndex = 0
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "SELECCION"
-        Me.Column1.Name = "Column1"
-        '
-        'mes
-        '
-        Me.mes.DataPropertyName = "fecha"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.mes.DefaultCellStyle = DataGridViewCellStyle6
-        Me.mes.HeaderText = "MES"
-        Me.mes.Name = "mes"
-        Me.mes.Width = 150
-        '
         'DtpFechaPago
         '
         Me.DtpFechaPago.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaPago.Location = New System.Drawing.Point(374, 32)
+        Me.DtpFechaPago.Location = New System.Drawing.Point(819, 12)
         Me.DtpFechaPago.Name = "DtpFechaPago"
         Me.DtpFechaPago.Size = New System.Drawing.Size(128, 23)
         Me.DtpFechaPago.TabIndex = 31
@@ -168,7 +111,7 @@ Partial Class FrmPagoDeudaAño
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.GroupBox1.Location = New System.Drawing.Point(-10, 61)
+        Me.GroupBox1.Location = New System.Drawing.Point(90, 56)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(821, 110)
         Me.GroupBox1.TabIndex = 30
@@ -226,21 +169,44 @@ Partial Class FrmPagoDeudaAño
         Me.Label16.TabIndex = 32
         Me.Label16.Text = "Año de pago:"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(0, 0)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 34
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'BtnSalir
+        '
+        Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnSalir.Location = New System.Drawing.Point(878, 524)
+        Me.BtnSalir.Name = "BtnSalir"
+        Me.BtnSalir.Size = New System.Drawing.Size(84, 41)
+        Me.BtnSalir.TabIndex = 35
+        Me.BtnSalir.Text = "Salir"
+        Me.BtnSalir.UseVisualStyleBackColor = True
+        '
         'FrmPagoDeudaAño
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(884, 611)
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ClientSize = New System.Drawing.Size(974, 611)
+        Me.Controls.Add(Me.BtnSalir)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.DtpFechaPago)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label16)
+        Me.MaximizeBox = False
         Me.Name = "FrmPagoDeudaAño"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FrmPagoDeudaAño"
+        Me.Text = "Pago de deuda del año en curso"
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.DgvCampamento, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -252,7 +218,6 @@ Partial Class FrmPagoDeudaAño
     Friend WithEvents BtnPago As Button
     Friend WithEvents TxtTotal As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents DgvCampamento As DataGridView
     Friend WithEvents DtpFechaPago As DateTimePicker
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents CbxFamilia As ComboBox
@@ -260,7 +225,7 @@ Partial Class FrmPagoDeudaAño
     Friend WithEvents Label1 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label16 As Label
-    Friend WithEvents CheckedListBox1 As CheckedListBox
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents mes As DataGridViewTextBoxColumn
+    Friend WithEvents ClbMeses As CheckedListBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents BtnSalir As Button
 End Class
