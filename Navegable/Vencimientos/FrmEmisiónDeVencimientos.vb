@@ -620,6 +620,7 @@ Public Class FrmEmisiónDeVencimientos
             codigo += 1
         End While
         MessageBox.Show("Datos guardados satisfactoriamente")
+        BtnVencimientos.Enabled = False
     End Sub
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
