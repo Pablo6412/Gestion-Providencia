@@ -22,6 +22,7 @@ Partial Class FrmEmisiónDeVencimientos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmEmisiónDeVencimientos))
         Me.BtnVencimientos = New System.Windows.Forms.Button()
         Me.BtnSalir = New System.Windows.Forms.Button()
@@ -31,6 +32,7 @@ Partial Class FrmEmisiónDeVencimientos
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.LblPbdos = New System.Windows.Forms.Label()
         Me.LblPbuno = New System.Windows.Forms.Label()
+        Me.TimerHijos = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -114,6 +116,10 @@ Partial Class FrmEmisiónDeVencimientos
         Me.LblPbuno.Size = New System.Drawing.Size(365, 18)
         Me.LblPbuno.TabIndex = 5
         '
+        'TimerHijos
+        '
+        Me.TimerHijos.Interval = 1
+        '
         'FrmEmisiónDeVencimientos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -140,4 +146,5 @@ Partial Class FrmEmisiónDeVencimientos
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents LblPbuno As Label
     Friend WithEvents LblPbdos As Label
+    Friend WithEvents TimerHijos As Timer
 End Class

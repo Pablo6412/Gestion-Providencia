@@ -36,12 +36,18 @@ Partial Class FrmPagoAdelantado
         Me.DtpFechaPago = New System.Windows.Forms.DateTimePicker()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.TxtTotal = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.CkbCampamento = New System.Windows.Forms.CheckBox()
+        Me.CkbCuota = New System.Windows.Forms.CheckBox()
+        Me.TxtCampamento = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.BtnGuardar = New System.Windows.Forms.Button()
+        Me.TxtMontolAdelanto = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.CbxCuotas = New System.Windows.Forms.ComboBox()
-        Me.TxtCuotaMensual = New System.Windows.Forms.TextBox()
+        Me.TxtCuota = New System.Windows.Forms.TextBox()
         Me.BtnSalir = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,7 +172,7 @@ Partial Class FrmPagoAdelantado
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(65, 114)
+        Me.Label2.Location = New System.Drawing.Point(65, 48)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(134, 21)
         Me.Label2.TabIndex = 31
@@ -175,44 +181,100 @@ Partial Class FrmPagoAdelantado
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox2.Controls.Add(Me.BtnGuardar)
         Me.GroupBox2.Controls.Add(Me.TxtTotal)
+        Me.GroupBox2.Controls.Add(Me.Label8)
+        Me.GroupBox2.Controls.Add(Me.CkbCampamento)
+        Me.GroupBox2.Controls.Add(Me.CkbCuota)
+        Me.GroupBox2.Controls.Add(Me.TxtCampamento)
+        Me.GroupBox2.Controls.Add(Me.Label7)
+        Me.GroupBox2.Controls.Add(Me.BtnGuardar)
+        Me.GroupBox2.Controls.Add(Me.TxtMontolAdelanto)
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Controls.Add(Me.CbxCuotas)
-        Me.GroupBox2.Controls.Add(Me.TxtCuotaMensual)
+        Me.GroupBox2.Controls.Add(Me.TxtCuota)
         Me.GroupBox2.Controls.Add(Me.Label2)
         Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.GroupBox2.Location = New System.Drawing.Point(52, 273)
+        Me.GroupBox2.Location = New System.Drawing.Point(52, 257)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(821, 250)
+        Me.GroupBox2.Size = New System.Drawing.Size(821, 266)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Adelantos"
+        '
+        'TxtTotal
+        '
+        Me.TxtTotal.Location = New System.Drawing.Point(198, 176)
+        Me.TxtTotal.Name = "TxtTotal"
+        Me.TxtTotal.Size = New System.Drawing.Size(115, 29)
+        Me.TxtTotal.TabIndex = 46
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(135, 180)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(62, 21)
+        Me.Label8.TabIndex = 45
+        Me.Label8.Text = "Total:  $"
+        '
+        'CkbCampamento
+        '
+        Me.CkbCampamento.AutoSize = True
+        Me.CkbCampamento.Location = New System.Drawing.Point(328, 89)
+        Me.CkbCampamento.Name = "CkbCampamento"
+        Me.CkbCampamento.Size = New System.Drawing.Size(15, 14)
+        Me.CkbCampamento.TabIndex = 44
+        Me.CkbCampamento.UseVisualStyleBackColor = True
+        '
+        'CkbCuota
+        '
+        Me.CkbCuota.AutoSize = True
+        Me.CkbCuota.Location = New System.Drawing.Point(328, 55)
+        Me.CkbCuota.Name = "CkbCuota"
+        Me.CkbCuota.Size = New System.Drawing.Size(15, 14)
+        Me.CkbCuota.TabIndex = 43
+        Me.CkbCuota.UseVisualStyleBackColor = True
+        '
+        'TxtCampamento
+        '
+        Me.TxtCampamento.Location = New System.Drawing.Point(200, 79)
+        Me.TxtCampamento.Name = "TxtCampamento"
+        Me.TxtCampamento.Size = New System.Drawing.Size(102, 29)
+        Me.TxtCampamento.TabIndex = 41
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(77, 82)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(124, 21)
+        Me.Label7.TabIndex = 40
+        Me.Label7.Text = "Campamento:  $"
         '
         'BtnGuardar
         '
         Me.BtnGuardar.BackColor = System.Drawing.Color.White
         Me.BtnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Highlight
         Me.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnGuardar.Location = New System.Drawing.Point(539, 177)
+        Me.BtnGuardar.Location = New System.Drawing.Point(708, 218)
         Me.BtnGuardar.Name = "BtnGuardar"
         Me.BtnGuardar.Size = New System.Drawing.Size(85, 32)
         Me.BtnGuardar.TabIndex = 37
         Me.BtnGuardar.Text = "Guardar"
         Me.BtnGuardar.UseVisualStyleBackColor = False
         '
-        'TxtTotal
+        'TxtMontolAdelanto
         '
-        Me.TxtTotal.Location = New System.Drawing.Point(204, 177)
-        Me.TxtTotal.Name = "TxtTotal"
-        Me.TxtTotal.Size = New System.Drawing.Size(115, 29)
-        Me.TxtTotal.TabIndex = 36
+        Me.TxtMontolAdelanto.Location = New System.Drawing.Point(619, 113)
+        Me.TxtMontolAdelanto.Name = "TxtMontolAdelanto"
+        Me.TxtMontolAdelanto.Size = New System.Drawing.Size(115, 29)
+        Me.TxtMontolAdelanto.TabIndex = 36
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(55, 183)
+        Me.Label4.Location = New System.Drawing.Point(470, 119)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(143, 21)
         Me.Label4.TabIndex = 35
@@ -223,9 +285,9 @@ Partial Class FrmPagoAdelantado
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(454, 49)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(226, 21)
+        Me.Label3.Size = New System.Drawing.Size(225, 21)
         Me.Label3.TabIndex = 34
-        Me.Label3.Text = "Cantidad de cuotas a adelantar:"
+        Me.Label3.Text = "Cantidad de meses a adelantar:"
         '
         'CbxCuotas
         '
@@ -237,12 +299,12 @@ Partial Class FrmPagoAdelantado
         Me.CbxCuotas.Size = New System.Drawing.Size(43, 28)
         Me.CbxCuotas.TabIndex = 33
         '
-        'TxtCuotaMensual
+        'TxtCuota
         '
-        Me.TxtCuotaMensual.Location = New System.Drawing.Point(204, 111)
-        Me.TxtCuotaMensual.Name = "TxtCuotaMensual"
-        Me.TxtCuotaMensual.Size = New System.Drawing.Size(115, 29)
-        Me.TxtCuotaMensual.TabIndex = 32
+        Me.TxtCuota.Location = New System.Drawing.Point(201, 45)
+        Me.TxtCuota.Name = "TxtCuota"
+        Me.TxtCuota.Size = New System.Drawing.Size(101, 29)
+        Me.TxtCuota.TabIndex = 32
         '
         'BtnSalir
         '
@@ -273,7 +335,7 @@ Partial Class FrmPagoAdelantado
         Me.MaximizeBox = False
         Me.Name = "FrmPagoAdelantado"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Pagos adelantados"
+        Me.Text = "Pagos adelantados con cuota congelada"
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -300,10 +362,16 @@ Partial Class FrmPagoAdelantado
     Friend WithEvents Label2 As Label
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents BtnGuardar As Button
-    Friend WithEvents TxtTotal As TextBox
+    Friend WithEvents TxtMontolAdelanto As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents CbxCuotas As ComboBox
-    Friend WithEvents TxtCuotaMensual As TextBox
+    Friend WithEvents TxtCuota As TextBox
     Friend WithEvents BtnSalir As Button
+    Friend WithEvents TxtTotal As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents CkbCampamento As CheckBox
+    Friend WithEvents CkbCuota As CheckBox
+    Friend WithEvents TxtCampamento As TextBox
+    Friend WithEvents Label7 As Label
 End Class

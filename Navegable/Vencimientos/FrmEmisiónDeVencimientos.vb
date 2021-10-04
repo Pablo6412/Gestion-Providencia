@@ -151,14 +151,17 @@ Public Class FrmEmisiónDeVencimientos
                                               FROM alumnos 
                                               WHERE codigo_familia = " & codFam & " AND estado = 'activo' "
                     Dim comandoNum As New SqlCommand(numHijos, conexion)
+
+                    'cantidad = comandoNum.ExecuteScalar
                     Dim cantidad As Integer = comandoNum.ExecuteScalar
 
                     Pbdos.Minimum = 0
                     Pbdos.Maximum = cantidad
-
+                    TimerHijos.Interval = 1
+                    TimerHijos.Enabled = True
                     Pbdos.Increment(m)
                     Dim porcentajeAl As Double = (Pbdos.Value / cantidad) * 100
-                    LblPbdos.Text = "Vencimientos generados al: " & porcentajeAl & "%"
+                    LblPbdos.Text = "Progreso parcial: " & porcentajeAl & "%"
                     LblPbdos.Refresh()
 
                     codigoAlumno = Val(fila(0))
@@ -258,7 +261,7 @@ Public Class FrmEmisiónDeVencimientos
             'Pbuno.Value = codFam - 1
 
         End While
-
+        LblPbdos.Hide()
         Dim tablaExiste() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
         Dim datat As DataTable = conexion.GetSchema("TABLES", restrictionValues)
         Dim rowss() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
@@ -622,4 +625,20 @@ Public Class FrmEmisiónDeVencimientos
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()
     End Sub
+
+    'Private Sub TimerHijos_Tick(sender As Object, e As EventArgs) Handles TimerHijos.Tick
+    '    If Pbdos.Value < 100 Then
+
+    '        Dim porcentajeAl As Double = (Pbdos.Value / cantidad) * 100
+    '        LblPbdos.Text = "Vencimientos generados al: " & porcentajeAl & "%"
+    '        LblPbdos.Refresh()
+    '        'contadorTimer = contadorTimer + 5
+    '        Pbdos.Value = Pbdos.Value + 0.01
+    '        'LblTimer.Text = "Cargando sistema al " & ProgressBar1.Value & "%"
+    '    Else
+    '        TimerHijos.Enabled = False
+    '        'Me.Hide()
+    '        'FrmPrincipal.Show()
+    '    End If
+    'End Sub
 End Class
