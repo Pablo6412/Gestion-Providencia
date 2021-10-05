@@ -24,6 +24,9 @@ Partial Class FrmPagoDeudaAño
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPagoDeudaAño))
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.ClbMeses = New System.Windows.Forms.CheckedListBox()
         Me.BtnPago = New System.Windows.Forms.Button()
         Me.TxtTotal = New System.Windows.Forms.TextBox()
@@ -35,7 +38,6 @@ Partial Class FrmPagoDeudaAño
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.BtnSalir = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -45,6 +47,9 @@ Partial Class FrmPagoDeudaAño
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.GroupBox2.Controls.Add(Me.ListBox1)
+        Me.GroupBox2.Controls.Add(Me.Label4)
+        Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Controls.Add(Me.ClbMeses)
         Me.GroupBox2.Controls.Add(Me.BtnPago)
         Me.GroupBox2.Controls.Add(Me.TxtTotal)
@@ -57,13 +62,44 @@ Partial Class FrmPagoDeudaAño
         Me.GroupBox2.TabIndex = 33
         Me.GroupBox2.TabStop = False
         '
+        'ListBox1
+        '
+        Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.ItemHeight = 20
+        Me.ListBox1.Location = New System.Drawing.Point(165, 56)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(109, 222)
+        Me.ListBox1.TabIndex = 12
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.ForeColor = System.Drawing.Color.White
+        Me.Label4.Location = New System.Drawing.Point(182, 31)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(56, 20)
+        Me.Label4.TabIndex = 6
+        Me.Label4.Text = "Deuda:"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(82, 31)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(39, 20)
+        Me.Label3.TabIndex = 5
+        Me.Label3.Text = "Mes:"
+        '
         'ClbMeses
         '
+        Me.ClbMeses.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ClbMeses.CheckOnClick = True
         Me.ClbMeses.FormattingEnabled = True
-        Me.ClbMeses.Location = New System.Drawing.Point(46, 34)
+        Me.ClbMeses.Location = New System.Drawing.Point(45, 56)
         Me.ClbMeses.Name = "ClbMeses"
-        Me.ClbMeses.Size = New System.Drawing.Size(128, 290)
+        Me.ClbMeses.Size = New System.Drawing.Size(109, 222)
         Me.ClbMeses.TabIndex = 4
         '
         'BtnPago
@@ -89,6 +125,7 @@ Partial Class FrmPagoDeudaAño
         '
         Me.Label2.AutoSize = True
         Me.Label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Location = New System.Drawing.Point(507, 56)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(61, 20)
@@ -169,15 +206,6 @@ Partial Class FrmPagoDeudaAño
         Me.Label16.TabIndex = 32
         Me.Label16.Text = "Año de pago:"
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(0, 0)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 34
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'BtnSalir
         '
         Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -196,7 +224,6 @@ Partial Class FrmPagoDeudaAño
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(974, 611)
         Me.Controls.Add(Me.BtnSalir)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.DtpFechaPago)
         Me.Controls.Add(Me.GroupBox1)
@@ -228,4 +255,7 @@ Partial Class FrmPagoDeudaAño
     Friend WithEvents ClbMeses As CheckedListBox
     Friend WithEvents Button1 As Button
     Friend WithEvents BtnSalir As Button
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents ListBox1 As ListBox
 End Class

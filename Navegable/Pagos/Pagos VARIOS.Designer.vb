@@ -93,7 +93,6 @@ Partial Class Pagos
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Label19 = New System.Windows.Forms.Label()
-
         Me.TxtTotalAPagar = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.TxtCredDisp = New System.Windows.Forms.TextBox()
@@ -161,6 +160,7 @@ Partial Class Pagos
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NÚMERO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MERCADOPAGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label20 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -417,7 +417,6 @@ Partial Class Pagos
         Me.TxtCredito.Name = "TxtCredito"
         Me.TxtCredito.Size = New System.Drawing.Size(148, 33)
         Me.TxtCredito.TabIndex = 28
-
         '
         'Label26
         '
@@ -832,6 +831,7 @@ Partial Class Pagos
         Me.TabPage2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.TabPage2.BackgroundImage = CType(resources.GetObject("TabPage2.BackgroundImage"), System.Drawing.Image)
         Me.TabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage2.Controls.Add(Me.Label20)
         Me.TabPage2.Controls.Add(Me.Label19)
         Me.TabPage2.Controls.Add(Me.TxtTotalAPagar)
         Me.TabPage2.Controls.Add(Me.Label18)
@@ -1395,7 +1395,6 @@ Partial Class Pagos
         '
         'TxtArancel
         '
-
         Me.TxtArancel.BackColor = System.Drawing.Color.White
         Me.TxtArancel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtArancel.Location = New System.Drawing.Point(109, 61)
@@ -1621,6 +1620,16 @@ Partial Class Pagos
         Me.MERCADOPAGO.HeaderText = "MERCADOPAGO"
         Me.MERCADOPAGO.Name = "MERCADOPAGO"
         '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.BackColor = System.Drawing.Color.Transparent
+        Me.Label20.Location = New System.Drawing.Point(731, 50)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(87, 15)
+        Me.Label20.TabIndex = 34
+        Me.Label20.Text = "Fecha de pago:"
+        '
         'Pagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -1797,4 +1806,5 @@ Partial Class Pagos
     Friend WithEvents materiales_alumno As DataGridViewTextBoxColumn
     Friend WithEvents adicional_alumno As DataGridViewTextBoxColumn
     Friend WithEvents comedor_alumno As DataGridViewTextBoxColumn
+    Friend WithEvents Label20 As Label
 End Class

@@ -15,6 +15,7 @@ Public Class FrmPagoDeudaAño
     Dim fecha11 As Date
     Dim fecha12 As Date
     Dim deuda As Decimal
+    Dim resultado As Decimal
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()
@@ -82,28 +83,28 @@ Public Class FrmPagoDeudaAño
                     fecha4 = fecha
                 Case 5
                     nombreMes = "Mayo"
+                    fecha5 = fecha
                 Case 6
                     nombreMes = "Junio"
+                    fecha6 = fecha
                 Case 7
                     nombreMes = "Julio"
                     fecha7 = fecha
-
                 Case 8
                     nombreMes = "Agosto"
                     fecha8 = fecha
-                    'MsgBox("" & fecha8 & "")
                 Case 9
                     nombreMes = "Septiembre"
                     fecha9 = fecha
-                    'MsgBox("" & fecha9 & "")
                 Case 10
                     nombreMes = "Octubre"
                     fecha10 = fecha
-                    'MsgBox("" & fecha10 & "")
                 Case 11
                     nombreMes = "Noviembre"
+                    fecha11 = fecha
                 Case 12
                     nombreMes = "Diciembre"
+                    fecha12 = fecha
             End Select
 
             ClbMeses.Items.Add(nombreMes)
@@ -114,6 +115,7 @@ Public Class FrmPagoDeudaAño
 
     Private Sub CbxCodigo_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigo.SelectedValueChanged
         ClbMeses.Items.Clear()
+        ListBox1.Items.Clear()
         Checked()
     End Sub
 
@@ -146,7 +148,7 @@ Public Class FrmPagoDeudaAño
         Dim indice As Integer
         indice = ClbMeses.SelectedIndex
 
-
+        ListBox1.Items.Clear()
         'If ClbMeses.GetItemChecked(i) = True Then
         For j = 0 To indice - 1
                 ClbMeses.SetItemChecked(j, True)
@@ -155,32 +157,94 @@ Public Class FrmPagoDeudaAño
         Next
         For i = 0 To Me.ClbMeses.CheckedItems.Count - 1
             Valor = ClbMeses.CheckedItems(i)
-            MsgBox("La casilla chekeada es " & Valor & "") ''Valor contiene el contenido del item chequeado
-            If Valor = "Julio" Then
-                fecha = fecha7
-                MsgBox("la fecha es " & fecha & "")
+            'MsgBox("La casilla chekeada es " & Valor & "") ''Valor contiene el contenido del item chequeado
+            If Valor = "Enero" Then
+                fecha = fecha1
                 CalculaDeuda(fecha)
+                ListBox1.Items.Add(resultado)
+
+            ElseIf Valor = "Febrero" Then
+                fecha = fecha2
+                CalculaDeuda(fecha)
+                ListBox1.Items.Add(resultado)
+
+            ElseIf Valor = "Marzo" Then
+                fecha = fecha3
+                CalculaDeuda(fecha)
+                ListBox1.Items.Add(resultado)
+
+            ElseIf Valor = "Abril" Then
+                fecha = fecha4
+                CalculaDeuda(fecha)
+                ListBox1.Items.Add(resultado)
+
+            ElseIf Valor = "Mayo" Then
+                fecha = fecha5
+                CalculaDeuda(fecha)
+                ListBox1.Items.Add(resultado)
+
+            ElseIf Valor = "Junio" Then
+                fecha = fecha6
+                CalculaDeuda(fecha)
+                ListBox1.Items.Add(resultado)
+
+            ElseIf Valor = "Julio" Then
+                fecha = fecha7
+                CalculaDeuda(fecha)
+                ListBox1.Items.Add(resultado)
+
             ElseIf Valor = "Agosto" Then
                 fecha = fecha8
-                MsgBox("la fecha es " & fecha & "")
+                CalculaDeuda(fecha)
+                ListBox1.Items.Add(resultado)
+
             ElseIf Valor = "Septiembre" Then
                 fecha = fecha9
-                MsgBox("la fecha es " & fecha & "")
+                CalculaDeuda(fecha)
+                ListBox1.Items.Add(resultado)
+
             ElseIf Valor = "Octubre" Then
                 fecha = fecha10
-                MsgBox("la fecha es " & fecha & "")
+                CalculaDeuda(fecha)
+                ListBox1.Items.Add(resultado)
+
+            ElseIf Valor = "Octubre" Then
+                fecha = fecha11
+                CalculaDeuda(fecha)
+                ListBox1.Items.Add(resultado)
+
+            ElseIf Valor = "Octubre" Then
+                fecha = fecha12
+                CalculaDeuda(fecha)
+                ListBox1.Items.Add(resultado)
             End If
             'End If
         Next
+        Dim suma As Integer
 
+        For Each elemento In ListBox1.Items
+
+            suma += elemento.ToString
+
+        Next
+
+        TxtTotal.Text = suma
 
     End Sub
 
     Private Sub CalculaDeuda(fecha)
-        Dim consultaDeuda As String = "SELECT * FROM detalle_pago_escolar WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND fecha_de_pago = '" & fecha & "' "
+        Dim consultaDeuda As String = "SELECT monto_deuda FROM detalle_pago_escolar WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND fecha_de_pago = '" & fecha & "' "
+        Dim comandoDeuda As New SqlCommand(consultaDeuda, conexion)
+        resultado = comandoDeuda.ExecuteScalar
+
+        'MsgBox("" & resultado & "")
     End Sub
 
-
-
-
+    Private Sub BtnPago_Click(sender As Object, e As EventArgs) Handles BtnPago.Click
+        ListBox1.Items.Clear()
+        Dim i As Integer
+        For i = 0 To ClbMeses.CheckedItems.Count - 1
+            ListBox1.Items.Add(ClbMeses.CheckedItems(i))
+        Next i
+    End Sub
 End Class

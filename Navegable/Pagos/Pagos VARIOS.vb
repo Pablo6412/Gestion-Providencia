@@ -70,6 +70,7 @@ Public Class Pagos
     Dim adaptador As SqlDataAdapter
     Dim comando As New SqlCommand
     Dim contador As Integer = 0
+    Dim contador2 As Integer = 0
     Dim totalMatricula As Decimal
     Dim TotalCuota As Decimal
 
@@ -82,6 +83,7 @@ Public Class Pagos
     Dim totalConceptos As Decimal
     Dim opcion
     Dim opcion1
+
 
 
     Private Sub Pagos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -162,12 +164,23 @@ Public Class Pagos
 
     Private Sub UltimoPago()
         'Fecha de último pago
-        Dim ultimoPago As String = "SELECT fecha_de_pago FROM detalle_pago_escolar WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "' "
-        Dim comandoUltimoPago As New SqlCommand(ultimoPago, conexion)
-        DtpUltimoPago.Text = comandoUltimoPago.ExecuteScalar
+        Dim ultimoPago As String = "SELECT MAX(fecha_de_pago) FROM detalle_pago_escolar WHERE codigo_familia = " & Val(CbxCodigo.Text) & "  And pago_cumplido = 'completo' "
+        MsgBox("" & CbxCodigo.Text & "")
+        Dim comandoUltimo As New SqlCommand(ultimoPago, conexion)
+        If contador = 1 Then
+            DtpUltimoPago.Text = comandoUltimo.ExecuteScalar
+        Else
+            contador2 += 1
+        End If
     End Sub
 
-
+    Private Sub UltimoVencimiento()
+        Dim ultimoVencimiento As String = "SELECT MAX(fecha_de_pago) FROM detalle_pago_escolar "  'WHERE codigo_familia = " & Val(CbxCodigo.Text) & "  "
+        Dim comandoUltimoVencimiento As New SqlCommand(ultimoVencimiento, conexion)
+        If comandoUltimoVencimiento.ExecuteNonQuery <> 0 Then
+            DtpFechaPago.Text = comandoUltimoVencimiento.ExecuteScalar
+        End If
+    End Sub
 
     Private Sub BtnContinuar_Click(sender As Object, e As EventArgs) Handles BtnContinuar.Click
         Dim vuelto As Decimal = (Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text))
@@ -242,7 +255,7 @@ Public Class Pagos
         Dim pagoEfectivo As Decimal = Val(TxtEfectivo.Text)
         Dim credito As Decimal = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
         Dim efectivoDef As Decimal
-
+        Dim montoDeuda As Decimal
         If TxtMatricula.Text <> "" Or TxtArancel.Text <> "" Or TxtComedor.Text <> "" Or TxtMateriales.Text <> "" Or TxtTalleres.Text <> "" Or TxtCampamento.Text <> "" Or TxtAdicional.Text <> "" Or TxtSinAsignar1.Text <> "" Or TxtSinasignar2.Text <> "" Or TxtSinAsignar3.Text <> "" Then
             If pagoACuenta = False Then
                 If efectivo <= vuelto Then
@@ -270,12 +283,12 @@ Public Class Pagos
                 credito = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
             End If
 
-
+            montoDeuda = Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text)
             Dim cadena As String = "UPDATE detalle_pago_escolar SET  matricula = " & Val(TxtMatricula.Text) & ",
                                     aranceles = " & Val(TxtArancel.Text) & ", materiales = " & Val(TxtMateriales.Text) & ", talleres = " & Val(TxtTalleres.Text) & ", 
                                     campamento = " & Val(TxtCampamento.Text) & ", adicional = " & Val(TxtAdicional.Text) & ", comedor = " & Val(TxtComedor.Text) & ", 
-                                    credito = " & credito & ", fecha_de_pago = '" & DtpFechaDePago.Value & "', pago_cumplido = '" & pagoCumplido & "' 
-                                    WHERE codigo_familia = " & Val(CbxCodigo.Text) & "  "
+                                    credito = " & credito & ", fecha_de_pago = '" & DtpFechaDePago.Value & "', pago_cumplido = '" & pagoCumplido & "', monto_deuda = " & montoDeuda & " 
+                                    WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND fecha_de_pago = '" & DtpFechaPago.Value & "' "
 
             'Dim cadena As String = "INSERT INTO dbo.detalle_pago_escolar(codigo_familia, matricula, aranceles, materiales, 
             '                        talleres, campamento, adicional, comedor, credito, fecha_de_pago, pago_cumplido) 
@@ -494,7 +507,7 @@ Public Class Pagos
         comando = New SqlCommand(cadenas, conexion)
 
         comando.Parameters.AddWithValue("@codigo_familia", CbxCodigo.Text)
-        comando.Parameters.AddWithValue("@fecha_pago", DtpFechaPago.Value)
+        comando.Parameters.AddWithValue("@fecha_pago", DtpFechaDePago.Value)
         comando.Parameters.AddWithValue("@efectivo", efectivoDef)
         comando.Parameters.AddWithValue("@cheque", Val(TxtCheque.Text))
         comando.Parameters.AddWithValue("@cheque_numero", TxtChequeNumero.Text)
@@ -915,6 +928,7 @@ Public Class Pagos
     Private Sub CbxCodigo_TextChanged(sender As Object, e As EventArgs) Handles CbxCodigo.TextChanged
         LblFamilia.Text = CbxFamilia.Text
         UltimoPago()      'Fecha de último pago
+        UltimoVencimiento()
         DataGrid()
         totalConceptos = 0
         CalculoTotal()
