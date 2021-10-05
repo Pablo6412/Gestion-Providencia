@@ -8,6 +8,7 @@ Public Class FrmPagoDeudaAño
     Private Sub FrmPagoDeudaAño_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim meses
         Dim nombreMes
+        Dim nombre As String
         conectar()
         Try
             Dim familia As String = "SELECT codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, 
@@ -43,6 +44,33 @@ Public Class FrmPagoDeudaAño
         For Each fila As DataRow In dataSet.Tables(0).Rows()
             meses = (fila(1))
             nombreMes = meses.Month
+            Select Case nombreMes
+                Case 1
+                    nombreMes = "Enero"
+                Case 2
+                    nombreMes = "Febrero"
+                Case 3
+                    nombreMes = "Marzo"
+                Case 4
+                    nombreMes = "Abril"
+                Case 5
+                    nombreMes = "Mayo"
+                Case 6
+                    nombreMes = "Junio"
+                Case 7
+                    nombreMes = "Julio"
+                Case 8
+                    nombreMes = "Agosto"
+                Case 9
+                    nombreMes = "Septiembre"
+                Case 10
+                    nombreMes = "Octubre"
+                Case 11
+                    nombreMes = "Noviembre"
+                Case 12
+                    nombreMes = "Diciembre"
+            End Select
+
             ClbMeses.Items.Add(nombreMes)
 
         Next
