@@ -22,8 +22,33 @@ Partial Class FrmPagoDeudaAño
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPagoDeudaAño))
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.DgvHijos = New System.Windows.Forms.DataGridView()
+        Me.Nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.matricula_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.curso = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cuota_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.campamento_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.talleres_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.materiales_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.adicional_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.comedor_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TxtIndice = New System.Windows.Forms.TextBox()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -39,7 +64,9 @@ Partial Class FrmPagoDeudaAño
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.BtnSalir = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.DgvHijos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -47,6 +74,9 @@ Partial Class FrmPagoDeudaAño
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.GroupBox2.Controls.Add(Me.Panel1)
+        Me.GroupBox2.Controls.Add(Me.DgvHijos)
+        Me.GroupBox2.Controls.Add(Me.TxtIndice)
         Me.GroupBox2.Controls.Add(Me.ListBox1)
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.Label3)
@@ -61,6 +91,182 @@ Partial Class FrmPagoDeudaAño
         Me.GroupBox2.Size = New System.Drawing.Size(712, 374)
         Me.GroupBox2.TabIndex = 33
         Me.GroupBox2.TabStop = False
+        '
+        'DgvHijos
+        '
+        Me.DgvHijos.AllowUserToAddRows = False
+        Me.DgvHijos.AllowUserToDeleteRows = False
+        Me.DgvHijos.AllowUserToOrderColumns = True
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.NullValue = Nothing
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
+        Me.DgvHijos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.DgvHijos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DgvHijos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.DgvHijos.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(91, Byte), Integer))
+        Me.DgvHijos.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DgvHijos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+        Me.DgvHijos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.HotTrack
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.NullValue = Nothing
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvHijos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.DgvHijos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvHijos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Nombre, Me.matricula_alumno, Me.curso, Me.cuota_alumno, Me.campamento_alumno, Me.talleres_alumno, Me.materiales_alumno, Me.adicional_alumno, Me.comedor_alumno})
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DgvHijos.DefaultCellStyle = DataGridViewCellStyle12
+        Me.DgvHijos.GridColor = System.Drawing.Color.SteelBlue
+        Me.DgvHijos.Location = New System.Drawing.Point(365, 278)
+        Me.DgvHijos.Margin = New System.Windows.Forms.Padding(4)
+        Me.DgvHijos.Name = "DgvHijos"
+        Me.DgvHijos.ReadOnly = True
+        Me.DgvHijos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(91, Byte), Integer))
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvHijos.RowHeadersDefaultCellStyle = DataGridViewCellStyle13
+        Me.DgvHijos.RowHeadersWidth = 62
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(91, Byte), Integer))
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle14.NullValue = Nothing
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.SteelBlue
+        Me.DgvHijos.RowsDefaultCellStyle = DataGridViewCellStyle14
+        Me.DgvHijos.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.DgvHijos.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White
+        Me.DgvHijos.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        Me.DgvHijos.RowTemplate.Height = 25
+        Me.DgvHijos.RowTemplate.ReadOnly = True
+        Me.DgvHijos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvHijos.Size = New System.Drawing.Size(141, 64)
+        Me.DgvHijos.TabIndex = 17
+        '
+        'Nombre
+        '
+        Me.Nombre.DataPropertyName = "nombre_apellido_alumno"
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
+        Me.Nombre.DefaultCellStyle = DataGridViewCellStyle3
+        Me.Nombre.FillWeight = 110.0!
+        Me.Nombre.HeaderText = "Nombre"
+        Me.Nombre.MaxInputLength = 30
+        Me.Nombre.MinimumWidth = 8
+        Me.Nombre.Name = "Nombre"
+        Me.Nombre.ReadOnly = True
+        Me.Nombre.Width = 180
+        '
+        'matricula_alumno
+        '
+        Me.matricula_alumno.DataPropertyName = "matricula_alumno"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.matricula_alumno.DefaultCellStyle = DataGridViewCellStyle4
+        Me.matricula_alumno.HeaderText = "Matrícula"
+        Me.matricula_alumno.Name = "matricula_alumno"
+        Me.matricula_alumno.ReadOnly = True
+        Me.matricula_alumno.Width = 80
+        '
+        'curso
+        '
+        Me.curso.DataPropertyName = "curso"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.curso.DefaultCellStyle = DataGridViewCellStyle5
+        Me.curso.HeaderText = "  Curso"
+        Me.curso.MaxInputLength = 50
+        Me.curso.Name = "curso"
+        Me.curso.ReadOnly = True
+        Me.curso.Width = 170
+        '
+        'cuota_alumno
+        '
+        Me.cuota_alumno.DataPropertyName = "cuota_alumno"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.Format = "$#,##0.00"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.cuota_alumno.DefaultCellStyle = DataGridViewCellStyle6
+        Me.cuota_alumno.HeaderText = "  Cuota"
+        Me.cuota_alumno.Name = "cuota_alumno"
+        Me.cuota_alumno.ReadOnly = True
+        Me.cuota_alumno.Width = 80
+        '
+        'campamento_alumno
+        '
+        Me.campamento_alumno.DataPropertyName = "campamento_alumno"
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.Format = "$#,##0.00"
+        Me.campamento_alumno.DefaultCellStyle = DataGridViewCellStyle7
+        Me.campamento_alumno.HeaderText = "Campamento"
+        Me.campamento_alumno.Name = "campamento_alumno"
+        Me.campamento_alumno.ReadOnly = True
+        Me.campamento_alumno.Width = 90
+        '
+        'talleres_alumno
+        '
+        Me.talleres_alumno.DataPropertyName = "talleres_alumno"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.Format = "$#,##0.00"
+        Me.talleres_alumno.DefaultCellStyle = DataGridViewCellStyle8
+        Me.talleres_alumno.HeaderText = " Talleres"
+        Me.talleres_alumno.Name = "talleres_alumno"
+        Me.talleres_alumno.ReadOnly = True
+        Me.talleres_alumno.Width = 80
+        '
+        'materiales_alumno
+        '
+        Me.materiales_alumno.DataPropertyName = "materiales_alumno"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.Format = "$#,##0.00"
+        Me.materiales_alumno.DefaultCellStyle = DataGridViewCellStyle9
+        Me.materiales_alumno.HeaderText = "Materiales"
+        Me.materiales_alumno.Name = "materiales_alumno"
+        Me.materiales_alumno.ReadOnly = True
+        Me.materiales_alumno.Width = 80
+        '
+        'adicional_alumno
+        '
+        Me.adicional_alumno.DataPropertyName = "adicional_alumno"
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.adicional_alumno.DefaultCellStyle = DataGridViewCellStyle10
+        Me.adicional_alumno.HeaderText = "Adicional"
+        Me.adicional_alumno.Name = "adicional_alumno"
+        Me.adicional_alumno.ReadOnly = True
+        Me.adicional_alumno.Width = 80
+        '
+        'comedor_alumno
+        '
+        Me.comedor_alumno.DataPropertyName = "comedor_alumno"
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.comedor_alumno.DefaultCellStyle = DataGridViewCellStyle11
+        Me.comedor_alumno.HeaderText = "Comedor"
+        Me.comedor_alumno.Name = "comedor_alumno"
+        Me.comedor_alumno.ReadOnly = True
+        Me.comedor_alumno.Width = 80
+        '
+        'TxtIndice
+        '
+        Me.TxtIndice.Location = New System.Drawing.Point(386, 224)
+        Me.TxtIndice.Name = "TxtIndice"
+        Me.TxtIndice.Size = New System.Drawing.Size(100, 27)
+        Me.TxtIndice.TabIndex = 13
         '
         'ListBox1
         '
@@ -216,6 +422,13 @@ Partial Class FrmPagoDeudaAño
         Me.BtnSalir.Text = "Salir"
         Me.BtnSalir.UseVisualStyleBackColor = True
         '
+        'Panel1
+        '
+        Me.Panel1.Location = New System.Drawing.Point(349, 215)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(183, 141)
+        Me.Panel1.TabIndex = 18
+        '
         'FrmPagoDeudaAño
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -234,6 +447,7 @@ Partial Class FrmPagoDeudaAño
         Me.Text = "Pago de deuda del año en curso"
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.DgvHijos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -258,4 +472,16 @@ Partial Class FrmPagoDeudaAño
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents TxtIndice As TextBox
+    Friend WithEvents DgvHijos As DataGridView
+    Friend WithEvents Nombre As DataGridViewTextBoxColumn
+    Friend WithEvents matricula_alumno As DataGridViewTextBoxColumn
+    Friend WithEvents curso As DataGridViewTextBoxColumn
+    Friend WithEvents cuota_alumno As DataGridViewTextBoxColumn
+    Friend WithEvents campamento_alumno As DataGridViewTextBoxColumn
+    Friend WithEvents talleres_alumno As DataGridViewTextBoxColumn
+    Friend WithEvents materiales_alumno As DataGridViewTextBoxColumn
+    Friend WithEvents adicional_alumno As DataGridViewTextBoxColumn
+    Friend WithEvents comedor_alumno As DataGridViewTextBoxColumn
+    Friend WithEvents Panel1 As Panel
 End Class

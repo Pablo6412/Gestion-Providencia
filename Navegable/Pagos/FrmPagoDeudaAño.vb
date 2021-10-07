@@ -16,6 +16,8 @@ Public Class FrmPagoDeudaAño
     Dim fecha12 As Date
     Dim deuda As Decimal
     Dim resultado As Decimal
+    Dim mesesDeuda() As Date
+    Dim indiceArray As Integer
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()
@@ -114,6 +116,7 @@ Public Class FrmPagoDeudaAño
     End Sub
 
     Private Sub CbxCodigo_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigo.SelectedValueChanged
+        BtnPago.Enabled = True
         ClbMeses.Items.Clear()
         ListBox1.Items.Clear()
         Checked()
@@ -144,107 +147,264 @@ Public Class FrmPagoDeudaAño
     Private Sub ClbMeses_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ClbMeses.SelectedIndexChanged
         Dim i As Integer
         Dim j As Integer
+        Dim k As Integer
         Dim Valor As String
         Dim indice As Integer
-        indice = ClbMeses.SelectedIndex
+        Dim indice2 As Integer
+        Dim suma As Integer
+        'Dim indiceArray As Integer
 
+
+        indice = ClbMeses.SelectedIndex
+        indice2 = ClbMeses.Items.Count
         ListBox1.Items.Clear()
         'If ClbMeses.GetItemChecked(i) = True Then
-        For j = 0 To indice - 1
-                ClbMeses.SetItemChecked(j, True)
 
-
+        For k = indice + 1 To indice2 - 1
+            ClbMeses.SetItemChecked(k, False)
         Next
+
+        For j = 0 To indice - 1
+            ClbMeses.SetItemChecked(j, True)
+        Next
+
+        indiceArray = 0
+        ReDim mesesDeuda(ClbMeses.Items.Count - 1)
         For i = 0 To Me.ClbMeses.CheckedItems.Count - 1
             Valor = ClbMeses.CheckedItems(i)
             'MsgBox("La casilla chekeada es " & Valor & "") ''Valor contiene el contenido del item chequeado
             If Valor = "Enero" Then
                 fecha = fecha1
-                CalculaDeuda(fecha)
+                DeudaMes(fecha)
                 ListBox1.Items.Add(resultado)
-
+                mesesDeuda(indiceArray) = fecha1
+                indiceArray += 1
             ElseIf Valor = "Febrero" Then
                 fecha = fecha2
-                CalculaDeuda(fecha)
+                DeudaMes(fecha)
                 ListBox1.Items.Add(resultado)
-
+                mesesDeuda(indiceArray) = fecha2
+                indiceArray += 1
             ElseIf Valor = "Marzo" Then
                 fecha = fecha3
-                CalculaDeuda(fecha)
+                DeudaMes(fecha)
                 ListBox1.Items.Add(resultado)
-
+                mesesDeuda(indiceArray) = fecha3
+                indiceArray += 1
             ElseIf Valor = "Abril" Then
                 fecha = fecha4
-                CalculaDeuda(fecha)
+                DeudaMes(fecha)
                 ListBox1.Items.Add(resultado)
-
+                mesesDeuda(indiceArray) = fecha4
+                indiceArray += 1
             ElseIf Valor = "Mayo" Then
                 fecha = fecha5
-                CalculaDeuda(fecha)
+                DeudaMes(fecha)
                 ListBox1.Items.Add(resultado)
-
+                mesesDeuda(indiceArray) = fecha5
+                indiceArray += 1
             ElseIf Valor = "Junio" Then
                 fecha = fecha6
-                CalculaDeuda(fecha)
+                DeudaMes(fecha)
                 ListBox1.Items.Add(resultado)
-
+                mesesDeuda(indiceArray) = fecha6
+                indiceArray += 1
             ElseIf Valor = "Julio" Then
                 fecha = fecha7
-                CalculaDeuda(fecha)
+                DeudaMes(fecha)
                 ListBox1.Items.Add(resultado)
-
+                mesesDeuda(indiceArray) = fecha7
+                indiceArray += 1
             ElseIf Valor = "Agosto" Then
                 fecha = fecha8
-                CalculaDeuda(fecha)
+                DeudaMes(fecha)
                 ListBox1.Items.Add(resultado)
-
+                mesesDeuda(indiceArray) = fecha8
+                indiceArray += 1
             ElseIf Valor = "Septiembre" Then
                 fecha = fecha9
-                CalculaDeuda(fecha)
+                DeudaMes(fecha)
                 ListBox1.Items.Add(resultado)
-
+                mesesDeuda(indiceArray) = fecha9
+                indiceArray += 1
             ElseIf Valor = "Octubre" Then
                 fecha = fecha10
-                CalculaDeuda(fecha)
+                DeudaMes(fecha)
                 ListBox1.Items.Add(resultado)
-
+                mesesDeuda(indiceArray) = fecha10
+                indiceArray += 1
             ElseIf Valor = "Octubre" Then
                 fecha = fecha11
-                CalculaDeuda(fecha)
+                DeudaMes(fecha)
                 ListBox1.Items.Add(resultado)
-
+                mesesDeuda(indiceArray) = fecha11
+                indiceArray += 1
             ElseIf Valor = "Octubre" Then
                 fecha = fecha12
-                CalculaDeuda(fecha)
+                DeudaMes(fecha)
                 ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArray) = fecha12
             End If
             'End If
         Next
-        Dim suma As Integer
+        TxtIndice.Text = indiceArray
 
         For Each elemento In ListBox1.Items
-
             suma += elemento.ToString
-
         Next
-
         TxtTotal.Text = suma
-
     End Sub
 
-    Private Sub CalculaDeuda(fecha)
+    Private Sub DeudaMes(fecha)
         Dim consultaDeuda As String = "SELECT monto_deuda FROM detalle_pago_escolar WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND fecha_de_pago = '" & fecha & "' "
         Dim comandoDeuda As New SqlCommand(consultaDeuda, conexion)
         resultado = comandoDeuda.ExecuteScalar
-
         'MsgBox("" & resultado & "")
     End Sub
 
     Private Sub BtnPago_Click(sender As Object, e As EventArgs) Handles BtnPago.Click
+
+        Dim mes As Date
+
         ListBox1.Items.Clear()
-        Dim i As Integer
-        For i = 0 To ClbMeses.CheckedItems.Count - 1
-            ListBox1.Items.Add(ClbMeses.CheckedItems(i))
-        Next i
+
+
+        For indice = 0 To indiceArray - 1
+            mes = mesesDeuda(indice)
+            PagoMes(mes)
+            MsgBox("meses deuda: " & mesesDeuda(indice) & "")
+        Next
+
+        'Dim i As Integer
+        'For i = 0 To ClbMeses.CheckedItems.Count - 1
+        '    ListBox1.Items.Add(ClbMeses.CheckedItems(i))
+        'Next i
     End Sub
+
+    Private Sub PagoMes(mes)
+        Dim matricula As Decimal
+        Dim arancel As Decimal
+        Dim materiales As Decimal
+        Dim talleres As Decimal
+        Dim campamento As Decimal
+        Dim adicional As Decimal
+        Dim comedor As Decimal
+        Dim totalMatricula As Decimal
+        Dim TotalCuota As Decimal
+        Dim TotalCampamento As Decimal
+        Dim TotalTalleres As Decimal
+        Dim TotalMaterial As Decimal
+        Dim TotalAdicional As Decimal
+        Dim TotalComedor As Decimal
+        Dim totalConceptos As Decimal
+        Dim mesPago As Integer
+        Dim parImpar As Integer
+        Try
+
+            Dim pago As String = "SELECT nombre_apellido_alumno, curso, matricula_alumno, cuota_alumno, campamento_alumno, talleres_alumno,
+                                          materiales_alumno, adicional_alumno, comedor_alumno
+                                          FROM alumnos 
+                                          JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso 
+                                          JOIN vencimiento_detallado ON alumnos.codigo_alumno = vencimiento_detallado.codigo_alumno  
+                                          WHERE alumnos.codigo_familia = " & Val(CbxCodigo.Text) & " AND fecha_vencimiento = '" & mes & "' And alumnos.estado = 'activo' "
+
+            Dim comandoPago As New SqlCommand(pago, conexion)
+
+            comandoPago.CommandType = CommandType.Text
+
+            Dim adaptador As New SqlDataAdapter(comandoPago)
+            Dim dataSet As DataSet = New DataSet()
+            adaptador.Fill(dataSet)
+
+            DgvHijos.DataSource = dataSet.Tables(0).DefaultView
+
+        Catch ex As Exception
+            MsgBox("Error comprobando BD" & ex.ToString)
+        End Try
+
+        Dim colMatricula As Integer = 2
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            totalMatricula += Val(row.Cells(colMatricula).Value)
+        Next
+        matricula = totalMatricula
+
+        Dim col As Integer = 3
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            TotalCuota += Val(row.Cells(col).Value)
+        Next
+        arancel = TotalCuota
+
+        Dim colCamp As Integer = 4
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            TotalCampamento += (Val(row.Cells(colCamp).Value))
+        Next
+        campamento = TotalCampamento
+
+        Dim colTaller As Integer = 5
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            TotalTalleres += Val(row.Cells(colTaller).Value)
+        Next
+        talleres = TotalTalleres
+
+        Dim colMaterial As Integer = 6
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            TotalMaterial += Val(row.Cells(colMaterial).Value)
+        Next
+        materiales = TotalMaterial
+
+        Dim colAdicional As Integer = 7
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            TotalAdicional += Val(row.Cells(colAdicional).Value)
+        Next
+        adicional = TotalAdicional
+
+        Dim colComedor As Integer = 8
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            TotalComedor += Val(row.Cells(colComedor).Value)
+        Next
+        mesPago = mes.Month
+        parImpar = mesPago Mod 2
+        If parImpar <> 0 Then
+            comedor = TotalComedor
+        Else
+            comedor = 0
+            TotalComedor = comedor
+        End If
+
+
+        Dim cadena As String = "UPDATE detalle_pago_escolar SET  matricula = " & totalMatricula & ",
+                                    aranceles = " & TotalCuota & ", materiales = " & TotalMaterial & ", talleres = " & TotalTalleres & ", 
+                                    campamento = " & TotalCampamento & ", adicional = " & TotalAdicional & ", comedor = " & TotalComedor & ", 
+                                    credito = " & 0 & ", fecha_de_pago = '" & mes & "', pago_cumplido = 'completo', monto_deuda = " & 0 & " 
+                                    WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND fecha_de_pago = '" & mes & "' "
+
+        Dim comandoCadena As New SqlCommand(cadena, conexion)
+        If comandoCadena.ExecuteNonQuery() = 1 Then
+            MessageBox.Show("Pago guardado")
+            BtnPago.Enabled = False
+
+        Else
+            MsgBox("Error de grabación. Reinicie el programa e intente nuevamente, de persistir el error contacte al soporte informático")
+        End If
+        'contador += 1
+
+
+        'Dim tablaExiste() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
+        'Dim datat As DataTable = conexion.GetSchema("TABLES", restrictionValues)
+        'Dim rowss() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
+
+        'If rowss.Length > 0 Then
+        '    'MessageBox.Show("Existe la tabla.")
+        '    Dim destruyeTabla As String = "DROP TABLE taller_temporal"
+        '    Dim comandoDestruye As New SqlCommand(destruyeTabla, conexion)
+        '    'MsgBox("Tabla destruida")
+
+        '    If comandoDestruye.ExecuteNonQuery() = 0 Then
+        '        MsgBox("No pasa nada")
+        '    End If
+        'End If
+
+
+    End Sub
+
 End Class
