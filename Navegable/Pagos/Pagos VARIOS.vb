@@ -101,7 +101,7 @@ Public Class Pagos
         BtnGuardar2.Enabled = False
 
         conectar()
-        abrir()
+        'abrir()
 
         'Establece nombre para los conceptos de pago y deja invisibles a los "Sin asignar"
         Dim adaptador1 As SqlDataAdapter
@@ -162,14 +162,26 @@ Public Class Pagos
 
     End Sub
 
+    Private Sub CbxCodigo_TextChanged(sender As Object, e As EventArgs) Handles CbxCodigo.TextChanged
+        LblFamilia.Text = CbxFamilia.Text
+        UltimoPago()      'Fecha de último pago
+        UltimoVencimiento()
+        DataGrid()
+        totalConceptos = 0
+        CalculoTotal()
+
+    End Sub
+
     Private Sub UltimoPago()
         'Fecha de último pago
         Dim ultimoPago As String = "SELECT MAX(fecha_de_pago) FROM detalle_pago_escolar WHERE codigo_familia = " & Val(CbxCodigo.Text) & "  And pago_cumplido = 'completo' "
-        MsgBox("" & CbxCodigo.Text & "")
+        'MsgBox("" & CbxCodigo.Text & "")
         Dim comandoUltimo As New SqlCommand(ultimoPago, conexion)
-        If contador = 1 Then
+        If comandoUltimo.ExecuteNonQuery = 1 Then
             DtpUltimoPago.Text = comandoUltimo.ExecuteScalar
         Else
+            MsgBox("Aún no se han registrado pagos de la familia " & CbxFamilia.Text & "")
+            'DtpUltimoPago.Value = ""
             contador2 += 1
         End If
     End Sub
@@ -641,7 +653,6 @@ Public Class Pagos
     End Sub
 
     Sub DataGrid()
-
         Dim mes As Integer
         Dim parImpar As Integer
         Dim ultimoVencimiento As Date
@@ -925,14 +936,7 @@ Public Class Pagos
 
     End Sub
 
-    Private Sub CbxCodigo_TextChanged(sender As Object, e As EventArgs) Handles CbxCodigo.TextChanged
-        LblFamilia.Text = CbxFamilia.Text
-        UltimoPago()      'Fecha de último pago
-        UltimoVencimiento()
-        DataGrid()
-        totalConceptos = 0
-        CalculoTotal()
-    End Sub
+
 
     Private Sub TxtCampamento_Leave(sender As Object, e As EventArgs) Handles TxtCampamento.Leave
         If Val(TxtCampamento.Text) > campamento Then

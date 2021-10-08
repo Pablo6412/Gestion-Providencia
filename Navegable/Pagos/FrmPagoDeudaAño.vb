@@ -18,15 +18,21 @@ Public Class FrmPagoDeudaAño
     Dim resultado As Decimal
     Dim mesesDeuda() As Date
     Dim indiceArray As Integer
+    Dim contador As Integer = 0
 
-    Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
-        Me.Close()
-    End Sub
 
     Private Sub FrmPagoDeudaAño_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         conectar()
+        BuscaFamilia()
+    End Sub
+
+    Private Sub BuscaFamilia()
         Try
+
+
+
+
+
             Dim familia As String = "SELECT codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, 
                                        CONCAT(apellido_padre,' - ', apellido_madre) AS familia, estado 
                                        FROM familias WHERE estado = 'activo' 
@@ -37,6 +43,10 @@ Public Class FrmPagoDeudaAño
             datosFamilia.Tables.Add("familias")
             adaptadorFamilia.Fill(datosFamilia.Tables("familias"))
 
+
+
+
+
             CbxFamilia.DataSource = datosFamilia.Tables("familias")
             CbxFamilia.DisplayMember = "familia"
             CbxCodigo.DataSource = datosFamilia.Tables("familias")
@@ -45,15 +55,13 @@ Public Class FrmPagoDeudaAño
         Catch ex As Exception
             MsgBox("Error comprobando BD" & ex.ToString)
         End Try
-
     End Sub
+
 
     Private Sub Checked()
         'Dim meses As Date
         Dim numeroMes
         Dim nombreMes
-
-
 
 
         Dim consulta As String = "SELECT codigo_familia, fecha_de_pago, pago_cumplido FROM detalle_pago_escolar WHERE codigo_familia = " & Val(CbxCodigo.Text) & " and pago_cumplido <> 'completo' "
@@ -111,38 +119,70 @@ Public Class FrmPagoDeudaAño
 
             ClbMeses.Items.Add(nombreMes)
             ClbMeses.SelectedValue = fecha
-
         Next
+
+        CompruebaDeuda()
+
     End Sub
 
     Private Sub CbxCodigo_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigo.SelectedValueChanged
+
+
         BtnPago.Enabled = True
         ClbMeses.Items.Clear()
         ListBox1.Items.Clear()
         Checked()
+
+
     End Sub
 
-    'Private Sub ClbMeses_SelectedValueChanged(sender As Object, e As EventArgs) Handles ClbMeses.SelectedValueChanged
-    '    Dim i As Integer
-    '    Dim j As Integer
-    '    Dim Valor As String
+    Public Sub CompruebaDeuda()
 
+        'Try
+        '    Dim familia As String = "SELECT codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, 
+        '                                   CONCAT(apellido_padre,' - ', apellido_madre) AS familia, estado 
+        '                                   FROM familias WHERE estado = 'activo' 
+        '                                   ORDER BY familia"
 
-    '    For i = 0 To Me.ClbMeses.CheckedItems.Count - 1
-    '        Valor = ClbMeses.CheckedItems(i)
-    '        MsgBox("La casilla chekeada es " & Valor & "") ''Valor contiene el contenido del item chequeado
-
-    '        'If ClbMeses.GetItemChecked(i) = True Then
-    '        For j = 0 To i
-    '                ClbMeses.SetItemChecked(0, True)
-    '            Next
-    '        'End If
-    '    Next
+        '    Dim adaptadorFamilia = New SqlDataAdapter(familia, conexion)
+        '    Dim datosFamilia = New DataSet
+        '    datosFamilia.Tables.Add("familias")
+        '    adaptadorFamilia.Fill(datosFamilia.Tables("familias"))
 
 
 
 
-    'End Sub
+
+        '    CbxFamilia.DataSource = datosFamilia.Tables("familias")
+        '    CbxFamilia.DisplayMember = "familia"
+        '    CbxCodigo.DataSource = datosFamilia.Tables("familias")
+        '    CbxCodigo.DisplayMember = "codigo_familia"
+
+        'Catch ex As Exception
+        '    MsgBox("Error comprobando BD" & ex.ToString)
+        'End Try
+        Dim deudaNo As Integer
+        Dim deudaSioNo As String = "SELECT COUNT(pago_cumplido) AS pago_cumplido 
+                                        FROM detalle_pago_escolar 
+                                        WHERE pago_cumplido <> 'completo'  AND codigo_familia = " & Val(CbxCodigo.Text) & ""
+
+
+        Dim adaptadorDeuda As New SqlDataAdapter(deudaSioNo, conexion)
+        Dim dtDatos As New DataTable
+        adaptadorDeuda.Fill(dtDatos)
+
+        If dtDatos.Rows.Count > 0 Then
+            deudaNo = dtDatos.Rows(0)("pago_cumplido")
+
+            If contador <> 0 Then
+                If deudaNo = 0 Then
+                    MsgBox("La familia " & CbxFamilia.Text & " No presenta deudas del año en curso")
+                End If
+            Else
+                contador += 1
+            End If
+        End If
+    End Sub
 
     Private Sub ClbMeses_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ClbMeses.SelectedIndexChanged
         Dim i As Integer
@@ -152,13 +192,11 @@ Public Class FrmPagoDeudaAño
         Dim indice As Integer
         Dim indice2 As Integer
         Dim suma As Integer
-        'Dim indiceArray As Integer
-
 
         indice = ClbMeses.SelectedIndex
         indice2 = ClbMeses.Items.Count
+
         ListBox1.Items.Clear()
-        'If ClbMeses.GetItemChecked(i) = True Then
 
         For k = indice + 1 To indice2 - 1
             ClbMeses.SetItemChecked(k, False)
@@ -252,7 +290,9 @@ Public Class FrmPagoDeudaAño
         For Each elemento In ListBox1.Items
             suma += elemento.ToString
         Next
+
         TxtTotal.Text = suma
+
     End Sub
 
     Private Sub DeudaMes(fecha)
@@ -403,8 +443,11 @@ Public Class FrmPagoDeudaAño
         '        MsgBox("No pasa nada")
         '    End If
         'End If
-
-
     End Sub
+
+    Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
+        Me.Close()
+    End Sub
+
 
 End Class

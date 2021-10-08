@@ -38,6 +38,7 @@ Partial Class FrmPagoDeudaAño
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPagoDeudaAño))
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.DgvHijos = New System.Windows.Forms.DataGridView()
         Me.Nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.matricula_alumno = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -64,7 +65,6 @@ Partial Class FrmPagoDeudaAño
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.BtnSalir = New System.Windows.Forms.Button()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox2.SuspendLayout()
         CType(Me.DgvHijos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -91,6 +91,13 @@ Partial Class FrmPagoDeudaAño
         Me.GroupBox2.Size = New System.Drawing.Size(712, 374)
         Me.GroupBox2.TabIndex = 33
         Me.GroupBox2.TabStop = False
+        '
+        'Panel1
+        '
+        Me.Panel1.Location = New System.Drawing.Point(349, 215)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(183, 141)
+        Me.Panel1.TabIndex = 18
         '
         'DgvHijos
         '
@@ -421,13 +428,6 @@ Partial Class FrmPagoDeudaAño
         Me.BtnSalir.TabIndex = 35
         Me.BtnSalir.Text = "Salir"
         Me.BtnSalir.UseVisualStyleBackColor = True
-        '
-        'Panel1
-        '
-        Me.Panel1.Location = New System.Drawing.Point(349, 215)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(183, 141)
-        Me.Panel1.TabIndex = 18
         '
         'FrmPagoDeudaAño
         '

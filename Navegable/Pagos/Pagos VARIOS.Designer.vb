@@ -92,6 +92,7 @@ Partial Class Pagos
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Label20 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.TxtTotalAPagar = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -160,7 +161,6 @@ Partial Class Pagos
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NÚMERO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MERCADOPAGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label20 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -402,7 +402,7 @@ Partial Class Pagos
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Label17.ForeColor = System.Drawing.Color.Green
-        Me.Label17.Location = New System.Drawing.Point(500, 199)
+        Me.Label17.Location = New System.Drawing.Point(499, 199)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(194, 21)
         Me.Label17.TabIndex = 29
@@ -423,7 +423,7 @@ Partial Class Pagos
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Label26.ForeColor = System.Drawing.Color.Black
-        Me.Label26.Location = New System.Drawing.Point(567, 155)
+        Me.Label26.Location = New System.Drawing.Point(565, 155)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(128, 21)
         Me.Label26.TabIndex = 27
@@ -442,7 +442,7 @@ Partial Class Pagos
         Me.TxtObservaciones.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.TxtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtObservaciones.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TxtObservaciones.Location = New System.Drawing.Point(146, 106)
+        Me.TxtObservaciones.Location = New System.Drawing.Point(143, 106)
         Me.TxtObservaciones.Multiline = True
         Me.TxtObservaciones.Name = "TxtObservaciones"
         Me.TxtObservaciones.Size = New System.Drawing.Size(396, 74)
@@ -453,7 +453,7 @@ Partial Class Pagos
         Me.Label27.AutoSize = True
         Me.Label27.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Label27.ForeColor = System.Drawing.Color.Black
-        Me.Label27.Location = New System.Drawing.Point(31, 108)
+        Me.Label27.Location = New System.Drawing.Point(28, 108)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(115, 21)
         Me.Label27.TabIndex = 24
@@ -464,7 +464,7 @@ Partial Class Pagos
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Label23.ForeColor = System.Drawing.Color.Black
-        Me.Label23.Location = New System.Drawing.Point(547, 111)
+        Me.Label23.Location = New System.Drawing.Point(545, 111)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(149, 21)
         Me.Label23.TabIndex = 22
@@ -855,6 +855,16 @@ Partial Class Pagos
         Me.TabPage2.Size = New System.Drawing.Size(966, 601)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.BackColor = System.Drawing.Color.Transparent
+        Me.Label20.Location = New System.Drawing.Point(731, 50)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(87, 15)
+        Me.Label20.TabIndex = 34
+        Me.Label20.Text = "Fecha de pago:"
         '
         'Label19
         '
@@ -1619,16 +1629,6 @@ Partial Class Pagos
         '
         Me.MERCADOPAGO.HeaderText = "MERCADOPAGO"
         Me.MERCADOPAGO.Name = "MERCADOPAGO"
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.BackColor = System.Drawing.Color.Transparent
-        Me.Label20.Location = New System.Drawing.Point(731, 50)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(87, 15)
-        Me.Label20.TabIndex = 34
-        Me.Label20.Text = "Fecha de pago:"
         '
         'Pagos
         '

@@ -1,4 +1,6 @@
-﻿Imports System.Text.RegularExpressions   'Necesario para validar formato de correo electrónico
+﻿Imports System.Data.SqlClient
+
+Imports System.Text.RegularExpressions   'Necesario para validar formato de correo electrónico
 Module Comprobaciones
     'Función que permite solo el ingreso de números
     Public Function SoloNumeros(e)

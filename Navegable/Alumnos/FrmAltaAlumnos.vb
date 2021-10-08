@@ -286,8 +286,8 @@ Public Class FrmAltaAlumnos
                     Else
                         AñoCurso()
                         OrdenaHermanos()
-                        Dim cadena As String = "INSERT INTO alumnos(codigo_familia, codigo_curso, codigo_año, codigo_beca, codigo_arancel, nombre_apellido_alumno, edad, fecha_nacimiento, dni,  fecha_ingreso, hermano_numero,  cuota, observaciones) 
-                                       VALUES(@codigo_familia, @codigo_curso, @codigo_año, @codigo_beca, @codigo_arancel, @nombre_apellido_alumno, @edad, @fecha_nacimiento, @dni, @fecha_ingreso, @hermano_numero,  @cuota, @observaciones)"
+                        Dim cadena As String = "INSERT INTO alumnos(codigo_familia, codigo_curso, codigo_año, codigo_beca, codigo_arancel, nombre_apellido_alumno, edad, fecha_nacimiento, dni,  fecha_ingreso, hermano_numero, observaciones) 
+                                       VALUES(@codigo_familia, @codigo_curso, @codigo_año, @codigo_beca, @codigo_arancel, @nombre_apellido_alumno, @edad, @fecha_nacimiento, @dni, @fecha_ingreso, @hermano_numero, @observaciones)"
                         comando = New SqlCommand(cadena, conexion)
 
                         comando.Parameters.AddWithValue("@codigo_familia", CbxCodigoFamilia.Text)
@@ -301,7 +301,7 @@ Public Class FrmAltaAlumnos
                         comando.Parameters.AddWithValue("@dni", TxtDni.Text)
                         comando.Parameters.AddWithValue("@fecha_ingreso", DtpFechaIngreso.Value)
                         comando.Parameters.AddWithValue("@hermano_numero", TxtHermanoNumero.Text)
-                        comando.Parameters.AddWithValue("@cuota", Val(TxtCuota.Text))
+                        'comando.Parameters.AddWithValue("@cuota", Val(TxtCuota.Text))
                         comando.Parameters.AddWithValue("@observaciones", TxtObservaciones.Text)
 
                         If comando.ExecuteNonQuery() = 1 Then
