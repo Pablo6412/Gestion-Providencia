@@ -1,4 +1,4 @@
-﻿'Imports MySql.Data.MySqlClient
+﻿
 
 Public Class FrmPrincipal
     'Dim conexion As New MySqlConnection
@@ -88,7 +88,12 @@ Public Class FrmPrincipal
     End Sub
 
     Private Sub ToolStripMenuItem9_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem9.Click
-        FrmPagosDeudaAño.Show()
+
+        FrmPagoDeudaAño.Show()
+
+
+
+
     End Sub
 
     Private Sub OtrosPagosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OtrosPagosToolStripMenuItem.Click
@@ -97,5 +102,9 @@ Public Class FrmPrincipal
 
     Private Sub PagosDeudaCampamentoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PagosDeudaCampamentoToolStripMenuItem.Click
         FrmPagoDeudaCampamento.Show()
+    End Sub
+
+    Private Sub PagosAdelantadosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PagosAdelantadosToolStripMenuItem.Click
+        FrmPagoAdelantado.Show()
     End Sub
 End Class

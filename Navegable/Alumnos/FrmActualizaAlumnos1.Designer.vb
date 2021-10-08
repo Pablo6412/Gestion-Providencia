@@ -30,13 +30,18 @@ Partial Class FrmActualizaAlumnos
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.TxtArancelCuota = New System.Windows.Forms.TextBox()
+        Me.TxtCodigoAño = New System.Windows.Forms.TextBox()
+        Me.CbxCodigoBeca = New System.Windows.Forms.ComboBox()
+        Me.CbxCodigoFamilia = New System.Windows.Forms.ComboBox()
         Me.CbxAlumno = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TxtFecha = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.TxtCodigoArancel = New System.Windows.Forms.TextBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.TxtCodigoArancel = New System.Windows.Forms.TextBox()
         Me.TxtCodigoAlumno = New System.Windows.Forms.TextBox()
         Me.TxtCodigoCurso = New System.Windows.Forms.TextBox()
         Me.TxtCurso = New System.Windows.Forms.TextBox()
@@ -89,10 +94,6 @@ Partial Class FrmActualizaAlumnos
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RdbExtras = New System.Windows.Forms.RadioButton()
         Me.RdbDatosAlumno = New System.Windows.Forms.RadioButton()
-        Me.CbxCodigoFamilia = New System.Windows.Forms.ComboBox()
-        Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.Panel6 = New System.Windows.Forms.Panel()
-        Me.CbxCodigoBeca = New System.Windows.Forms.ComboBox()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,9 +181,10 @@ Partial Class FrmActualizaAlumnos
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox1.Controls.Add(Me.Panel6)
-        Me.GroupBox1.Controls.Add(Me.CbxCodigoBeca)
         Me.GroupBox1.Controls.Add(Me.Panel5)
+        Me.GroupBox1.Controls.Add(Me.TxtArancelCuota)
+        Me.GroupBox1.Controls.Add(Me.TxtCodigoAño)
+        Me.GroupBox1.Controls.Add(Me.CbxCodigoBeca)
         Me.GroupBox1.Controls.Add(Me.CbxCodigoFamilia)
         Me.GroupBox1.Controls.Add(Me.CbxAlumno)
         Me.GroupBox1.Controls.Add(Me.Label2)
@@ -194,6 +196,43 @@ Partial Class FrmActualizaAlumnos
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Alumno"
+        '
+        'Panel5
+        '
+        Me.Panel5.Location = New System.Drawing.Point(707, 24)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(200, 46)
+        Me.Panel5.TabIndex = 13
+        '
+        'TxtArancelCuota
+        '
+        Me.TxtArancelCuota.Location = New System.Drawing.Point(723, 31)
+        Me.TxtArancelCuota.Name = "TxtArancelCuota"
+        Me.TxtArancelCuota.Size = New System.Drawing.Size(31, 29)
+        Me.TxtArancelCuota.TabIndex = 12
+        '
+        'TxtCodigoAño
+        '
+        Me.TxtCodigoAño.Location = New System.Drawing.Point(760, 31)
+        Me.TxtCodigoAño.Name = "TxtCodigoAño"
+        Me.TxtCodigoAño.Size = New System.Drawing.Size(29, 29)
+        Me.TxtCodigoAño.TabIndex = 10
+        '
+        'CbxCodigoBeca
+        '
+        Me.CbxCodigoBeca.FormattingEnabled = True
+        Me.CbxCodigoBeca.Location = New System.Drawing.Point(797, 31)
+        Me.CbxCodigoBeca.Name = "CbxCodigoBeca"
+        Me.CbxCodigoBeca.Size = New System.Drawing.Size(27, 29)
+        Me.CbxCodigoBeca.TabIndex = 9
+        '
+        'CbxCodigoFamilia
+        '
+        Me.CbxCodigoFamilia.FormattingEnabled = True
+        Me.CbxCodigoFamilia.Location = New System.Drawing.Point(832, 30)
+        Me.CbxCodigoFamilia.Name = "CbxCodigoFamilia"
+        Me.CbxCodigoFamilia.Size = New System.Drawing.Size(43, 29)
+        Me.CbxCodigoFamilia.TabIndex = 7
         '
         'CbxAlumno
         '
@@ -236,8 +275,8 @@ Partial Class FrmActualizaAlumnos
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox2.Controls.Add(Me.TxtCodigoArancel)
         Me.GroupBox2.Controls.Add(Me.Panel3)
+        Me.GroupBox2.Controls.Add(Me.TxtCodigoArancel)
         Me.GroupBox2.Controls.Add(Me.TxtCodigoAlumno)
         Me.GroupBox2.Controls.Add(Me.TxtCodigoCurso)
         Me.GroupBox2.Controls.Add(Me.TxtCurso)
@@ -262,19 +301,19 @@ Partial Class FrmActualizaAlumnos
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         '
+        'Panel3
+        '
+        Me.Panel3.Location = New System.Drawing.Point(579, 191)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(109, 76)
+        Me.Panel3.TabIndex = 25
+        '
         'TxtCodigoArancel
         '
         Me.TxtCodigoArancel.Location = New System.Drawing.Point(607, 203)
         Me.TxtCodigoArancel.Name = "TxtCodigoArancel"
         Me.TxtCodigoArancel.Size = New System.Drawing.Size(20, 27)
         Me.TxtCodigoArancel.TabIndex = 24
-        '
-        'Panel3
-        '
-        Me.Panel3.Location = New System.Drawing.Point(454, 279)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(108, 83)
-        Me.Panel3.TabIndex = 23
         '
         'TxtCodigoAlumno
         '
@@ -336,6 +375,7 @@ Partial Class FrmActualizaAlumnos
         '
         'TxtObservaciones
         '
+        Me.TxtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtObservaciones.Location = New System.Drawing.Point(166, 173)
         Me.TxtObservaciones.Multiline = True
         Me.TxtObservaciones.Name = "TxtObservaciones"
@@ -464,8 +504,10 @@ Partial Class FrmActualizaAlumnos
         '
         'TxtEdad
         '
+        Me.TxtEdad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtEdad.Location = New System.Drawing.Point(84, 184)
         Me.TxtEdad.Name = "TxtEdad"
+        Me.TxtEdad.ReadOnly = True
         Me.TxtEdad.Size = New System.Drawing.Size(100, 27)
         Me.TxtEdad.TabIndex = 17
         '
@@ -826,36 +868,6 @@ Partial Class FrmActualizaAlumnos
         Me.RdbDatosAlumno.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.RdbDatosAlumno.UseVisualStyleBackColor = False
         '
-        'CbxCodigoFamilia
-        '
-        Me.CbxCodigoFamilia.FormattingEnabled = True
-        Me.CbxCodigoFamilia.Location = New System.Drawing.Point(807, 26)
-        Me.CbxCodigoFamilia.Name = "CbxCodigoFamilia"
-        Me.CbxCodigoFamilia.Size = New System.Drawing.Size(68, 29)
-        Me.CbxCodigoFamilia.TabIndex = 7
-        '
-        'Panel5
-        '
-        Me.Panel5.Location = New System.Drawing.Point(754, 26)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(147, 46)
-        Me.Panel5.TabIndex = 8
-        '
-        'Panel6
-        '
-        Me.Panel6.Location = New System.Drawing.Point(633, 28)
-        Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(115, 41)
-        Me.Panel6.TabIndex = 10
-        '
-        'CbxCodigoBeca
-        '
-        Me.CbxCodigoBeca.FormattingEnabled = True
-        Me.CbxCodigoBeca.Location = New System.Drawing.Point(669, 34)
-        Me.CbxCodigoBeca.Name = "CbxCodigoBeca"
-        Me.CbxCodigoBeca.Size = New System.Drawing.Size(48, 29)
-        Me.CbxCodigoBeca.TabIndex = 9
-        '
         'FrmActualizaAlumnos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
@@ -909,7 +921,6 @@ Partial Class FrmActualizaAlumnos
     Friend WithEvents Label1 As Label
     Friend WithEvents TxtFecha As TextBox
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Panel3 As Panel
     Friend WithEvents TxtCodigoAlumno As TextBox
     Friend WithEvents TxtCodigoCurso As TextBox
     Friend WithEvents TxtCurso As TextBox
@@ -963,8 +974,10 @@ Partial Class FrmActualizaAlumnos
     Friend WithEvents CheckBox2 As CheckBox
     Friend WithEvents ChbFutbol As CheckBox
     Friend WithEvents TxtCodigoArancel As TextBox
-    Friend WithEvents Panel5 As Panel
     Friend WithEvents CbxCodigoFamilia As ComboBox
-    Friend WithEvents Panel6 As Panel
     Friend WithEvents CbxCodigoBeca As ComboBox
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents TxtCodigoAño As TextBox
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents TxtArancelCuota As TextBox
 End Class
