@@ -103,7 +103,7 @@ Partial Class FrmPagoDeudaAño
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.IntegralHeight = False
         Me.ListBox1.ItemHeight = 20
-        Me.ListBox1.Location = New System.Drawing.Point(162, 38)
+        Me.ListBox1.Location = New System.Drawing.Point(162, 40)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(109, 153)
         Me.ListBox1.TabIndex = 12
@@ -134,7 +134,7 @@ Partial Class FrmPagoDeudaAño
         Me.ClbMeses.CheckOnClick = True
         Me.ClbMeses.FormattingEnabled = True
         Me.ClbMeses.IntegralHeight = False
-        Me.ClbMeses.Location = New System.Drawing.Point(42, 38)
+        Me.ClbMeses.Location = New System.Drawing.Point(42, 40)
         Me.ClbMeses.Name = "ClbMeses"
         Me.ClbMeses.Size = New System.Drawing.Size(109, 153)
         Me.ClbMeses.TabIndex = 4
@@ -410,7 +410,7 @@ Partial Class FrmPagoDeudaAño
         Me.LblFecha.BackColor = System.Drawing.Color.Transparent
         Me.LblFecha.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.LblFecha.ForeColor = System.Drawing.Color.White
-        Me.LblFecha.Location = New System.Drawing.Point(13, 9)
+        Me.LblFecha.Location = New System.Drawing.Point(393, 18)
         Me.LblFecha.Name = "LblFecha"
         Me.LblFecha.Size = New System.Drawing.Size(53, 20)
         Me.LblFecha.TabIndex = 37
