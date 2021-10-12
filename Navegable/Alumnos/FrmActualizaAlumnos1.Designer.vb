@@ -29,6 +29,7 @@ Partial Class FrmActualizaAlumnos
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.LblFecha = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.TxtArancelCuota = New System.Windows.Forms.TextBox()
@@ -38,7 +39,6 @@ Partial Class FrmActualizaAlumnos
         Me.CbxAlumno = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TxtFecha = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TxtCodigoArancel = New System.Windows.Forms.TextBox()
@@ -165,8 +165,8 @@ Partial Class FrmActualizaAlumnos
         Me.TabPage1.BackColor = System.Drawing.Color.Gray
         Me.TabPage1.BackgroundImage = CType(resources.GetObject("TabPage1.BackgroundImage"), System.Drawing.Image)
         Me.TabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage1.Controls.Add(Me.LblFecha)
         Me.TabPage1.Controls.Add(Me.GroupBox1)
-        Me.TabPage1.Controls.Add(Me.TxtFecha)
         Me.TabPage1.Controls.Add(Me.GroupBox2)
         Me.TabPage1.Controls.Add(Me.DtpFechaActual)
         Me.TabPage1.Controls.Add(Me.GroupBox3)
@@ -177,6 +177,17 @@ Partial Class FrmActualizaAlumnos
         Me.TabPage1.Size = New System.Drawing.Size(966, 508)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
+        '
+        'LblFecha
+        '
+        Me.LblFecha.AutoSize = True
+        Me.LblFecha.BackColor = System.Drawing.Color.Transparent
+        Me.LblFecha.ForeColor = System.Drawing.Color.White
+        Me.LblFecha.Location = New System.Drawing.Point(318, 35)
+        Me.LblFecha.Name = "LblFecha"
+        Me.LblFecha.Size = New System.Drawing.Size(61, 20)
+        Me.LblFecha.TabIndex = 20
+        Me.LblFecha.Text = "Label17"
         '
         'GroupBox1
         '
@@ -259,18 +270,6 @@ Partial Class FrmActualizaAlumnos
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(0, 21)
         Me.Label1.TabIndex = 0
-        '
-        'TxtFecha
-        '
-        Me.TxtFecha.BackColor = System.Drawing.Color.Snow
-        Me.TxtFecha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtFecha.ForeColor = System.Drawing.Color.Black
-        Me.TxtFecha.Location = New System.Drawing.Point(347, 36)
-        Me.TxtFecha.Name = "TxtFecha"
-        Me.TxtFecha.ReadOnly = True
-        Me.TxtFecha.Size = New System.Drawing.Size(184, 27)
-        Me.TxtFecha.TabIndex = 19
-        Me.TxtFecha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'GroupBox2
         '
@@ -919,7 +918,6 @@ Partial Class FrmActualizaAlumnos
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents TxtFecha As TextBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents TxtCodigoAlumno As TextBox
     Friend WithEvents TxtCodigoCurso As TextBox
@@ -980,4 +978,5 @@ Partial Class FrmActualizaAlumnos
     Friend WithEvents TxtCodigoAño As TextBox
     Friend WithEvents Panel5 As Panel
     Friend WithEvents TxtArancelCuota As TextBox
+    Friend WithEvents LblFecha As Label
 End Class

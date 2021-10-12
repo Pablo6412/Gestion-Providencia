@@ -29,6 +29,7 @@ Public Class FrmActualizaAlumnos
     Dim arancel As Decimal
 
     Private Sub FrmActualizaAlumnos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LblFecha.Text = Date.Now.ToLongDateString
         conectar()
 
         BuscaCurso()
@@ -37,7 +38,7 @@ Public Class FrmActualizaAlumnos
 
     Private Sub Cargar()
         Dim cuenta As Integer
-        TxtFecha.Text = DtpFechaActual.Value
+        'TxtFecha.Text = DtpFechaActual.Value
         Dim cuentaAlumnos As String = "Select COUNT(codigo_alumno) FROM alumnos"
         Dim comando As New SqlCommand(cuentaAlumnos, conexion)
         cuenta = comando.ExecuteScalar
