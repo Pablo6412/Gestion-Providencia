@@ -41,10 +41,15 @@ Partial Class FrmPrincipal
         Me.TlsIngresoDePagos = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripMenuItem9 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConCuotaCongeladaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PagosDeMesEnteroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PagosPorHijoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConCuotaAjustableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OtrosPagosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PagosDeudaCampamentoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.PagosAdelantadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PagosAdelantadosConCuotaAjustableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MstEmisionDeVencimientos = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmisiónDeVencimientosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TlsEnviaCorreo = New System.Windows.Forms.ToolStripMenuItem()
@@ -68,7 +73,6 @@ Partial Class FrmPrincipal
         Me.PbxEscudoProvi = New System.Windows.Forms.PictureBox()
         Me.PanelAzul = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.PagosAdelantadosConCuotaAjustableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.PanelMenu.SuspendLayout()
         Me.PanelEscudos.SuspendLayout()
@@ -193,9 +197,35 @@ Partial Class FrmPrincipal
         '
         'ToolStripMenuItem9
         '
+        Me.ToolStripMenuItem9.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConCuotaCongeladaToolStripMenuItem, Me.ConCuotaAjustableToolStripMenuItem})
         Me.ToolStripMenuItem9.Name = "ToolStripMenuItem9"
         Me.ToolStripMenuItem9.Size = New System.Drawing.Size(335, 24)
         Me.ToolStripMenuItem9.Text = "Pagos deuda año en curso"
+        '
+        'ConCuotaCongeladaToolStripMenuItem
+        '
+        Me.ConCuotaCongeladaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PagosDeMesEnteroToolStripMenuItem, Me.PagosPorHijoToolStripMenuItem})
+        Me.ConCuotaCongeladaToolStripMenuItem.Name = "ConCuotaCongeladaToolStripMenuItem"
+        Me.ConCuotaCongeladaToolStripMenuItem.Size = New System.Drawing.Size(207, 24)
+        Me.ConCuotaCongeladaToolStripMenuItem.Text = "Con cuota congelada"
+        '
+        'PagosDeMesEnteroToolStripMenuItem
+        '
+        Me.PagosDeMesEnteroToolStripMenuItem.Name = "PagosDeMesEnteroToolStripMenuItem"
+        Me.PagosDeMesEnteroToolStripMenuItem.Size = New System.Drawing.Size(207, 24)
+        Me.PagosDeMesEnteroToolStripMenuItem.Text = "Pagos de mes entero"
+        '
+        'PagosPorHijoToolStripMenuItem
+        '
+        Me.PagosPorHijoToolStripMenuItem.Name = "PagosPorHijoToolStripMenuItem"
+        Me.PagosPorHijoToolStripMenuItem.Size = New System.Drawing.Size(207, 24)
+        Me.PagosPorHijoToolStripMenuItem.Text = "Pagos por hijo"
+        '
+        'ConCuotaAjustableToolStripMenuItem
+        '
+        Me.ConCuotaAjustableToolStripMenuItem.Name = "ConCuotaAjustableToolStripMenuItem"
+        Me.ConCuotaAjustableToolStripMenuItem.Size = New System.Drawing.Size(207, 24)
+        Me.ConCuotaAjustableToolStripMenuItem.Text = "Con cuota ajustable"
         '
         'OtrosPagosToolStripMenuItem
         '
@@ -219,6 +249,12 @@ Partial Class FrmPrincipal
         Me.PagosAdelantadosToolStripMenuItem.Name = "PagosAdelantadosToolStripMenuItem"
         Me.PagosAdelantadosToolStripMenuItem.Size = New System.Drawing.Size(335, 24)
         Me.PagosAdelantadosToolStripMenuItem.Text = "Pagos adelantados con cuotas congeladas"
+        '
+        'PagosAdelantadosConCuotaAjustableToolStripMenuItem
+        '
+        Me.PagosAdelantadosConCuotaAjustableToolStripMenuItem.Name = "PagosAdelantadosConCuotaAjustableToolStripMenuItem"
+        Me.PagosAdelantadosConCuotaAjustableToolStripMenuItem.Size = New System.Drawing.Size(335, 24)
+        Me.PagosAdelantadosConCuotaAjustableToolStripMenuItem.Text = "Pagos adelantados con cuota ajustable"
         '
         'MstEmisionDeVencimientos
         '
@@ -409,7 +445,7 @@ Partial Class FrmPrincipal
         Me.PbxEscudoTesoros.BackColor = System.Drawing.Color.Transparent
         Me.PbxEscudoTesoros.BackgroundImage = CType(resources.GetObject("PbxEscudoTesoros.BackgroundImage"), System.Drawing.Image)
         Me.PbxEscudoTesoros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PbxEscudoTesoros.Location = New System.Drawing.Point(193, 0)
+        Me.PbxEscudoTesoros.Location = New System.Drawing.Point(130, 0)
         Me.PbxEscudoTesoros.Name = "PbxEscudoTesoros"
         Me.PbxEscudoTesoros.Size = New System.Drawing.Size(74, 81)
         Me.PbxEscudoTesoros.TabIndex = 2
@@ -421,7 +457,7 @@ Partial Class FrmPrincipal
         Me.PbxEscudoDoniaLuna.BackColor = System.Drawing.Color.Transparent
         Me.PbxEscudoDoniaLuna.BackgroundImage = CType(resources.GetObject("PbxEscudoDoniaLuna.BackgroundImage"), System.Drawing.Image)
         Me.PbxEscudoDoniaLuna.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PbxEscudoDoniaLuna.Location = New System.Drawing.Point(374, 0)
+        Me.PbxEscudoDoniaLuna.Location = New System.Drawing.Point(392, 0)
         Me.PbxEscudoDoniaLuna.Name = "PbxEscudoDoniaLuna"
         Me.PbxEscudoDoniaLuna.Size = New System.Drawing.Size(82, 81)
         Me.PbxEscudoDoniaLuna.TabIndex = 1
@@ -433,7 +469,7 @@ Partial Class FrmPrincipal
         Me.PbxEscudoProvi.BackColor = System.Drawing.Color.Transparent
         Me.PbxEscudoProvi.BackgroundImage = CType(resources.GetObject("PbxEscudoProvi.BackgroundImage"), System.Drawing.Image)
         Me.PbxEscudoProvi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PbxEscudoProvi.Location = New System.Drawing.Point(564, 0)
+        Me.PbxEscudoProvi.Location = New System.Drawing.Point(607, 0)
         Me.PbxEscudoProvi.Name = "PbxEscudoProvi"
         Me.PbxEscudoProvi.Size = New System.Drawing.Size(82, 81)
         Me.PbxEscudoProvi.TabIndex = 0
@@ -453,14 +489,8 @@ Partial Class FrmPrincipal
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 106)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(809, 5)
+        Me.Panel1.Size = New System.Drawing.Size(809, 6)
         Me.Panel1.TabIndex = 4
-        '
-        'PagosAdelantadosConCuotaAjustableToolStripMenuItem
-        '
-        Me.PagosAdelantadosConCuotaAjustableToolStripMenuItem.Name = "PagosAdelantadosConCuotaAjustableToolStripMenuItem"
-        Me.PagosAdelantadosConCuotaAjustableToolStripMenuItem.Size = New System.Drawing.Size(335, 24)
-        Me.PagosAdelantadosConCuotaAjustableToolStripMenuItem.Text = "Pagos adelantados con cuota ajustable"
         '
         'FrmPrincipal
         '
@@ -557,4 +587,8 @@ Partial Class FrmPrincipal
     Friend WithEvents PagosAdelantadosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
     Friend WithEvents PagosAdelantadosConCuotaAjustableToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ConCuotaCongeladaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ConCuotaAjustableToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PagosDeMesEnteroToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PagosPorHijoToolStripMenuItem As ToolStripMenuItem
 End Class

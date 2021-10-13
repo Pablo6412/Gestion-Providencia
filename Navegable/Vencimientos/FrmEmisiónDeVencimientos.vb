@@ -73,6 +73,8 @@ Public Class FrmEmisiónDeVencimientos
         Dim comedor As Decimal
         Dim vencimentoAlumno As String
         Dim adelanto As String
+        Dim mes As Integer
+        Dim parImpar As Integer
         Dim comandoVencimientoAlumnos As New SqlCommand
         Dim cantidadFamilias As String = "SELECT COUNT(codigo_familia) FROM familias WHERE estado = 'activo' "
         Dim comandoCantidad As New SqlCommand(cantidadFamilias, conexion)
@@ -178,15 +180,24 @@ Public Class FrmEmisiónDeVencimientos
                     totalMateriales += Val(fila(8))
                     adicional = Val(fila(9))
                     totalAdicional += Val(fila(9))
-                    comedor = Val(fila(10))
-                    totalComedor += Val(fila(10))
+
+                    mes = fechaActual.Month
+                    parImpar = mes Mod 2
+                    If parImpar <> 0 Then
+                        comedor = Val(fila(10))
+                        totalComedor += Val(fila(10))
+                    Else
+                        comedor = 0
+                        totalComedor = 0
+                    End If
+
+
                     CalculaCuota()
                     vencimentoAlumno = "INSERT INTO vencimiento_detallado (codigo_familia, codigo_alumno, cuota_alumno, 
-                                    materiales_alumno, talleres_alumno,
-                                    campamento_alumno, adicional_alumno, comedor_alumno, fecha_vencimiento) 
-                                    VALUES(@codigo_familia, @codigo_alumno, @cuota_alumno, @materiales_alumno, @talleres_alumno, 
-                                    @campamento_alumno, 
-                                    @adicional_alumno, @comedor_alumno, @fecha_vencimiento) "
+                                       materiales_alumno, talleres_alumno, campamento_alumno, adicional_alumno, comedor_alumno, 
+                                       fecha_vencimiento) 
+                                       VALUES(@codigo_familia, @codigo_alumno, @cuota_alumno, @materiales_alumno, @talleres_alumno, 
+                                       @campamento_alumno, @adicional_alumno, @comedor_alumno, @fecha_vencimiento) "
                     comandoVencimientoAlumnos = New SqlCommand(vencimentoAlumno, conexion)
 
                     comandoVencimientoAlumnos.Parameters.AddWithValue("@codigo_familia", codFam)
@@ -600,8 +611,9 @@ Public Class FrmEmisiónDeVencimientos
             If dtDatos.Rows.Count > 0 Then
 
                 Dim pagoNulo As String = "INSERT INTO detalle_pago_escolar (codigo_familia, aranceles, materiales, talleres, campamento, 
-                                          adicional, comedor, fecha_de_pago, pago_cumplido) VALUES(@codFam, @totalCuota, @totalMateriales, 
-                                          @totalTaller, @totalCampamento, @totalAdicional, @totalComedor, @fechaDePago, @pago_cumplido)"
+                                          adicional, comedor, periodo_de_pago, pago_cumplido) 
+                                          VALUES(@codFam, @totalCuota, @totalMateriales, @totalTaller, @totalCampamento, 
+                                          @totalAdicional, @totalComedor, @periodo_de_pago, @pago_cumplido)"
                 Dim comandoPagoNulo As New SqlCommand(pagoNulo, conexion)
 
                 comandoPagoNulo.Parameters.AddWithValue("@codFam", codigo)
@@ -611,7 +623,8 @@ Public Class FrmEmisiónDeVencimientos
                 comandoPagoNulo.Parameters.AddWithValue("@totalCampamento", 0)
                 comandoPagoNulo.Parameters.AddWithValue("@totalAdicional", 0)
                 comandoPagoNulo.Parameters.AddWithValue("@totalComedor", 0)
-                comandoPagoNulo.Parameters.AddWithValue("@fechaDePago", fechaActual)
+                comandoPagoNulo.Parameters.AddWithValue("@periodo_de_pago", fechaActual)
+                'comandoPagoNulo.Parameters.AddWithValue("@fechaDePago",)
                 comandoPagoNulo.Parameters.AddWithValue("@pago_cumplido", "Nulo")
 
                 If comandoPagoNulo.ExecuteNonQuery() = 1 Then

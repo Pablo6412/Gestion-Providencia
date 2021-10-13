@@ -107,4 +107,8 @@ Public Class FrmPrincipal
     Private Sub PagosAdelantadosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PagosAdelantadosToolStripMenuItem.Click
         FrmPagoAdelantado.Show()
     End Sub
+
+    Private Sub ConCuotaCongeladaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConCuotaCongeladaToolStripMenuItem.Click
+
+    End Sub
 End Class

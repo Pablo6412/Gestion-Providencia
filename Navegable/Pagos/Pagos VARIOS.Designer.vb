@@ -49,6 +49,7 @@ Partial Class Pagos
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.LblPeriodoPago = New System.Windows.Forms.Label()
         Me.BtnContinuar = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -81,11 +82,10 @@ Partial Class Pagos
         Me.TxtDebito = New System.Windows.Forms.TextBox()
         Me.TxtTransferencia = New System.Windows.Forms.TextBox()
         Me.TxtCheque = New System.Windows.Forms.TextBox()
-        Me.DtpFechaPago = New System.Windows.Forms.DateTimePicker()
         Me.BtnSalir = New System.Windows.Forms.Button()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.DtpUltimoPago = New System.Windows.Forms.DateTimePicker()
+        Me.LblUltimoPago = New System.Windows.Forms.Label()
         Me.CbxFamilia = New System.Windows.Forms.ComboBox()
         Me.CbxCodigo = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -340,9 +340,9 @@ Partial Class Pagos
         Me.TabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.TabPage1.BackgroundImage = CType(resources.GetObject("TabPage1.BackgroundImage"), System.Drawing.Image)
         Me.TabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage1.Controls.Add(Me.LblPeriodoPago)
         Me.TabPage1.Controls.Add(Me.BtnContinuar)
         Me.TabPage1.Controls.Add(Me.GroupBox4)
-        Me.TabPage1.Controls.Add(Me.DtpFechaPago)
         Me.TabPage1.Controls.Add(Me.BtnSalir)
         Me.TabPage1.Controls.Add(Me.Label16)
         Me.TabPage1.Controls.Add(Me.GroupBox1)
@@ -351,6 +351,19 @@ Partial Class Pagos
         Me.TabPage1.Size = New System.Drawing.Size(966, 601)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
+        '
+        'LblPeriodoPago
+        '
+        Me.LblPeriodoPago.AutoSize = True
+        Me.LblPeriodoPago.BackColor = System.Drawing.Color.Transparent
+        Me.LblPeriodoPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.LblPeriodoPago.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.LblPeriodoPago.ForeColor = System.Drawing.Color.White
+        Me.LblPeriodoPago.Location = New System.Drawing.Point(452, 62)
+        Me.LblPeriodoPago.Name = "LblPeriodoPago"
+        Me.LblPeriodoPago.Size = New System.Drawing.Size(60, 20)
+        Me.LblPeriodoPago.TabIndex = 28
+        Me.LblPeriodoPago.Text = "Período"
         '
         'BtnContinuar
         '
@@ -721,14 +734,6 @@ Partial Class Pagos
         Me.TxtCheque.Size = New System.Drawing.Size(116, 23)
         Me.TxtCheque.TabIndex = 15
         '
-        'DtpFechaPago
-        '
-        Me.DtpFechaPago.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaPago.Location = New System.Drawing.Point(410, 64)
-        Me.DtpFechaPago.Name = "DtpFechaPago"
-        Me.DtpFechaPago.Size = New System.Drawing.Size(128, 23)
-        Me.DtpFechaPago.TabIndex = 25
-        '
         'BtnSalir
         '
         Me.BtnSalir.BackColor = System.Drawing.SystemColors.ButtonFace
@@ -746,17 +751,18 @@ Partial Class Pagos
         Me.Label16.AutoSize = True
         Me.Label16.BackColor = System.Drawing.Color.Transparent
         Me.Label16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Label16.ForeColor = System.Drawing.Color.Black
-        Me.Label16.Location = New System.Drawing.Point(425, 46)
+        Me.Label16.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label16.ForeColor = System.Drawing.Color.White
+        Me.Label16.Location = New System.Drawing.Point(326, 61)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(94, 15)
+        Me.Label16.Size = New System.Drawing.Size(123, 20)
         Me.Label16.TabIndex = 22
-        Me.Label16.Text = "Período de pago"
+        Me.Label16.Text = "Período de pago:"
         '
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox1.Controls.Add(Me.DtpUltimoPago)
+        Me.GroupBox1.Controls.Add(Me.LblUltimoPago)
         Me.GroupBox1.Controls.Add(Me.CbxFamilia)
         Me.GroupBox1.Controls.Add(Me.CbxCodigo)
         Me.GroupBox1.Controls.Add(Me.Label2)
@@ -770,14 +776,15 @@ Partial Class Pagos
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Familia"
         '
-        'DtpUltimoPago
+        'LblUltimoPago
         '
-        Me.DtpUltimoPago.Enabled = False
-        Me.DtpUltimoPago.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpUltimoPago.Location = New System.Drawing.Point(440, 28)
-        Me.DtpUltimoPago.Name = "DtpUltimoPago"
-        Me.DtpUltimoPago.Size = New System.Drawing.Size(130, 29)
-        Me.DtpUltimoPago.TabIndex = 5
+        Me.LblUltimoPago.AutoSize = True
+        Me.LblUltimoPago.ForeColor = System.Drawing.Color.White
+        Me.LblUltimoPago.Location = New System.Drawing.Point(435, 34)
+        Me.LblUltimoPago.Name = "LblUltimoPago"
+        Me.LblUltimoPago.Size = New System.Drawing.Size(65, 21)
+        Me.LblUltimoPago.TabIndex = 6
+        Me.LblUltimoPago.Text = "Label21"
         '
         'CbxFamilia
         '
@@ -800,6 +807,7 @@ Partial Class Pagos
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Location = New System.Drawing.Point(272, 34)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(162, 21)
@@ -1751,7 +1759,6 @@ Partial Class Pagos
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents DgvHijos As DataGridView
     Friend WithEvents BtnSalir As Button
-    Friend WithEvents DtpFechaPago As DateTimePicker
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents Label23 As Label
     Friend WithEvents TxtTotal As TextBox
@@ -1778,7 +1785,6 @@ Partial Class Pagos
     Friend WithEvents LblSinAsignar1 As Label
     Friend WithEvents BtnContinuar As Button
     Friend WithEvents taller_importe As DataGridViewTextBoxColumn
-    Friend WithEvents DtpUltimoPago As DateTimePicker
     Friend WithEvents Label2 As Label
     Friend WithEvents Label17 As Label
     Friend WithEvents TxtCredito As TextBox
@@ -1807,4 +1813,6 @@ Partial Class Pagos
     Friend WithEvents adicional_alumno As DataGridViewTextBoxColumn
     Friend WithEvents comedor_alumno As DataGridViewTextBoxColumn
     Friend WithEvents Label20 As Label
+    Friend WithEvents LblPeriodoPago As Label
+    Friend WithEvents LblUltimoPago As Label
 End Class

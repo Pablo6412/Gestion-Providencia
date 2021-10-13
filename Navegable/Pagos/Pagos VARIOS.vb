@@ -173,24 +173,20 @@ Public Class Pagos
     End Sub
 
     Private Sub UltimoPago()
+
         'Fecha de último pago
-        Dim ultimoPago As String = "SELECT MAX(fecha_de_pago) FROM detalle_pago_escolar WHERE codigo_familia = " & Val(CbxCodigo.Text) & "  And pago_cumplido = 'completo' "
-        'MsgBox("" & CbxCodigo.Text & "")
+        Dim ultimoPago As String = "SELECT ISNULL(MAX(fecha_de_pago), '' ) 
+                                   FROM detalle_pago_escolar WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND pago_cumplido <> 'Nulo' "
+
         Dim comandoUltimo As New SqlCommand(ultimoPago, conexion)
-        If comandoUltimo.ExecuteNonQuery = 1 Then
-            DtpUltimoPago.Text = comandoUltimo.ExecuteScalar
-        Else
-            MsgBox("Aún no se han registrado pagos de la familia " & CbxFamilia.Text & "")
-            'DtpUltimoPago.Value = ""
-            contador2 += 1
-        End If
+        LblUltimoPago.Text = comandoUltimo.ExecuteScalar
     End Sub
 
     Private Sub UltimoVencimiento()
-        Dim ultimoVencimiento As String = "SELECT MAX(fecha_de_pago) FROM detalle_pago_escolar "  'WHERE codigo_familia = " & Val(CbxCodigo.Text) & "  "
+        Dim ultimoVencimiento As String = "SELECT MAX(fecha_vencimiento) FROM vencimiento_detallado"  'WHERE codigo_familia = " & Val(CbxCodigo.Text) & "  "
         Dim comandoUltimoVencimiento As New SqlCommand(ultimoVencimiento, conexion)
         If comandoUltimoVencimiento.ExecuteNonQuery <> 0 Then
-            DtpFechaPago.Text = comandoUltimoVencimiento.ExecuteScalar
+            LblPeriodoPago.Text = comandoUltimoVencimiento.ExecuteScalar
         End If
     End Sub
 
@@ -296,31 +292,17 @@ Public Class Pagos
             End If
 
             montoDeuda = Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text)
-            Dim cadena As String = "UPDATE detalle_pago_escolar SET  matricula = " & Val(TxtMatricula.Text) & ",
-                                    aranceles = " & Val(TxtArancel.Text) & ", materiales = " & Val(TxtMateriales.Text) & ", talleres = " & Val(TxtTalleres.Text) & ", 
-                                    campamento = " & Val(TxtCampamento.Text) & ", adicional = " & Val(TxtAdicional.Text) & ", comedor = " & Val(TxtComedor.Text) & ", 
-                                    credito = " & credito & ", fecha_de_pago = '" & DtpFechaDePago.Value & "', pago_cumplido = '" & pagoCumplido & "', monto_deuda = " & montoDeuda & " 
-                                    WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND fecha_de_pago = '" & DtpFechaPago.Value & "' "
+            'Try
+            Dim cadena As String = "UPDATE detalle_pago_escolar 
+                                    SET  matricula = " & Val(TxtMatricula.Text) & ", aranceles = " & Val(TxtArancel.Text) & ", 
+                                    materiales = " & Val(TxtMateriales.Text) & ", talleres = " & Val(TxtTalleres.Text) & ", 
+                                    campamento = " & Val(TxtCampamento.Text) & ", adicional = " & Val(TxtAdicional.Text) & ", 
+                                    comedor = " & Val(TxtComedor.Text) & ", credito = " & credito & ", 
+                                    fecha_de_pago = '" & DtpFechaDePago.Value & "', pago_cumplido = '" & pagoCumplido & "', 
+                                    monto_deuda = " & montoDeuda & " 
+                                    WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND periodo_de_pago = '" & LblPeriodoPago.Text & "' "
 
-            'Dim cadena As String = "INSERT INTO dbo.detalle_pago_escolar(codigo_familia, matricula, aranceles, materiales, 
-            '                        talleres, campamento, adicional, comedor, credito, fecha_de_pago, pago_cumplido) 
-            '                        VALUES(@codigo_familia, @matricula, @aranceles, @materiales, @talleres, @campamento, 
-            '                        @adicional, @comedor, @credito, @fecha_de_pago, @pago_cumplido)"
             comando = New SqlCommand(cadena, conexion)
-
-            'comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
-            'comando.Parameters.AddWithValue("@matricula", Val(TxtMatricula.Text))
-            'comando.Parameters.AddWithValue("@aranceles", Val(TxtArancel.Text))
-            'comando.Parameters.AddWithValue("@materiales", Val(TxtMateriales.Text))
-            'comando.Parameters.AddWithValue("@talleres", Val(TxtTalleres.Text))
-            'comando.Parameters.AddWithValue("@campamento", Val(TxtCampamento.Text))
-            'comando.Parameters.AddWithValue("@adicional", Val(TxtAdicional.Text))
-            'comando.Parameters.AddWithValue("@comedor", Val(TxtComedor.Text))
-            'comando.Parameters.AddWithValue("@credito", credito)
-            'comando.Parameters.AddWithValue("@fecha_de_pago", DtpFechaDePago.Value)
-            'comando.Parameters.AddWithValue("@pago_cumplido", pagoCumplido)
-            'txtPrecio.Text = Format(CDec(txtPrecio.Text), "C")
-            'SaldosDeudores()
 
             If comando.ExecuteNonQuery() = 1 Then
                 MessageBox.Show("Pago guardado")
@@ -459,9 +441,9 @@ Public Class Pagos
 
                 Try
                     Dim pagoFamilia As String = "INSERT INTO pago_familia (codigo_familia, codigo_alumno, arancel, matricula, 
-                                                 materiales, taller, campamento, adicional, comedor, fecha ) 
+                                                 materiales, taller, campamento, adicional, comedor, fecha_pago, periodo_pago ) 
                                                  VALUES(@codigo_familia, @codigo_alumno, @arancel, @matricula, @materiales, 
-                                                 @taller, @campamento, @adicional, @comedor, @fecha)"
+                                                 @taller, @campamento, @adicional, @comedor, @fecha_pago, @periodo_pago)"
                     Dim comando As New SqlCommand(pagoFamilia, conexion)
 
                     comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
@@ -473,8 +455,8 @@ Public Class Pagos
                     comando.Parameters.AddWithValue("@campamento", campamento)
                     comando.Parameters.AddWithValue("@adicional", adicional)
                     comando.Parameters.AddWithValue("@comedor", comedor)
-                    comando.Parameters.AddWithValue("@fecha", DtpFechaDePago.Value)
-
+                    comando.Parameters.AddWithValue("@fecha_pago", DtpFechaDePago.Value)
+                    comando.Parameters.AddWithValue("@periodo_pago", DtpFechaDePago.Value)
                     comando.ExecuteNonQuery()
 
                     MsgBox("Holis")
@@ -510,15 +492,16 @@ Public Class Pagos
     Private Sub FormaPago(efectivoDef)
         abrir()
 
-        Dim cadenas As String = "INSERT INTO dbo.pagos_escolares(codigo_familia,fecha_pago, efectivo, cheque, cheque_numero,
+        Dim cadenas As String = "INSERT INTO dbo.pagos_escolares(codigo_familia,periodo_de_pago, fecha_pago, efectivo, cheque, cheque_numero,
                                  transferencia, transferencia_numero, debito, debito_numero, mercadopago, otros, otros_comprobante, 
                                  observaciones ) 
-                                 VALUES(@codigo_familia, @fecha_pago, @efectivo, @cheque, @cheque_numero, @transferencia, 
+                                 VALUES(@codigo_familia, @periodo_de_pago, @fecha_pago, @efectivo, @cheque, @cheque_numero, @transferencia, 
                                  @transferencia_numero, @debito, @debito_numero, @mercadopago, @otros, @otros_comprobante, 
                                  @observaciones)"
         comando = New SqlCommand(cadenas, conexion)
 
         comando.Parameters.AddWithValue("@codigo_familia", CbxCodigo.Text)
+        comando.Parameters.AddWithValue("@periodo_de_pago", LblPeriodoPago.Text)
         comando.Parameters.AddWithValue("@fecha_pago", DtpFechaDePago.Value)
         comando.Parameters.AddWithValue("@efectivo", efectivoDef)
         comando.Parameters.AddWithValue("@cheque", Val(TxtCheque.Text))
@@ -543,12 +526,8 @@ Public Class Pagos
 
     Private Sub PagoTotal()
 
-
-        'Dim maximo As String = "select max(codigo_pago) as codigo_pago FROM pagos_escolares WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "'"
-        'Dim comando3 As New SqlCommand(maximo, conexion)
-        'TxtCodigoPago.Text = comando3.ExecuteScalar
-        matricula = TxtMatricula.Text = TxtMatricula.PlaceholderText
-       
+        TxtMatricula.Text = TxtMatricula.PlaceholderText
+        matricula = TxtMatricula.Text
         TxtArancel.Text = TxtArancel.PlaceholderText
         arancel = TxtArancel.Text
         TxtMateriales.Text = TxtMateriales.PlaceholderText
@@ -1002,9 +981,4 @@ Public Class Pagos
         Me.Close()
     End Sub
 
-
-
-    'Private Sub CbxCodigo_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigo.SelectedValueChanged
-    '    CalculoTotal()
-    'End Sub
 End Class
