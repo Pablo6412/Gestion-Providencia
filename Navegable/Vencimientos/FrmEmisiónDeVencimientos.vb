@@ -54,17 +54,45 @@ Public Class FrmEmisiónDeVencimientos
         '    BtnVencimientos.Enabled = False
         '    MsgBox("Los vencimientos del presente mes ya fueron realizados.")
         'End If
+        'grabaPagoNulo()
+        VerificaPagoMesPasado()
+    End Sub
+
+    Private Sub VerificaPagoMesPasado()
+        Dim fecha As Date
+        Try
+
+            Dim fechaUltimoPago As String = "SELECT MAX(periodo_de_pago) AS fecha FROM detalle_pago_escolar"
+            Dim comandoFecha As New SqlCommand(fechaUltimoPago, conexion)
+            If comandoFecha.ExecuteNonQuery() = 0 Then
+                MsgBox("Error buscando última fecha de vencimientos")
+            Else
+                fecha = comandoFecha.ExecuteScalar
+                'MsgBox("La fecha es: " & fecha)
+            End If
+
+        Catch ex As Exception
+            MsgBox("Error comprobando BD" & ex.ToString)
+        End Try
+
+        Dim pagoNulo As String = "SELECT codigo_familia, pago_cumplido, monto_deuda 
+                                  FROM detalle_pago_escolar 
+                                  WHERE periodo_de_pago = '" & fecha & "' and pago_cumplido = 'Nulo'"
+
+
     End Sub
 
     Private Sub BtnVencimientos_Click(sender As Object, e As EventArgs) Handles BtnVencimientos.Click
         conectar()
         'abrir()
-
-        grabaVencimientos()
         grabaPagoNulo()
+        grabaVencimientos()
+
     End Sub
 
     Private Sub grabaVencimientos()
+        Dim alumno As Decimal
+        Dim totalFamilia As Decimal = 0
         Dim numeroHijos As Integer
         Dim campamento As Decimal
         Dim taller As Decimal
@@ -94,6 +122,9 @@ Public Class FrmEmisiónDeVencimientos
         maxcod = comando1.ExecuteScalar
 
         Dim L As Integer = 1
+        Dim numFam As String = "SELECT COUNT(codigo_familia) AS familias FROM familias WHERE estado = 'activo' "
+        Dim comandoCantFam As New SqlCommand(numFam, conexion)
+        Dim familias As Integer = comandoCantFam.ExecuteNonQuery()
 
         While codFam <= maxcod
             Dim pagoAdelantado As String = "SELECT pago_adelantado FROM familias WHERE codigo_familia = " & codFam & " "
@@ -133,7 +164,7 @@ Public Class FrmEmisiónDeVencimientos
 									   JOIN adicional ON alumnos.codigo_año = adicional.codigo_año
                                        WHERE alumnos.codigo_familia = " & codFam & " AND alumnos.estado = 'activo'"
 
-                'WHERE alumnos.codigo_familia =  AND alumnos.estado = 'activo' ORDER BY alumnos.codigo_alumno"
+
 
                 comando = New SqlCommand()
                 comando.CommandText = consulta
@@ -147,14 +178,12 @@ Public Class FrmEmisiónDeVencimientos
 
                 For Each fila As DataRow In dataSet.Tables(0).Rows()
 
-
-
                     Dim numHijos As String = "SELECT COUNT(codigo_alumno)  
                                               FROM alumnos 
                                               WHERE codigo_familia = " & codFam & " AND estado = 'activo' "
                     Dim comandoNum As New SqlCommand(numHijos, conexion)
 
-                    'cantidad = comandoNum.ExecuteScalar
+
                     Dim cantidad As Integer = comandoNum.ExecuteScalar
 
                     Pbdos.Minimum = 0
@@ -191,7 +220,6 @@ Public Class FrmEmisiónDeVencimientos
                         totalComedor = 0
                     End If
 
-
                     CalculaCuota()
                     vencimentoAlumno = "INSERT INTO vencimiento_detallado (codigo_familia, codigo_alumno, cuota_alumno, 
                                        materiales_alumno, talleres_alumno, campamento_alumno, adicional_alumno, comedor_alumno, 
@@ -212,7 +240,7 @@ Public Class FrmEmisiónDeVencimientos
 
                     comandoVencimientoAlumnos.ExecuteNonQuery()
 
-                    'MsgBox("Codigo Familia: " & codFam & " Codigo alumno: " & codigoAlumno & " descuento Herman0: " & descuentoHermano & " descuento beca: " & descuentoBeca & " descuento especial: " & descuentoEspecial & " arancel: " & arancel & " cuota: " & cuota & "")
+
 
                     Dim valorCuota As String = " UPDATE cuotas SET valor_cuota = '" & cuota & "' 
                                                  WHERE codigo_alumno = '" & codigoAlumno & "' "
@@ -220,58 +248,80 @@ Public Class FrmEmisiónDeVencimientos
                     comando.ExecuteNonQuery()
 
                     If comando.ExecuteNonQuery() = 1 Then
-                        'MessageBox.Show("Datos de cuota actualizados")
+
 
                     Else
                         MsgBox("¡Error! Datos no guardados. Reinicie el programa e intente nuevamente")
                     End If
 
-                    'MsgBox("código de familia:  " & codFam & "Hermano Número: " & hermanoNumero & " Arancel: " & arancel & " Campamento: " & totalCampamento & "")
-                    'MsgBox("" & Arancel & "")
-                    'MsgBox("" & totalCampamento & "")
+
+                    alumno = cuota + adicional + campamento + comedor + materiales + taller
+                    totalFamilia += alumno
+
+                    'MsgBox("El total del hijo " & codigoAlumno & " es " & alumno)
+                    alumno = 0
+
                 Next
 
-                If hermanoNumero <> 0 Then
-                    Dim vencimiento As String = "INSERT INTO detalle_vencimientos_escolares(codigo_familia, aranceles_v, materiales_v, 
+                'MsgBox("total familia " & totalFamilia)
+                Try
+                    Dim deuda As String = "UPDATE detalle_pago_escolar 
+                                       SET monto_deuda = " & totalFamilia & " 
+                                       WHERE codigo_familia = " & codFam & ""
+
+                    Dim comandoDeuda As New SqlCommand(deuda, conexion)
+                    comandoDeuda.ExecuteNonQuery()
+
+                    totalFamilia = 0
+                    If hermanoNumero <> 0 Then
+                        Dim vencimiento As String = "INSERT INTO detalle_vencimientos_escolares(codigo_familia, aranceles_v, materiales_v, 
                                              talleres_v, campamento_v, adicional_v, comedor_v, fecha_vencimiento) 
                                              VALUES(@codFam, @totalCuota, @totalMateriales, @totalTaller, @totalCampamento, 
                                              @totalAdicional, @totalComedor, @fechaVencimiento)"
 
-                    comando2 = New SqlCommand(vencimiento, conexion)
+                        comando2 = New SqlCommand(vencimiento, conexion)
 
-                    comando2.Parameters.AddWithValue("@codFam", codFam)
-                    comando2.Parameters.AddWithValue("@totalCuota", totalCuota)
-                    comando2.Parameters.AddWithValue("@totalMateriales", totalMateriales)
-                    comando2.Parameters.AddWithValue("@totalTaller", totalTaller)
-                    comando2.Parameters.AddWithValue("@totalCampamento", totalCampamento)
-                    comando2.Parameters.AddWithValue("@totalAdicional", totalAdicional)
-                    comando2.Parameters.AddWithValue("@totalComedor", totalComedor)
-                    comando2.Parameters.AddWithValue("@fechaVencimiento", fechaActual)
+                        comando2.Parameters.AddWithValue("@codFam", codFam)
+                        comando2.Parameters.AddWithValue("@totalCuota", totalCuota)
+                        comando2.Parameters.AddWithValue("@totalMateriales", totalMateriales)
+                        comando2.Parameters.AddWithValue("@totalTaller", totalTaller)
+                        comando2.Parameters.AddWithValue("@totalCampamento", totalCampamento)
+                        comando2.Parameters.AddWithValue("@totalAdicional", totalAdicional)
+                        comando2.Parameters.AddWithValue("@totalComedor", totalComedor)
+                        comando2.Parameters.AddWithValue("@fechaVencimiento", fechaActual)
 
-                    If comando2.ExecuteNonQuery() = 1 Then
-                        'MessageBox.Show("Datos guardados")
+                        If comando2.ExecuteNonQuery() = 1 Then
+                            'MessageBox.Show("Datos guardados")
 
-                    Else
-                        MsgBox("Error de grabación")
+                        Else
+                            MsgBox("Error de grabación")
+                        End If
+
+                        ActualizaCredito(codFam)
+
+                        arancel = 0
+                        hermanoNumero = 0
+                        totalCampamento = 0
+                        totalTaller = 0
+                        totalMateriales = 0
+                        totalAdicional = 0
+                        totalComedor = 0
                     End If
 
-                    ActualizaCredito(codFam)
+                Catch ex As Exception
+                    MsgBox("Error comprobando BD" & ex.ToString)
+                Finally
+                End Try
 
-                    arancel = 0
-                    hermanoNumero = 0
-                    totalCampamento = 0
-                    totalTaller = 0
-                    totalMateriales = 0
-                    totalAdicional = 0
-                    totalComedor = 0
-                End If
             End If
+
             codFam += 1
 
 
             'Pbuno.Value = codFam - 1
 
         End While
+
         LblPbdos.Hide()
         Dim tablaExiste() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
         Dim datat As DataTable = conexion.GetSchema("TABLES", restrictionValues)
@@ -288,6 +338,7 @@ Public Class FrmEmisiónDeVencimientos
             End If
         End If
         'MsgBox("Datos guardados")
+        MsgBox("Vencimiento emitido exitosamente")
     End Sub
 
     Private Sub VerificaPagoAdelantado(codFam)
@@ -600,10 +651,17 @@ Public Class FrmEmisiónDeVencimientos
     End Sub
 
     Private Sub grabaPagoNulo()
+        Dim maxCodigo As Integer
         Dim codigo As Integer = 1
+        Dim maximocod As String = "SELECT MAX(codigo_familia) FROM familias WHERE estado = 'activo' "
+        Dim comando1 As New SqlCommand(maximocod, conexion)
+        maxCodigo = comando1.ExecuteScalar
 
-        While codigo <= maxcod
-            Dim familiaActiva As String = "SELECT codigo_familia FROM familias WHERE codigo_familia = '" & codigo & "' and estado = 'activo'"
+
+        While codigo <= maxCodigo
+            Dim familiaActiva As String = "SELECT codigo_familia 
+                                           FROM familias 
+                                           WHERE codigo_familia = '" & codigo & "' and estado = 'activo'"
             Dim adaptador As New SqlDataAdapter(familiaActiva, conexion)
             Dim dtDatos As DataTable = New DataTable
             adaptador.Fill(dtDatos)
@@ -635,7 +693,7 @@ Public Class FrmEmisiónDeVencimientos
             End If
             codigo += 1
         End While
-        MessageBox.Show("Datos guardados satisfactoriamente")
+        'MessageBox.Show("Datos guardados satisfactoriamente")
         BtnVencimientos.Enabled = False
     End Sub
 

@@ -65,9 +65,15 @@ Partial Class FrmPagoDeudaAño
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LblFecha = New System.Windows.Forms.Label()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.LblTotalAlumno = New System.Windows.Forms.Label()
+        Me.LblAlumno = New System.Windows.Forms.Label()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DgvHijos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox3.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox2
@@ -99,7 +105,9 @@ Partial Class FrmPagoDeudaAño
         '
         'ListBox1
         '
+        Me.ListBox1.BackColor = System.Drawing.SystemColors.MenuHighlight
         Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.ListBox1.ForeColor = System.Drawing.Color.White
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.IntegralHeight = False
         Me.ListBox1.ItemHeight = 20
@@ -130,8 +138,10 @@ Partial Class FrmPagoDeudaAño
         '
         'ClbMeses
         '
+        Me.ClbMeses.BackColor = System.Drawing.SystemColors.HotTrack
         Me.ClbMeses.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ClbMeses.CheckOnClick = True
+        Me.ClbMeses.ForeColor = System.Drawing.Color.White
         Me.ClbMeses.FormattingEnabled = True
         Me.ClbMeses.IntegralHeight = False
         Me.ClbMeses.Location = New System.Drawing.Point(42, 40)
@@ -416,6 +426,49 @@ Partial Class FrmPagoDeudaAño
         Me.LblFecha.TabIndex = 37
         Me.LblFecha.Text = "Label5"
         '
+        'GroupBox3
+        '
+        Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.GroupBox4)
+        Me.GroupBox3.Controls.Add(Me.LblAlumno)
+        Me.GroupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.GroupBox3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.GroupBox3.Location = New System.Drawing.Point(606, 381)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(232, 212)
+        Me.GroupBox3.TabIndex = 38
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Deuda de: "
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.LblTotalAlumno)
+        Me.GroupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.GroupBox4.Location = New System.Drawing.Point(54, 89)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(122, 47)
+        Me.GroupBox4.TabIndex = 2
+        Me.GroupBox4.TabStop = False
+        '
+        'LblTotalAlumno
+        '
+        Me.LblTotalAlumno.AutoSize = True
+        Me.LblTotalAlumno.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.LblTotalAlumno.Location = New System.Drawing.Point(30, 18)
+        Me.LblTotalAlumno.Name = "LblTotalAlumno"
+        Me.LblTotalAlumno.Size = New System.Drawing.Size(56, 21)
+        Me.LblTotalAlumno.TabIndex = 0
+        Me.LblTotalAlumno.Text = "Label5"
+        '
+        'LblAlumno
+        '
+        Me.LblAlumno.AutoSize = True
+        Me.LblAlumno.Location = New System.Drawing.Point(6, 20)
+        Me.LblAlumno.Name = "LblAlumno"
+        Me.LblAlumno.Size = New System.Drawing.Size(65, 21)
+        Me.LblAlumno.TabIndex = 1
+        Me.LblAlumno.Text = "Alumno"
+        '
         'FrmPagoDeudaAño
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -423,6 +476,7 @@ Partial Class FrmPagoDeudaAño
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1013, 661)
+        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.LblFecha)
         Me.Controls.Add(Me.DgvHijos)
         Me.Controls.Add(Me.BtnSalir)
@@ -437,6 +491,10 @@ Partial Class FrmPagoDeudaAño
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.DgvHijos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -471,4 +529,8 @@ Partial Class FrmPagoDeudaAño
     Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
     Friend WithEvents DgvHijos As DataGridView
     Friend WithEvents LblFecha As Label
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents LblTotalAlumno As Label
+    Friend WithEvents LblAlumno As Label
+    Friend WithEvents GroupBox4 As GroupBox
 End Class
