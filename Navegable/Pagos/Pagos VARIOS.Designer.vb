@@ -92,6 +92,8 @@ Partial Class Pagos
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.LblFecha = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.TxtTotalAPagar = New System.Windows.Forms.TextBox()
@@ -100,7 +102,6 @@ Partial Class Pagos
         Me.LblFamilia = New System.Windows.Forms.Label()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.TxtCodigoPago = New System.Windows.Forms.TextBox()
-        Me.DtpFechaDePago = New System.Windows.Forms.DateTimePicker()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.BtnSalir2 = New System.Windows.Forms.Button()
         Me.TxtSubTotal = New System.Windows.Forms.TextBox()
@@ -140,6 +141,7 @@ Partial Class Pagos
         Me.TxtArancel = New System.Windows.Forms.TextBox()
         Me.TxtMatricula = New System.Windows.Forms.TextBox()
         Me.TxtReintegro = New System.Windows.Forms.TextBox()
+        Me.DtpFechaDePago = New System.Windows.Forms.DateTimePicker()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.BtnCerrarDeuda = New System.Windows.Forms.Button()
         Me.BtnDeudaHijo = New System.Windows.Forms.Button()
@@ -359,7 +361,7 @@ Partial Class Pagos
         Me.LblPeriodoPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.LblPeriodoPago.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.LblPeriodoPago.ForeColor = System.Drawing.Color.White
-        Me.LblPeriodoPago.Location = New System.Drawing.Point(452, 62)
+        Me.LblPeriodoPago.Location = New System.Drawing.Point(461, 62)
         Me.LblPeriodoPago.Name = "LblPeriodoPago"
         Me.LblPeriodoPago.Size = New System.Drawing.Size(60, 20)
         Me.LblPeriodoPago.TabIndex = 28
@@ -423,6 +425,7 @@ Partial Class Pagos
         '
         'TxtCredito
         '
+        Me.TxtCredito.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCredito.Enabled = False
         Me.TxtCredito.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TxtCredito.ForeColor = System.Drawing.Color.Green
@@ -444,6 +447,7 @@ Partial Class Pagos
         '
         'TxtMontoAPagar
         '
+        Me.TxtMontoAPagar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtMontoAPagar.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TxtMontoAPagar.Location = New System.Drawing.Point(697, 147)
         Me.TxtMontoAPagar.Name = "TxtMontoAPagar"
@@ -753,7 +757,7 @@ Partial Class Pagos
         Me.Label16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Label16.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Label16.ForeColor = System.Drawing.Color.White
-        Me.Label16.Location = New System.Drawing.Point(326, 61)
+        Me.Label16.Location = New System.Drawing.Point(335, 61)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(123, 20)
         Me.Label16.TabIndex = 22
@@ -839,6 +843,8 @@ Partial Class Pagos
         Me.TabPage2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.TabPage2.BackgroundImage = CType(resources.GetObject("TabPage2.BackgroundImage"), System.Drawing.Image)
         Me.TabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage2.Controls.Add(Me.Panel7)
+        Me.TabPage2.Controls.Add(Me.LblFecha)
         Me.TabPage2.Controls.Add(Me.Label20)
         Me.TabPage2.Controls.Add(Me.Label19)
         Me.TabPage2.Controls.Add(Me.TxtTotalAPagar)
@@ -847,7 +853,6 @@ Partial Class Pagos
         Me.TabPage2.Controls.Add(Me.LblFamilia)
         Me.TabPage2.Controls.Add(Me.Panel6)
         Me.TabPage2.Controls.Add(Me.TxtCodigoPago)
-        Me.TabPage2.Controls.Add(Me.DtpFechaDePago)
         Me.TabPage2.Controls.Add(Me.Label3)
         Me.TabPage2.Controls.Add(Me.BtnSalir2)
         Me.TabPage2.Controls.Add(Me.TxtSubTotal)
@@ -857,6 +862,7 @@ Partial Class Pagos
         Me.TabPage2.Controls.Add(Me.GroupBox2)
         Me.TabPage2.Controls.Add(Me.GroupBox3)
         Me.TabPage2.Controls.Add(Me.TxtReintegro)
+        Me.TabPage2.Controls.Add(Me.DtpFechaDePago)
         Me.TabPage2.Location = New System.Drawing.Point(4, 24)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -864,13 +870,35 @@ Partial Class Pagos
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
         '
+        'Panel7
+        '
+        Me.Panel7.BackColor = System.Drawing.Color.Transparent
+        Me.Panel7.Location = New System.Drawing.Point(807, 296)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(139, 58)
+        Me.Panel7.TabIndex = 36
+        '
+        'LblFecha
+        '
+        Me.LblFecha.AutoSize = True
+        Me.LblFecha.BackColor = System.Drawing.Color.Transparent
+        Me.LblFecha.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.LblFecha.ForeColor = System.Drawing.Color.Green
+        Me.LblFecha.Location = New System.Drawing.Point(730, 47)
+        Me.LblFecha.Name = "LblFecha"
+        Me.LblFecha.Size = New System.Drawing.Size(53, 17)
+        Me.LblFecha.TabIndex = 35
+        Me.LblFecha.Text = "Label21"
+        '
         'Label20
         '
         Me.Label20.AutoSize = True
         Me.Label20.BackColor = System.Drawing.Color.Transparent
-        Me.Label20.Location = New System.Drawing.Point(731, 50)
+        Me.Label20.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label20.ForeColor = System.Drawing.Color.Green
+        Me.Label20.Location = New System.Drawing.Point(632, 47)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(87, 15)
+        Me.Label20.Size = New System.Drawing.Size(98, 17)
         Me.Label20.TabIndex = 34
         Me.Label20.Text = "Fecha de pago:"
         '
@@ -926,6 +954,7 @@ Partial Class Pagos
         Me.LblFamilia.AutoSize = True
         Me.LblFamilia.BackColor = System.Drawing.Color.Transparent
         Me.LblFamilia.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.LblFamilia.ForeColor = System.Drawing.Color.White
         Me.LblFamilia.Location = New System.Drawing.Point(418, 58)
         Me.LblFamilia.Name = "LblFamilia"
         Me.LblFamilia.Size = New System.Drawing.Size(56, 21)
@@ -951,22 +980,13 @@ Partial Class Pagos
         Me.TxtCodigoPago.Size = New System.Drawing.Size(58, 29)
         Me.TxtCodigoPago.TabIndex = 15
         '
-        'DtpFechaDePago
-        '
-        Me.DtpFechaDePago.Enabled = False
-        Me.DtpFechaDePago.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpFechaDePago.Location = New System.Drawing.Point(821, 45)
-        Me.DtpFechaDePago.Name = "DtpFechaDePago"
-        Me.DtpFechaDePago.Size = New System.Drawing.Size(110, 23)
-        Me.DtpFechaDePago.TabIndex = 14
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 12.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label3.Location = New System.Drawing.Point(46, 404)
+        Me.Label3.Location = New System.Drawing.Point(46, 378)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(102, 23)
         Me.Label3.TabIndex = 15
@@ -988,7 +1008,7 @@ Partial Class Pagos
         '
         Me.TxtSubTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtSubTotal.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TxtSubTotal.Location = New System.Drawing.Point(153, 400)
+        Me.TxtSubTotal.Location = New System.Drawing.Point(153, 374)
         Me.TxtSubTotal.Name = "TxtSubTotal"
         Me.TxtSubTotal.Size = New System.Drawing.Size(99, 29)
         Me.TxtSubTotal.TabIndex = 14
@@ -1031,6 +1051,7 @@ Partial Class Pagos
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox2.Controls.Add(Me.DgvHijos)
+        Me.GroupBox2.ForeColor = System.Drawing.Color.White
         Me.GroupBox2.Location = New System.Drawing.Point(27, 63)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(904, 216)
@@ -1231,6 +1252,7 @@ Partial Class Pagos
         Me.GroupBox3.Controls.Add(Me.TxtArancel)
         Me.GroupBox3.Controls.Add(Me.TxtMatricula)
         Me.GroupBox3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.GroupBox3.ForeColor = System.Drawing.Color.White
         Me.GroupBox3.Location = New System.Drawing.Point(305, 296)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(481, 274)
@@ -1242,7 +1264,7 @@ Partial Class Pagos
         '
         Me.TxtSinAsignar3.BackColor = System.Drawing.Color.White
         Me.TxtSinAsignar3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtSinAsignar3.Location = New System.Drawing.Point(352, 166)
+        Me.TxtSinAsignar3.Location = New System.Drawing.Point(352, 169)
         Me.TxtSinAsignar3.MaxLength = 8
         Me.TxtSinAsignar3.Name = "TxtSinAsignar3"
         Me.TxtSinAsignar3.Size = New System.Drawing.Size(100, 29)
@@ -1252,7 +1274,7 @@ Partial Class Pagos
         '
         Me.TxtSinasignar2.BackColor = System.Drawing.Color.White
         Me.TxtSinasignar2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtSinasignar2.Location = New System.Drawing.Point(352, 130)
+        Me.TxtSinasignar2.Location = New System.Drawing.Point(352, 133)
         Me.TxtSinasignar2.MaxLength = 8
         Me.TxtSinasignar2.Name = "TxtSinasignar2"
         Me.TxtSinasignar2.Size = New System.Drawing.Size(100, 29)
@@ -1262,7 +1284,7 @@ Partial Class Pagos
         '
         Me.TxtSinAsignar1.BackColor = System.Drawing.Color.White
         Me.TxtSinAsignar1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtSinAsignar1.Location = New System.Drawing.Point(352, 95)
+        Me.TxtSinAsignar1.Location = New System.Drawing.Point(352, 98)
         Me.TxtSinAsignar1.MaxLength = 8
         Me.TxtSinAsignar1.Name = "TxtSinAsignar1"
         Me.TxtSinAsignar1.Size = New System.Drawing.Size(100, 29)
@@ -1270,7 +1292,8 @@ Partial Class Pagos
         '
         'LblSinAsignar3
         '
-        Me.LblSinAsignar3.Location = New System.Drawing.Point(216, 172)
+        Me.LblSinAsignar3.ForeColor = System.Drawing.Color.Black
+        Me.LblSinAsignar3.Location = New System.Drawing.Point(216, 169)
         Me.LblSinAsignar3.Name = "LblSinAsignar3"
         Me.LblSinAsignar3.Size = New System.Drawing.Size(131, 21)
         Me.LblSinAsignar3.TabIndex = 18
@@ -1279,7 +1302,8 @@ Partial Class Pagos
         '
         'LblSinAsignar2
         '
-        Me.LblSinAsignar2.Location = New System.Drawing.Point(214, 137)
+        Me.LblSinAsignar2.ForeColor = System.Drawing.Color.Black
+        Me.LblSinAsignar2.Location = New System.Drawing.Point(214, 134)
         Me.LblSinAsignar2.Name = "LblSinAsignar2"
         Me.LblSinAsignar2.Size = New System.Drawing.Size(134, 21)
         Me.LblSinAsignar2.TabIndex = 17
@@ -1288,7 +1312,8 @@ Partial Class Pagos
         '
         'LblSinAsignar1
         '
-        Me.LblSinAsignar1.Location = New System.Drawing.Point(216, 102)
+        Me.LblSinAsignar1.ForeColor = System.Drawing.Color.Black
+        Me.LblSinAsignar1.Location = New System.Drawing.Point(216, 98)
         Me.LblSinAsignar1.Name = "LblSinAsignar1"
         Me.LblSinAsignar1.Size = New System.Drawing.Size(131, 21)
         Me.LblSinAsignar1.TabIndex = 16
@@ -1298,7 +1323,8 @@ Partial Class Pagos
         'LblComedor
         '
         Me.LblComedor.AutoSize = True
-        Me.LblComedor.Location = New System.Drawing.Point(26, 104)
+        Me.LblComedor.ForeColor = System.Drawing.Color.Black
+        Me.LblComedor.Location = New System.Drawing.Point(26, 99)
         Me.LblComedor.Name = "LblComedor"
         Me.LblComedor.Size = New System.Drawing.Size(78, 21)
         Me.LblComedor.TabIndex = 11
@@ -1308,7 +1334,8 @@ Partial Class Pagos
         'LblCampamento
         '
         Me.LblCampamento.AutoSize = True
-        Me.LblCampamento.Location = New System.Drawing.Point(241, 34)
+        Me.LblCampamento.ForeColor = System.Drawing.Color.Black
+        Me.LblCampamento.Location = New System.Drawing.Point(241, 30)
         Me.LblCampamento.Name = "LblCampamento"
         Me.LblCampamento.Size = New System.Drawing.Size(107, 21)
         Me.LblCampamento.TabIndex = 13
@@ -1319,7 +1346,7 @@ Partial Class Pagos
         '
         Me.TxtCampamento.BackColor = System.Drawing.Color.White
         Me.TxtCampamento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtCampamento.Location = New System.Drawing.Point(352, 26)
+        Me.TxtCampamento.Location = New System.Drawing.Point(352, 29)
         Me.TxtCampamento.MaxLength = 8
         Me.TxtCampamento.Name = "TxtCampamento"
         Me.TxtCampamento.Size = New System.Drawing.Size(100, 29)
@@ -1328,7 +1355,8 @@ Partial Class Pagos
         'LblAdicional
         '
         Me.LblAdicional.AutoSize = True
-        Me.LblAdicional.Location = New System.Drawing.Point(270, 69)
+        Me.LblAdicional.ForeColor = System.Drawing.Color.Black
+        Me.LblAdicional.Location = New System.Drawing.Point(270, 65)
         Me.LblAdicional.Name = "LblAdicional"
         Me.LblAdicional.Size = New System.Drawing.Size(77, 21)
         Me.LblAdicional.TabIndex = 10
@@ -1338,7 +1366,8 @@ Partial Class Pagos
         'LblTalleres
         '
         Me.LblTalleres.AutoSize = True
-        Me.LblTalleres.Location = New System.Drawing.Point(42, 174)
+        Me.LblTalleres.ForeColor = System.Drawing.Color.Black
+        Me.LblTalleres.Location = New System.Drawing.Point(42, 170)
         Me.LblTalleres.Name = "LblTalleres"
         Me.LblTalleres.Size = New System.Drawing.Size(64, 21)
         Me.LblTalleres.TabIndex = 9
@@ -1347,7 +1376,8 @@ Partial Class Pagos
         'LblMateriales
         '
         Me.LblMateriales.AutoSize = True
-        Me.LblMateriales.Location = New System.Drawing.Point(21, 138)
+        Me.LblMateriales.ForeColor = System.Drawing.Color.Black
+        Me.LblMateriales.Location = New System.Drawing.Point(21, 134)
         Me.LblMateriales.Name = "LblMateriales"
         Me.LblMateriales.Size = New System.Drawing.Size(85, 21)
         Me.LblMateriales.TabIndex = 8
@@ -1356,7 +1386,8 @@ Partial Class Pagos
         'LblCuota
         '
         Me.LblCuota.AutoSize = True
-        Me.LblCuota.Location = New System.Drawing.Point(52, 69)
+        Me.LblCuota.ForeColor = System.Drawing.Color.Black
+        Me.LblCuota.Location = New System.Drawing.Point(52, 64)
         Me.LblCuota.Name = "LblCuota"
         Me.LblCuota.Size = New System.Drawing.Size(54, 21)
         Me.LblCuota.TabIndex = 7
@@ -1365,7 +1396,8 @@ Partial Class Pagos
         'LblMatricula
         '
         Me.LblMatricula.AutoSize = True
-        Me.LblMatricula.Location = New System.Drawing.Point(29, 34)
+        Me.LblMatricula.ForeColor = System.Drawing.Color.Black
+        Me.LblMatricula.Location = New System.Drawing.Point(29, 29)
         Me.LblMatricula.Name = "LblMatricula"
         Me.LblMatricula.Size = New System.Drawing.Size(78, 21)
         Me.LblMatricula.TabIndex = 6
@@ -1375,7 +1407,7 @@ Partial Class Pagos
         '
         Me.TxtComedor.BackColor = System.Drawing.Color.White
         Me.TxtComedor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtComedor.Location = New System.Drawing.Point(109, 96)
+        Me.TxtComedor.Location = New System.Drawing.Point(109, 98)
         Me.TxtComedor.MaxLength = 8
         Me.TxtComedor.Name = "TxtComedor"
         Me.TxtComedor.Size = New System.Drawing.Size(100, 29)
@@ -1385,7 +1417,7 @@ Partial Class Pagos
         '
         Me.TxtAdicional.BackColor = System.Drawing.Color.White
         Me.TxtAdicional.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtAdicional.Location = New System.Drawing.Point(352, 61)
+        Me.TxtAdicional.Location = New System.Drawing.Point(352, 64)
         Me.TxtAdicional.MaxLength = 8
         Me.TxtAdicional.Name = "TxtAdicional"
         Me.TxtAdicional.Size = New System.Drawing.Size(100, 29)
@@ -1395,7 +1427,7 @@ Partial Class Pagos
         '
         Me.TxtTalleres.BackColor = System.Drawing.Color.White
         Me.TxtTalleres.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtTalleres.Location = New System.Drawing.Point(109, 167)
+        Me.TxtTalleres.Location = New System.Drawing.Point(109, 169)
         Me.TxtTalleres.MaxLength = 8
         Me.TxtTalleres.Name = "TxtTalleres"
         Me.TxtTalleres.Size = New System.Drawing.Size(100, 29)
@@ -1405,7 +1437,7 @@ Partial Class Pagos
         '
         Me.TxtMateriales.BackColor = System.Drawing.Color.White
         Me.TxtMateriales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtMateriales.Location = New System.Drawing.Point(109, 131)
+        Me.TxtMateriales.Location = New System.Drawing.Point(109, 133)
         Me.TxtMateriales.MaxLength = 8
         Me.TxtMateriales.Name = "TxtMateriales"
         Me.TxtMateriales.Size = New System.Drawing.Size(100, 29)
@@ -1415,7 +1447,7 @@ Partial Class Pagos
         '
         Me.TxtArancel.BackColor = System.Drawing.Color.White
         Me.TxtArancel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtArancel.Location = New System.Drawing.Point(109, 61)
+        Me.TxtArancel.Location = New System.Drawing.Point(109, 63)
         Me.TxtArancel.MaxLength = 8
         Me.TxtArancel.Name = "TxtArancel"
         Me.TxtArancel.Size = New System.Drawing.Size(100, 29)
@@ -1425,7 +1457,7 @@ Partial Class Pagos
         '
         Me.TxtMatricula.BackColor = System.Drawing.Color.White
         Me.TxtMatricula.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtMatricula.Location = New System.Drawing.Point(109, 26)
+        Me.TxtMatricula.Location = New System.Drawing.Point(109, 28)
         Me.TxtMatricula.MaxLength = 8
         Me.TxtMatricula.Name = "TxtMatricula"
         Me.TxtMatricula.Size = New System.Drawing.Size(100, 29)
@@ -1440,6 +1472,15 @@ Partial Class Pagos
         Me.TxtReintegro.ReadOnly = True
         Me.TxtReintegro.Size = New System.Drawing.Size(58, 23)
         Me.TxtReintegro.TabIndex = 28
+        '
+        'DtpFechaDePago
+        '
+        Me.DtpFechaDePago.Enabled = False
+        Me.DtpFechaDePago.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DtpFechaDePago.Location = New System.Drawing.Point(827, 311)
+        Me.DtpFechaDePago.Name = "DtpFechaDePago"
+        Me.DtpFechaDePago.Size = New System.Drawing.Size(110, 23)
+        Me.DtpFechaDePago.TabIndex = 14
         '
         'TabPage3
         '
@@ -1815,4 +1856,6 @@ Partial Class Pagos
     Friend WithEvents Label20 As Label
     Friend WithEvents LblPeriodoPago As Label
     Friend WithEvents LblUltimoPago As Label
+    Friend WithEvents LblFecha As Label
+    Friend WithEvents Panel7 As Panel
 End Class

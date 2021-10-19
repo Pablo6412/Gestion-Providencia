@@ -91,6 +91,8 @@ Public Class Pagos
         Dim sinAsignar2 As String
         Dim sinAsignar3 As String
 
+
+        LblFecha.Text = Date.Now.ToLongDateString
         TxtMatricula.Enabled = False
         TxtArancel.Enabled = False
         TxtMateriales.Enabled = False
@@ -180,6 +182,9 @@ Public Class Pagos
 
         Dim comandoUltimo As New SqlCommand(ultimoPago, conexion)
         LblUltimoPago.Text = comandoUltimo.ExecuteScalar
+        If LblUltimoPago.Text = "01/01/1900" Then
+            LblUltimoPago.Text = "Sin pagos registrados para ésta familia"
+        End If
     End Sub
 
     Private Sub UltimoVencimiento()

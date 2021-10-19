@@ -200,7 +200,6 @@ Public Class FrmPagoDeudaAño
 
     Private Sub CreaTablaTemporal(rows)
 
-
         If rows.Length > 0 Then
             'MessageBox.Show("Existe la tabla.")
         Else
@@ -212,11 +211,6 @@ Public Class FrmPagoDeudaAño
             'MsgBox("Tabla creada")
             'MessageBox.Show("No existe la tabla.")
         End If
-
-
-
-
-
 
         'Try
 
@@ -292,12 +286,25 @@ Public Class FrmPagoDeudaAño
 
     End Sub
 
-
+    Private Sub DgvHijos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvHijos.CellContentClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex = 0 Then
+            Dim grid = CType(sender, DataGridView)
+            If grid(e.ColumnIndex, e.RowIndex).Value Then
+                grid.CancelEdit()
+            Else
+                For Each row In grid.Rows.Cast(Of DataGridViewRow).Where(Function(r) r.Cells(e.ColumnIndex).Value)
+                    row.Cells(e.ColumnIndex).Value = False
+                Next
+            End If
+            If grid.IsCurrentCellInEditMode Then
+                grid.CommitEdit(DataGridViewDataErrorContexts.Commit)
+            End If
+        End If
+    End Sub
     Private Sub Checked()
         'Dim meses As Date
         Dim numeroMes
         Dim nombreMes
-
 
         Dim consulta As String = "SELECT codigo_familia, isnull(periodo_de_pago, '') As fechaPago, pago_cumplido FROM detalle_pago_escolar WHERE codigo_familia = " & Val(CbxCodigo.Text) & " and pago_cumplido <> 'completo' "
         Dim adaptador As SqlDataAdapter = New SqlDataAdapter(consulta, conexion)
@@ -357,23 +364,16 @@ Public Class FrmPagoDeudaAño
                 ClbMeses.SelectedValue = fecha
                 MontoDeuda(fecha)
             Next
-
-
         End If
         CompruebaDeuda()
-
     End Sub
-
     Private Sub CbxCodigo_SelectedValueChanged(sender As Object, e As EventArgs) Handles CbxCodigo.SelectedValueChanged
-
-
+        TxtTotal.Clear()
         BtnPago.Enabled = True
         ClbMeses.Items.Clear()
         ListBox1.Items.Clear()
         Checked()
         Datagrid()
-
-
     End Sub
 
     Public Sub CompruebaDeuda()
@@ -747,5 +747,116 @@ Public Class FrmPagoDeudaAño
         Me.Close()
     End Sub
 
+    Private Sub DgvHijos_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DgvHijos.CellValueChanged
+        Dim mes As Integer
+        Dim parImpar As Integer
+        Dim alumno As String
+        Dim matricula As Decimal
+        Dim totalMatricula As Decimal
+        Dim arancel As Decimal
+        Dim totalCuota As Decimal
+        Dim campamento As Decimal
+        Dim totalCampamento As Decimal
+        Dim talleres As Decimal
+        Dim totalTalleres As Decimal
+        Dim materiales As Decimal
+        Dim totalMaterial As Decimal
+        Dim adicional As Decimal
+        Dim totalAdicional As Decimal
+        Dim comedor As Decimal
+        Dim totalComedor As Decimal
 
+
+        Dim colAlumno As Integer = 1
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+
+            If row.Cells(0).Value = True Then
+                alumno = (row.Cells(colAlumno).Value)
+            Else
+                totalMatricula -= Val(row.Cells(colAlumno).Value)
+            End If
+
+        Next
+
+
+        Dim colMatricula As Integer = 3
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+
+            If row.Cells(0).Value = True Then
+                totalMatricula = Val(row.Cells(colMatricula).Value)
+            Else
+                totalMatricula -= Val(row.Cells(colMatricula).Value)
+            End If
+
+        Next
+        'TxtMatricula.PlaceholderText = totalMatricula
+        matricula = totalMatricula
+
+
+        Dim col As Integer = 4
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            If row.Selected Then
+                totalCuota += Val(row.Cells(col).Value)
+            End If
+        Next
+        'TxtArancel.PlaceholderText = TotalCuota
+        arancel = TotalCuota
+
+        Dim colCamp As Integer = 5
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            If row.Selected Then
+                totalCampamento += (Val(row.Cells(colCamp).Value))
+            End If
+        Next
+        'TxtCampamento.PlaceholderText = TotalCampamento
+        campamento = TotalCampamento
+
+        Dim colTaller As Integer = 6
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            If row.Selected Then
+                totalTalleres += Val(row.Cells(colTaller).Value)
+            End If
+        Next
+        'TxtTalleres.PlaceholderText = TotalTalleres
+        talleres = TotalTalleres
+
+        Dim colMaterial As Integer = 7
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            If row.Selected Then
+                totalMaterial += Val(row.Cells(colMaterial).Value)
+            End If
+        Next
+        'TxtMateriales.PlaceholderText = TotalMaterial
+        materiales = TotalMaterial
+
+        Dim colAdicional As Integer = 8
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            If row.Selected Then
+                totalAdicional += Val(row.Cells(colAdicional).Value)
+            End If
+        Next
+        'TxtAdicional.PlaceholderText = TotalAdicional
+        adicional = TotalAdicional
+
+        Dim colComedor As Integer = 9
+        For Each row As DataGridViewRow In Me.DgvHijos.Rows
+            If row.Cells("Check").Value = True Then
+                totalComedor += Val(row.Cells(colComedor).Value)
+            End If
+        Next
+        mes = fechaActual.Month
+        parImpar = mes Mod 2
+        If parImpar <> 0 Then
+            'TxtComedor.PlaceholderText = TotalComedor
+            comedor = TotalComedor
+        Else
+            'TxtComedor.PlaceholderText = 0
+            comedor = 0
+            totalComedor = comedor
+        End If
+
+        Dim TotalAlumno As Decimal = totalMatricula + totalCuota + totalCampamento + totalTalleres + totalMaterial + totalAdicional + totalComedor
+        LblTotalAlumno.Text = TotalAlumno
+        LblAlumno.Text = alumno
+    End Sub
 End Class
