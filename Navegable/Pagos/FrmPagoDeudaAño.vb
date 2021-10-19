@@ -27,6 +27,7 @@ Public Class FrmPagoDeudaAño
         conectar()
         BuscaFamilia()
         Datagrid()
+
         LblFecha.Text = Date.Now.ToLongDateString
     End Sub
 
@@ -50,6 +51,7 @@ Public Class FrmPagoDeudaAño
         Catch ex As Exception
             MsgBox("Error comprobando BD" & ex.ToString)
         End Try
+
         PagoMes(fecha)
     End Sub
 
@@ -193,6 +195,7 @@ Public Class FrmPagoDeudaAño
                 MsgBox("No pasa nada")
             End If
         End If
+
     End Sub
 
     Private Sub CreaTablaTemporal(rows)
@@ -286,6 +289,7 @@ Public Class FrmPagoDeudaAño
         '    comedor = 0
         '    TotalComedor = comedor
         'End If
+
     End Sub
 
 
@@ -419,6 +423,7 @@ Public Class FrmPagoDeudaAño
                 contador += 1
             End If
         End If
+        contador = 0
     End Sub
 
     Private Sub ClbMeses_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ClbMeses.SelectedIndexChanged
@@ -556,6 +561,7 @@ Public Class FrmPagoDeudaAño
 
 
         TxtTotal.Text = suma
+
     End Sub
 
     Private Sub MontoDeuda(fecha)
@@ -678,6 +684,7 @@ Public Class FrmPagoDeudaAño
                 Dim comandoDeuda As New SqlCommand(consultaDeuda, conexion)
         resultado = comandoDeuda.ExecuteScalar
         'MsgBox("" & resultado & "")
+
     End Sub
 
     'Private Sub BtnPago_Click(sender As Object, e As EventArgs) Handles BtnPago.Click
