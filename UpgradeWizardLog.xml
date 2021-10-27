@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="_UpgradeWizard_Files\UpgradeWizardLog.xslt"?>
+<log>
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Gestion.vbproj" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\My Project\Resources.resx" />
+  <event action="Analyze" type="Success" name="FrmActualizaAlumnos1.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Alumnos\FrmActualizaAlumnos1.resx" />
+  <event action="Analyze" type="Success" name="FrmAltaAlumnos.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Alumnos\FrmAltaAlumnos.resx" />
+  <event action="Analyze" type="Success" name="FrmBajaAlumnos.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Alumnos\FrmBajaAlumnos.resx" />
+  <event action="Analyze" type="Success" name="FrmInscripcionTalleres.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Alumnos\FrmInscripcionTalleres.resx" />
+  <event action="Analyze" type="Success" name="FrmBecas.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\configuraciones\FrmBecas.resx" />
+  <event action="Analyze" type="Success" name="FrmCampamentos.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\configuraciones\FrmCampamentos.resx" />
+  <event action="Analyze" type="Success" name="FrmCargaAranceles.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\configuraciones\FrmCargaAranceles.resx" />
+  <event action="Analyze" type="Success" name="FrmCargaCursos.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\configuraciones\FrmCargaCursos.resx" />
+  <event action="Analyze" type="Success" name="FrmCargaNiveles.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\configuraciones\FrmCargaNiveles.resx" />
+  <event action="Analyze" type="Success" name="FrmComedor.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\configuraciones\FrmComedor.resx" />
+  <event action="Analyze" type="Success" name="FrmConceptosDePago.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\configuraciones\FrmConceptosDePago.resx" />
+  <event action="Analyze" type="Success" name="FrmConfiguracion.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\configuraciones\FrmConfiguracion.resx" />
+  <event action="Analyze" type="Success" name="FrmConfiguraTalleres.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\configuraciones\FrmConfiguraTalleres.resx" />
+  <event action="Analyze" type="Success" name="FrmMateriales.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\configuraciones\FrmMateriales.resx" />
+  <event action="Analyze" type="Success" name="FrmGastos.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Contabilidad institucional\FrmGastos.resx" />
+  <event action="Analyze" type="Success" name="FrmActualizaFamilias.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Familias\FrmActualizaFamilias.resx" />
+  <event action="Analyze" type="Success" name="FrmAltaFamilia.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Familias\FrmAltaFamilia.resx" />
+  <event action="Analyze" type="Success" name="FrmBajasFamilias.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Familias\FrmBajasFamilias.resx" />
+  <event action="Analyze" type="Success" name="FrmDescuentosBecas.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Familias\FrmDescuentosBecas.resx" />
+  <event action="Analyze" type="Success" name="FrmPagoAdelantado.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Pagos\FrmPagoAdelantado.resx" />
+  <event action="Analyze" type="Success" name="FrmPagoAdelantadoIndexable.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Pagos\FrmPagoAdelantadoIndexable.resx" />
+  <event action="Analyze" type="Success" name="FrmPagoDeudaAño.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Pagos\FrmPagoDeudaAño.resx" />
+  <event action="Analyze" type="Success" name="FrmPagoDeudaAñosAnteriores.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Pagos\FrmPagoDeudaAñosAnteriores.resx" />
+  <event action="Analyze" type="Success" name="FrmPagoDeudaCampamento.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Pagos\FrmPagoDeudaCampamento.resx" />
+  <event action="Analyze" type="Success" name="FrmPagosDelMes.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Pagos\FrmPagosDelMes.resx" />
+  <event action="Analyze" type="Success" name="Pagos VARIOS.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Pagos\Pagos VARIOS.resx" />
+  <event action="Analyze" type="Success" name="FrmConexionManual.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Panel de administración de conexión\FrmConexionManual.resx" />
+  <event action="Analyze" type="Success" name="ReportViewerForm1.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Reportes\ReportViewerForm1.resx" />
+  <event action="Analyze" type="Success" name="FrmEmisiónDeVencimientos.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Vencimientos\FrmEmisiónDeVencimientos.resx" />
+  <event action="Analyze" type="Success" name="FrmEnviaMail.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\FrmEnviaMail.resx" />
+  <event action="Analyze" type="Success" name="FrmInicio.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\FrmInicio.resx" />
+  <event action="Analyze" type="Success" name="FrmPrincipal.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\FrmPrincipal.resx" />
+  <event action="Analyze" type="Success" name="FrmPruebaCbx.resx" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\FrmPruebaCbx.resx" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\ReportViewer_Item_Log.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\ReportViewer_Item_Log.html" />
+  <event action="Analyze" type="Success" name="ReportViewer_Item_Log.html" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\ReportViewer_Item_Log.html" />
+  <event action="Analyze" type="Success" name="Gestion" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Navegable\Gestion.vbproj" />
+  <event action="Analyze" type="Success" name="Gestion Providencia" path="C:\Users\LUIS\source\repos\Gestión Providencia8\Gestion Providencia.sln" />
+</log>
