@@ -1571,7 +1571,7 @@ Public Class Pagos
 
 
         If rows.Length > 0 Then
-            'MessageBox.Show("Existe la tabla.")
+
         Else
             Dim tallerTemp As String = "Select codigo_alumno, SUM(importe_taller) as importe_taller INTO taller_temporal 
                                         From taller_alumno  GROUP BY codigo_alumno"
@@ -1579,7 +1579,7 @@ Public Class Pagos
             comandoTaller.ExecuteNonQuery()
 
 
-            'MessageBox.Show("No existe la tabla.")
+
         End If
     End Sub
     Private Sub TxtDebito_KeyPress(sender As Object, e As KeyPressEventArgs)
