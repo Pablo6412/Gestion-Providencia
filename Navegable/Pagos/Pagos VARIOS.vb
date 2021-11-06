@@ -108,6 +108,8 @@ Public Class Pagos
         TxtComedor.Enabled = False
         BtnGuardar.Enabled = False
 
+
+
         'Establece nombre para los conceptos de pago y deja invisibles a los "Sin asignar"
         Dim adaptador1 As SqlDataAdapter
         Dim datos1 As DataSet
@@ -250,7 +252,7 @@ Public Class Pagos
 
             Dim total As Decimal = cuota + materiales + taller + campamento + adicional + comedor + sinAsignar1 + sinAsignar2 + sinAsignar3
 
-            LblPagoDelPeriodo.Text = Format(total, "##,##00.00")
+            LblPagoDelPeriodo.Text = total              'Format(total, "##.##00,00")
 
             LblPagoDelPeriodo.Text = total
 
@@ -301,7 +303,7 @@ Public Class Pagos
                 atraso = True
                 MsgBox("La familia " & CbxFamilia.Text & " registra atrasos que se suman al total")
             End If
-            TxtMontoAtraso.Text = Format(pagoAtrasado, "##,##00.00")
+            TxtMontoAtraso.Text = pagoAtrasado     'Format(pagoAtrasado, "##.##00,00")
 
             For Each strName As String In codigoArray
 
@@ -409,7 +411,7 @@ Public Class Pagos
             For Each row As DataGridViewRow In Me.DgvHijos1.Rows
                 totalMatricula += Val(row.Cells(colMatricula).Value)
             Next
-            'TxtMatricula.PlaceholderText = Format(totalMatricula, "##,##00.00")
+            'TxtMatricula.PlaceholderText = Format(totalMatricula, "##.##00,00")
             matricula = totalMatricula
 
             Dim col As Integer = 4
@@ -542,7 +544,7 @@ Public Class Pagos
                     'totalMatricula = Val(row.Cells(colMatricula).Value)
                 End If
             Next
-            TxtArancel.PlaceholderText = Format(totalMatricula, "##,##00.00")
+            TxtArancel.PlaceholderText = totalMatricula     'Format(totalMatricula, "##.##00,00")
             arancel = totalCuota
 
             Dim col As Integer = 4
@@ -633,7 +635,7 @@ Public Class Pagos
             mes = fechaActual.Month
             parImpar = mes Mod 2
             If parImpar <> 0 Then
-                TxtComedor.PlaceholderText = Format(totalComedor, "##,##00.00")
+                TxtComedor.PlaceholderText = totalComedor     'Format(totalComedor, "##.##00,00")
                 comedor = totalComedor
             Else
                 TxtComedor.PlaceholderText = 0
@@ -663,10 +665,10 @@ Public Class Pagos
             Dim totalFamilia As Decimal = totalMatricula + totalCuota + totalCampamento + totalTalleres + totalMaterial + totalAdicional + totalComedor
 
             Dim TotalAlumno As Decimal = totalMatricula + totalCuota + totalCampamento + totalTalleres + totalMaterial + totalAdicional + totalComedor + pagoAtrasado
-            LblTotalAlumno.Text = Format(TotalAlumno, "##,##00.00")
-            LblTotalSeleccionado.Text = Format(TotalAlumno, "##,##00.00") - pagoAtrasado
+            LblTotalAlumno.Text = TotalAlumno     'Format(TotalAlumno, "##.##00,00")
+            LblTotalSeleccionado.Text = TotalAlumno    'Format(TotalAlumno, "##.##00,00") - pagoAtrasado
 
-            TxtMontoAPagar.Text = Format(TotalAlumno, "##,##00.00")
+            TxtMontoAPagar.Text = TotalAlumno    'Format(TotalAlumno, "##.##00,00")
             'TxtMontoAPagar.Text = Format(TxtMontoAPagar.Text, "##,##00.00")
             'LblAlumno.Text = alumno
         End If
@@ -674,7 +676,7 @@ Public Class Pagos
 
     Private Sub BtnContinuar_Click(sender As Object, e As EventArgs) Handles BtnContinuar.Click
         Dim vuelto As Decimal = (Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text))
-        Dim efectivo As Decimal = Val(TxtEfectivo.Text)
+        Dim efectivo As Decimal = Val(TxtEfectivo.Text)      'Format(Val(TxtEfectivo.Text), "##.##00,00")
         Dim decision As Decimal
         Dim bandera As String
 
@@ -687,23 +689,28 @@ Public Class Pagos
             RdbDetallesPago.Checked = True
 
 
-            If atraso = True Then
+            If atraso = True Then                                              'Si hay pagos atrasados
                 'MsgBox("Hay pagos atrasados cuyos montos se suman al")
-                If Val(TxtTotal.Text) >= Val(TxtMontoAPagar.Text) Then
-                    If Val(TxtTotal.Text) = Val(TxtMontoAPagar.Text) Then
+                If Val(TxtTotal.Text) >= Val(TxtMontoAPagar.Text) Then         'Si pago excede o iguala monto a pagar
+                    If Val(TxtTotal.Text) = Val(TxtMontoAPagar.Text) Then      'Si pago exacto
                         BtnGuardar.Enabled = True
                         MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes más los montos atrasados." + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         bandera = "pagoTotalExacto"
 
                     Else
-                        opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes más los montos atrasados." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & (Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                        efectivoAlcanza = True
-                        bandera = "pagoVueltoEntero"
-                    End If
+                        Dim vueltoAtraso As Decimal
+                        vueltoAtraso = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
+                        If Val(TxtEfectivo.Text) >= vuelto Then
+                            opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes más los montos atrasados." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & (Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                            'efectivoAlcanza = True
+                            bandera = "pagoVueltoEntero"
+                        Else
+                            bandera = "pagoVueltoParcial"
+                        End If
 
-                Else
-                    'Pago no alcanza para cubrir atrasos más vencimiento actual
-                    pagoCompleto = False
+
+                        'Pago no alcanza para cubrir atrasos más vencimiento actual
+                        pagoCompleto = False
                     TxtMatricula.Enabled = True
                     TxtArancel.Enabled = True
                     TxtMateriales.Enabled = True
@@ -712,10 +719,10 @@ Public Class Pagos
                     TxtAdicional.Enabled = True
                     TxtComedor.Enabled = True
                     BtnGuardar.Enabled = True
-                    pagoCumplido = "incompleto"
+                    'pagoCumplido = "incompleto"
                     'PagoParcial()
                     TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
-                    bandera = "pagoParcial"
+                    bandera = "pagoAtrasoParcial"
                 End If
 
             Else
@@ -788,9 +795,9 @@ Public Class Pagos
 
         'Dim decision
         Dim credito As Decimal
-        Dim efectivo As Decimal = Val(TxtEfectivo.Text)
+        Dim efectivo As Decimal = Val(TxtEfectivo.Text)    'Format(Val(TxtEfectivo.Text), "##.##00,00")
         Dim disponible As Decimal = Val(TxtDisponible.Text)
-        Dim pagoEfectivo As Decimal = Val(TxtEfectivo.Text)
+        Dim pagoEfectivo As Decimal = Val(TxtEfectivo.Text)   'Format(Val(TxtEfectivo.Text), "##.##00,00")
         Dim efectivoDef As Decimal
         Dim montoDeuda As Decimal
         Dim sumaDePagosParciales As Decimal
@@ -798,15 +805,15 @@ Public Class Pagos
         Dim faltanteDePago As Decimal = Val(TxtMontoAPagar.Text) - sumaDePagosParciales
 
         If atraso = True Then
+            pagosConAtraso()
 
-            grarbaPagosAtrasadosCompleto()
         Else
 
             If pagoCompleto = True Then
                 If Val(TxtDisponible.Text) = Val(TxtTotalAPagar.Text) Then        'Si el pago es justo.
                     credito = 0
                     montoDeuda = 0
-                    efectivoDef = Val(TxtEfectivo.Text)
+                    efectivoDef = Val(TxtEfectivo.Text)    'Format(Val(TxtEfectivo.Text), "##.##00,00")
                     FormaPago(efectivoDef)                  'Hace el INSERT en la tabla pagos_escolares.
                     CodigoDePago()                          'Averigua el codigo_pago de dicho pago y se presenta en cuadro de texto
                     '                                        para que quede disponible el valor.
@@ -837,7 +844,7 @@ Public Class Pagos
                     Else                     'Si elije no devolución la suma se carga como crédito del próximo vencimiento
                         credito = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
                         montoDeuda = 0
-                        efectivoDef = Val(TxtEfectivo.Text)
+                        efectivoDef = Val(TxtEfectivo.Text)   'Format(Val(TxtEfectivo.Text), "##.##00,00")
                         FormaPago(efectivoDef)
                         CodigoDePago()
                         'ActualizaPagoDetallado(credito, montoDeuda)
@@ -847,6 +854,10 @@ Public Class Pagos
 
                 End If
             Else          'Pago incompleto
+
+
+
+
                 If TxtMatricula.Text <> "" Or TxtArancel.Text <> "" Or TxtComedor.Text <> "" Or TxtMateriales.Text <> "" Or TxtTalleres.Text <> "" Or TxtCampamento.Text <> "" Or TxtAdicional.Text <> "" Or TxtSinAsignar1.Text <> "" Or TxtSinasignar2.Text <> "" Or TxtSinAsignar3.Text <> "" Then
 
                     If efectivo <= faltanteDePago Then
@@ -863,7 +874,7 @@ Public Class Pagos
                         Else
                             'TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
 
-                            efectivoDef = Val(TxtEfectivo.Text)
+                            efectivoDef = Val(TxtEfectivo.Text)    'Format(Val(TxtEfectivo.Text), "##.##00,00")
                             credito = Val(TxtDisponible.Text)
                             montoDeuda = faltanteDePago - Val(TxtDisponible.Text)
                             FormaPago(efectivoDef)
@@ -888,29 +899,37 @@ Public Class Pagos
             GrabaPagoFamilia()
         End If
         TxtMatricula.Clear()
-            TxtArancel.Clear()
-            TxtMateriales.Clear()
-            TxtTalleres.Clear()
-            TxtCampamento.Clear()
-            TxtAdicional.Clear()
-            TxtComedor.Clear()
+        TxtArancel.Clear()
+        TxtMateriales.Clear()
+        TxtTalleres.Clear()
+        TxtCampamento.Clear()
+        TxtAdicional.Clear()
+        TxtComedor.Clear()
 
-            TxtEfectivo.Clear()
-            TxtCheque.Clear()
-            TxtChequeNumero.Clear()
-            TxtTransferencia.Clear()
-            TxtTransferenciaNumero.Clear()
-            TxtDebito.Clear()
-            TxtDebitoNumero.Clear()
-            TxtMercadopago.Clear()
-            TxtOtros.Clear()
-            TxtOtrosComprobante.Clear()
-            BtnGuardar.Enabled = False
-            'MsgBox("¿Pasa o no pasa por acá?")
+        TxtEfectivo.Clear()
+        TxtCheque.Clear()
+        TxtChequeNumero.Clear()
+        TxtTransferencia.Clear()
+        TxtTransferenciaNumero.Clear()
+        TxtDebito.Clear()
+        TxtDebitoNumero.Clear()
+        TxtMercadopago.Clear()
+        TxtOtros.Clear()
+        TxtOtrosComprobante.Clear()
+        BtnGuardar.Enabled = False
+        'MsgBox("¿Pasa o no pasa por acá?")
 
     End Sub
 
-    Sub grarbaPagosAtrasadosCompleto()
+    Sub pagosConAtraso()
+        If bandera = "pagoTotalExacto" Or bandera = "pagoVueltoParcial" Or bandera = "pagoVueltoCompleto" Then
+            grabaPagosAtrasadosCompleto()
+        ElseIf bandera = "pagoAtrasoParcial" Then
+
+        End If
+
+    End Sub
+    Sub grabaPagosAtrasadosCompleto()
 
         Dim fechaActual As Date
         Dim codigo As Integer
@@ -921,12 +940,14 @@ Public Class Pagos
         Dim comandoFecha As New SqlCommand(maxFecha, conexion)
         ultimoVencimiento = comandoFecha.ExecuteScalar
 
+
+
         indiceArrayCodigo = 0
-        For Each strName As String In codigoArray
-            codigo = codigoArray(indiceArrayCodigo)
-            'ListBox1.Items.Add(strName)
-            If codigo <> 0 Then
-                Dim consulta As String = "SELECT alumnos.codigo_alumno, nombre_apellido_alumno, curso, matricula_alumno, cuota_alumno,
+            For Each strName As String In codigoArray
+                codigo = codigoArray(indiceArrayCodigo)
+                'ListBox1.Items.Add(strName)
+                If codigo <> 0 Then
+                    Dim consulta As String = "SELECT alumnos.codigo_alumno, nombre_apellido_alumno, curso, matricula_alumno, cuota_alumno,
                                       campamento_alumno, talleres_alumno, materiales_alumno, adicional_alumno,comedor_alumno, 
                                       importe_concepto1, importe_concepto2, importe_concepto3
                                       FROM alumnos 
@@ -939,27 +960,27 @@ Public Class Pagos
                                       AND alumnos.codigo_alumno = " & codigo & "
                                       AND fecha_vencimiento = '" & ultimoVencimiento & "' AND alumnos.estado = 'activo'"
 
-                Dim adaptadorConsulta As New SqlDataAdapter(consulta, conexion)
-                Dim dtDatos As DataTable = New DataTable
-                adaptadorConsulta.Fill(dtDatos)
+                    Dim adaptadorConsulta As New SqlDataAdapter(consulta, conexion)
+                    Dim dtDatos As DataTable = New DataTable
+                    adaptadorConsulta.Fill(dtDatos)
 
-                If dtDatos.Rows.Count > 0 Then
-                    Dim codigoAlumno As Integer = dtDatos.Rows(0)("codigo_alumno")
-                    Dim alumno As String = dtDatos.Rows(0)("nombre_apellido_alumno")
-                    Dim matricula As Decimal = dtDatos.Rows(0)("matricula_alumno")
-                    Dim arancel As Decimal = dtDatos.Rows(0)("cuota_alumno")
-                    Dim materiales As String = dtDatos.Rows(0)("materiales_alumno")
-                    Dim talleres As Decimal = dtDatos.Rows(0)("talleres_alumno")
-                    Dim campamento As Decimal = dtDatos.Rows(0)("campamento_alumno")
-                    Dim adicional As Decimal = dtDatos.Rows(0)("adicional_alumno")
-                    Dim comedor As Decimal = dtDatos.Rows(0)("comedor_alumno")
-                    Dim conceptoSinAsignar1 As Decimal = dtDatos.Rows(0)("importe_concepto1")
-                    Dim conceptoSinAsignar2 As Decimal = dtDatos.Rows(0)("importe_concepto2")
-                    Dim conceptoSinAsignar3 As Decimal = dtDatos.Rows(0)("importe_concepto3")
-                    Dim montoAtraso As Decimal
+                    If dtDatos.Rows.Count > 0 Then
+                        Dim codigoAlumno As Integer = dtDatos.Rows(0)("codigo_alumno")
+                        Dim alumno As String = dtDatos.Rows(0)("nombre_apellido_alumno")
+                        Dim matricula As Decimal = dtDatos.Rows(0)("matricula_alumno")
+                        Dim arancel As Decimal = dtDatos.Rows(0)("cuota_alumno")
+                        Dim materiales As String = dtDatos.Rows(0)("materiales_alumno")
+                        Dim talleres As Decimal = dtDatos.Rows(0)("talleres_alumno")
+                        Dim campamento As Decimal = dtDatos.Rows(0)("campamento_alumno")
+                        Dim adicional As Decimal = dtDatos.Rows(0)("adicional_alumno")
+                        Dim comedor As Decimal = dtDatos.Rows(0)("comedor_alumno")
+                        Dim conceptoSinAsignar1 As Decimal = dtDatos.Rows(0)("importe_concepto1")
+                        Dim conceptoSinAsignar2 As Decimal = dtDatos.Rows(0)("importe_concepto2")
+                        Dim conceptoSinAsignar3 As Decimal = dtDatos.Rows(0)("importe_concepto3")
+                        Dim montoAtraso As Decimal
 
 
-                    Dim pagoCompleto As String = "UPDATE pago_detallado SET codigo_familia = " & Val(CbxCodigo.Text) & ", 
+                        Dim pagoCompleto As String = "UPDATE pago_detallado SET codigo_familia = " & Val(CbxCodigo.Text) & ", 
                                                     codigo_alumno = " & codigoAlumno & ", cuota_pago = " & arancel & ", 
                                                     materiales_pago = " & materiales & ", talleres_pago = " & talleres & ",
                                                     campamento_pago = " & campamento & ", adicional_pago = " & adicional & ",
@@ -967,38 +988,48 @@ Public Class Pagos
                                                     sin_asignar2_pago = " & conceptoSinAsignar2 & ", sin_asignar3_pago = " & conceptoSinAsignar3 & ",
                                                     monto_atraso = " & montoAtraso & ", fecha_pago = '" & fechaActual & "', pago_cumplido = 'completo'
                                                     WHERE codigo_alumno = " & codigoAlumno & " "
-                    Dim comandoPago As New SqlCommand(pagoCompleto, conexion)
-                    comandoPago.ExecuteNonQuery()
-                    MsgBox("El pago ha sido realizado con éxito")
+                        Dim comandoPago As New SqlCommand(pagoCompleto, conexion)
+                        comandoPago.ExecuteNonQuery()
+                        MsgBox("El pago ha sido realizado con éxito")
 
-                    If TxtMatricula.Focused Then
-                        TxtMatricula.Text = diferencia
-                        Resta()
-                    ElseIf TxtArancel.Focused Then
-                        TxtArancel.Text = diferencia
-                        Resta()
-                    ElseIf TxtMateriales.Focused Then
-                        TxtMateriales.Text = diferencia
-                        Resta()
-                    ElseIf TxtTalleres.Focused Then
-                        TxtTalleres.Text = diferencia
-                        Resta()
-                    ElseIf TxtCampamento.Focused() Then
-                        TxtCampamento.Text = diferencia
-                        Resta()
-                    ElseIf TxtAdicional.Focused Then
-                        TxtAdicional.Text = diferencia
-                        Resta()
-                    ElseIf TxtComedor.Focused Then
-                        TxtComedor.Text = diferencia
-                        Resta()
+                        If TxtMatricula.Focused Then
+                            TxtMatricula.Text = diferencia
+                            Resta()
+                        ElseIf TxtArancel.Focused Then
+                            TxtArancel.Text = diferencia
+                            Resta()
+                        ElseIf TxtMateriales.Focused Then
+                            TxtMateriales.Text = diferencia
+                            Resta()
+                        ElseIf TxtTalleres.Focused Then
+                            TxtTalleres.Text = diferencia
+                            Resta()
+                        ElseIf TxtCampamento.Focused() Then
+                            TxtCampamento.Text = diferencia
+                            Resta()
+                        ElseIf TxtAdicional.Focused Then
+                            TxtAdicional.Text = diferencia
+                            Resta()
+                        ElseIf TxtComedor.Focused Then
+                            TxtComedor.Text = diferencia
+                            Resta()
 
+                        End If
+
+                        'MsgBox("dinero insuficiente, solo dispone de " & diferencia & " ¿Decea realizar el pago parcial?")
                     End If
-
-                    'MsgBox("dinero insuficiente, solo dispone de " & diferencia & " ¿Decea realizar el pago parcial?")
                 End If
-            End If
-        Next
+                indiceArrayCodigo += 1
+            Next
+
+        If bandera = "pagoVueltoCompleto" Then
+
+        ElseIf bandera = "pagoVueltoParcial" Then
+        Else
+
+        End If
+
+
     End Sub
 
     Sub DataGrid()
@@ -1163,7 +1194,7 @@ Public Class Pagos
 
             totalSeleccion = totalMatricula + TotalCuota + TotalCampamento + TotalTalleres + TotalMaterial + TotalAdicional + TotalComedor + totalSinAsignar1 + totalSinAsignar2 + totalSinAsignar3
 
-            LblTotalAlumno.Text = Format(totalSeleccion, "##,##00.00")
+            LblTotalAlumno.Text = totalSeleccion       'Format(totalSeleccion, "##.##00,00")
 
             LblTotalAlumno.Text = totalSeleccion
 
@@ -1334,7 +1365,7 @@ Public Class Pagos
                     Dim alumno As String = dtDatos.Rows(0)("nombre_apellido_alumno")
                     Dim matricula As Decimal = dtDatos.Rows(0)("matricula_alumno")
                     Dim arancel As Decimal = dtDatos.Rows(0)("cuota_alumno")
-                    Dim materiales As String = dtDatos.Rows(0)("materiales_alumno")
+                    Dim materiales As Decimal = dtDatos.Rows(0)("materiales_alumno")
                     Dim talleres As Decimal = dtDatos.Rows(0)("talleres_alumno")
                     Dim campamento As Decimal = dtDatos.Rows(0)("campamento_alumno")
                     Dim adicional As Decimal = dtDatos.Rows(0)("adicional_alumno")
@@ -1346,6 +1377,18 @@ Public Class Pagos
 
                     MsgBox("" & codigoAlumno & ", " & alumno & ", " & matricula & "")
 
+                    'Format(matricula, "##,##00.00")
+                    'Format(arancel, "##,###,###.##")
+                    'Format(materiales, "##,##00.00")
+                    'Format(talleres, "##,##00.00")
+                    'Format(campamento, "##,##00.00")
+                    'Format(adicional, "##,##00.00")
+                    'Format(comedor, "##,##00.00")
+                    'Format(conceptoSinAsignar1, "##,##00.00")
+                    'Format(conceptoSinAsignar2, "##,##00.00")
+                    'Format(conceptoSinAsignar3, "##,##00.00")
+
+
                     Try
                         Dim pagoFamilia As String = "INSERT INTO pago_familia (codigo_familia, codigo_alumno, arancel, matricula, 
                                                  materiales, taller, campamento, adicional, comedor, sin_asignar1, sin_asignar2, 
@@ -1354,6 +1397,7 @@ Public Class Pagos
                                                  @taller, @campamento, @adicional, @comedor, @sin_asignar1, @sin_asignar2, 
                                                  @sin_asignar3, @fecha_pago, @periodo_pago)"
                         Dim comando As New SqlCommand(pagoFamilia, conexion)
+
 
                         comando.Parameters.AddWithValue("@codigo_familia", Val(CbxCodigo.Text))
                         comando.Parameters.AddWithValue("@codigo_alumno", codigoAlumno)
@@ -1371,17 +1415,31 @@ Public Class Pagos
                         comando.Parameters.AddWithValue("@periodo_pago", DtpFechaDePago.Value)
                         comando.ExecuteNonQuery()
 
-
+                        MsgBox("El problema está en la insert")
                         montoAtraso = Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text)
 
+
+                        'Dim actualizaPagos As String = "UPDATE pago_detallado SET codigo_familia = " & Val(CbxCodigo.Text) & ", 
+                        '                            codigo_alumno = " & codigoAlumno & ", cuota_pago = " & Format(arancel, "##,###.##") & "
+                        '                           WHERE codigo_alumno = " & codigoAlumno & " And periodo_de_pago = '" & LblPeriodoPago.Text & "' "
+
+
+
                         Dim actualizaPagos As String = "UPDATE pago_detallado SET codigo_familia = " & Val(CbxCodigo.Text) & ", 
-                                                    codigo_alumno = " & codigoAlumno & ", cuota_pago = " & arancel & ", 
-                                                    materiales_pago = " & materiales & ", talleres_pago = " & talleres & ",
-                                                    campamento_pago = " & campamento & ", adicional_pago = " & adicional & ",
+                                                    codigo_alumno = " & codigoAlumno & ", cuota_pago = " & arancel & ",
+                                                    materiales_pago = " & materiales & ", talleres_pago = " & talleres & ",  
+                                                    campamento_pago = " & campamento & ",  adicional_pago = " & adicional & ",
                                                     comedor_pago = " & comedor & ", sin_asignar1_pago = " & conceptoSinAsignar1 & ", 
                                                     sin_asignar2_pago = " & conceptoSinAsignar2 & ", sin_asignar3_pago = " & conceptoSinAsignar3 & ",
                                                     monto_atraso = " & montoAtraso & ", fecha_pago = '" & fechaActual & "', pago_cumplido = '" & pagoCumplido & "'
                                                     WHERE codigo_alumno = " & codigoAlumno & " And periodo_de_pago = '" & LblPeriodoPago.Text & "' "
+                        'materiales_pago = " & Format(materiales, "##,###.##") & ", talleres_pago = " & Format(talleres, "##,###.##") & " 
+                        'campamento_pago = " & Format(campamento, "##,###.##") & ", adicional_pago = " & Format(adicional, "##,###.##") & ",
+                        'comedor_pago = " & Format(comedor, "##,###.##") & ", sin_asignar1_pago = " & Format(conceptoSinAsignar1, "##,###.##") & ", 
+                        'sin_asignar2_pago = " & Format(conceptoSinAsignar2, "##,###.##") & ", sin_asignar3_pago = " & Format(conceptoSinAsignar3, "##,###.##") & ",
+                        'monto_atraso = " & Format(montoAtraso, "##,###.##") & ", fecha_pago = '" & fechaActual & "', pago_cumplido = '" & pagoCumplido & "'
+
+
 
                         Dim comandoActualizaPagos As New SqlCommand(actualizaPagos, conexion)
                         comandoActualizaPagos.ExecuteNonQuery()
@@ -1493,7 +1551,7 @@ Public Class Pagos
     Sub Suma()
         Dim total As Decimal
         total = Val(TxtEfectivo.Text) + Val(TxtCheque.Text) + Val(TxtTransferencia.Text) + Val(TxtDebito.Text) + Val(TxtMercadopago.Text) + Val(TxtOtros.Text)
-        TxtTotal.Text = Format(total, "##,##00.00")
+        TxtTotal.Text = total
     End Sub
 
     Sub Resta()
@@ -1502,7 +1560,7 @@ Public Class Pagos
         total = Val(TxtTotal.Text)
         diferencia = total - total2
         CompruebaDisponible()
-        TxtDisponible.Text = Format(diferencia, "##,##00.00")
+        TxtDisponible.Text = diferencia     'Format(diferencia, "##.##00,00")
 
     End Sub
 
@@ -1708,11 +1766,11 @@ Public Class Pagos
                 atraso += Val(row(2))
             Next
 
-            TxtCredito.Text = Format(credito, "##,##00.00")
-            TxtCredDisp.Text = Format(credito, "##,##00.00")
-            TxtSubTotal.Text = Format(atraso, "##,##00.00")
+            TxtCredito.Text = credito      'Format(credito, "##.##00,00")
+            TxtCredDisp.Text = credito      'Format(credito, "##.##00,00")
+            TxtSubTotal.Text = atraso       'Format(atraso, "##.##00,00")
             'TxtMontoAPagar.Text = atraso - credito
-            TxtTotalAPagar.Text = Format((atraso - credito), "##,##00.00")
+            TxtTotalAPagar.Text = atraso - credito     'Format((atraso - credito), "##.##00,00")
         End If
     End Sub
 
