@@ -711,60 +711,6 @@ Public Class Pagos
 
                         'Pago no alcanza para cubrir atrasos más vencimiento actual
                         pagoCompleto = False
-                    TxtMatricula.Enabled = True
-                    TxtArancel.Enabled = True
-                    TxtMateriales.Enabled = True
-                    TxtTalleres.Enabled = True
-                    TxtCampamento.Enabled = True
-                    TxtAdicional.Enabled = True
-                    TxtComedor.Enabled = True
-                    BtnGuardar.Enabled = True
-                    'pagoCumplido = "incompleto"
-                    'PagoParcial()
-                    TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
-                    bandera = "pagoAtrasoParcial"
-                End If
-
-            Else
-                If Val(TxtMontoAPagar.Text) <= Val(TxtTotal.Text) Then      'Cuando el monto es suficiente
-                    If Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) = 0 Then 'Pago exacto
-                        BtnGuardar.Enabled = True
-                        MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        bandera = "pagoTotalExacto"
-                    Else                                                    'Pago de más
-                        If decision < 0 Then                                'Se puede dar todo el vuelto en efectivo
-                            opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & (Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                            efectivoAlcanza = True
-                            bandera = "pagoVueltoEntero"
-                        Else                                                'El efectivo es menor y solo de puede reintegrar una parte del vuelto
-                            opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & Val(TxtEfectivo.Text) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                            efectivoAlcanza = False
-                            bandera = "pagoVueltoParcial"
-                        End If
-
-                        If (opcion1 = Windows.Forms.DialogResult.No) Then
-                            pagoACuenta = False           'eligió devolución
-                            TxtDisponible.Text -= Val(TxtTotalAPagar.Text)
-                        Else
-                            pagoACuenta = True            'eligió que el vuelto quede a cuenta de próximo vencimiento
-                            TxtDisponible.Text -= Val(TxtTotalAPagar.Text)
-                        End If
-                    End If
-
-                    pagoCompleto = True
-                    pagoCumplido = "completo"
-                    BtnGuardar.Enabled = True
-                    PagoTotal()
-                    TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
-
-                Else                              'Cuando el monto no es suficiente
-                    opcion = MessageBox.Show("El monto es insuficiente para afrontar el total de los conceptos del mes." + vbCr + "En este pago hay un faltante de: $" & Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text) & vbCr + vbCr + "SI: para realizar el pago parcial." + vbCr + "" + vbCr + "NO: para rectificar el monto a pagar." + vbCr + "" + vbCr + "", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                    If (opcion = Windows.Forms.DialogResult.No) Then
-
-                        TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
-                        RadioButton1.Checked = True
-                    Else
-                        pagoCompleto = False
                         TxtMatricula.Enabled = True
                         TxtArancel.Enabled = True
                         TxtMateriales.Enabled = True
@@ -773,13 +719,67 @@ Public Class Pagos
                         TxtAdicional.Enabled = True
                         TxtComedor.Enabled = True
                         BtnGuardar.Enabled = True
-                        pagoCumplido = "incompleto"
+                        'pagoCumplido = "incompleto"
                         'PagoParcial()
                         TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
-                        bandera = "pagoParcial"
+                        bandera = "pagoAtrasoParcial"
+                    End If
+
+                Else
+                    If Val(TxtMontoAPagar.Text) <= Val(TxtTotal.Text) Then      'Cuando el monto es suficiente
+                        If Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) = 0 Then 'Pago exacto
+                            BtnGuardar.Enabled = True
+                            MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            bandera = "pagoTotalExacto"
+                        Else                                                    'Pago de más
+                            If decision < 0 Then                                'Se puede dar todo el vuelto en efectivo
+                                opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & (Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                                efectivoAlcanza = True
+                                bandera = "pagoVueltoEntero"
+                            Else                                                'El efectivo es menor y solo de puede reintegrar una parte del vuelto
+                                opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & Val(TxtEfectivo.Text) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                                efectivoAlcanza = False
+                                bandera = "pagoVueltoParcial"
+                            End If
+
+                            If (opcion1 = Windows.Forms.DialogResult.No) Then
+                                pagoACuenta = False           'eligió devolución
+                                TxtDisponible.Text -= Val(TxtTotalAPagar.Text)
+                            Else
+                                pagoACuenta = True            'eligió que el vuelto quede a cuenta de próximo vencimiento
+                                TxtDisponible.Text -= Val(TxtTotalAPagar.Text)
+                            End If
+                        End If
+
+                        pagoCompleto = True
+                        pagoCumplido = "completo"
+                        BtnGuardar.Enabled = True
+                        PagoTotal()
+                        TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
+
+                    Else                              'Cuando el monto no es suficiente
+                        opcion = MessageBox.Show("El monto es insuficiente para afrontar el total de los conceptos del mes." + vbCr + "En este pago hay un faltante de: $" & Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text) & vbCr + vbCr + "SI: para realizar el pago parcial." + vbCr + "" + vbCr + "NO: para rectificar el monto a pagar." + vbCr + "" + vbCr + "", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        If (opcion = Windows.Forms.DialogResult.No) Then
+
+                            TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
+                            RadioButton1.Checked = True
+                        Else
+                            pagoCompleto = False
+                            TxtMatricula.Enabled = True
+                            TxtArancel.Enabled = True
+                            TxtMateriales.Enabled = True
+                            TxtTalleres.Enabled = True
+                            TxtCampamento.Enabled = True
+                            TxtAdicional.Enabled = True
+                            TxtComedor.Enabled = True
+                            BtnGuardar.Enabled = True
+                            pagoCumplido = "incompleto"
+                            'PagoParcial()
+                            TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
+                            bandera = "pagoParcial"
+                        End If
                     End If
                 End If
-
             End If
             '-end if----------------------------------------
         Else
@@ -925,6 +925,8 @@ Public Class Pagos
         If bandera = "pagoTotalExacto" Or bandera = "pagoVueltoParcial" Or bandera = "pagoVueltoCompleto" Then
             grabaPagosAtrasadosCompleto()
         ElseIf bandera = "pagoAtrasoParcial" Then
+            MsgBox("Estoy en pago atrasado parcial")
+
 
         End If
 
@@ -1023,6 +1025,7 @@ Public Class Pagos
             Next
 
         If bandera = "pagoVueltoCompleto" Then
+
 
         ElseIf bandera = "pagoVueltoParcial" Then
         Else
