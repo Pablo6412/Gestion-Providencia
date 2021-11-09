@@ -184,6 +184,7 @@ Public Class Pagos
         'Deuda()
         DataGrid()
         DataGrid1()
+        DataGridPP()
         totalConceptos = 0
         CalculoTotal()
     End Sub
@@ -1085,7 +1086,7 @@ Public Class Pagos
                                                     materiales_pago = " & materiales & ", talleres_pago = " & talleres & ",
                                                     campamento_pago = " & campamento & ", adicional_pago = " & adicional & ",
                                                     comedor_pago = " & comedor & ", sin_asignar1_pago = " & conceptoSinAsignar1 & ", 
-                                                    sin_asignar2_pago = " & conceptoSinAsignar2 & ", sin_asignar3_pago = " & conceptoSinAsignar3 & ", credito = " & credito & "
+                                                    sin_asignar2_pago = " & conceptoSinAsignar2 & ", sin_asignar3_pago = " & conceptoSinAsignar3 & ", credito = " & credito & ",
                                                     monto_atraso = " & montoAtraso & ", fecha_pago = '" & fechaActual & "', pago_cumplido = 'completo'
                                                     WHERE codigo_alumno = " & codigoAlumno & " "
                     Dim comandoPago As New SqlCommand(pagoCompleto, conexion)
@@ -1131,9 +1132,10 @@ Public Class Pagos
             vueltoACredito = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
             efectivoDef = Val(TxtEfectivo.Text)
             FormaPago(efectivoDef)
+            Dim fechaCredito As Date = LblPeriodoPago.Text
             Dim actualizaCredito As String = "UPDATE pago_detallado 
                                               SET credito = " & vueltoACredito & " 
-                                              WHERE codigo_alumno = " & codigoHermanoMenor & " AND fecha_pago = '" & fechaActual & "'"
+                                              WHERE codigo_alumno = " & codigoHermanoMenor & " AND periodo_de_pago = '" & ultimoVencimiento & "'"
             Dim comandoActualiza As New SqlCommand(actualizaCredito, conexion)
             comandoActualiza.ExecuteNonQuery()
 
@@ -1144,7 +1146,7 @@ Public Class Pagos
             vueltoACredito = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
             Dim actualizaCredito As String = "UPDATE pago_detallado 
                                               SET credito = " & vueltoACredito & " 
-                                              WHERE codigo_alumno = " & codigoHermanoMenor & " AND fecha_pago = '" & fechaActual & "'"
+                                              WHERE codigo_alumno = " & codigoHermanoMenor & " AND periodo_de_pago = '" & ultimoVencimiento & "'"
             Dim comandoActualiza As New SqlCommand(actualizaCredito, conexion)
             comandoActualiza.ExecuteNonQuery()
 
@@ -1155,7 +1157,7 @@ Public Class Pagos
             vueltoACredito = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) + Val(TxtEfectivo.Text)
             Dim actualizaCredito As String = "UPDATE pago_detallado 
                                               SET credito = " & vueltoACredito & " 
-                                              WHERE codigo_alumno = " & codigoHermanoMenor & " AND fecha_pago = '" & fechaActual & "'"
+                                              WHERE codigo_alumno = " & codigoHermanoMenor & " AND periodo_de_pago = '" & ultimoVencimiento & "'"
             Dim comandoActualiza As New SqlCommand(actualizaCredito, conexion)
             comandoActualiza.ExecuteNonQuery()
 
@@ -1168,11 +1170,209 @@ Public Class Pagos
             vueltoACredito = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
             Dim actualizaCredito As String = "UPDATE pago_detallado 
                                               SET credito = " & vueltoACredito & " 
-                                              WHERE codigo_alumno = " & codigoHermanoMenor & " AND fecha_pago = '" & fechaActual & "'"
+                                              WHERE codigo_alumno = " & codigoHermanoMenor & " AND periodo_de_pago = '" & ultimoVencimiento & "'"
             Dim comandoActualiza As New SqlCommand(actualizaCredito, conexion)
             comandoActualiza.ExecuteNonQuery()
         End If
 
+    End Sub
+
+    Sub DataGridPP()
+        '    If Val(CbxCodigo.Text) <> 0 Then
+        Dim mes As Integer
+        Dim parImpar As Integer
+        Dim ultimoVencimiento As Date
+        Dim alumno
+        Dim codigoAlumno As Integer
+        Dim totalSeleccion As Decimal
+        Dim cumplido As String
+        Dim fecha As Date
+        Dim restrictionValues() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
+        Dim dt As DataTable = conexion.GetSchema("TABLES", restrictionValues)
+        Dim rows() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
+        CreaTablaTemporal(rows)
+
+        Dim maxFecha As String = "SELECT MAX(fecha_vencimiento) AS fecha FROM vencimiento_detallado"
+        Dim comandoFecha As New SqlCommand(maxFecha, conexion)
+        ultimoVencimiento = comandoFecha.ExecuteScalar
+
+        If contador <> 0 Then
+            totalMatricula = 0
+            TotalCuota = 0
+            TotalCampamento = 0
+            TotalTalleres = 0
+            TotalMaterial = 0
+            TotalAdicional = 0
+            TotalComedor = 0
+            totalConceptos = 0
+
+            Try
+                Dim consultaDgvPP As String = "SELECT  nombre_apellido_alumno, curso, matricula_alumno, cuota_alumno, 
+                                             campamento_alumno, talleres_alumno, materiales_alumno, adicional_alumno, 
+                                             comedor_alumno, importe_concepto1, importe_concepto2, importe_concepto3, 
+                                             alumnos.codigo_alumno
+                                          FROM alumnos 
+                                          JOIN cursos ON cursos.codigo_curso = alumnos.codigo_curso 
+                                          JOIN vencimiento_detallado ON alumnos.codigo_alumno = vencimiento_detallado.codigo_alumno 
+                                          JOIN concepto_sin_asignar_1 ON alumnos.codigo_año = concepto_sin_asignar_1.codigo_año 
+										  JOIN concepto_sin_asignar_2 ON alumnos.codigo_año = concepto_sin_asignar_2.codigo_año 
+										  JOIN concepto_sin_asignar_3 ON alumnos.codigo_año = concepto_sin_asignar_3.codigo_año
+                                          WHERE alumnos.codigo_familia = " & Val(CbxCodigo.Text) & " AND fecha_vencimiento = '" & ultimoVencimiento & "' And alumnos.estado = 'activo' "
+
+
+                Dim comandoDgvPP As New SqlCommand(consultaDgvPP, conexion)
+
+                comandoDgvPP.CommandType = CommandType.Text
+
+                Dim adaptadorDgvPP As New SqlDataAdapter(comandoDgvPP)
+                Dim dataSet As New DataSet()
+                adaptadorDgvPP.Fill(dataSet)
+
+                DgvPagoAtraso.DataSource = dataSet.Tables(0).DefaultView
+
+            Catch ex As Exception
+                MsgBox("Error comprobando BD" & ex.ToString)
+            End Try
+
+
+            Dim colCodigoAlumno As Integer = 13
+            indiceArrayCodigo = 0
+
+            'ReDim codigoArray(DgvHijos1.Rows.Count - 1)
+            For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+
+                codigoAlumno = Val(row.Cells(colCodigoAlumno).Value)
+
+                fecha = Convert.ToDateTime(LblPeriodoPago.Text)
+                Dim alumnoPago As String = "SELECT pago_cumplido 
+                                                FROM pago_detallado 
+                                                WHERE codigo_alumno = '" & codigoAlumno & "' and periodo_de_pago = ' " & fecha & " '"
+                Dim comandoPago As New SqlCommand(alumnoPago, conexion)
+                cumplido = comandoPago.ExecuteScalar
+                If cumplido <> "completo" Then
+                    row.Cells("Check2").Value = True
+                Else
+                    row.Cells("Check2").Value = False
+                End If
+
+                'codigoArray(indiceArrayCodigo) = Val(row.Cells(colCodigoAlumno).Value)
+                'indiceArrayCodigo += 1
+
+            Next
+            LbxCodigo.Items.Clear()
+
+            Dim colAlumno As Integer = 1
+            For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+                alumno = row.Cells(colAlumno)
+            Next
+
+            Dim colMatricula As Integer = 3
+            For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+                totalMatricula += Val(row.Cells(colMatricula).Value)
+            Next
+            'TxtMatricula.PlaceholderText = Format(totalMatricula, "##.##00,00")
+            matricula = totalMatricula
+
+            Dim col As Integer = 4
+            For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+                TotalCuota += Val(row.Cells(col).Value)
+            Next
+            'TxtArancel.PlaceholderText = Format(TotalCuota, "##,##00.00")
+            arancel = TotalCuota
+
+            Dim colCamp As Integer = 5
+            For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+                TotalCampamento += (Val(row.Cells(colCamp).Value))
+            Next
+            'TxtCampamento.PlaceholderText = Format(TotalCampamento, "##,##00.00")
+            campamento = TotalCampamento
+
+            Dim colTaller As Integer = 6
+            For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+                TotalTalleres += Val(row.Cells(colTaller).Value)
+            Next
+            'TxtTalleres.PlaceholderText = Format(TotalTalleres, "##,##00.00")
+            talleres = TotalTalleres
+
+            Dim colMaterial As Integer = 7
+            For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+                TotalMaterial += Val(row.Cells(colMaterial).Value)
+            Next
+            'TxtMateriales.PlaceholderText = Format(TotalMaterial, "##,##00.00")
+            materiales = TotalMaterial
+
+            Dim colAdicional As Integer = 8
+            For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+                TotalAdicional += Val(row.Cells(colAdicional).Value)
+            Next
+            'TxtAdicional.PlaceholderText = Format(TotalAdicional, "##,##00.00")
+            adicional = TotalAdicional
+
+            Dim colComedor As Integer = 9
+            For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+                TotalComedor += Val(row.Cells(colComedor).Value)
+            Next
+            mes = fechaActual.Month
+            parImpar = mes Mod 2
+            If parImpar <> 0 Then
+                'TxtComedor.PlaceholderText = Format(TotalComedor, "##,##00.00")
+                comedor = TotalComedor
+            Else
+                'TxtComedor.PlaceholderText = 0
+                comedor = 0
+                'TotalComedor = comedor
+            End If
+
+            Dim colSinAsignar1 As Integer = 10
+            For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+                totalSinAsignar1 += Val(row.Cells(colSinAsignar1).Value)
+            Next
+            'TxtSinAsignar1.PlaceholderText = Format(totalSinAsignar1, "##,##00.00")
+            sinAsignar1 = totalSinAsignar1
+
+            Dim colSinAsignar2 As Integer = 11
+            For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+                totalSinAsignar2 += Val(row.Cells(colSinAsignar2).Value)
+            Next
+            'TxtSinasignar2.PlaceholderText = Format(totalSinAsignar2, "##,##00.00")
+            sinAsignar2 = totalSinAsignar2
+
+            Dim colSinAsignar3 As Integer = 12
+            For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+                totalSinAsignar3 += Val(row.Cells(colSinAsignar3).Value)
+            Next
+            'TxtSinAsignar3.PlaceholderText = Format(totalSinAsignar3, "##,##00.00")
+            sinAsignar3 = totalSinAsignar3
+
+            ' Relleno listbox con los codigos del array
+
+            For Each strName As String In codigoArray
+                LbxCodigo.Items.Add(strName)
+            Next
+            'TxtCodigoAlumno.PlaceholderText = codigoAlumno
+            'sinAsignar3 = totalSinAsignar3
+
+        End If
+        contador += 1
+
+        totalSeleccion = totalMatricula + TotalCuota + TotalCampamento + TotalTalleres + TotalMaterial + TotalAdicional + TotalComedor + pagoAtrasado
+        'LblTotalAlumno.Text = totalSeleccion
+        'TxtMontoAPagar.Text = totalSeleccion
+        Dim tablaExiste() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
+        Dim datat As DataTable = conexion.GetSchema("TABLES", restrictionValues)
+        Dim rowss() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
+
+        If rowss.Length > 0 Then
+            'MessageBox.Show("Existe la tabla.")
+            Dim destruyeTabla As String = "DROP TABLE taller_temporal"
+            Dim comandoDestruye As New SqlCommand(destruyeTabla, conexion)
+            'MsgBox("Tabla destruida")
+
+            If comandoDestruye.ExecuteNonQuery() = 0 Then
+                MsgBox("No pasa nada")
+            End If
+        End If
+        'End If
     End Sub
 
     Private Sub GrabaPagosAtrasadosParciales()
@@ -1529,16 +1729,6 @@ Public Class Pagos
 
                     MsgBox("" & codigoAlumno & ", " & alumno & ", " & matricula & "")
 
-                    'Format(matricula, "##,##00.00")
-                    'Format(arancel, "##,###,###.##")
-                    'Format(materiales, "##,##00.00")
-                    'Format(talleres, "##,##00.00")
-                    'Format(campamento, "##,##00.00")
-                    'Format(adicional, "##,##00.00")
-                    'Format(comedor, "##,##00.00")
-                    'Format(conceptoSinAsignar1, "##,##00.00")
-                    'Format(conceptoSinAsignar2, "##,##00.00")
-                    'Format(conceptoSinAsignar3, "##,##00.00")
 
 
                     Try
@@ -2077,4 +2267,7 @@ Public Class Pagos
         Suma()
     End Sub
 
+    Private Sub BtnSalirParcial_Click(sender As Object, e As EventArgs) Handles BtnSalirParcial.Click
+        Me.Close()
+    End Sub
 End Class
