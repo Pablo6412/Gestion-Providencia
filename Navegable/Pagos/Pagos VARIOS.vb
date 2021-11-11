@@ -94,6 +94,30 @@ Public Class Pagos
     Dim codigoHermanoMenor As Integer
 
 
+
+    Dim fechaActualPP As Date = Date.Today
+    Dim fecha As Date
+    Dim fecha1 As Date
+    Dim fecha2 As Date
+    Dim fecha3 As Date
+    Dim fecha4 As Date
+    Dim fecha5 As Date
+    Dim fecha6 As Date
+    Dim fecha7 As Date
+    Dim fecha8 As Date
+    Dim fecha9 As Date
+    Dim fecha10 As Date
+    Dim fecha11 As Date
+    Dim fecha12 As Date
+    Dim deuda As Decimal
+    Dim resultado As Decimal
+    Dim mesesDeuda() As Date
+    Dim indiceArrayMeses As Integer
+
+
+
+
+
     Private Sub Pagos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Dim sinAsignar1 As String
@@ -143,7 +167,7 @@ Public Class Pagos
             LblSinAsignar2.Hide()
         End If
 
-        RadioButton1.Checked = True
+        RdbIngresoPagos.Checked = True
         TxtMontoAPagar.Enabled = False
         TxtTotal.Enabled = False
         TxtSubTotal.Enabled = False
@@ -169,6 +193,7 @@ Public Class Pagos
         Catch ex As Exception
             MsgBox("Error comprobando BD" & ex.ToString)
         End Try
+        'PagoMes(fecha)
         DataGrid1()
     End Sub
 
@@ -184,7 +209,13 @@ Public Class Pagos
         'Deuda()
         DataGrid()
         DataGrid1()
+
+        ClbMeses.Items.Clear()
+        ListBox1.Items.Clear()
+        Checked()
         DataGridPP()
+        LblTotalAlumno.Text = 0
+        LblAlumnoPP.Text = " "
         totalConceptos = 0
         CalculoTotal()
     End Sub
@@ -742,7 +773,7 @@ Public Class Pagos
 
             abrir()
             TxtDisponible.Text = TxtTotal.Text
-            RdbDetallesPago.Checked = True
+
 
 
             If atraso = True Then                                              'Si hay pagos atrasados
@@ -753,8 +784,9 @@ Public Class Pagos
                         BtnGuardar.Enabled = True
                         MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes más los montos atrasados." + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         bandera = "pagoTotalExacto"
-
+                        RdbDetallesPago.Checked = True
                     Else
+
                         Dim vueltoAtraso As Decimal
                         vueltoAtraso = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
 
@@ -772,7 +804,7 @@ Public Class Pagos
                                 vuelto = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
                                 bandera = "vueltoTotalACredito"
                             End If
-
+                            RdbDetallesPago.Checked = True
 
                         Else
                             If Val(TxtEfectivo.Text) > 0 Then
@@ -784,7 +816,7 @@ Public Class Pagos
                                     vuelto = Val(TxtEfectivo.Text)
                                     bandera = "vueltoParcialACredito"
                                 End If
-
+                                RdbDetallesPago.Checked = True
                             Else
                                 opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes más los montos atrasados." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " que queda a cuenta de futuros vencimientos")
                                 vuelto = Val(TxtTotal.Text) + Val(TxtMontoAPagar.Text)
@@ -792,31 +824,49 @@ Public Class Pagos
                             End If
                         End If
                     End If
+                Else
+
+
+                    '-----------------------------------------------------------------------------------------------------------------------------------
+                    opcion1 = MessageBox.Show("El monto es insuficiente para afrontar el total del vencimiento del mes más los atrasos." + vbCr + "En este pago hay un faltante de: $" & Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text) & " " + vbCr + "" + vbCr + "SÍ: Para realizar el pago parcial." + vbCr + "" + vbCr + "NO: para rectificar el monto a pagar." + vbCr + "" + vbCr + "", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+
+                    If (opcion1 = Windows.Forms.DialogResult.Yes) Then
+                        GroupBox9.Visible = False
+                        TabControl1.SelectedTab = TabControl1.TabPages.Item(4)
+                        RdbPP.Checked = True
+
+                        GrabaPagosAtrasadosParciales()
+                    Else
+                        TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
+                        RdbIngresoPagos.Checked = True
+                    End If
+
+                    'Pago no alcanza para cubrir atrasos más vencimiento actual
+
+                    'pagoCompleto = False
+                    'TxtMatricula.Enabled = True
+                    'TxtArancel.Enabled = True
+                    'TxtMateriales.Enabled = True
+                    'TxtTalleres.Enabled = True
+                    'TxtCampamento.Enabled = True
+                    'TxtAdicional.Enabled = True
+                    'TxtComedor.Enabled = True
+                    'BtnGuardar.Enabled = True
+                    ''pagoCumplido = "incompleto"
+                    ''PagoParcial()
+
+                    'bandera = "pagoAtrasoParcial"
                 End If
-                '-----------------------------------------------------------------------------------------------------------------------------------
-
-                'Pago no alcanza para cubrir atrasos más vencimiento actual
-                pagoCompleto = False
-                TxtMatricula.Enabled = True
-                TxtArancel.Enabled = True
-                TxtMateriales.Enabled = True
-                TxtTalleres.Enabled = True
-                TxtCampamento.Enabled = True
-                TxtAdicional.Enabled = True
-                TxtComedor.Enabled = True
-                BtnGuardar.Enabled = True
-                'pagoCumplido = "incompleto"
-                'PagoParcial()
-                TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
-                'bandera = "pagoAtrasoParcial"
-
                 '##########################################################################################################################################
             Else
                 If Val(TxtMontoAPagar.Text) <= Val(TxtTotal.Text) Then      'Cuando el monto es suficiente
                     If Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) = 0 Then 'Pago exacto
+                        RdbDetallesPago.Checked = True
+                        TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
                         BtnGuardar.Enabled = True
                         MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         bandera = "pagoTotalExacto"
+
                     Else                                                    'Pago de más
                         If decision < 0 Then                                'Se puede dar todo el vuelto en efectivo
                             opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & (Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
@@ -830,7 +880,7 @@ Public Class Pagos
                                 pagoACuenta = True            'eligió que el vuelto quede a cuenta de próximo vencimiento
                                 TxtDisponible.Text -= Val(TxtTotalAPagar.Text)
                             End If
-
+                            RdbDetallesPago.Checked = True
                         Else                                                'El efectivo es menor y solo de puede reintegrar una parte del vuelto
                             opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & Val(TxtEfectivo.Text) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                             efectivoAlcanza = False
@@ -842,7 +892,7 @@ Public Class Pagos
                                 pagoACuenta = True            'eligió que el vuelto quede a cuenta de próximo vencimiento
                                 TxtDisponible.Text -= Val(TxtTotalAPagar.Text)
                             End If
-
+                            RdbDetallesPago.Checked = True
                         End If
 
 
@@ -859,7 +909,7 @@ Public Class Pagos
                     If (opcion = Windows.Forms.DialogResult.No) Then
 
                         TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
-                        RadioButton1.Checked = True
+                        RdbIngresoPagos.Checked = True
                     Else
                         pagoCompleto = False
                         TxtMatricula.Enabled = True
@@ -1020,9 +1070,9 @@ Public Class Pagos
 
     Sub pagosConAtraso()
         If bandera = "pagoTotalExacto" Or bandera = "pagoVueltoEntero" Or bandera = "vueltoTotalACredito" Or bandera = "vueltoParcial" Or bandera = "vueltoParcialACredito" Or bandera = "todoVueltoACredito" Then
-            grabaPagosAtrasadosCompleto()
+            GrabaPagosAtrasadosCompleto()
         Else
-            grabaPagosAtrasadosParciales()
+            PagosAtrasadosParciales()
 
         End If
 
@@ -1174,6 +1224,36 @@ Public Class Pagos
             Dim comandoActualiza As New SqlCommand(actualizaCredito, conexion)
             comandoActualiza.ExecuteNonQuery()
         End If
+    End Sub
+
+    Private Sub PagosAtrasadosParciales()
+
+        Dim montoAtraso As Decimal
+
+        TxtMontoIngresadoPP.Text = Val(TxtTotal.Text)
+        Dim mesesAtraso As String = "SELECT pago_detallado.codigo_alumno, edad, periodo_de_pago, monto_atraso 
+                                     FROM pago_detallado 
+                                     JOIN alumnos ON alumnos.codigo_alumno = pago_detallado.codigo_alumno 
+                                     WHERE pago_cumplido <> 'completo' AND pago_detallado.codigo_familia = " & Val(CbxCodigo.Text) & " 
+                                     ORDER BY periodo_de_pago, edad"
+        Dim adaptadorMesAtraso As New SqlDataAdapter(mesesAtraso, conexion)
+        Dim dtDatos As DataTable = New DataTable
+        adaptadorMesAtraso.Fill(dtDatos)
+
+
+        For Each fila As DataRow In dtDatos.Rows
+            montoAtraso = Val(fila(3))
+            MsgBox(" El monto es " & montoAtraso)
+            If Val(TxtTotal.Text) >= montoAtraso Then
+                pagoParcialAtraso()
+            Else
+
+            End If
+        Next
+
+    End Sub
+
+    Private Sub pagoParcialAtraso()
 
     End Sub
 
@@ -1346,18 +1426,18 @@ Public Class Pagos
 
             ' Relleno listbox con los codigos del array
 
-            For Each strName As String In codigoArray
-                LbxCodigo.Items.Add(strName)
-            Next
-            'TxtCodigoAlumno.PlaceholderText = codigoAlumno
+            'For Each strName As String In codigoArray
+            '    LbxCodigo.Items.Add(strName)
+            'Next
+            ''TxtCodigoAlumno.PlaceholderText = codigoAlumno
             'sinAsignar3 = totalSinAsignar3
 
         End If
         contador += 1
 
-        totalSeleccion = totalMatricula + TotalCuota + TotalCampamento + TotalTalleres + TotalMaterial + TotalAdicional + TotalComedor + pagoAtrasado
-        'LblTotalAlumno.Text = totalSeleccion
-        'TxtMontoAPagar.Text = totalSeleccion
+        'totalSeleccion = totalMatricula + TotalCuota + TotalCampamento + TotalTalleres + TotalMaterial + TotalAdicional + TotalComedor + pagoAtrasado
+        ''LblTotalAlumno.Text = totalSeleccion
+        ''TxtMontoAPagar.Text = totalSeleccion
         Dim tablaExiste() As String = {Nothing, Nothing, Nothing, "BASE TABLE"}
         Dim datat As DataTable = conexion.GetSchema("TABLES", restrictionValues)
         Dim rowss() As DataRow = dt.Select("TABLE_NAME = 'Taller_temporal'")
@@ -1375,9 +1455,7 @@ Public Class Pagos
         'End If
     End Sub
 
-    Private Sub GrabaPagosAtrasadosParciales()
 
-    End Sub
 
 
 
@@ -2064,7 +2142,7 @@ Public Class Pagos
 
     End Sub
 
-    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RdbIngresoPagos.CheckedChanged
         TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
     End Sub
 
@@ -2082,7 +2160,7 @@ Public Class Pagos
         TabControl1.SelectedTab = TabControl1.TabPages.Item(3)
     End Sub
 
-    Private Sub RadioButton5_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton5.CheckedChanged
+    Private Sub RadioButton5_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton5.CheckedChanged, RadioPP.CheckedChanged, RdbPP.CheckedChanged
         TabControl1.SelectedTab = TabControl1.TabPages.Item(4)
     End Sub
 
@@ -2269,5 +2347,507 @@ Public Class Pagos
 
     Private Sub BtnSalirParcial_Click(sender As Object, e As EventArgs) Handles BtnSalirParcial.Click
         Me.Close()
+    End Sub
+
+    Private Sub DgvPagoAtraso_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvPagoAtraso.CellContentClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex = 0 Then
+            Dim grid = CType(sender, DataGridView)
+            If grid(e.ColumnIndex, e.RowIndex).Value Then
+                grid.CancelEdit()
+            Else
+                For Each row In grid.Rows.Cast(Of DataGridViewRow).Where(Function(r) r.Cells(e.ColumnIndex).Value)
+                    row.Cells(e.ColumnIndex).Value = False
+                Next
+            End If
+            If grid.IsCurrentCellInEditMode Then
+                grid.CommitEdit(DataGridViewDataErrorContexts.Commit)
+            End If
+        End If
+    End Sub
+
+    Private Sub Checked()
+        'Dim meses As Date
+        Dim numeroMes
+        Dim nombreMes
+        Dim nombreMesAnt
+        Dim consulta As String = "SELECT codigo_familia, isnull(periodo_de_pago, '') As fechaPago, pago_cumplido FROM pago_detallado WHERE codigo_familia = " & Val(CbxCodigo.Text) & " and pago_cumplido <> 'completo' "
+        Dim adaptador As SqlDataAdapter = New SqlDataAdapter(consulta, conexion)
+        Dim dtDatos As DataTable = New DataTable
+        adaptador.Fill(dtDatos)
+
+        Dim dataSet As New DataSet()
+        adaptador.Fill(dataSet)
+        If dtDatos.Rows.Count <> 0 Then
+
+            'ClbMeses.DataSource = dtDatos
+            'ClbMeses.DisplayMember = "fecha_de_pago"
+
+            For Each fila As DataRow In dataSet.Tables(0).Rows()
+                fecha = (fila(1))
+                numeroMes = fecha.Month
+                Select Case numeroMes
+                    Case 1
+                        nombreMes = "Enero"
+                        fecha1 = fecha
+                    Case 2
+                        nombreMes = "Febrero"
+                        fecha2 = fecha
+                    Case 3
+                        nombreMes = "Marzo"
+                        fecha3 = fecha
+                    Case 4
+                        nombreMes = "Abril"
+                        fecha4 = fecha
+                    Case 5
+                        nombreMes = "Mayo"
+                        fecha5 = fecha
+                    Case 6
+                        nombreMes = "Junio"
+                        fecha6 = fecha
+                    Case 7
+                        nombreMes = "Julio"
+                        fecha7 = fecha
+                    Case 8
+                        nombreMes = "Agosto"
+                        fecha8 = fecha
+                    Case 9
+                        nombreMes = "Septiembre"
+                        fecha9 = fecha
+                    Case 10
+                        nombreMes = "Octubre"
+                        fecha10 = fecha
+                    Case 11
+                        nombreMes = "Noviembre"
+                        fecha11 = fecha
+                    Case 12
+                        nombreMes = "Diciembre"
+                        fecha12 = fecha
+                End Select
+
+                If nombreMes <> nombreMesAnt Then
+                    ClbMeses.Items.Add(nombreMes)
+                    ClbMeses.SelectedValue = fecha
+                    MontoDeuda(fecha)
+                End If
+                nombreMesAnt = nombreMes
+            Next
+        End If
+        CompruebaDeuda()
+    End Sub
+
+
+    Public Sub CompruebaDeuda()
+
+        'Try
+        '    Dim familia As String = "SELECT codigo_familia, apellido_padre, nombre_padre, apellido_madre, nombre_madre, 
+        '                                   CONCAT(apellido_padre,' - ', apellido_madre) AS familia, estado 
+        '                                   FROM familias WHERE estado = 'activo' 
+        '                                   ORDER BY familia"
+
+        '    Dim adaptadorFamilia = New SqlDataAdapter(familia, conexion)
+        '    Dim datosFamilia = New DataSet
+        '    datosFamilia.Tables.Add("familias")
+        '    adaptadorFamilia.Fill(datosFamilia.Tables("familias"))
+
+
+
+
+
+        '    CbxFamilia.DataSource = datosFamilia.Tables("familias")
+        '    CbxFamilia.DisplayMember = "familia"
+        '    CbxCodigo.DataSource = datosFamilia.Tables("familias")
+        '    CbxCodigo.DisplayMember = "codigo_familia"
+
+        'Catch ex As Exception
+        '    MsgBox("Error comprobando BD" & ex.ToString)
+        'End Try
+        Dim deudaNo As Integer
+
+        Dim deudaSioNo As String = "SELECT COUNT(pago_cumplido) AS pago_cumplido 
+                                        FROM pago_detallado 
+                                        WHERE pago_cumplido <> 'completo'  AND codigo_familia = " & Val(CbxCodigo.Text) & ""
+
+
+        Dim adaptadorDeuda As New SqlDataAdapter(deudaSioNo, conexion)
+        Dim dtDatos As New DataTable
+        adaptadorDeuda.Fill(dtDatos)
+
+        If dtDatos.Rows.Count > 0 Then
+            deudaNo = dtDatos.Rows(0)("pago_cumplido")
+
+            If contador <> 0 Then
+                If deudaNo = 0 Then
+                    MsgBox("La familia " & CbxFamilia.Text & " No presenta deudas del año en curso")
+                End If
+            Else
+                contador += 1
+            End If
+        End If
+    End Sub
+
+    Private Sub ClbMeses_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ClbMeses.SelectedIndexChanged
+        Dim i As Integer
+        Dim j As Integer
+        Dim k As Integer
+        Dim Valor As String
+        Dim indice As Integer
+        Dim indice2 As Integer
+        Dim suma As Integer
+
+        indice = ClbMeses.SelectedIndex
+        indice2 = ClbMeses.Items.Count
+
+        'ListBox1.Items.Clear()
+
+
+        For k = indice + 1 To indice2 - 1
+            ClbMeses.SetItemChecked(k, False)
+        Next
+
+        For j = 0 To indice - 1
+            ClbMeses.SetItemChecked(j, True)
+
+        Next
+
+        indiceArrayMeses = 0
+        ReDim mesesDeuda(ClbMeses.Items.Count - 1)
+        For i = 0 To Me.ClbMeses.CheckedItems.Count - 1
+            Valor = ClbMeses.CheckedItems(i)
+            'MsgBox("La casilla chekeada es " & Valor & "") ''Valor contiene el contenido del item chequeado
+            If Valor = "Enero" Then
+                fecha = fecha1
+                DeudaMes(fecha)
+                'ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArrayMeses) = fecha1
+                indiceArrayMeses += 1
+            ElseIf Valor = "Febrero" Then
+                fecha = fecha2
+                DeudaMes(fecha)
+                'ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArrayMeses) = fecha2
+                indiceArrayMeses += 1
+            ElseIf Valor = "Marzo" Then
+                fecha = fecha3
+                DeudaMes(fecha)
+                'ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArrayMeses) = fecha3
+                indiceArrayMeses += 1
+            ElseIf Valor = "Abril" Then
+                fecha = fecha4
+                DeudaMes(fecha)
+                'ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArrayMeses) = fecha4
+                indiceArrayMeses += 1
+            ElseIf Valor = "Mayo" Then
+                fecha = fecha5
+                DeudaMes(fecha)
+                'ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArrayMeses) = fecha5
+                indiceArrayMeses += 1
+            ElseIf Valor = "Junio" Then
+                fecha = fecha6
+                DeudaMes(fecha)
+                'ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArrayMeses) = fecha6
+                indiceArrayMeses += 1
+            ElseIf Valor = "Julio" Then
+                fecha = fecha7
+                DeudaMes(fecha)
+                'ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArrayMeses) = fecha7
+                indiceArrayMeses += 1
+            ElseIf Valor = "Agosto" Then
+                fecha = fecha8
+                DeudaMes(fecha)
+                'ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArrayMeses) = fecha8
+                indiceArrayMeses += 1
+            ElseIf Valor = "Septiembre" Then
+                fecha = fecha9
+                DeudaMes(fecha)
+                'ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArrayMeses) = fecha9
+                indiceArrayMeses += 1
+            ElseIf Valor = "Octubre" Then
+                fecha = fecha10
+                DeudaMes(fecha)
+                'ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArrayMeses) = fecha10
+                indiceArrayMeses += 1
+            ElseIf Valor = "Octubre" Then
+                fecha = fecha11
+                DeudaMes(fecha)
+                'ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArrayMeses) = fecha11
+                indiceArrayMeses += 1
+            ElseIf Valor = "Octubre" Then
+                fecha = fecha12
+                DeudaMes(fecha)
+                'ListBox1.Items.Add(resultado)
+                mesesDeuda(indiceArrayMeses) = fecha12
+            End If
+            'End If
+
+            If (ClbMeses.GetItemChecked(indiceArrayMeses - 1)) Then
+                'For Each elemento In ListBox1.Items
+
+                suma += resultado
+            End If
+        Next
+        TxtIndicePP.Text = indiceArrayMeses
+
+        'For Each elemento In ListBox1.Items
+
+        '    suma += elemento.ToString
+        'Next
+
+        'For k = indice + 1 To indice2 - 1
+        '    ClbMeses.SetItemChecked(k, False)
+        '    'For Each elemento In ListBox1.Items
+
+        '    '    suma -= elemento.ToString
+        '    'Next
+
+        'Next
+
+
+
+
+        TxtTotalPP.Text = suma
+    End Sub
+
+    Private Sub MontoDeuda(fecha)
+
+        DeudaMes(fecha)
+        ListBox1.Items.Add(resultado)
+
+        'Dim i As Integer
+        'Dim j As Integer
+        'Dim k As Integer
+        'Dim Valor As String
+        'Dim indice As Integer
+        'Dim indice2 As Integer
+        'Dim suma As Integer
+
+        ''indice = ClbMeses.SelectedIndex
+        'indice2 = ClbMeses.Items.Count
+
+        'ListBox1.Items.Clear()
+
+        'For k = indice + 1 To indice2 - 1
+        '    ClbMeses.SetItemChecked(k, False)
+        'Next
+
+        'For j = 0 To indice - 1
+        '    ClbMeses.SetItemChecked(j, True)
+        'Next
+
+        'indiceArrayMeses = 0
+        'ReDim mesesDeuda(ClbMeses.Items.Count - 1)
+        'For i = 0 To Me.ClbMeses.CheckedItems.Count - 1
+        '    Valor = ClbMeses.CheckedItems(i)
+        '    'MsgBox("La casilla chekeada es " & Valor & "") ''Valor contiene el contenido del item chequeado
+        '    If Valor = "Enero" Then
+        '        fecha = fecha1
+        '        DeudaMes(fecha)
+        '        ListBox1.Items.Add(resultado)
+        '        mesesDeuda(indiceArrayMeses) = fecha1
+        '        indiceArrayMeses += 1
+        '    ElseIf Valor = "Febrero" Then
+        '        fecha = fecha2
+        '        DeudaMes(fecha)
+        '        ListBox1.Items.Add(resultado)
+        '        mesesDeuda(indiceArrayMeses) = fecha2
+        '        indiceArrayMeses += 1
+        '    ElseIf Valor = "Marzo" Then
+        '        fecha = fecha3
+        '        DeudaMes(fecha)
+        '        ListBox1.Items.Add(resultado)
+        '        mesesDeuda(indiceArrayMeses) = fecha3
+        '        indiceArrayMeses += 1
+        '    ElseIf Valor = "Abril" Then
+        '        fecha = fecha4
+        '        DeudaMes(fecha)
+        '        ListBox1.Items.Add(resultado)
+        '        mesesDeuda(indiceArrayMeses) = fecha4
+        '        indiceArrayMeses += 1
+        '    ElseIf Valor = "Mayo" Then
+        '        fecha = fecha5
+        '        DeudaMes(fecha)
+        '        ListBox1.Items.Add(resultado)
+        '        mesesDeuda(indiceArrayMeses) = fecha5
+        '        indiceArrayMeses += 1
+        '    ElseIf Valor = "Junio" Then
+        '        fecha = fecha6
+        '        DeudaMes(fecha)
+        '        ListBox1.Items.Add(resultado)
+        '        mesesDeuda(indiceArrayMeses) = fecha6
+        '        indiceArrayMeses += 1
+        '    ElseIf Valor = "Julio" Then
+        '        fecha = fecha7
+        '        DeudaMes(fecha)
+        '        ListBox1.Items.Add(resultado)
+        '        mesesDeuda(indiceArrayMeses) = fecha7
+        '        indiceArrayMeses += 1
+        '    ElseIf Valor = "Agosto" Then
+        '        fecha = fecha8
+        '        DeudaMes(fecha)
+        '        ListBox1.Items.Add(resultado)
+        '        mesesDeuda(indiceArrayMeses) = fecha8
+        '        indiceArrayMeses += 1
+        '    ElseIf Valor = "Septiembre" Then
+        '        fecha = fecha9
+        '        DeudaMes(fecha)
+        '        ListBox1.Items.Add(resultado)
+        '        mesesDeuda(indiceArrayMeses) = fecha9
+        '        indiceArrayMeses += 1
+        '    ElseIf Valor = "Octubre" Then
+        '        fecha = fecha10
+        '        DeudaMes(fecha)
+        '        ListBox1.Items.Add(resultado)
+        '        mesesDeuda(indiceArrayMeses) = fecha10
+        '        indiceArrayMeses += 1
+        '    ElseIf Valor = "Octubre" Then
+        '        fecha = fecha11
+        '        DeudaMes(fecha)
+        '        ListBox1.Items.Add(resultado)
+        '        mesesDeuda(indiceArrayMeses) = fecha11
+        '        indiceArrayMeses += 1
+        '    ElseIf Valor = "Octubre" Then
+        '        fecha = fecha12
+        '        DeudaMes(fecha)
+        '        ListBox1.Items.Add(resultado)
+        '        mesesDeuda(indiceArrayMeses) = fecha12
+        '    End If
+        '    'End If
+        'Next
+        'TxtIndice.Text = indiceArrayMeses
+
+        'For Each elemento In ListBox1.Items
+        '    suma += elemento.ToString
+        'Next
+
+        'TxtTotal.Text = suma
+
+    End Sub
+
+    Private Sub DeudaMes(fecha)
+        Dim consultaDeuda As String = "SELECT SUM(monto_atraso) AS monto FROM pago_detallado WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND periodo_de_pago = '" & fecha & "' "
+        Dim comandoDeuda As New SqlCommand(consultaDeuda, conexion)
+        resultado = comandoDeuda.ExecuteScalar
+        'MsgBox("" & resultado & "")
+    End Sub
+
+    Private Sub DgvPagoAtraso_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DgvPagoAtraso.CellValueChanged
+        Dim mes As Integer
+        Dim parImpar As Integer
+        Dim alumno As String
+        Dim matricula As Decimal
+        Dim totalMatricula As Decimal
+        Dim arancel As Decimal
+        Dim totalCuota As Decimal
+        Dim campamento As Decimal
+        Dim totalCampamento As Decimal
+        Dim talleres As Decimal
+        Dim totalTalleres As Decimal
+        Dim materiales As Decimal
+        Dim totalMaterial As Decimal
+        Dim adicional As Decimal
+        Dim totalAdicional As Decimal
+        Dim comedor As Decimal
+        Dim totalComedor As Decimal
+
+
+        Dim colAlumno As Integer = 1
+        For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+
+            If row.Cells(0).Value = True Then
+                alumno = (row.Cells(colAlumno).Value)
+            Else
+                totalMatricula -= Val(row.Cells(colAlumno).Value)
+            End If
+
+        Next
+
+
+        Dim colMatricula As Integer = 3
+        For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+
+            If row.Cells(0).Value = True Then
+                totalMatricula = Val(row.Cells(colMatricula).Value)
+            Else
+                totalMatricula -= Val(row.Cells(colMatricula).Value)
+            End If
+
+        Next
+        'TxtMatricula.PlaceholderText = totalMatricula
+        matricula = totalMatricula
+
+
+        Dim col As Integer = 4
+        For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+            If row.Selected Then
+                totalCuota += Val(row.Cells(col).Value)
+            End If
+        Next
+        'TxtArancel.PlaceholderText = TotalCuota
+        arancel = totalCuota
+
+        Dim colCamp As Integer = 5
+        For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+            If row.Selected Then
+                totalCampamento += (Val(row.Cells(colCamp).Value))
+            End If
+        Next
+        'TxtCampamento.PlaceholderText = TotalCampamento
+        campamento = totalCampamento
+
+        Dim colTaller As Integer = 6
+        For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+            If row.Selected Then
+                totalTalleres += Val(row.Cells(colTaller).Value)
+            End If
+        Next
+        'TxtTalleres.PlaceholderText = TotalTalleres
+        talleres = totalTalleres
+
+        Dim colMaterial As Integer = 7
+        For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+            If row.Selected Then
+                totalMaterial += Val(row.Cells(colMaterial).Value)
+            End If
+        Next
+        'TxtMateriales.PlaceholderText = TotalMaterial
+        materiales = totalMaterial
+
+        Dim colAdicional As Integer = 8
+        For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+            If row.Selected Then
+                totalAdicional += Val(row.Cells(colAdicional).Value)
+            End If
+        Next
+        'TxtAdicional.PlaceholderText = TotalAdicional
+        adicional = totalAdicional
+
+        Dim colComedor As Integer = 9
+        For Each row As DataGridViewRow In Me.DgvPagoAtraso.Rows
+            If row.Cells("Check2").Value = True Then
+                totalComedor += Val(row.Cells(colComedor).Value)
+            End If
+        Next
+        mes = fechaActualPP.Month
+        parImpar = mes Mod 2
+        If parImpar <> 0 Then
+            'TxtComedor.PlaceholderText = TotalComedor
+            comedor = totalComedor
+        Else
+            'TxtComedor.PlaceholderText = 0
+            comedor = 0
+            totalComedor = comedor
+        End If
+
+        Dim TotalAlumno As Decimal = totalMatricula + totalCuota + totalCampamento + totalTalleres + totalMaterial + totalAdicional + totalComedor
+        LblTotalAlumnoPP.Text = TotalAlumno
+        LblAlumnoPP.Text = alumno
     End Sub
 End Class
