@@ -290,13 +290,13 @@ Public Class Pagos
 
             LblPagoDelPeriodo.Text = total              'Format(total, "##.##00,00")
 
-            LblPagoDelPeriodo.Text = total
+            'LblPagoDelPeriodo.Text = total
 
             Dim estado As String
 
             Dim pagoCumplido As String = "SELECT count(pago_cumplido) as pago 
                                          FROM pago_detallado  
-                                         WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND pago_cumplido = 'Nulo' "     'AND periodo_de_pago = '2021-09-24' AND pago_cumplido = 'Nulo' "
+                                         WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND pago_cumplido <> 'completo' "     'AND periodo_de_pago = '2021-09-24' AND pago_cumplido = 'Nulo' "
             Dim comandoPagoCumplido As New SqlCommand(pagoCumplido, conexion)
             estado = comandoPagoCumplido.ExecuteScalar
             If hayHijos <> 0 Then
@@ -764,11 +764,11 @@ Public Class Pagos
     Private Sub BtnContinuar_Click(sender As Object, e As EventArgs) Handles BtnContinuar.Click
         Dim vuelto As Decimal = (Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text))
         Dim efectivo As Decimal = Val(TxtEfectivo.Text)      'Format(Val(TxtEfectivo.Text), "##.##00,00")
-        Dim decision As Decimal
+        Dim vueltoMenosEfectivo As Decimal
 
 
         'Dim reintegro As Decimal
-        decision = vuelto - efectivo
+        vueltoMenosEfectivo = vuelto - efectivo
         If TxtEfectivo.Text <> "" Or TxtDebito.Text <> "" Or TxtCheque.Text <> "" Or TxtTransferencia.Text <> "" Or TxtMercadopago.Text <> "" Or TxtOtros.Text <> "" Then
 
             abrir()
@@ -821,6 +821,7 @@ Public Class Pagos
                                 opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes más los montos atrasados." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " que queda a cuenta de futuros vencimientos")
                                 vuelto = Val(TxtTotal.Text) + Val(TxtMontoAPagar.Text)
                                 bandera = "todoVueltoACredito"
+
                             End If
                         End If
                     End If
@@ -835,7 +836,7 @@ Public Class Pagos
                         TabControl1.SelectedTab = TabControl1.TabPages.Item(4)
                         RdbPP.Checked = True
 
-                        GrabaPagosAtrasadosParciales()
+                        PagosAtrasadosParciales()
                     Else
                         TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
                         RdbIngresoPagos.Checked = True
@@ -868,7 +869,7 @@ Public Class Pagos
                         bandera = "pagoTotalExacto"
 
                     Else                                                    'Pago de más
-                        If decision < 0 Then                                'Se puede dar todo el vuelto en efectivo
+                        If vueltoMenosEfectivo <= 0 Then         'Se puede dar todo el vuelto en efectivo
                             opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & (Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                             efectivoAlcanza = True
                             bandera = "pagoVueltoEntero"
@@ -876,26 +877,34 @@ Public Class Pagos
                             If (opcion1 = Windows.Forms.DialogResult.No) Then
                                 pagoACuenta = False           'eligió devolución
                                 TxtDisponible.Text -= Val(TxtTotalAPagar.Text)
+                                bandera = "todoAVuelto"
                             Else
                                 pagoACuenta = True            'eligió que el vuelto quede a cuenta de próximo vencimiento
                                 TxtDisponible.Text -= Val(TxtTotalAPagar.Text)
+                                bandera = "todoACredito"
                             End If
                             RdbDetallesPago.Checked = True
-                        Else                                                'El efectivo es menor y solo de puede reintegrar una parte del vuelto
-                            opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & Val(TxtEfectivo.Text) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                            efectivoAlcanza = False
-                            bandera = "pagoVueltoParcial"
-                            If (opcion1 = Windows.Forms.DialogResult.No) Then
-                                pagoACuenta = False           'eligió devolución
-                                TxtDisponible.Text -= Val(TxtTotalAPagar.Text)
-                            Else
-                                pagoACuenta = True            'eligió que el vuelto quede a cuenta de próximo vencimiento
-                                TxtDisponible.Text -= Val(TxtTotalAPagar.Text)
+                        Else                                  'El efectivo es menor o nulo y solo de puede reintegrar una parte o nada del vuelto
+                            If efectivo <> 0 Then             'Vuelto parcial
+                                opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " del que se le pueden reintegrar $" & Val(TxtEfectivo.Text) & " que pagó en efectivo." + vbCr + "" + vbCr + "SÍ: Para usarlo a cuenta del próximo vencimiento." + vbCr + "" + vbCr + "NO: para que se le devuelva en este instante." + vbCr + "" + vbCr + "Al cerrar esta ventana, haga click en 'Guardar'", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                                efectivoAlcanza = False
+                                bandera = "pagoVueltoParcial"
+                                If (opcion1 = Windows.Forms.DialogResult.No) Then
+                                    pagoACuenta = False           'eligió devolución
+                                    TxtDisponible.Text -= Val(TxtTotalAPagar.Text)
+                                    bandera = "parteACredito"
+                                Else
+                                    pagoACuenta = True            'eligió que el vuelto quede a cuenta de próximo vencimiento
+                                    TxtDisponible.Text -= Val(TxtTotalAPagar.Text)
+                                    bandera = "todoACredito"
+                                End If
+                                RdbDetallesPago.Checked = True
+                            Else             'El efectivo es = 0 y todo el exedente queda a cuenta 
+                                opcion1 = MessageBox.Show("El monto es suficiente para afrontar el total del vencimiento del mes." + vbCr + "En este pago hay un excedente de: $" & Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) & " que queda a cuenta de futuros vencimientos")
+                                vuelto = Val(TxtTotal.Text) + Val(TxtMontoAPagar.Text)
+                                bandera = "todoVueltoACredito"
                             End If
-                            RdbDetallesPago.Checked = True
                         End If
-
-
                     End If
 
                     pagoCompleto = True
@@ -907,7 +916,6 @@ Public Class Pagos
                 Else                              'Cuando el monto no es suficiente
                     opcion = MessageBox.Show("El monto es insuficiente para afrontar el total de los conceptos del mes." + vbCr + "En este pago hay un faltante de: $" & Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text) & vbCr + vbCr + "SI: para realizar el pago parcial." + vbCr + "" + vbCr + "NO: para rectificar el monto a pagar." + vbCr + "" + vbCr + "", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     If (opcion = Windows.Forms.DialogResult.No) Then
-
                         TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
                         RdbIngresoPagos.Checked = True
                     Else
@@ -957,7 +965,7 @@ Public Class Pagos
         Else
 
             If pagoCompleto = True Then
-                If Val(TxtDisponible.Text) = Val(TxtTotalAPagar.Text) Then        'Si el pago es justo.
+                If bandera = "pagoTotalExacto" Then        'Si el pago es justo.
                     credito = 0
                     montoDeuda = 0
                     efectivoDef = Val(TxtEfectivo.Text)    'Format(Val(TxtEfectivo.Text), "##.##00,00")
@@ -969,7 +977,7 @@ Public Class Pagos
                 Else                                        'Si se pagó demás.
                     If pagoACuenta = False Then             'Si elije devolución ...
                         If efectivoAlcanza = True Then
-                            credito = 0                     'Cuando el efectivo alcanzó para devolver todo
+                            'bandera = "creditoCero"                   'Cuando el efectivo alcanzó para devolver todo
                             montoDeuda = 0
                             efectivoDef = Val(TxtDisponible.Text) - Val(TxtTotalAPagar.Text)
                             FormaPago(efectivoDef)
@@ -978,6 +986,7 @@ Public Class Pagos
                             MsgBox("Se devuelven $" & Val(TxtDisponible.Text))
                             TxtDisponible.Text = "0"
                         Else
+                            'bandera = "creditoParcial"
                             credito = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text) - Val(TxtEfectivo.Text) 'Cuando el efectivo no alcanzó para devolver todo
                             montoDeuda = 0
                             efectivoDef = 0
@@ -989,6 +998,7 @@ Public Class Pagos
                         End If
 
                     Else                     'Si elije no devolución la suma se carga como crédito del próximo vencimiento
+
                         credito = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
                         montoDeuda = 0
                         efectivoDef = Val(TxtEfectivo.Text)   'Format(Val(TxtEfectivo.Text), "##.##00,00")
@@ -1008,7 +1018,7 @@ Public Class Pagos
                 If TxtMatricula.Text <> "" Or TxtArancel.Text <> "" Or TxtComedor.Text <> "" Or TxtMateriales.Text <> "" Or TxtTalleres.Text <> "" Or TxtCampamento.Text <> "" Or TxtAdicional.Text <> "" Or TxtSinAsignar1.Text <> "" Or TxtSinasignar2.Text <> "" Or TxtSinAsignar3.Text <> "" Then
 
                     If efectivo <= faltanteDePago Then
-                        If efectivo >= Val(TxtDisponible.Text) Then                  'Si alcanza el efectivo para devolver el disponible
+                        If efectivo >= Val(TxtDisponible.Text) Then        'Si alcanza el efectivo para devolver el disponible
 
                             efectivoDef = Val(TxtEfectivo.Text) - Val(TxtDisponible.Text)
                             credito = 0
@@ -1042,10 +1052,15 @@ Public Class Pagos
             End If
 
             '------
+            If bandera = "pagoParcial" Then
+                GrabaPagoFamiliaParcial()
+            Else
 
-            GrabaPagoFamilia()
+                GrabaPagoFamilia()
+                GrabaCredito()
+            End If
         End If
-        TxtMatricula.Clear()
+            TxtMatricula.Clear()
         TxtArancel.Clear()
         TxtMateriales.Clear()
         TxtTalleres.Clear()
@@ -1229,9 +1244,10 @@ Public Class Pagos
     Private Sub PagosAtrasadosParciales()
 
         Dim montoAtraso As Decimal
-
+        Dim periodo As Date
+        Dim alumno As String
         TxtMontoIngresadoPP.Text = Val(TxtTotal.Text)
-        Dim mesesAtraso As String = "SELECT pago_detallado.codigo_alumno, edad, periodo_de_pago, monto_atraso 
+        Dim mesesAtraso As String = "SELECT pago_detallado.codigo_alumno,nombre_apellido_alumno, edad, periodo_de_pago, monto_atraso 
                                      FROM pago_detallado 
                                      JOIN alumnos ON alumnos.codigo_alumno = pago_detallado.codigo_alumno 
                                      WHERE pago_cumplido <> 'completo' AND pago_detallado.codigo_familia = " & Val(CbxCodigo.Text) & " 
@@ -1240,17 +1256,22 @@ Public Class Pagos
         Dim dtDatos As DataTable = New DataTable
         adaptadorMesAtraso.Fill(dtDatos)
 
-
         For Each fila As DataRow In dtDatos.Rows
-            montoAtraso = Val(fila(3))
-            MsgBox(" El monto es " & montoAtraso)
+
+            montoAtraso += Val(fila(4))
+            periodo = (fila(3))
             If Val(TxtTotal.Text) >= montoAtraso Then
+                alumno = (fila(1))
+                MsgBox(" El monto es " & montoAtraso & ", el período es " & periodo & " y el alumno es " & alumno)
                 pagoParcialAtraso()
             Else
+                periodo = periodo.AddMonths(-1)
+                MsgBox("Hasta acá llegaste fierita. Podés cubrir atraso completo hasta el vencimiento correspondiente al " & periodo & " del alumno " & alumno & " A continuación se habilita el panel de pagos por concepto")
+                GroupBox9.Visible = True
+
 
             End If
         Next
-
     End Sub
 
     Private Sub pagoParcialAtraso()
@@ -1762,6 +1783,7 @@ Public Class Pagos
         Dim fechaActual As Date
         Dim codigo As Integer
         Dim ultimoVencimiento As Date
+        Dim credito As Decimal
         fechaActual = LblFecha.Text
 
         Dim maxFecha As String = "SELECT MAX(fecha_vencimiento) AS fecha FROM vencimiento_detallado"
@@ -1836,7 +1858,7 @@ Public Class Pagos
                         comando.ExecuteNonQuery()
 
                         MsgBox("El problema está en la insert")
-                        montoAtraso = Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text)
+                        'montoAtraso = Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text)
 
 
                         'Dim actualizaPagos As String = "UPDATE pago_detallado SET codigo_familia = " & Val(CbxCodigo.Text) & ", 
@@ -1844,6 +1866,30 @@ Public Class Pagos
                         '                           WHERE codigo_alumno = " & codigoAlumno & " And periodo_de_pago = '" & LblPeriodoPago.Text & "' "
 
 
+                        If bandera = "pagoTotalExacto" Then
+                            credito = 0
+                            montoAtraso = 0
+                        ElseIf bandera = "todoAVuelto" Then
+                            credito = 0
+                            montoAtraso = 0
+                        ElseIf bandera = "todoACredito" Then
+                            credito = 0
+                            montoAtraso = 0
+                        ElseIf bandera = "parteACredito" Then
+                            credito = (Val(TxtTotal.Text) - Val(TxtEfectivo.Text)) - Val(TxtMontoAPagar.Text)
+                            montoAtraso = 0
+                        ElseIf bandera = "todoVueltoACredito" Then
+
+                            credito = Val(TxtTotal.Text) - Val(TxtMontoAPagar.Text)
+                            montoAtraso = 0
+                        ElseIf bandera = "pagoParcial" Then
+                            credito = 0
+                            montoAtraso = Val(TxtMontoAPagar.Text) - Val(TxtTotal.Text)
+                        End If
+
+                        'If montoAtraso <= 0 Then
+                        '    montoAtraso = 0
+                        'End If
 
                         Dim actualizaPagos As String = "UPDATE pago_detallado SET codigo_familia = " & Val(CbxCodigo.Text) & ", 
                                                     codigo_alumno = " & codigoAlumno & ", cuota_pago = " & arancel & ",
@@ -1851,7 +1897,7 @@ Public Class Pagos
                                                     campamento_pago = " & campamento & ",  adicional_pago = " & adicional & ",
                                                     comedor_pago = " & comedor & ", sin_asignar1_pago = " & conceptoSinAsignar1 & ", 
                                                     sin_asignar2_pago = " & conceptoSinAsignar2 & ", sin_asignar3_pago = " & conceptoSinAsignar3 & ",
-                                                    monto_atraso = " & montoAtraso & ", fecha_pago = '" & fechaActual & "', pago_cumplido = '" & pagoCumplido & "'
+                                                    monto_atraso = " & montoAtraso & ", credito = " & credito & ", fecha_pago = '" & fechaActual & "', pago_cumplido = '" & pagoCumplido & "'
                                                     WHERE codigo_alumno = " & codigoAlumno & " And periodo_de_pago = '" & LblPeriodoPago.Text & "' "
                         'materiales_pago = " & Format(materiales, "##,###.##") & ", talleres_pago = " & Format(talleres, "##,###.##") & " 
                         'campamento_pago = " & Format(campamento, "##,###.##") & ", adicional_pago = " & Format(adicional, "##,###.##") & ",
@@ -1890,6 +1936,14 @@ Public Class Pagos
         'End If
     End Sub
 
+
+    Private Sub GrabaPagoFamiliaParcial()
+
+    End Sub
+
+    Private Sub GrabaCredito()
+
+    End Sub
     Sub Siexiste()
         If Val(CbxCodigo.Text) <> 0 Then
             Dim siEsta As String = "SELECT COUNT(codigo_alumno) AS alumno FROM alumnos WHERE codigo_familia = '" & Val(CbxCodigo.Text) & "'"
