@@ -111,6 +111,10 @@ Public Class Pagos
     Dim fecha12 As Date
     Dim deuda As Decimal
     Dim resultado As Decimal
+    Dim resultado2 As Decimal
+    Dim resultadoAnterior As Decimal
+    Dim remanente As Decimal
+    Dim montoMes As Decimal
     Dim mesesDeuda() As Date
     Dim indiceArrayMeses As Integer
 
@@ -835,8 +839,12 @@ Public Class Pagos
                         GroupBox9.Visible = False
                         TabControl1.SelectedTab = TabControl1.TabPages.Item(4)
                         RdbPP.Checked = True
-
-                        PagosAtrasadosParciales()
+                        TxtMontoIngresadoPP.Text = Val(TxtTotal.Text)
+                        'PagosAtrasadosParciales(fecha)
+                        ClbMeses.Items.Clear()
+                        ListBox1.Items.Clear()
+                        'Checked()
+                        PagosAtrasadosParciales(fecha)
                     Else
                         TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
                         RdbIngresoPagos.Checked = True
@@ -919,6 +927,7 @@ Public Class Pagos
                         TabControl1.SelectedTab = TabControl1.TabPages.Item(0)
                         RdbIngresoPagos.Checked = True
                     Else
+                        'TxtTotalPP.Text = Val(TxtMontoAPagar.Text)
                         pagoCompleto = False
                         TxtMatricula.Enabled = True
                         TxtArancel.Enabled = True
@@ -931,7 +940,11 @@ Public Class Pagos
                         pagoCumplido = "incompleto"
                         'PagoParcial()
                         TabControl1.SelectedTab = TabControl1.TabPages.Item(1)
+                        TxtMontoIngresadoPP.Text = Val(TxtTotal.Text)
+                        PagosAtrasadosParciales(fecha)
+                        'Checked()
                         bandera = "pagoParcial"
+
                     End If
                 End If
 
@@ -960,8 +973,10 @@ Public Class Pagos
         Dim faltanteDePago As Decimal = Val(TxtMontoAPagar.Text) - sumaDePagosParciales
 
         If atraso = True Then
-            pagosConAtraso()
-
+            If bandera = "pagoTotalExacto" Or bandera = "pagoVueltoEntero" Or bandera = "vueltoTotalACredito" Or bandera = "vueltoParcial" Or bandera = "vueltoParcialACredito" Or bandera = "todoVueltoACredito" Then
+                GrabaPagosAtrasadosCompleto()
+                'pagosConAtraso()
+            End If
         Else
 
             If pagoCompleto = True Then
@@ -1083,15 +1098,15 @@ Public Class Pagos
 
     End Sub
 
-    Sub pagosConAtraso()
-        If bandera = "pagoTotalExacto" Or bandera = "pagoVueltoEntero" Or bandera = "vueltoTotalACredito" Or bandera = "vueltoParcial" Or bandera = "vueltoParcialACredito" Or bandera = "todoVueltoACredito" Then
-            GrabaPagosAtrasadosCompleto()
-        Else
-            PagosAtrasadosParciales()
+    'Sub pagosConAtraso()
+    '    If bandera = "pagoTotalExacto" Or bandera = "pagoVueltoEntero" Or bandera = "vueltoTotalACredito" Or bandera = "vueltoParcial" Or bandera = "vueltoParcialACredito" Or bandera = "todoVueltoACredito" Then
+    '        GrabaPagosAtrasadosCompleto()
+    '    Else
+    '        'PagosAtrasadosParciales(fecha)
 
-        End If
+    '    End If
 
-    End Sub
+    'End Sub
     Sub GrabaPagosAtrasadosCompleto()
 
         Dim fechaActual As Date
@@ -1104,8 +1119,6 @@ Public Class Pagos
         Dim comandoFecha As New SqlCommand(maxFecha, conexion)
         ultimoVencimiento = comandoFecha.ExecuteScalar
         Dim vueltoACredito As Decimal
-
-
 
 
         indiceArrayCodigo = 0
@@ -1241,41 +1254,104 @@ Public Class Pagos
         End If
     End Sub
 
-    Private Sub PagosAtrasadosParciales()
+    Private Sub PagosAtrasadosParciales(fecha)
+        montoMes = 0
+        If CbxCodigo.Text <> "" Then
 
-        Dim montoAtraso As Decimal
-        Dim periodo As Date
-        Dim alumno As String
-        TxtMontoIngresadoPP.Text = Val(TxtTotal.Text)
-        Dim mesesAtraso As String = "SELECT pago_detallado.codigo_alumno,nombre_apellido_alumno, edad, periodo_de_pago, monto_atraso 
+            'TxtTotalPP.Text = Val(TxtMontoAPagar.Text)
+            Dim montoAtraso As Decimal
+            Dim montoAtraso2 As Decimal
+            Dim periodo As Date
+            Dim fechaAtraso As Integer
+            Dim proximoPeriodo As Integer
+            Dim alumnoAnterior As String
+            Dim alumno As String
+            Dim codAlumno As Integer
+            Dim n As Integer
+            Dim remanente As Decimal
+            Dim cantidadHijos As Integer = 0
+            remanente = Val(TxtMontoIngresadoPP.Text)
+            TxtMontoIngresadoPP.Text = Val(TxtTotal.Text)
+            Dim mesesAtraso As String = "SELECT pago_detallado.codigo_alumno,nombre_apellido_alumno, edad, periodo_de_pago, monto_atraso 
                                      FROM pago_detallado 
                                      JOIN alumnos ON alumnos.codigo_alumno = pago_detallado.codigo_alumno 
                                      WHERE pago_cumplido <> 'completo' AND pago_detallado.codigo_familia = " & Val(CbxCodigo.Text) & " 
                                      ORDER BY periodo_de_pago, edad"
-        Dim adaptadorMesAtraso As New SqlDataAdapter(mesesAtraso, conexion)
-        Dim dtDatos As DataTable = New DataTable
-        adaptadorMesAtraso.Fill(dtDatos)
-
-        For Each fila As DataRow In dtDatos.Rows
-
-            montoAtraso += Val(fila(4))
-            periodo = (fila(3))
-            If Val(TxtTotal.Text) >= montoAtraso Then
-                alumno = (fila(1))
-                MsgBox(" El monto es " & montoAtraso & ", el período es " & periodo & " y el alumno es " & alumno)
-                pagoParcialAtraso()
-            Else
-                periodo = periodo.AddMonths(-1)
-                MsgBox("Hasta acá llegaste fierita. Podés cubrir atraso completo hasta el vencimiento correspondiente al " & periodo & " del alumno " & alumno & " A continuación se habilita el panel de pagos por concepto")
-                GroupBox9.Visible = True
+            Dim adaptadorMesAtraso As New SqlDataAdapter(mesesAtraso, conexion)
+            Dim dtDatos As DataTable = New DataTable
+            adaptadorMesAtraso.Fill(dtDatos)
+            For Each row1 As DataGridViewRow In Me.DgvPagoAtraso.Rows
+                row1.Cells("Check2").Value = True
+            Next
+            ClbMeses.Items.Clear()
+            ListBox1.Items.Clear()
+            ListBox2.Items.Clear()
+            Checked()
+            'periodo = dtDatos.Rows(0)("periodo_de_pago")
 
 
-            End If
-        Next
+            For Each fila As DataRow In dtDatos.Rows
+
+                codAlumno = Val(fila(0))
+                alumno = fila(1)
+                montoAtraso += Val(fila(4))
+                montoAtraso2 = Val(fila(4))
+                periodo = fila(3)
+                fechaAtraso = periodo.Month
+                proximoPeriodo = fechaAtraso
+                'periodo = fila(3)
+
+                If cantidadHijos = 0 Then
+                    Dim numeroHermanos As String = "SELECT COUNT(codigo_alumno) AS cantidad 
+                                            FROM pago_detallado 
+                                            WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND periodo_de_pago = ' " & periodo & " '"
+
+                    Dim comandoNumero As New SqlCommand(numeroHermanos, conexion)
+                    cantidadHijos = comandoNumero.ExecuteScalar
+                End If
+
+                If cantidadHijos > 0 Then
+                    'montoMes = montoAtraso
+                    If remanente >= montoAtraso2 Then
+                        remanente -= montoAtraso2
+                        montoMes += montoAtraso2
+                    Else
+                        'remanente = Val(TxtMontoIngresadoPP.Text) - resultadoAnterior
+                        montoMes += remanente
+                        ListBox2.Items.Add(montoMes)
+
+                        LblDisponible.Text = remanente
+                        montoMes = 0
+                        If alumnoAnterior = "" Then
+                            MsgBox("Hasta acá llegaste fierita. Podés cubrir atraso parcial del vencimiento correspondiente al " & periodo + vbCr + " A continuación se habilita el panel de pagos por concepto para el alumno " & alumno)
+                        Else
+                            MsgBox("Hasta acá llegaste fierita. Podés cubrir atraso completo hasta el vencimiento correspondiente al " & periodo + vbCr + " del alumno " & alumnoAnterior + vbCr + " A continuación se habilita el panel de pagos por concepto para el alumno " & alumno)
+                        End If
+                        LlenaGroupBox(codAlumno, periodo)
+                        GroupBox9.Visible = True
+
+                    End If
+
+                    If cantidadHijos = 1 Then
+                        ListBox2.Items.Add(montoMes)
+                        montoMes = 0
+                        ClbMeses.SetItemChecked(n, True)
+                        n += 1
+                    End If
+                    cantidadHijos -= 1
+                End If
+
+                If Val(TxtTotal.Text) < montoAtraso Then
+                    montoAtraso -= Val(fila(4))
+                    Exit For
+                End If
+                alumnoAnterior = fila(1)
+            Next
+        End If
     End Sub
 
-    Private Sub pagoParcialAtraso()
-
+    Private Sub LlenaGroupBox(codAlumno, periodo)
+        MsgBox("El codigo alumnos es " & codAlumno & " y el período: " & periodo)
     End Sub
 
     Sub DataGridPP()
@@ -1350,14 +1426,17 @@ Public Class Pagos
                                                 WHERE codigo_alumno = '" & codigoAlumno & "' and periodo_de_pago = ' " & fecha & " '"
                 Dim comandoPago As New SqlCommand(alumnoPago, conexion)
                 cumplido = comandoPago.ExecuteScalar
-                If cumplido <> "completo" Then
-                    row.Cells("Check2").Value = True
-                Else
-                    row.Cells("Check2").Value = False
-                End If
+                'If cumplido <> "completo" Then
+                '    row.Cells("Check2").Value = True
+                'Else
+                '    row.Cells("Check2").Value = False
+                'End If
 
                 'codigoArray(indiceArrayCodigo) = Val(row.Cells(colCodigoAlumno).Value)
                 'indiceArrayCodigo += 1
+
+
+                row.Cells("Check2").Value = True
 
             Next
             LbxCodigo.Items.Clear()
@@ -2351,6 +2430,12 @@ Public Class Pagos
         End If
     End Sub
 
+    Private Sub DgvPagoAtraso_CurrentCellDirtyStateChanged(sender As Object, e As EventArgs) Handles DgvPagoAtraso.CurrentCellDirtyStateChanged
+        If DgvPagoAtraso.IsCurrentCellDirty Then
+            DgvPagoAtraso.CommitEdit(DataGridViewDataErrorContexts.Commit)
+        End If
+    End Sub
+
     Private Sub TxtEfectivo_KeyPress_1(sender As Object, e As KeyPressEventArgs) Handles TxtEfectivo.KeyPress
         SoloNumeros(e)
     End Sub
@@ -2403,90 +2488,104 @@ Public Class Pagos
         Me.Close()
     End Sub
 
-    Private Sub DgvPagoAtraso_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvPagoAtraso.CellContentClick
-        If e.RowIndex >= 0 AndAlso e.ColumnIndex = 0 Then
-            Dim grid = CType(sender, DataGridView)
-            If grid(e.ColumnIndex, e.RowIndex).Value Then
-                grid.CancelEdit()
-            Else
-                For Each row In grid.Rows.Cast(Of DataGridViewRow).Where(Function(r) r.Cells(e.ColumnIndex).Value)
-                    row.Cells(e.ColumnIndex).Value = False
-                Next
-            End If
-            If grid.IsCurrentCellInEditMode Then
-                grid.CommitEdit(DataGridViewDataErrorContexts.Commit)
-            End If
-        End If
-    End Sub
+    'Private Sub DgvPagoAtraso_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvPagoAtraso.CellContentClick
+    '    If e.RowIndex >= 0 AndAlso e.ColumnIndex = 0 Then
+    '        Dim grid = CType(sender, DataGridView)
+    '        If grid(e.ColumnIndex, e.RowIndex).Value Then
+    '            grid.CancelEdit()
+    '        Else
+    '            For Each row In grid.Rows.Cast(Of DataGridViewRow).Where(Function(r) r.Cells(e.ColumnIndex).Value)
+    '                row.Cells(e.ColumnIndex).Value = False
+    '            Next
+    '        End If
+    '        If grid.IsCurrentCellInEditMode Then
+    '            grid.CommitEdit(DataGridViewDataErrorContexts.Commit)
+    '        End If
+    '    End If
+    'End Sub
 
     Private Sub Checked()
+
         'Dim meses As Date
         Dim numeroMes
-        Dim nombreMes
-        Dim nombreMesAnt
-        Dim consulta As String = "SELECT codigo_familia, isnull(periodo_de_pago, '') As fechaPago, pago_cumplido FROM pago_detallado WHERE codigo_familia = " & Val(CbxCodigo.Text) & " and pago_cumplido <> 'completo' "
-        Dim adaptador As SqlDataAdapter = New SqlDataAdapter(consulta, conexion)
-        Dim dtDatos As DataTable = New DataTable
-        adaptador.Fill(dtDatos)
+            Dim nombreMes
+            Dim nombreMesAnt
+            Dim consulta As String = "SELECT codigo_familia, isnull(periodo_de_pago, '') As fechaPago, pago_cumplido 
+                                  FROM pago_detallado 
+                                  WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND pago_cumplido <> 'completo' "
+            Dim adaptador As SqlDataAdapter = New SqlDataAdapter(consulta, conexion)
+            Dim dtDatos As DataTable = New DataTable
+            adaptador.Fill(dtDatos)
 
-        Dim dataSet As New DataSet()
-        adaptador.Fill(dataSet)
-        If dtDatos.Rows.Count <> 0 Then
+            Dim dataSet As New DataSet()
+            adaptador.Fill(dataSet)
+            If dtDatos.Rows.Count <> 0 Then
 
-            'ClbMeses.DataSource = dtDatos
-            'ClbMeses.DisplayMember = "fecha_de_pago"
+                'ClbMeses.DataSource = dtDatos
+                'ClbMeses.DisplayMember = "fecha_de_pago"
 
-            For Each fila As DataRow In dataSet.Tables(0).Rows()
-                fecha = (fila(1))
-                numeroMes = fecha.Month
-                Select Case numeroMes
-                    Case 1
-                        nombreMes = "Enero"
-                        fecha1 = fecha
-                    Case 2
-                        nombreMes = "Febrero"
-                        fecha2 = fecha
-                    Case 3
-                        nombreMes = "Marzo"
-                        fecha3 = fecha
-                    Case 4
-                        nombreMes = "Abril"
-                        fecha4 = fecha
-                    Case 5
-                        nombreMes = "Mayo"
-                        fecha5 = fecha
-                    Case 6
-                        nombreMes = "Junio"
-                        fecha6 = fecha
-                    Case 7
-                        nombreMes = "Julio"
-                        fecha7 = fecha
-                    Case 8
-                        nombreMes = "Agosto"
-                        fecha8 = fecha
+                For Each fila As DataRow In dataSet.Tables(0).Rows()
+                    fecha = (fila(1))
+                    numeroMes = fecha.Month
+                    Select Case numeroMes
+                        Case 1
+                            nombreMes = "Enero"
+                            fecha1 = fecha
+                        Case 2
+                            nombreMes = "Febrero"
+                            fecha2 = fecha
+                        Case 3
+                            nombreMes = "Marzo"
+                            fecha3 = fecha
+                        Case 4
+                            nombreMes = "Abril"
+                            fecha4 = fecha
+                        Case 5
+                            nombreMes = "Mayo"
+                            fecha5 = fecha
+                        Case 6
+                            nombreMes = "Junio"
+                            fecha6 = fecha
+                        Case 7
+                            nombreMes = "Julio"
+                            fecha7 = fecha
+                        Case 8
+                            nombreMes = "Agosto"
+                            fecha8 = fecha
+                            'PagosAtrasadosParciales(fecha)
                     Case 9
-                        nombreMes = "Septiembre"
-                        fecha9 = fecha
+                            nombreMes = "Septiembre"
+                            fecha9 = fecha
+                            'PagosAtrasadosParciales(fecha)
                     Case 10
-                        nombreMes = "Octubre"
-                        fecha10 = fecha
+                            nombreMes = "Octubre"
+                            fecha10 = fecha
+                            'PagosAtrasadosParciales(fecha)
                     Case 11
-                        nombreMes = "Noviembre"
-                        fecha11 = fecha
+                            nombreMes = "Noviembre"
+                            fecha11 = fecha
+                            'PagosAtrasadosParciales(fecha)
                     Case 12
-                        nombreMes = "Diciembre"
-                        fecha12 = fecha
-                End Select
+                            nombreMes = "Diciembre"
+                            fecha12 = fecha
+                    End Select
+
+                'Dim n As Integer
+                'For n = 0 To ClbMeses.Items.Count - 1
+                '    ClbMeses.SetItemChecked(n, True)
+                'Next
+
 
                 If nombreMes <> nombreMesAnt Then
-                    ClbMeses.Items.Add(nombreMes)
-                    ClbMeses.SelectedValue = fecha
-                    MontoDeuda(fecha)
-                End If
-                nombreMesAnt = nombreMes
-            Next
-        End If
-        CompruebaDeuda()
+                        ClbMeses.Items.Add(nombreMes)
+                        ClbMeses.SelectedValue = fecha
+                        MontoDeuda(fecha)
+                    End If
+                    nombreMesAnt = nombreMes
+                Next
+            End If
+            CompruebaDeuda()
+
     End Sub
 
 
@@ -2571,72 +2670,84 @@ Public Class Pagos
             If Valor = "Enero" Then
                 fecha = fecha1
                 DeudaMes(fecha)
+                PagosAtrasadosParciales(fecha)
                 'ListBox1.Items.Add(resultado)
                 mesesDeuda(indiceArrayMeses) = fecha1
                 indiceArrayMeses += 1
             ElseIf Valor = "Febrero" Then
                 fecha = fecha2
                 DeudaMes(fecha)
+                'PagosAtrasadosParciales(fecha)
                 'ListBox1.Items.Add(resultado)
                 mesesDeuda(indiceArrayMeses) = fecha2
                 indiceArrayMeses += 1
             ElseIf Valor = "Marzo" Then
                 fecha = fecha3
                 DeudaMes(fecha)
+                'PagosAtrasadosParciales(fecha)
                 'ListBox1.Items.Add(resultado)
                 mesesDeuda(indiceArrayMeses) = fecha3
                 indiceArrayMeses += 1
             ElseIf Valor = "Abril" Then
                 fecha = fecha4
                 DeudaMes(fecha)
+                'PagosAtrasadosParciales(fecha)
                 'ListBox1.Items.Add(resultado)
                 mesesDeuda(indiceArrayMeses) = fecha4
                 indiceArrayMeses += 1
             ElseIf Valor = "Mayo" Then
                 fecha = fecha5
                 DeudaMes(fecha)
+                'PagosAtrasadosParciales(fecha)
                 'ListBox1.Items.Add(resultado)
                 mesesDeuda(indiceArrayMeses) = fecha5
                 indiceArrayMeses += 1
             ElseIf Valor = "Junio" Then
                 fecha = fecha6
                 DeudaMes(fecha)
+                'PagosAtrasadosParciales(fecha)
                 'ListBox1.Items.Add(resultado)
                 mesesDeuda(indiceArrayMeses) = fecha6
                 indiceArrayMeses += 1
             ElseIf Valor = "Julio" Then
                 fecha = fecha7
                 DeudaMes(fecha)
+                'PagosAtrasadosParciales(fecha)
                 'ListBox1.Items.Add(resultado)
                 mesesDeuda(indiceArrayMeses) = fecha7
                 indiceArrayMeses += 1
             ElseIf Valor = "Agosto" Then
                 fecha = fecha8
                 DeudaMes(fecha)
+                'PagosAtrasadosParciales(fecha)
                 'ListBox1.Items.Add(resultado)
                 mesesDeuda(indiceArrayMeses) = fecha8
                 indiceArrayMeses += 1
             ElseIf Valor = "Septiembre" Then
                 fecha = fecha9
                 DeudaMes(fecha)
+                'PagosAtrasadosParciales(fecha)
                 'ListBox1.Items.Add(resultado)
                 mesesDeuda(indiceArrayMeses) = fecha9
                 indiceArrayMeses += 1
             ElseIf Valor = "Octubre" Then
                 fecha = fecha10
                 DeudaMes(fecha)
+                'PagosAtrasadosParciales(fecha)
                 'ListBox1.Items.Add(resultado)
                 mesesDeuda(indiceArrayMeses) = fecha10
                 indiceArrayMeses += 1
-            ElseIf Valor = "Octubre" Then
+            ElseIf Valor = "Noviembre" Then
                 fecha = fecha11
                 DeudaMes(fecha)
+                'PagosAtrasadosParciales(fecha)
                 'ListBox1.Items.Add(resultado)
                 mesesDeuda(indiceArrayMeses) = fecha11
                 indiceArrayMeses += 1
-            ElseIf Valor = "Octubre" Then
+            ElseIf Valor = "Diciembre" Then
                 fecha = fecha12
                 DeudaMes(fecha)
+                'PagosAtrasadosParciales(fecha)
                 'ListBox1.Items.Add(resultado)
                 mesesDeuda(indiceArrayMeses) = fecha12
             End If
@@ -2668,12 +2779,14 @@ Public Class Pagos
 
 
         TxtTotalPP.Text = suma
+        'TxtTotalPP.Text = TxtMontoAPagar.Text
     End Sub
 
     Private Sub MontoDeuda(fecha)
 
         DeudaMes(fecha)
         ListBox1.Items.Add(resultado)
+
 
         'Dim i As Integer
         'Dim j As Integer
@@ -2792,6 +2905,18 @@ Public Class Pagos
         'MsgBox("" & resultado & "")
     End Sub
 
+
+
+
+
+
+
+
+
+
+
+
+
     Private Sub DgvPagoAtraso_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DgvPagoAtraso.CellValueChanged
         Dim mes As Integer
         Dim parImpar As Integer
@@ -2904,4 +3029,6 @@ Public Class Pagos
         LblTotalAlumnoPP.Text = TotalAlumno
         LblAlumnoPP.Text = alumno
     End Sub
+
+
 End Class

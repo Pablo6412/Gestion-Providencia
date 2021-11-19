@@ -64,6 +64,11 @@ Partial Class FrmPagosDelMes
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TxtMontoAtraso = New System.Windows.Forms.TextBox()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
         Me.DgvHijos1 = New System.Windows.Forms.DataGridView()
         Me.Check = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -78,12 +83,12 @@ Partial Class FrmPagosDelMes
         Me.LblPeriodoDePago = New System.Windows.Forms.Label()
         Me.BtnContinuar = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.TxtObservaciones = New System.Windows.Forms.TextBox()
+        Me.Label27 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.TxtCredito = New System.Windows.Forms.TextBox()
         Me.Label26 = New System.Windows.Forms.Label()
-        Me.TxtObservaciones = New System.Windows.Forms.TextBox()
         Me.TxtMontoAPagar = New System.Windows.Forms.TextBox()
-        Me.Label27 = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.TxtTotal = New System.Windows.Forms.TextBox()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -193,6 +198,7 @@ Partial Class FrmPagosDelMes
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         CType(Me.DgvHijos1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -214,7 +220,7 @@ Partial Class FrmPagosDelMes
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 77)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(974, 5)
+        Me.Panel2.Size = New System.Drawing.Size(1194, 5)
         Me.Panel2.TabIndex = 3
         '
         'Panel1
@@ -226,7 +232,7 @@ Partial Class FrmPagosDelMes
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(974, 77)
+        Me.Panel1.Size = New System.Drawing.Size(1194, 77)
         Me.Panel1.TabIndex = 2
         '
         'PictureBox1
@@ -319,7 +325,7 @@ Partial Class FrmPagosDelMes
         Me.RadioButton4.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.RadioButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.RadioButton4.ForeColor = System.Drawing.Color.White
-        Me.RadioButton4.Location = New System.Drawing.Point(842, 0)
+        Me.RadioButton4.Location = New System.Drawing.Point(1061, -2)
         Me.RadioButton4.Name = "RadioButton4"
         Me.RadioButton4.Size = New System.Drawing.Size(128, 61)
         Me.RadioButton4.TabIndex = 3
@@ -358,7 +364,7 @@ Partial Class FrmPagosDelMes
         Me.TabControl1.Multiline = True
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(974, 667)
+        Me.TabControl1.Size = New System.Drawing.Size(1194, 667)
         Me.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.TabControl1.TabIndex = 4
         '
@@ -367,6 +373,7 @@ Partial Class FrmPagosDelMes
         Me.TabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.TabPage1.BackgroundImage = CType(resources.GetObject("TabPage1.BackgroundImage"), System.Drawing.Image)
         Me.TabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage1.Controls.Add(Me.GroupBox5)
         Me.TabPage1.Controls.Add(Me.DgvHijos1)
         Me.TabPage1.Controls.Add(Me.LblPeriodoDePago)
         Me.TabPage1.Controls.Add(Me.BtnContinuar)
@@ -376,9 +383,58 @@ Partial Class FrmPagosDelMes
         Me.TabPage1.Controls.Add(Me.GroupBox1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 24)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Size = New System.Drawing.Size(966, 639)
+        Me.TabPage1.Size = New System.Drawing.Size(1186, 639)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox5.Controls.Add(Me.TextBox2)
+        Me.GroupBox5.Controls.Add(Me.TxtMontoAtraso)
+        Me.GroupBox5.Controls.Add(Me.Label24)
+        Me.GroupBox5.Controls.Add(Me.Label22)
+        Me.GroupBox5.Location = New System.Drawing.Point(298, 542)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(624, 78)
+        Me.GroupBox5.TabIndex = 30
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Resumen"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.TextBox2.Location = New System.Drawing.Point(468, 25)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ReadOnly = True
+        Me.TextBox2.Size = New System.Drawing.Size(100, 27)
+        Me.TextBox2.TabIndex = 3
+        '
+        'TxtMontoAtraso
+        '
+        Me.TxtMontoAtraso.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.TxtMontoAtraso.Location = New System.Drawing.Point(155, 25)
+        Me.TxtMontoAtraso.Name = "TxtMontoAtraso"
+        Me.TxtMontoAtraso.Size = New System.Drawing.Size(100, 27)
+        Me.TxtMontoAtraso.TabIndex = 2
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(352, 31)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(111, 15)
+        Me.Label24.TabIndex = 1
+        Me.Label24.Text = "Deuda registrada:  $"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(33, 31)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(116, 15)
+        Me.Label22.TabIndex = 0
+        Me.Label22.Text = "Montos atrasados:  $"
         '
         'DgvHijos1
         '
@@ -443,7 +499,7 @@ Partial Class FrmPagosDelMes
         Me.DgvHijos1.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.Highlight
         Me.DgvHijos1.RowTemplate.Height = 25
         Me.DgvHijos1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvHijos1.Size = New System.Drawing.Size(892, 177)
+        Me.DgvHijos1.Size = New System.Drawing.Size(1084, 177)
         Me.DgvHijos1.TabIndex = 29
         '
         'Check
@@ -568,7 +624,7 @@ Partial Class FrmPagosDelMes
         Me.BtnContinuar.BackColor = System.Drawing.Color.White
         Me.BtnContinuar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight
         Me.BtnContinuar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnContinuar.Location = New System.Drawing.Point(73, 578)
+        Me.BtnContinuar.Location = New System.Drawing.Point(34, 580)
         Me.BtnContinuar.Name = "BtnContinuar"
         Me.BtnContinuar.Size = New System.Drawing.Size(100, 40)
         Me.BtnContinuar.TabIndex = 27
@@ -578,12 +634,12 @@ Partial Class FrmPagosDelMes
         'GroupBox4
         '
         Me.GroupBox4.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox4.Controls.Add(Me.TxtObservaciones)
+        Me.GroupBox4.Controls.Add(Me.Label27)
         Me.GroupBox4.Controls.Add(Me.Label17)
         Me.GroupBox4.Controls.Add(Me.TxtCredito)
         Me.GroupBox4.Controls.Add(Me.Label26)
-        Me.GroupBox4.Controls.Add(Me.TxtObservaciones)
         Me.GroupBox4.Controls.Add(Me.TxtMontoAPagar)
-        Me.GroupBox4.Controls.Add(Me.Label27)
         Me.GroupBox4.Controls.Add(Me.Label23)
         Me.GroupBox4.Controls.Add(Me.TxtTotal)
         Me.GroupBox4.Controls.Add(Me.Panel4)
@@ -603,10 +659,32 @@ Partial Class FrmPagosDelMes
         Me.GroupBox4.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.GroupBox4.Location = New System.Drawing.Point(34, 364)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(892, 208)
+        Me.GroupBox4.Size = New System.Drawing.Size(1084, 156)
         Me.GroupBox4.TabIndex = 26
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Pagos"
+        '
+        'TxtObservaciones
+        '
+        Me.TxtObservaciones.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.TxtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtObservaciones.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TxtObservaciones.Location = New System.Drawing.Point(859, 45)
+        Me.TxtObservaciones.Multiline = True
+        Me.TxtObservaciones.Name = "TxtObservaciones"
+        Me.TxtObservaciones.Size = New System.Drawing.Size(205, 90)
+        Me.TxtObservaciones.TabIndex = 31
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label27.ForeColor = System.Drawing.Color.Black
+        Me.Label27.Location = New System.Drawing.Point(908, 19)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(112, 21)
+        Me.Label27.TabIndex = 30
+        Me.Label27.Text = "Observaciones"
         '
         'Label17
         '
@@ -641,17 +719,6 @@ Partial Class FrmPagosDelMes
         Me.Label26.TabIndex = 27
         Me.Label26.Text = "Monto a pagar: $"
         '
-        'TxtObservaciones
-        '
-        Me.TxtObservaciones.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.TxtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtObservaciones.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TxtObservaciones.Location = New System.Drawing.Point(134, 152)
-        Me.TxtObservaciones.Multiline = True
-        Me.TxtObservaciones.Name = "TxtObservaciones"
-        Me.TxtObservaciones.Size = New System.Drawing.Size(710, 35)
-        Me.TxtObservaciones.TabIndex = 25
-        '
         'TxtMontoAPagar
         '
         Me.TxtMontoAPagar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -660,17 +727,6 @@ Partial Class FrmPagosDelMes
         Me.TxtMontoAPagar.Name = "TxtMontoAPagar"
         Me.TxtMontoAPagar.Size = New System.Drawing.Size(120, 33)
         Me.TxtMontoAPagar.TabIndex = 26
-        '
-        'Label27
-        '
-        Me.Label27.AutoSize = True
-        Me.Label27.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label27.ForeColor = System.Drawing.Color.Black
-        Me.Label27.Location = New System.Drawing.Point(19, 154)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(115, 21)
-        Me.Label27.TabIndex = 24
-        Me.Label27.Text = "Observaciones:"
         '
         'Label23
         '
@@ -939,7 +995,7 @@ Partial Class FrmPagosDelMes
         Me.BtnSalir.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnSalir.Location = New System.Drawing.Point(784, 578)
+        Me.BtnSalir.Location = New System.Drawing.Point(1017, 567)
         Me.BtnSalir.Name = "BtnSalir"
         Me.BtnSalir.Size = New System.Drawing.Size(101, 40)
         Me.BtnSalir.TabIndex = 24
@@ -970,7 +1026,7 @@ Partial Class FrmPagosDelMes
         Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.GroupBox1.Location = New System.Drawing.Point(34, 64)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(892, 95)
+        Me.GroupBox1.Size = New System.Drawing.Size(1084, 95)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Familia"
@@ -1061,7 +1117,7 @@ Partial Class FrmPagosDelMes
         Me.TabPage2.Location = New System.Drawing.Point(4, 24)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(966, 639)
+        Me.TabPage2.Size = New System.Drawing.Size(1186, 639)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
         '
@@ -1657,7 +1713,7 @@ Partial Class FrmPagosDelMes
         Me.TabPage3.Location = New System.Drawing.Point(4, 24)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(966, 639)
+        Me.TabPage3.Size = New System.Drawing.Size(1186, 639)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "TabPage3"
         '
@@ -1747,7 +1803,7 @@ Partial Class FrmPagosDelMes
         Me.TabPage4.Location = New System.Drawing.Point(4, 24)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(966, 639)
+        Me.TabPage4.Size = New System.Drawing.Size(1186, 639)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TabPage4"
         '
@@ -1767,7 +1823,7 @@ Partial Class FrmPagosDelMes
         Me.TabPage5.Location = New System.Drawing.Point(4, 24)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(966, 639)
+        Me.TabPage5.Size = New System.Drawing.Size(1186, 639)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "TabPage5"
         '
@@ -1791,7 +1847,7 @@ Partial Class FrmPagosDelMes
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(0, 82)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(974, 62)
+        Me.Panel3.Size = New System.Drawing.Size(1194, 62)
         Me.Panel3.TabIndex = 6
         '
         'EFECTIVO
@@ -1843,7 +1899,7 @@ Partial Class FrmPagosDelMes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(974, 749)
+        Me.ClientSize = New System.Drawing.Size(1194, 749)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Panel2)
@@ -1861,6 +1917,8 @@ Partial Class FrmPagosDelMes
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
         CType(Me.DgvHijos1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
@@ -1970,8 +2028,6 @@ Partial Class FrmPagosDelMes
     Friend WithEvents TxtDisponible As TextBox
     Friend WithEvents DtpFechaDePago As DateTimePicker
     Friend WithEvents TxtCodigoPago As TextBox
-    Friend WithEvents TxtObservaciones As TextBox
-    Friend WithEvents Label27 As Label
     Friend WithEvents Panel6 As Panel
     Friend WithEvents TxtReintegro As TextBox
     Friend WithEvents LblFamilia As Label
@@ -2028,4 +2084,11 @@ Partial Class FrmPagosDelMes
     Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
+    Friend WithEvents TxtObservaciones As TextBox
+    Friend WithEvents Label27 As Label
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents TxtMontoAtraso As TextBox
+    Friend WithEvents Label24 As Label
+    Friend WithEvents Label22 As Label
 End Class

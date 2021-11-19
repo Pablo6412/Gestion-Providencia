@@ -485,7 +485,7 @@ Partial Class FrmPagoDeudaAño
         Me.MaximizeBox = False
         Me.Name = "FrmPagoDeudaAño"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Pago de deuda del año en curso"
+        Me.Text = "Pago de atrasos del año en curso"
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)

@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class FrmPagoDeudaAño
-    Dim fechaActual As Date = Date.Today
+    Dim fechaActualPP As Date = Date.Today
     Dim fecha As Date
     Dim fecha1 As Date
     Dim fecha2 As Date
@@ -18,7 +18,7 @@ Public Class FrmPagoDeudaAño
     Dim deuda As Decimal
     Dim resultado As Decimal
     Dim mesesDeuda() As Date
-    Dim indiceArray As Integer
+    Dim indiceArrayMeses As Integer
     Dim contador As Integer = 0
 
 
@@ -27,7 +27,6 @@ Public Class FrmPagoDeudaAño
         conectar()
         BuscaFamilia()
         Datagrid()
-
         LblFecha.Text = Date.Now.ToLongDateString
     End Sub
 
@@ -51,7 +50,6 @@ Public Class FrmPagoDeudaAño
         Catch ex As Exception
             MsgBox("Error comprobando BD" & ex.ToString)
         End Try
-
         PagoMes(fecha)
     End Sub
 
@@ -121,53 +119,53 @@ Public Class FrmPagoDeudaAño
                 MsgBox("Error comprobando BD" & ex.ToString)
             End Try
 
-            Dim colMatricula As Integer = 2
+            Dim colMatricula As Integer = 3
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 totalMatricula += Val(row.Cells(colMatricula).Value)
             Next
             'TxtMatricula.PlaceholderText = totalMatricula
             matricula = totalMatricula
 
-            Dim col As Integer = 3
+            Dim col As Integer = 4
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalCuota += Val(row.Cells(col).Value)
             Next
             'TxtArancel.PlaceholderText = TotalCuota
             arancel = TotalCuota
 
-            Dim colCamp As Integer = 4
+            Dim colCamp As Integer = 5
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalCampamento += (Val(row.Cells(colCamp).Value))
             Next
             'TxtCampamento.PlaceholderText = TotalCampamento
             campamento = TotalCampamento
 
-            Dim colTaller As Integer = 5
+            Dim colTaller As Integer = 6
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalTalleres += Val(row.Cells(colTaller).Value)
             Next
             'TxtTalleres.PlaceholderText = TotalTalleres
             talleres = TotalTalleres
 
-            Dim colMaterial As Integer = 6
+            Dim colMaterial As Integer = 7
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalMaterial += Val(row.Cells(colMaterial).Value)
             Next
             'TxtMateriales.PlaceholderText = TotalMaterial
             materiales = TotalMaterial
 
-            Dim colAdicional As Integer = 7
+            Dim colAdicional As Integer = 8
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalAdicional += Val(row.Cells(colAdicional).Value)
             Next
             'TxtAdicional.PlaceholderText = TotalAdicional
             adicional = TotalAdicional
 
-            Dim colComedor As Integer = 8
+            Dim colComedor As Integer = 9
             For Each row As DataGridViewRow In Me.DgvHijos.Rows
                 TotalComedor += Val(row.Cells(colComedor).Value)
             Next
-            mes = fechaActual.Month
+            mes = fechaActualPP.Month
             parImpar = mes Mod 2
             If parImpar <> 0 Then
                 'TxtComedor.PlaceholderText = TotalComedor
@@ -195,7 +193,6 @@ Public Class FrmPagoDeudaAño
                 MsgBox("No pasa nada")
             End If
         End If
-
     End Sub
 
     Private Sub CreaTablaTemporal(rows)
@@ -283,7 +280,6 @@ Public Class FrmPagoDeudaAño
         '    comedor = 0
         '    TotalComedor = comedor
         'End If
-
     End Sub
 
     Private Sub DgvHijos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvHijos.CellContentClick
@@ -305,8 +301,9 @@ Public Class FrmPagoDeudaAño
         'Dim meses As Date
         Dim numeroMes
         Dim nombreMes
+        Dim nombreMesAnt
 
-        Dim consulta As String = "SELECT codigo_familia, isnull(periodo_de_pago, '') As fechaPago, pago_cumplido FROM detalle_pago_escolar WHERE codigo_familia = " & Val(CbxCodigo.Text) & " and pago_cumplido <> 'completo' "
+        Dim consulta As String = "SELECT codigo_familia, isnull(periodo_de_pago, '') As fechaPago, pago_cumplido FROM pago_detallado WHERE codigo_familia = " & Val(CbxCodigo.Text) & " and pago_cumplido <> 'completo' "
         Dim adaptador As SqlDataAdapter = New SqlDataAdapter(consulta, conexion)
         Dim dtDatos As DataTable = New DataTable
         adaptador.Fill(dtDatos)
@@ -354,15 +351,19 @@ Public Class FrmPagoDeudaAño
                         fecha10 = fecha
                     Case 11
                         nombreMes = "Noviembre"
+
                         fecha11 = fecha
                     Case 12
                         nombreMes = "Diciembre"
                         fecha12 = fecha
                 End Select
 
-                ClbMeses.Items.Add(nombreMes)
-                ClbMeses.SelectedValue = fecha
-                MontoDeuda(fecha)
+                If nombreMes <> nombreMesAnt Then
+                    ClbMeses.Items.Add(nombreMes)
+                    ClbMeses.SelectedValue = fecha
+                    MontoDeuda(fecha)
+                End If
+                nombreMesAnt = nombreMes
             Next
         End If
         CompruebaDeuda()
@@ -374,6 +375,7 @@ Public Class FrmPagoDeudaAño
         ListBox1.Items.Clear()
         Checked()
         Datagrid()
+        LblTotalAlumno.Text = 0
     End Sub
 
     Public Sub CompruebaDeuda()
@@ -404,7 +406,7 @@ Public Class FrmPagoDeudaAño
         Dim deudaNo As Integer
 
         Dim deudaSioNo As String = "SELECT COUNT(pago_cumplido) AS pago_cumplido 
-                                        FROM detalle_pago_escolar 
+                                        FROM pago_detallado 
                                         WHERE pago_cumplido <> 'completo'  AND codigo_familia = " & Val(CbxCodigo.Text) & ""
 
 
@@ -423,7 +425,6 @@ Public Class FrmPagoDeudaAño
                 contador += 1
             End If
         End If
-        contador = 0
     End Sub
 
     Private Sub ClbMeses_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ClbMeses.SelectedIndexChanged
@@ -450,7 +451,7 @@ Public Class FrmPagoDeudaAño
 
         Next
 
-        indiceArray = 0
+        indiceArrayMeses = 0
         ReDim mesesDeuda(ClbMeses.Items.Count - 1)
         For i = 0 To Me.ClbMeses.CheckedItems.Count - 1
             Valor = ClbMeses.CheckedItems(i)
@@ -459,83 +460,83 @@ Public Class FrmPagoDeudaAño
                 fecha = fecha1
                 DeudaMes(fecha)
                 'ListBox1.Items.Add(resultado)
-                mesesDeuda(indiceArray) = fecha1
-                indiceArray += 1
+                mesesDeuda(indiceArrayMeses) = fecha1
+                indiceArrayMeses += 1
             ElseIf Valor = "Febrero" Then
                 fecha = fecha2
                 DeudaMes(fecha)
                 'ListBox1.Items.Add(resultado)
-                mesesDeuda(indiceArray) = fecha2
-                indiceArray += 1
+                mesesDeuda(indiceArrayMeses) = fecha2
+                indiceArrayMeses += 1
             ElseIf Valor = "Marzo" Then
                 fecha = fecha3
                 DeudaMes(fecha)
                 'ListBox1.Items.Add(resultado)
-                mesesDeuda(indiceArray) = fecha3
-                indiceArray += 1
+                mesesDeuda(indiceArrayMeses) = fecha3
+                indiceArrayMeses += 1
             ElseIf Valor = "Abril" Then
                 fecha = fecha4
                 DeudaMes(fecha)
                 'ListBox1.Items.Add(resultado)
-                mesesDeuda(indiceArray) = fecha4
-                indiceArray += 1
+                mesesDeuda(indiceArrayMeses) = fecha4
+                indiceArrayMeses += 1
             ElseIf Valor = "Mayo" Then
                 fecha = fecha5
                 DeudaMes(fecha)
                 'ListBox1.Items.Add(resultado)
-                mesesDeuda(indiceArray) = fecha5
-                indiceArray += 1
+                mesesDeuda(indiceArrayMeses) = fecha5
+                indiceArrayMeses += 1
             ElseIf Valor = "Junio" Then
                 fecha = fecha6
                 DeudaMes(fecha)
                 'ListBox1.Items.Add(resultado)
-                mesesDeuda(indiceArray) = fecha6
-                indiceArray += 1
+                mesesDeuda(indiceArrayMeses) = fecha6
+                indiceArrayMeses += 1
             ElseIf Valor = "Julio" Then
                 fecha = fecha7
                 DeudaMes(fecha)
                 'ListBox1.Items.Add(resultado)
-                mesesDeuda(indiceArray) = fecha7
-                indiceArray += 1
+                mesesDeuda(indiceArrayMeses) = fecha7
+                indiceArrayMeses += 1
             ElseIf Valor = "Agosto" Then
                 fecha = fecha8
                 DeudaMes(fecha)
                 'ListBox1.Items.Add(resultado)
-                mesesDeuda(indiceArray) = fecha8
-                indiceArray += 1
+                mesesDeuda(indiceArrayMeses) = fecha8
+                indiceArrayMeses += 1
             ElseIf Valor = "Septiembre" Then
                 fecha = fecha9
                 DeudaMes(fecha)
                 'ListBox1.Items.Add(resultado)
-                mesesDeuda(indiceArray) = fecha9
-                indiceArray += 1
+                mesesDeuda(indiceArrayMeses) = fecha9
+                indiceArrayMeses += 1
             ElseIf Valor = "Octubre" Then
                 fecha = fecha10
                 DeudaMes(fecha)
                 'ListBox1.Items.Add(resultado)
-                mesesDeuda(indiceArray) = fecha10
-                indiceArray += 1
+                mesesDeuda(indiceArrayMeses) = fecha10
+                indiceArrayMeses += 1
             ElseIf Valor = "Octubre" Then
                 fecha = fecha11
                 DeudaMes(fecha)
                 'ListBox1.Items.Add(resultado)
-                mesesDeuda(indiceArray) = fecha11
-                indiceArray += 1
+                mesesDeuda(indiceArrayMeses) = fecha11
+                indiceArrayMeses += 1
             ElseIf Valor = "Octubre" Then
                 fecha = fecha12
                 DeudaMes(fecha)
                 'ListBox1.Items.Add(resultado)
-                mesesDeuda(indiceArray) = fecha12
+                mesesDeuda(indiceArrayMeses) = fecha12
             End If
             'End If
 
-            If (ClbMeses.GetItemChecked(indiceArray - 1)) Then
+            If (ClbMeses.GetItemChecked(indiceArrayMeses - 1)) Then
                 'For Each elemento In ListBox1.Items
 
                 suma += resultado
             End If
         Next
-        TxtIndice.Text = indiceArray
+        TxtIndice.Text = indiceArrayMeses
 
         'For Each elemento In ListBox1.Items
 
@@ -561,7 +562,6 @@ Public Class FrmPagoDeudaAño
 
 
         TxtTotal.Text = suma
-
     End Sub
 
     Private Sub MontoDeuda(fecha)
@@ -590,7 +590,7 @@ Public Class FrmPagoDeudaAño
         '    ClbMeses.SetItemChecked(j, True)
         'Next
 
-        'indiceArray = 0
+        'indiceArrayMeses = 0
         'ReDim mesesDeuda(ClbMeses.Items.Count - 1)
         'For i = 0 To Me.ClbMeses.CheckedItems.Count - 1
         '    Valor = ClbMeses.CheckedItems(i)
@@ -599,77 +599,77 @@ Public Class FrmPagoDeudaAño
         '        fecha = fecha1
         '        DeudaMes(fecha)
         '        ListBox1.Items.Add(resultado)
-        '        mesesDeuda(indiceArray) = fecha1
-        '        indiceArray += 1
+        '        mesesDeuda(indiceArrayMeses) = fecha1
+        '        indiceArrayMeses += 1
         '    ElseIf Valor = "Febrero" Then
         '        fecha = fecha2
         '        DeudaMes(fecha)
         '        ListBox1.Items.Add(resultado)
-        '        mesesDeuda(indiceArray) = fecha2
-        '        indiceArray += 1
+        '        mesesDeuda(indiceArrayMeses) = fecha2
+        '        indiceArrayMeses += 1
         '    ElseIf Valor = "Marzo" Then
         '        fecha = fecha3
         '        DeudaMes(fecha)
         '        ListBox1.Items.Add(resultado)
-        '        mesesDeuda(indiceArray) = fecha3
-        '        indiceArray += 1
+        '        mesesDeuda(indiceArrayMeses) = fecha3
+        '        indiceArrayMeses += 1
         '    ElseIf Valor = "Abril" Then
         '        fecha = fecha4
         '        DeudaMes(fecha)
         '        ListBox1.Items.Add(resultado)
-        '        mesesDeuda(indiceArray) = fecha4
-        '        indiceArray += 1
+        '        mesesDeuda(indiceArrayMeses) = fecha4
+        '        indiceArrayMeses += 1
         '    ElseIf Valor = "Mayo" Then
         '        fecha = fecha5
         '        DeudaMes(fecha)
         '        ListBox1.Items.Add(resultado)
-        '        mesesDeuda(indiceArray) = fecha5
-        '        indiceArray += 1
+        '        mesesDeuda(indiceArrayMeses) = fecha5
+        '        indiceArrayMeses += 1
         '    ElseIf Valor = "Junio" Then
         '        fecha = fecha6
         '        DeudaMes(fecha)
         '        ListBox1.Items.Add(resultado)
-        '        mesesDeuda(indiceArray) = fecha6
-        '        indiceArray += 1
+        '        mesesDeuda(indiceArrayMeses) = fecha6
+        '        indiceArrayMeses += 1
         '    ElseIf Valor = "Julio" Then
         '        fecha = fecha7
         '        DeudaMes(fecha)
         '        ListBox1.Items.Add(resultado)
-        '        mesesDeuda(indiceArray) = fecha7
-        '        indiceArray += 1
+        '        mesesDeuda(indiceArrayMeses) = fecha7
+        '        indiceArrayMeses += 1
         '    ElseIf Valor = "Agosto" Then
         '        fecha = fecha8
         '        DeudaMes(fecha)
         '        ListBox1.Items.Add(resultado)
-        '        mesesDeuda(indiceArray) = fecha8
-        '        indiceArray += 1
+        '        mesesDeuda(indiceArrayMeses) = fecha8
+        '        indiceArrayMeses += 1
         '    ElseIf Valor = "Septiembre" Then
         '        fecha = fecha9
         '        DeudaMes(fecha)
         '        ListBox1.Items.Add(resultado)
-        '        mesesDeuda(indiceArray) = fecha9
-        '        indiceArray += 1
+        '        mesesDeuda(indiceArrayMeses) = fecha9
+        '        indiceArrayMeses += 1
         '    ElseIf Valor = "Octubre" Then
         '        fecha = fecha10
         '        DeudaMes(fecha)
         '        ListBox1.Items.Add(resultado)
-        '        mesesDeuda(indiceArray) = fecha10
-        '        indiceArray += 1
+        '        mesesDeuda(indiceArrayMeses) = fecha10
+        '        indiceArrayMeses += 1
         '    ElseIf Valor = "Octubre" Then
         '        fecha = fecha11
         '        DeudaMes(fecha)
         '        ListBox1.Items.Add(resultado)
-        '        mesesDeuda(indiceArray) = fecha11
-        '        indiceArray += 1
+        '        mesesDeuda(indiceArrayMeses) = fecha11
+        '        indiceArrayMeses += 1
         '    ElseIf Valor = "Octubre" Then
         '        fecha = fecha12
         '        DeudaMes(fecha)
         '        ListBox1.Items.Add(resultado)
-        '        mesesDeuda(indiceArray) = fecha12
+        '        mesesDeuda(indiceArrayMeses) = fecha12
         '    End If
         '    'End If
         'Next
-        'TxtIndice.Text = indiceArray
+        'TxtIndice.Text = indiceArrayMeses
 
         'For Each elemento In ListBox1.Items
         '    suma += elemento.ToString
@@ -680,11 +680,10 @@ Public Class FrmPagoDeudaAño
     End Sub
 
     Private Sub DeudaMes(fecha)
-        Dim consultaDeuda As String = "SELECT monto_deuda FROM detalle_pago_escolar WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND periodo_de_pago = '" & fecha & "' "
-                Dim comandoDeuda As New SqlCommand(consultaDeuda, conexion)
+        Dim consultaDeuda As String = "SELECT sum(monto_atraso) as monto FROM pago_detallado WHERE codigo_familia = " & Val(CbxCodigo.Text) & " AND periodo_de_pago = '" & fecha & "' "
+        Dim comandoDeuda As New SqlCommand(consultaDeuda, conexion)
         resultado = comandoDeuda.ExecuteScalar
         'MsgBox("" & resultado & "")
-
     End Sub
 
     'Private Sub BtnPago_Click(sender As Object, e As EventArgs) Handles BtnPago.Click
@@ -694,7 +693,7 @@ Public Class FrmPagoDeudaAño
     '    ListBox1.Items.Clear()
 
 
-    '    For indice = 0 To indiceArray - 1
+    '    For indice = 0 To indiceArrayMeses - 1
     '        mes = mesesDeuda(indice)
     '        PagoMes(mes)
     '        MsgBox("meses deuda: " & mesesDeuda(indice) & "")
@@ -800,7 +799,7 @@ Public Class FrmPagoDeudaAño
             End If
         Next
         'TxtArancel.PlaceholderText = TotalCuota
-        arancel = TotalCuota
+        arancel = totalCuota
 
         Dim colCamp As Integer = 5
         For Each row As DataGridViewRow In Me.DgvHijos.Rows
@@ -809,7 +808,7 @@ Public Class FrmPagoDeudaAño
             End If
         Next
         'TxtCampamento.PlaceholderText = TotalCampamento
-        campamento = TotalCampamento
+        campamento = totalCampamento
 
         Dim colTaller As Integer = 6
         For Each row As DataGridViewRow In Me.DgvHijos.Rows
@@ -818,7 +817,7 @@ Public Class FrmPagoDeudaAño
             End If
         Next
         'TxtTalleres.PlaceholderText = TotalTalleres
-        talleres = TotalTalleres
+        talleres = totalTalleres
 
         Dim colMaterial As Integer = 7
         For Each row As DataGridViewRow In Me.DgvHijos.Rows
@@ -827,7 +826,7 @@ Public Class FrmPagoDeudaAño
             End If
         Next
         'TxtMateriales.PlaceholderText = TotalMaterial
-        materiales = TotalMaterial
+        materiales = totalMaterial
 
         Dim colAdicional As Integer = 8
         For Each row As DataGridViewRow In Me.DgvHijos.Rows
@@ -836,7 +835,7 @@ Public Class FrmPagoDeudaAño
             End If
         Next
         'TxtAdicional.PlaceholderText = TotalAdicional
-        adicional = TotalAdicional
+        adicional = totalAdicional
 
         Dim colComedor As Integer = 9
         For Each row As DataGridViewRow In Me.DgvHijos.Rows
@@ -844,7 +843,7 @@ Public Class FrmPagoDeudaAño
                 totalComedor += Val(row.Cells(colComedor).Value)
             End If
         Next
-        mes = fechaActual.Month
+        mes = fechaActualPP.Month
         parImpar = mes Mod 2
         If parImpar <> 0 Then
             'TxtComedor.PlaceholderText = TotalComedor
